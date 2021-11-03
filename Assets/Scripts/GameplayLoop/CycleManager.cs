@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace TrojanMouse.GameplayLoop {
-    public class GameController : MonoBehaviour {
+    public class CycleManager : MonoBehaviour {
         public List<CycleController> cycles;
 
         public int currentCycle = 0;
@@ -28,7 +28,7 @@ namespace TrojanMouse.GameplayLoop {
         /// GET THE NEXT LEVEL AND START THE PLAYFIELD WITH IT
         /// </summary>
         public void StartLevel() {
-
+            
         }
     }
 }

@@ -8,7 +8,7 @@ namespace TrojanMouse.GameplayLoop {
     public class CycleController : ScriptableObject {
         public UnityEvent cycleController;
         public void AddNanaBetsys(int quantityToAdd) {
-            GameController.nanaBetsyCount += quantityToAdd;
+            CycleManager.nanaBetsyCount += quantityToAdd;
         }
     }
 }
