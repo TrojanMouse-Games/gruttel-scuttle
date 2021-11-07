@@ -4,6 +4,7 @@ using System.Collections;
 using JoshsScripts.CharacterStats;
 using JoshsScripts.PowerUp;
 using TrojanMouse.AI.Movement;
+using TrojanMouse.AI.Behaviours;
 using UnityEngine;
 using UnityEngine.AI;
 #endregion
@@ -189,50 +190,6 @@ namespace TrojanMouse.AI
         #region STATE FUNCTIONS
 
         /// <summary>
-        /// This function handles the wandering for the AI.
-        /// Uses the Navmesh and picks a point on it to move to. If the point is blocked by something, go to a new point.
-        /// This will eventually extend the vision function(or class) to move move out of the wandering state.
-        /// </summary>
-        private void Wander()
-        {
-            if (timer >= wanderTimer)
-            {
-                if (!blocked)
-                {
-                    // Check for litter as the start
-                    CheckForLitter();
-
-                    RaycastHit vision;
-
-                    Vector3 newPos = RandomWanderPoint(transform.position, wanderRadius, -1);
-                    blocked = NavMesh.Raycast(transform.position, newPos, out hit, NavMesh.AllAreas);
-                    Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out vision, 5f);
-                    Debug.DrawLine(transform.position, newPos, blocked ? Color.red : Color.green);
-                    agent.SetDestination(newPos);
-                    StartCoroutine(Cooldown(1));
-
-                    timer = 0;
-
-                    if (Physics.Raycast(transform.position, transform.forward, out vision, 50f))
-                    {
-                        Debug.Log(transform.name + " hit a " + vision.transform.name);
-                        if (vision.transform.gameObject.tag == "NPC")
-                        {
-                            newPos = gameObject.transform.position;
-                            Debug.Log("Moving to an NPC" + "(" + vision.transform.name + ")");
-                            agent.SetDestination(newPos);
-                        }
-                    }
-                }
-                else
-                {
-                    Vector3 newPos = RandomWanderPoint(transform.position, wanderRadius, -1);
-                    timer = 0;
-                    blocked = false;
-                }
-            }
-        }
-        /// <summary>
         /// This function handles the fleeing of the AI. Forcing the AI to run away from its target/agressor. Reuses some variables.
         /// <para>Ignores the check for litter, as it doesn't make sense for them to care about litter when fleeing.</para>
         /// </summary>
@@ -374,34 +331,6 @@ namespace TrojanMouse.AI
                     Destroy(this);
                     break;
             }
-        }
-
-        /// <summary>
-        /// This void is what allows the AI to wander about the world, it's a little bit rudimentary
-        /// but it is for sure good enough for what I need right now. For reference, some of this is
-        /// identical to what I used in a previous project *Gimme Gimme*, it worked well enough then, and it
-        /// should do the same for now
-        ///
-        /// <para>The only new parts are the blocked path detection which will make sure the AI doesn't run to a
-        /// point it can't get to, causing it to do some unwanted behaviour</para>
-        /// </summary>
-        /// <param name="origin">Where the point is chosen from(around)</param>
-        /// <param name="dist">How far it should pick from around the origin</param>
-        /// <param name="layermask">The layermask of things to hit</param>
-        /// <returns>nav hit point, which is a point on the navmesh</returns>
-        private static Vector3 RandomWanderPoint(Vector3 origin, float dist, int layermask)
-        {
-            Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
-            randDirection += origin;
-            NavMeshHit navHit;
-            NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-            return navHit.position;
-        }
-
-        IEnumerator Cooldown(float coolDown)
-        {
-            yield return new WaitForSeconds(coolDown);
-            wanderTimer = UnityEngine.Random.Range(2, 10);
         }
 
         //  TODO: PASS IN PREV STATE
