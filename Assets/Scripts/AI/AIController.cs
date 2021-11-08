@@ -129,7 +129,7 @@ namespace TrojanMouse.AI
                     CheckForLitter();
                     break;
                 case AIState.currState.Patrolling:
-                    if (!moduleSpawnCheck && patrolScript != null)
+                    if (!moduleSpawnCheck && patrolScript == null)
                     {
                         moduleSpawnCheck = true;
                         patrolScript = gameObject.AddComponent<Patrol>();
