@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// DEVELOPED BY JOSH THOMPSON
 namespace TrojanMouse.RegionManagement{
     public class RegionHandler : MonoBehaviour{
        
@@ -34,9 +35,12 @@ namespace TrojanMouse.RegionManagement{
         ///<summary>THIS WILL TRIGGER ALL REGIONS TO CALLBACK AND TELL US INFORMATION ABOUT ITSELF</summary>
         public void _PingRegions() => PingRegions?.Invoke();
         ///<summary>MANUALLY ADDS A GIVEN REGION TO OUR REGION DICTIONARY</summary>
-        public void AddRegion(Region _region){            
-            if(regions.ContainsKey(_region.Type) && !regions[_region.Type].Contains(_region)){ regions[_region.Type].Add(_region); }
-            else{ regions.Add(_region.Type, new List<Region>{ _region }); }            
+        public void AddRegion(Region _region){
+            if(regions.ContainsKey(_region.Type) && !regions[_region.Type].Contains(_region)){ 
+                regions[_region.Type].Add(_region); 
+            } else{ 
+                regions.Add(_region.Type, new List<Region>{ _region }); 
+            }            
         }
         #endregion
        
