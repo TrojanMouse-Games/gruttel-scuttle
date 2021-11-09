@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+namespace TrojanMouse.RegionManagement{
+    public class RegionHandler : MonoBehaviour{
+       
+        public static RegionHandler current;
+        private void Awake() => current = this;
+
+
+        bool hasBooted;
+        private void Update() {
+            #region SETUP
+            if(!hasBooted){
+                hasBooted = true;
+                
+                _PingRegions();     
+                Debug.Log(regions.Count);  
+            }    
+            #endregion
+        }
+        
+        #region REGION MANIPULATION
+        Dictionary<Region.RegionType, List<Region>> regions = new Dictionary<Region.RegionType, List<Region>>();
+
+        ///<summary>This function returns all regions of a given passed type e.g. 'Litter_Region'</summary>
+        public Region[] GetRegions(Region.RegionType _type) => regions[_type].ToArray(); // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
+        #endregion
+        #region REGION COLLECTION
+        // THIS REGION IS PURELY FOR COLLECTING REGIONS IN THE HIERARCHY AND STORING THEM IN THIS SCRIPT FOR LATER MANIPULATION
+        public event Action PingRegions;
+        ///<summary>THIS WILL TRIGGER ALL REGIONS TO CALLBACK AND TELL US INFORMATION ABOUT ITSELF</summary>
+        public void _PingRegions() => PingRegions?.Invoke();
+        ///<summary>MANUALLY ADDS A GIVEN REGION TO OUR REGION DICTIONARY</summary>
+        public void AddRegion(Region _region){            
+            if(regions.ContainsKey(_region.Type) && !regions[_region.Type].Contains(_region)){ regions[_region.Type].Add(_region); }
+            else{ regions.Add(_region.Type, new List<Region>{ _region }); }            
+        }
+        #endregion
+       
+
+
+
+
+       
+        private void OnDrawGizmosSelected() {
+           if(!Application.isEditor){ return; }
+           foreach(Transform child in transform){
+               Region region = child.GetComponent<Region>();
+               Gizmos.color = region.DebugColour;
+
+               Gizmos.DrawWireSphere(child.position, .1f);
+           }
+       }
+    }
+}
