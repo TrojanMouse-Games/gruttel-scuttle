@@ -5,9 +5,9 @@ using System;
 
 // DEVELOPED BY JOSH THOMPSON
 namespace TrojanMouse.RegionManagement{
-    public class RegionHandler : MonoBehaviour{
+    public class Region_Handler : MonoBehaviour{
        
-        public static RegionHandler current;
+        public static Region_Handler current;
         private void Awake() => current = this;
 
 
@@ -17,8 +17,7 @@ namespace TrojanMouse.RegionManagement{
             if(!hasBooted){
                 hasBooted = true;
                 
-                _PingRegions();     
-                Debug.Log(regions.Count);  
+                _PingRegions();                     
             }    
             #endregion
         }
