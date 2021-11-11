@@ -18,6 +18,7 @@ and therefore i am trying to use built-in unity feature such as colliders to mea
 - In inspector where this script is located, assign the correct variables to match the purpose of this region 
 
 - MAKE SURE THIS OBJECT COLLIDER IS SET TO TRIGGER!
+- WHEN RESIZING THE COLLIDERS MAKE SURE TO SET THE 'CENTER' VALUE TO 0!
 
 - You do not need to place a litter scriptable object inside the variable slot if this is not a litter region
 */
@@ -33,11 +34,15 @@ namespace TrojanMouse.RegionManagement{
 
         public LitterManager litterManager;
 
+        public Collider regionCollider;
 
         [SerializeField] Color32 debugColour = Color.red;
         public Color32 DebugColour{ get{ return debugColour;} }
 
-        private void Start() => Region_Handler.current.PingRegions += PingRegion;
+        private void Start() { 
+            Region_Handler.current.PingRegions += PingRegion;
+            regionCollider = transform.GetComponent<Collider>();
+        }
         void PingRegion() => Region_Handler.current.AddRegion(this);
 
         [Serializable] public enum RegionType{
