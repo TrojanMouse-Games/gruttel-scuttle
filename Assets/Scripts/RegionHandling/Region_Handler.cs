@@ -5,19 +5,20 @@ using System;
 
 // DEVELOPED BY JOSH THOMPSON
 namespace TrojanMouse.RegionManagement{
-    public class Region_Handler : MonoBehaviour{
-       
+    public class Region_Handler : MonoBehaviour {
+
         public static Region_Handler current;
         private void Awake() => current = this;
 
 
         bool hasBooted;
+        public bool HasBooted{ get { return hasBooted; } }
         private void Update() {
             #region SETUP
             if(!hasBooted){
                 hasBooted = true;
                 
-                _PingRegions();                     
+                _PingRegions();                
             }    
             #endregion
         }

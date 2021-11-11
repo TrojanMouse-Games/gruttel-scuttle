@@ -33,7 +33,7 @@ namespace TrojanMouse.RegionManagement{
                 List<LitterTypes> possibleLitterToSpawn = new List<LitterTypes>();
 
                 foreach(LitterTypes litterType in litter){ // THIS LOOP FIGURES OUT WHAT CAN SPAWN BASED ON THE RANDOM VALUE AND ADDS IT TO THE LIST
-                    if(litterType.chanceToSpawn < chance){ possibleLitterToSpawn.Add(litterType);}
+                    if(chance < litterType.chanceToSpawn) { possibleLitterToSpawn.Add(litterType);}
                 }
 
                 LitterTypes selectedLitter = possibleLitterToSpawn[UnityEngine.Random.Range(0,possibleLitterToSpawn.Count)];
