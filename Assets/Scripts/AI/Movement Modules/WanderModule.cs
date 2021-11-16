@@ -2,18 +2,31 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace TrojanMouse.AI.Movement
-{
+namespace TrojanMouse.AI.Movement {
     /// <summary>
     /// This is the wander class, it holds all the functions neccesary to get the wander working with the AI. 
     /// With it's main class being Wander()
     /// </summary>
-    public class WanderModule : MonoBehaviour
-    {
+    [RequireComponent(typeof(AIController))]
+    public class WanderModule : MonoBehaviour {
         float m_wanderTimer;
+        bool cleanup = false;
+        float timer;
+        public float maxWanderDuration;
+        [SerializeField]
+        private float timeLeftTillScriptCleanup;
+        AIController aIController;
 
-        
+        private void Update() {
+            // Might be a good idea to just access the AIControllers timer to avoid sync issues.
+            // Start the timer
+            timer += Time.deltaTime;
 
+            timeLeftTillScriptCleanup = maxWanderDuration - Time.time;
+
+            if (!cleanup)
+                StartCoroutine(WaitForDelete(maxWanderDuration));
+        }
 
         /// <summary>
         /// This function handles the wandering for the AI.
@@ -26,13 +39,10 @@ namespace TrojanMouse.AI.Movement
         /// <param name="blocked">Checks to see if the current picked point is blocked, Passed in from controller.</param>
         /// <param name="hit">Used for storing the navmesh location variable, passed in from controller.</param>
         /// <param name="agent">The navmesh agent, passed in from controller.</param>
-        public void Wander(float timer, float wanderTimer, float wanderRadius, bool blocked, NavMeshHit hit, NavMeshAgent agent)
-        {
-            m_wanderTimer = wanderTimer;
-            if (timer >= wanderTimer)
-            {
-                if (!blocked)
-                {
+        public void Wander(float wanderTimer, float wanderRadius, bool blocked, NavMeshHit hit, NavMeshAgent agent) {
+            wanderTimer = m_wanderTimer;
+            if (timer >= wanderTimer) {
+                if (!blocked) {
                     RaycastHit vision;
 
                     Vector3 newPos = RandomWanderPoint(transform.position, wanderRadius, -1);
@@ -44,19 +54,14 @@ namespace TrojanMouse.AI.Movement
 
                     timer = 0;
 
-                    if (Physics.Raycast(transform.position, transform.forward, out vision, 50f))
-                    {
-                        Debug.Log(transform.name + " hit a " + vision.transform.name);
-                        if (vision.transform.gameObject.tag == "NPC")
-                        {
+                    if (Physics.Raycast(transform.position, transform.forward, out vision, 50f)) {
+                        if (vision.transform.gameObject.tag == "NPC") {
                             newPos = gameObject.transform.position;
-                            Debug.Log("Moving to an NPC" + "(" + vision.transform.name + ")");
+                            //Debug.Log("Moving to an NPC" + "(" + vision.transform.name + ")");
                             agent.SetDestination(newPos);
                         }
                     }
-                }
-                else
-                {
+                } else {
                     Vector3 newPos = RandomWanderPoint(transform.position, wanderRadius, -1);
                     timer = 0;
                     blocked = false;
@@ -77,8 +82,7 @@ namespace TrojanMouse.AI.Movement
         /// <param name="dist">How far it should pick from around the origin</param>
         /// <param name="layermask">The layermask of things to hit</param>
         /// <returns>nav hit point, which is a point on the navmesh</returns>
-        private static Vector3 RandomWanderPoint(Vector3 origin, float dist, int layermask)
-        {
+        private static Vector3 RandomWanderPoint(Vector3 origin, float dist, int layermask) {
             Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
             randDirection += origin;
             NavMeshHit navHit;
@@ -86,10 +90,28 @@ namespace TrojanMouse.AI.Movement
             return navHit.position;
         }
 
-        IEnumerator Cooldown(float coolDown)
-        {
+        IEnumerator Cooldown(float coolDown) {
             yield return new WaitForSeconds(coolDown);
             m_wanderTimer = UnityEngine.Random.Range(2, 10);
         }
+
+        /// <summary>
+        /// This coroutine manages the delay that the script will wait before cleaning itself up.
+        /// </summary>
+        /// <param name="time">How long before the script gets cleaned up</param>
+        /// <returns>waits for the alloted time before continuing</returns>
+        IEnumerator WaitForDelete(float time) {
+            yield return new WaitForSeconds(time);
+            cleanup = true;
+            DestroyScript();
+        }
+
+        /// <summary>
+        /// Destroys script, is public so it can be called elsewhere if needed.
+        /// </summary>
+        public void DestroyScript() {
+            Destroy(this);
+        }
+
     }
 }

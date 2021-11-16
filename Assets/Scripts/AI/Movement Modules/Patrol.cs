@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace TrojanMouse.AI.Movement
 {
@@ -9,8 +9,7 @@ namespace TrojanMouse.AI.Movement
     /// <para>Simple Patrol module that can be added to the AI.</para>
     /// Will drop points around the origin, and make the AI move to them. Most values are exposed for editing.
     /// </summary>
-    public class Patrol : MonoBehaviour
-    {
+    public class Patrol : MonoBehaviour {
         public List<GameObject> pointsList = new List<GameObject>();
         private int destPoint = 0;
         private NavMeshAgent agent;
@@ -18,13 +17,11 @@ namespace TrojanMouse.AI.Movement
         public bool patrol = true;
         public GameObject CPatrolPoint;
 
-        void Start()
-        {
+        void Start() {
             agent = GetComponent<NavMeshAgent>();
             CPatrolPoint = GameObject.FindGameObjectWithTag("CenterPatrolPoint");
             pointsList.AddRange(GameObject.FindGameObjectsWithTag("PatrolPoint"));
-            foreach (GameObject point in pointsList)
-            {
+            foreach (GameObject point in pointsList) {
                 point.transform.SetParent(null);
             }
             CPatrolPoint.transform.SetParent(null);
@@ -37,9 +34,7 @@ namespace TrojanMouse.AI.Movement
             GotoNextPoint();
         }
 
-
-        void GotoNextPoint()
-        {
+        void GotoNextPoint() {
             // Returns if no points have been set up
             if (pointsList.Count == 0)
                 return;
@@ -52,14 +47,11 @@ namespace TrojanMouse.AI.Movement
             destPoint = (destPoint + 1) % pointsList.Count;
         }
 
-        void StopPatrol()
-        {
+        void StopPatrol() {
             agent.SetDestination(CPatrolPoint.transform.position);
             agent.autoBraking = true;
-            if (agent.transform.position == CPatrolPoint.transform.position)
-            {
-                foreach (GameObject point in pointsList)
-                {
+            if (agent.transform.position == CPatrolPoint.transform.position) {
+                foreach (GameObject point in pointsList) {
                     point.transform.SetParent(this.gameObject.transform);
                 }
                 CPatrolPoint.transform.SetParent(this.gameObject.transform);
@@ -69,22 +61,17 @@ namespace TrojanMouse.AI.Movement
             }
         }
 
-
-        void Update()
-        {
+        void Update() {
             // Choose the next destination point when the agent gets
             // close to the current one.
-            if (patrol)
-            {
+            if (patrol) {
                 if (!agent.pathPending && agent.remainingDistance < 0.5f)
                     GotoNextPoint();
-            }
-            else
+            } else
                 StopPatrol();
         }
 
-        IEnumerator Cooldown(float coolDown)
-        {
+        IEnumerator Cooldown(float coolDown) {
             yield return new WaitForSeconds(coolDown);
             Debug.Log("Running patrol cooldown");
             patrol = false;
