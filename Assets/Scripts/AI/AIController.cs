@@ -1,10 +1,11 @@
 #region USING CALLS
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using JoshsScripts.CharacterStats;
 using JoshsScripts.PowerUp;
-using TrojanMouse.AI.Movement;
 using TrojanMouse.AI.Behaviours;
+using TrojanMouse.AI.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 #endregion
@@ -27,6 +28,9 @@ namespace TrojanMouse.AI
         public float wanderTimer; // The time between wander movements.
         public NavMeshAgent agent; // NavMeshAgent reference.
         public LayerMask whatIsLitter; // What the AI will go and process as litter.
+        public Collider[] globalLitterArray;
+        public bool beingDirected;
+        public bool distracted;
 
         // Internal Variables
         [SerializeField]
@@ -37,6 +41,8 @@ namespace TrojanMouse.AI
         private bool moduleSpawnCheck = false; // Check to see whether a module has been spawned or not, to avoid duplicate spawning. Might not be needed.
         private bool ignoreFSMTarget = false; // Ignores the currentTarget value for when the AI moves.
         private bool currentlyProcessing = true; // Check to see whether the AI is currently processing anything or not.
+        bool doWander;
+        public Color baseColor;
 
         [Header("Scripts")] // All internal & private for the most part.
         [SerializeField]
@@ -59,6 +65,7 @@ namespace TrojanMouse.AI
         {
             // Run the initialization function, hover over the name for more information.
             Initialization();
+            baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_BaseColor");
         }
 
         /// <summary>
@@ -69,11 +76,7 @@ namespace TrojanMouse.AI
             // Start the timer
             timer += Time.deltaTime;
 
-            // Detect and process the litter
-            CheckForLitter();
-
             #region FSM
-
             // Main AI logic. Incorporates AI FSM(Finite State Machine) flow.
             /* State Explanations:
                     - Nothing: AI does nothing, will be static and not process anything. Currently will switch out of this state
@@ -82,106 +85,127 @@ namespace TrojanMouse.AI
                     - Moving: AI will move to set point on the navmesh. Can also be called externally.
                     - Processing: AI is processing a task, like collecting litter for example.
                     - Patrolling: AI drop gameobject patrol points and move between them. Self cleaning script.
-                    - Following: AI will follow a point, object and stop within a distance of it.
-                    - Attacking: AI Will attack its target, if it can.
-                    - Defending: AI will attempt to stop enemy from causing damage to structures
-                    - Healing: AI will heal, either in place or on the move.
+                    - (UNUSED)Following: AI will follow a point, object and stop within a distance of it.
+                    - (UNUSED)Attacking: AI Will attack its target, if it can.
+                    - (UNUSED)Defending: AI will attempt to stop enemy from causing damage to structures
+                    - (UNUSED)Healing: AI will heal, either in place or on the move.
                     - Fleeing: AI will flee from all targets and enemies. Basically it moves away.
                     - Dead: AI has been killed, or destroyed. This triggers script cleanup.
             */
-            switch (currentState)
+
+
+            // If we're telling the AI to move, update the line renderer
+            if (beingDirected)
             {
-                case AIState.currState.Nothing:
-                    if (timer > 10)
-                    {
-                        currentState = (AIState.currState)UnityEngine.Random.Range(0, 8);
-                    }
-                    // Make sure this is false so more modules can be spawned.
-                    moduleSpawnCheck = false;
-                    break;
-                case AIState.currState.Wandering:
-                    // Spawn the Wander module.
-                    if (!moduleSpawnCheck && wanderScript == null)
-                    {
-                        moduleSpawnCheck = true;
-                        wanderScript = gameObject.AddComponent<WanderModule>();
-                        wanderScript.Wander(timer, wanderTimer, wanderRadius, blocked, hit, agent);
-                        Debug.Log("Adding the wander movement module to " + this.name);
-                    }
+                DisplayLineRenderer();
+            } else if (!distracted) {
+                // Detect and process the litter
+                CheckForLitter();
 
-                    if (wanderScript == null)
-                    {
-                        //First we reset the timer, and then set the state back to nothing.
+                switch (currentState)
+                {
+                    case AIState.currState.Nothing:
+                        // Reset the timer
                         timer = 0;
-                        currentState = AIState.currState.Nothing;
-                    }
+                        if (timer > 10)
+                        {
+                            //currentState = (AIState.currState)UnityEngine.Random.Range(0, 8);
+                            // Default to the wandering state.
+                            currentState = AIState.currState.Wandering;
+                        }
+                        // Make sure this is false so more modules can be spawned.
+                        moduleSpawnCheck = false;
+                        break;
+                    case AIState.currState.Wandering:
+                        if (wanderScript == null) {
+                            //First we reset the timer, and then set the state back to nothing.
+                            timer = 0;
+                            currentState = AIState.currState.Nothing;
+                            break;
+                        }
 
-                    //I also need to add some logic for detecting enemies or other AI.
-                    break;
-                case AIState.currState.Moving:
-                    if (ignoreFSMTarget)
-                        Debug.LogWarning("Moving state was called whilst ignore bool was true, assuming it was called externally...");
-                    else
-                        GotoPoint(currentTarget, ignoreFSMTarget);
-                    break;
-                case AIState.currState.Processing:
-                    Debug.Log($"Currently processing litter on {agent.name}");
-                    CheckForLitter();
-                    break;
-                case AIState.currState.Patrolling:
-                    if (!moduleSpawnCheck && patrolScript == null)
-                    {
-                        moduleSpawnCheck = true;
-                        patrolScript = gameObject.AddComponent<Patrol>();
-                        Debug.Log("Adding the patrol movement module to " + this.name);
-                    }
+                        // Spawn the Wander module.
+                        if (!moduleSpawnCheck && wanderScript == null)
+                        {
+                            moduleSpawnCheck = true;
+                            wanderScript = gameObject.AddComponent<WanderModule>();
+                            wanderScript.maxWanderDuration = 30f; // Change this to change the wander duration.
+                            doWander = true;
+                            //Debug.Log("Adding the wander movement module to " + this.name);
+                        }
 
-                    if (patrolScript == null)
-                    {
-                        //First we reset the timer, and then set the state back to nothing.
-                        timer = 0;
-                        currentState = AIState.currState.Nothing;
-                    }
-                    break;
-                case AIState.currState.Following:
-                    agent.autoBraking = true;
-                    if (followPoint != null)
-                        agent.SetDestination(followPoint.transform.position);
-                    else
+                        if (doWander == true)
+                            wanderScript.Wander(wanderTimer, wanderRadius, blocked, hit, agent);
+
+                        //I also need to add some logic for detecting enemies or other AI.
+                        break;
+                    case AIState.currState.Moving:
+                        if (ignoreFSMTarget)
+                            Debug.LogWarning("Moving state was called whilst ignore bool was true, assuming it was called externally...");
+                        else
+                            GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
+                        break;
+                    case AIState.currState.Processing:
+                        //Debug.Log($"Currently processing litter on {agent.name}");
+                        CheckForLitter();
+                        break;
+                    case AIState.currState.Patrolling:
+                        if (!moduleSpawnCheck && patrolScript == null)
+                        {
+                            moduleSpawnCheck = true;
+                            patrolScript = gameObject.AddComponent<Patrol>();
+                            Debug.Log("Adding the patrol movement module to " + this.name);
+                        }
+
+                        if (patrolScript == null)
+                        {
+                            //First we reset the timer, and then set the state back to nothing.
+                            timer = 0;
+                            currentState = AIState.currState.Nothing;
+                        }
+                        break;
+                    // case AIState.currState.Following:
+                    //     agent.autoBraking = true;
+                    //     if (followPoint != null)
+                    //         agent.SetDestination(followPoint.transform.position);
+                    //     else
+                    //         currentState = AIState.currState.Wandering;
+                    //     break;
+                    case AIState.currState.Attacking:
+                        //Goto enemy
+                        if (currentTarget != null)
+                            agent.SetDestination(currentTarget.position);
+                        //Deal damage
+
+                        break;
+                    // case AIState.currState.Defending:
+
+                    //     break;
+                    // case AIState.currState.Healing:
+
+                    //     break;
+                    case AIState.currState.Fleeing:
+                        Flee();
+                        break;
+                    case AIState.currState.Dead:
+                        Rigidbody rb = gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
+
+                        // Clean up the script sequentially, delete anything that could throw errors.
+                        Cleanup(1);
+                        // Add a force to make the NPC fall over
+
+                        Cleanup(2);
+                        Cleanup(3);
+                        Cleanup(4);
+                        break;
+
+                    default:
+                        // Fall back state
                         currentState = AIState.currState.Wandering;
-                    break;
-                case AIState.currState.Attacking:
-                    //Goto enemy
-                    if (currentTarget != null)
-                        agent.SetDestination(currentTarget.position);
-                    //Deal damage
-
-                    break;
-                case AIState.currState.Defending:
-
-                    break;
-                case AIState.currState.Healing:
-
-                    break;
-                case AIState.currState.Fleeing:
-                    Flee();
-                    break;
-                case AIState.currState.Dead:
-                    Rigidbody rb = gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-
-                    // Clean up the script sequentially, delete anything that could throw errors.
-                    Cleanup(1);
-                    // Add a force to make the NPC fall over
-
-                    Cleanup(2);
-                    Cleanup(3);
-                    Cleanup(4);
-                    break;
-
-                default:
-                    // Fall back state
-                    currentState = AIState.currState.Wandering;
-                    break;
+                        break;
+                }
+            } else {
+                GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", Color.red);
             }
             #endregion
         }
@@ -189,6 +213,8 @@ namespace TrojanMouse.AI
 
         #region STATE FUNCTIONS
 
+        // TODO:- Make the transition back out of this state using a check to see if the AI has gotten far enough away from the target.
+        // STRETCH:- Convert to use NavMeshHit to create a more dynamic, realistic looking flee. Maybe it will only try this more dynamic style once it's a set distance away.
         /// <summary>
         /// This function handles the fleeing of the AI. Forcing the AI to run away from its target/agressor. Reuses some variables.
         /// <para>Ignores the check for litter, as it doesn't make sense for them to care about litter when fleeing.</para>
@@ -220,9 +246,9 @@ namespace TrojanMouse.AI
         /// <param name="position">The postion that the AI will move to</param>
         /// <param name="ignoreFSMTarget">This determines whether the AI will goto the "currentTarget" or an externally passed in one.
         /// true = ignore, false = go to already set target</param>
-        public void GotoPoint(Transform position, bool ignoreFSMTarget)
+        public void GotoPoint(Vector3 position, bool ignoreFSMTarget)
         {
-
+            Debug.LogWarning("Forcing AI to move to requested point!");
             CheckForLitter();
 
             // Function is accessed by other classes, so first we make sure to set the state to
@@ -231,7 +257,7 @@ namespace TrojanMouse.AI
 
             if (ignoreFSMTarget)
                 // Move to the position passed in
-                agent.SetDestination(position.transform.position);
+                agent.SetDestination(position);
             else
                 // Move to the current target.
                 agent.SetDestination(currentTarget.transform.position);
@@ -259,6 +285,7 @@ namespace TrojanMouse.AI
                 Debug.LogError($"Error: {e.Message}. Character stats not set.");
             }
 
+            // UNUSED AS OF NOW.
             // This assigns the player follow point;
             //followPoint = GameObject.FindGameObjectWithTag("PlayerFollowPoint");
 
@@ -321,9 +348,10 @@ namespace TrojanMouse.AI
                 case 3:
                     // Movement module check
                     if (patrolScript != null)
-                    {
                         Destroy(patrolScript);
-                    }
+
+                    if (wanderScript != null)
+                        Destroy(wanderScript);
                     break;
 
                 // Clean up self script
@@ -340,15 +368,28 @@ namespace TrojanMouse.AI
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
         public Collider[] CheckForLitter()
         {
-#if UNITY_EDITOR
-            Debug.Log($"{transform.name} is currently checking for litter. (1)");
-#endif
-
             // Create a new litter array each time the function is called.
             Collider[] litterArray = Physics.OverlapSphere(transform.position, litterDetectionRadius, whatIsLitter);
+
+            // check through the list and check if the litter is the right type for the gruttel
+            // remove the litter from the list as its not the right type
+            List<Collider> litter = new List<Collider>(litterArray);
+            CharacterType[] pickupTypes = GetComponent<CharacterStats>().Specialties;
+            foreach (Collider l in litterArray)
+            {
+                CharacterType litterType = l.GetComponent<PowerUpHolder>().PowerUp.type;
+                if (pickupTypes[0] != litterType)
+                {
+                    litter.Remove(l);
+                }
+            }
+
+            litterArray = litter.ToArray();
+
             if (litterArray.Length > 0)
             {
                 currentlyProcessing = true;
+                globalLitterArray = litterArray;
                 return ProcessLitter(currentlyProcessing, litterArray);
             }
             else
@@ -367,9 +408,6 @@ namespace TrojanMouse.AI
         {
             if (currentlyProcessing)
             {
-#if UNITY_EDITOR
-                Debug.Log($"{transform.name} is currently processing litter. (2)");
-#endif
                 // Small error check to make sure the AI has things to process.
                 if (litterArray.Length <= 0)
                 {
@@ -385,23 +423,44 @@ namespace TrojanMouse.AI
                     // Tell the AI that it still has litter to process
                     currentlyProcessing = true;
                 }
-                // Small error reporting
-                PickUpHandler pickUpHandler = litterArray[0].GetComponent<PickUpHandler>();
-                if (!pickUpHandler)
-                {
-                    Debug.LogError($"No Pickup Handler found on this {litterArray[0].transform.name}, please add one to avoid this error! Continuing..");
-                    // if an error is found, return and continue.
-                    return litterArray;
-                }
 
-                Debug.Log($"Transform = {transform}, stats = {characterStats.Specialties[0]}");
-                // Call Joshs pickup function.
-                pickUpHandler.PickUp(transform, characterStats.Specialties[0]);
+                // LITTER ITERATION
+                Vector3 targetPos = transform.position;
+
+                foreach (Collider litter in litterArray)
+                { // ITERATES THROUGH ALL LITTER UNTIL IT CAN FIND LITTER WHICH CAN BE PICKED UP
+                    // Small error reporting
+                    PickUpHandler pickUpHandler = litter.GetComponent<PickUpHandler>();
+                    if (!pickUpHandler)
+                    {
+                        Debug.LogError($"No Pickup Handler found on this {litterArray[0].transform.name}, please add one to avoid this error! Continuing..");
+                        // if an error is found, return and continue.
+                        return litterArray;
+                    }
+                    if (pickUpHandler.PickUp(transform, characterStats.Specialties[0]) == PickUpHandler.ErrType.TooFar)
+                    { // Call Joshs pickup function. -- WE WANT THIS ERROR TO OCCUR SO THAT AI WILL MOVE
+                        targetPos = litter.transform.position;
+                        int distractionChance = UnityEngine.Random.Range(0, 2500);
+                        if (distractionChance == 0)
+                        {
+                            distracted = true;
+                        }
+                        break;
+                    }
+                }
 
                 // If litter is found, set AI State
                 currentState = AIState.currState.Processing;
-                // Move to litter
-                agent.SetDestination(litterArray[0].transform.position);
+                // Validation to make sure AI is back on navmesh before setting destination, if it fails warn us.
+                if (agent.isOnNavMesh)
+                {
+                    // Move to litter
+                    agent.SetDestination(targetPos);
+                }
+                else
+                {
+                    Debug.LogWarning($"{agent.transform.name}'s target isn't valid!!");
+                }
             }
             return litterArray;
         }
@@ -411,8 +470,39 @@ namespace TrojanMouse.AI
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(transform.position, litterDetectionRadius);
         }
+
+        void DisplayLineRenderer()
+        {
+            LineRenderer lr = GetComponent<LineRenderer>();
+
+            float distance = Vector3.Distance(transform.position, agent.destination);
+
+            if (distance == 0)
+            {
+                beingDirected = false;
+                lr.enabled = false;
+            }
+            else
+            {
+                lr.enabled = true;
+
+                lr.SetPosition(0, transform.position);
+                lr.SetPosition(1, agent.destination);
+            }
+        }
         #endregion
 
+        private void OnMouseDown()
+        {
+            StartCoroutine(RemoveDistraction());
+        }
+
+        IEnumerator RemoveDistraction()
+        {
+            yield return new WaitForSeconds(0.25f);
+            GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", baseColor);
+            distracted = false;
+        }
     }
 
     #endregion
