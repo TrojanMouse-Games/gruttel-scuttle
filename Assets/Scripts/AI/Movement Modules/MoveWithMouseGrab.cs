@@ -1,5 +1,5 @@
 using UnityEngine;
-using FMODUnity;
+//using FMODUnity;
 
 namespace TrojanMouse.AI.Movement
 {
@@ -25,8 +25,8 @@ namespace TrojanMouse.AI.Movement
         Ray worldPoint; // Internal global script wide variable used for the raycast.
 
         //Audio
-        [SerializeField] private EventReference pickup;
-        [SerializeField] private EventReference drop;
+        //[SerializeField] private EventReference pickup;
+        //[SerializeField] private EventReference drop;
 
 
         #endregion
@@ -49,7 +49,7 @@ namespace TrojanMouse.AI.Movement
             // Check to see if the mouse has been pressed, if yes, do logic
             if (Input.GetButtonDown("Fire1") && !grabbing && FireRay(whatToSelect, rayDistance))
             {
-                RuntimeManager.PlayOneShot(pickup);
+                //RuntimeManager.PlayOneShot(pickup);
                 // Check to see if its an AI
                 if (CheckAI())
                 {
@@ -84,7 +84,7 @@ namespace TrojanMouse.AI.Movement
                     // Re-enable the components after dropping the AI.
 
                     // OTIS ADD AUDIO CODE HERE FOR DROPPING THE GRUTTLES
-                    RuntimeManager.PlayOneShot(drop);
+                    //RuntimeManager.PlayOneShot(drop);
 
                     ToggleAIComponents(true, "putDown");
                 }
