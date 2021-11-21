@@ -28,6 +28,20 @@ namespace TrojanMouse.RegionManagement{
 
         ///<summary>This function returns all regions of a given passed type e.g. 'Litter_Region'</summary>
         public Region[] GetRegions(Region.RegionType _type) => regions[_type].ToArray(); // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
+        public Region GetClosestRegion(Region.RegionType _type, Transform transform){
+            Region[] regionsOfType = regions[_type].ToArray();
+            Region closestRegion = null;
+
+            float closestNumber = Mathf.Infinity;
+            foreach(Region region in regionsOfType){
+                float curDist = (region.transform.position - transform.position).magnitude;
+                if(curDist < closestNumber){
+                    closestNumber = curDist;
+                    closestRegion = region;
+                }
+            }
+            return closestRegion;
+        }
         #endregion
         #region REGION COLLECTION
         // THIS REGION IS PURELY FOR COLLECTING REGIONS IN THE HIERARCHY AND STORING THEM IN THIS SCRIPT FOR LATER MANIPULATION
