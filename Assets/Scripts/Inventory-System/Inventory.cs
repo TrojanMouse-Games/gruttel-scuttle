@@ -43,24 +43,17 @@ namespace TrojanMouse.Inventory {
 
 
     // VISUALISERS
-        public GameObject Equip(Transform parent, int index, int previousIndex = -1){
-            if(inventory.Count > index || (previousIndex >-1 && inventory.Count > previousIndex)){ 
+        public GameObject Equip(Transform parent, int index, int previousIndex = -1){            
+            if(inventory.Count-1 > index || (previousIndex >-1 && inventory.Count-1 > previousIndex)){ 
                 return null; 
             }
-            
             if(previousIndex >=0){ // DEQUIP CURRENTLY HELD OBJECT
                 Dequip(parent, inventory.Keys.ToArray()[previousIndex].spawnableObject);
             }
 
             LitterObject item = inventory.Keys.ToArray()[index];
-            return Instantiate(item.spawnableObject, parent.position + item.heldOffset, Quaternion.FromToRotation(item.spawnableObject.transform.forward, parent.forward), parent); 
+            return Instantiate(item.spawnableObject, (parent.position + parent.forward + item.heldOffset), Quaternion.FromToRotation(item.spawnableObject.transform.forward, parent.forward), parent); 
         }
-
-
-
-
-
-
 
         public void Dequip(Transform parent, GameObject obj){
             foreach(Transform child in parent){
