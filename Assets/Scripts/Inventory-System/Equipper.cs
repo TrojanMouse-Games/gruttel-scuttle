@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TrojanMouse.RegionManagement;
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory {
     public class Equipper : MonoBehaviour{
@@ -20,18 +20,21 @@ namespace TrojanMouse.Inventory {
 
         public void PickUp(Transform obj, LitterObject type, int previousIndex = -1){           
             
-            bool success = inventoryHandler.AddToInventory(type);            
+            bool success = inventoryHandler.AddToInventory(type);                       
             if(success){
+                Debug.Log(success); 
                 selectedObject = inventoryHandler.Equip(itemParent, currentIndex);                
                 if(selectedObject){                   
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;
-                }                
-            }
-            Destroy(obj.gameObject);
+                    selectedObject.GetComponent<Rigidbody>().isKinematic = true;                    
+                }
+                Destroy(obj.gameObject);                
+            }            
         }
 
-        public void Drop(){        
-            Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward)/*,USE FUNCTION TO FIND CLOSEST REGION TO GRUTTEL AND SPAWN LITTER IN THAT REGION*/); // SPAWN LITTER
+        public void Drop(Region.RegionType _type){        
+            GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform).transform); // SPAWN LITTER
+            
             inventoryHandler.Dequip(selectedObject);
             inventoryHandler.RemoveFromInventory(selectedObject.GetComponent<LitterObjectHolder>().type);
         }

@@ -20,17 +20,18 @@ namespace TrojanMouse.Inventory {
         void Update(){
             Collider[] collider = Physics.OverlapSphere(transform.position, distToPickUp, whatIsGruttel);
             if(collider.Length >0){
-                _cooldown -= (_cooldown >0)? Time.deltaTime : 0;
-                
+                _cooldown -= (_cooldown >0)? Time.deltaTime : 0;                
                 if(_cooldown > 0){
                     return;
                 }
                 LitterObjectHolder holder = GetComponent<LitterObjectHolder>();
                 if(holder.parent != transform.parent){
+                    _cooldown = cooldown;
                     collider[0].GetComponent<Equipper>().PickUp(transform, holder.type); 
                 }
                 else{
-                    collider[0].GetComponent<Equipper>().Drop();
+                    _cooldown = cooldown;
+                    collider[0].GetComponent<Equipper>().Drop(RegionManagement.Region.RegionType.LITTER_REGION);
                 }
             }
         }
