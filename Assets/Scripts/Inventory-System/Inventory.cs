@@ -15,7 +15,7 @@ namespace TrojanMouse.Inventory {
         Dictionary<LitterObject, int> inventory = new Dictionary<LitterObject, int>();
 
         public bool AddToInventory(LitterObject obj, int amount = 1){
-                if(inventory.ContainsKey(obj)){ 
+                if(inventory.ContainsKey(obj) && inventory[obj] < obj.maxOfItem){ 
                     inventory[obj] += amount;
                     return true;
                 }
