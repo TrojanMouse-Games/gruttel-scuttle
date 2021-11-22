@@ -8,5 +8,6 @@ namespace TrojanMouse.Inventory {
     public class LitterObject : ScriptableObject{       
         public GameObject spawnableObject;
         public Vector3 heldOffset;
+        public int maxOfItem = 1;
     }
 }
