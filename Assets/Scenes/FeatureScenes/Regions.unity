@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 191022421}
   - component: {fileID: 191022419}
   - component: {fileID: 191022418}
+  - component: {fileID: 191022420}
   m_Layer: 6
   m_Name: TestGruttel
   m_TagString: Untagged
@@ -297,6 +298,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSlots: 1
+--- !u!114 &191022420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191022417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf5a0029fc5eca40abe89d1c5fcc1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!136 &191022421
 CapsuleCollider:
   m_ObjectHideFlags: 0

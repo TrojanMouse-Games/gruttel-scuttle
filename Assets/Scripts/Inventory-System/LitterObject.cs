@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TrojanMouse.PowerUps;
 
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory {
@@ -9,5 +10,6 @@ namespace TrojanMouse.Inventory {
         public GameObject spawnableObject;
         public Vector3 heldOffset;
         public int maxOfItem = 1;
+        public PowerupType type;
     }
 }

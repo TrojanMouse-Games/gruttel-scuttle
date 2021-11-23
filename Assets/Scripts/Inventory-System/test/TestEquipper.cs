@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TrojanMouse.PowerUps;
 
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory {
@@ -27,7 +27,7 @@ namespace TrojanMouse.Inventory {
                 LitterObjectHolder holder = GetComponent<LitterObjectHolder>();
                 if(holder.parent != transform.parent){
                     _cooldown = cooldown;
-                    collider[0].GetComponent<Equipper>().PickUp(transform, holder.type); 
+                    collider[0].GetComponent<Equipper>().PickUp(transform, collider[0].GetComponent<Powerup>().Type, holder.type); 
                 }
                 else{
                     _cooldown = cooldown;
