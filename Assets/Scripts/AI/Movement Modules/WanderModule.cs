@@ -9,7 +9,7 @@ namespace TrojanMouse.AI.Movement {
     /// </summary>
     [RequireComponent(typeof(AIController))]
     public class WanderModule : MonoBehaviour {
-        float m_wanderTimer;
+        float wanderCooldown;
         bool cleanup = false;
         float timer;
         public float maxWanderDuration;
@@ -39,17 +39,17 @@ namespace TrojanMouse.AI.Movement {
         /// <param name="blocked">Checks to see if the current picked point is blocked, Passed in from controller.</param>
         /// <param name="hit">Used for storing the navmesh location variable, passed in from controller.</param>
         /// <param name="agent">The navmesh agent, passed in from controller.</param>
-        public void Wander(float wanderTimer, float wanderRadius, bool blocked, NavMeshHit hit, NavMeshAgent agent) {
-            wanderTimer = m_wanderTimer;
-            if (timer >= wanderTimer) {
+        public void Wander(AIData data, bool blocked, NavMeshHit hit) {
+            data.WanderCooldown = wanderCooldown;
+            if (timer >= wanderCooldown) {
                 if (!blocked) {
                     RaycastHit vision;
 
-                    Vector3 newPos = RandomWanderPoint(transform.position, wanderRadius, -1);
+                    Vector3 newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
                     blocked = UnityEngine.AI.NavMesh.Raycast(transform.position, newPos, out hit, UnityEngine.AI.NavMesh.AllAreas);
                     Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out vision, 5f);
                     Debug.DrawLine(transform.position, newPos, blocked ? Color.red : Color.green);
-                    agent.SetDestination(newPos);
+                    data.Agent.SetDestination(newPos);
                     StartCoroutine(Cooldown(1));
 
                     timer = 0;
@@ -58,11 +58,11 @@ namespace TrojanMouse.AI.Movement {
                         if (vision.transform.gameObject.tag == "NPC") {
                             newPos = gameObject.transform.position;
                             //Debug.Log("Moving to an NPC" + "(" + vision.transform.name + ")");
-                            agent.SetDestination(newPos);
+                            data.Agent.SetDestination(newPos);
                         }
                     }
                 } else {
-                    Vector3 newPos = RandomWanderPoint(transform.position, wanderRadius, -1);
+                    Vector3 newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
                     timer = 0;
                     blocked = false;
                 }
@@ -92,7 +92,7 @@ namespace TrojanMouse.AI.Movement {
 
         IEnumerator Cooldown(float coolDown) {
             yield return new WaitForSeconds(coolDown);
-            m_wanderTimer = UnityEngine.Random.Range(2, 10);
+            wanderCooldown = UnityEngine.Random.Range(2f, 10f);
         }
 
         /// <summary>
@@ -112,6 +112,5 @@ namespace TrojanMouse.AI.Movement {
         public void DestroyScript() {
             Destroy(this);
         }
-
     }
 }

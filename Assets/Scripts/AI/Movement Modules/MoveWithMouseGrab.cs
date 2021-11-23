@@ -110,16 +110,17 @@ namespace TrojanMouse.AI.Movement
         /// <param name="type">The type of  disable the code does. Only difference is execution and an extra litter check in the putDown</param>
         private void ToggleAIComponents(bool state, string type)
         {
-            AIController aiController = target.GetComponent<AIController>();
-            if (type == "pickUp" && aiController)
+            AIController controller = target.GetComponent<AIController>();
+            AIData data = controller.data;
+            if (type == "pickUp" && controller)
             {
-                aiController.agent.enabled = state;
-                aiController.enabled = state;
-            }else if (type == "putDown" && aiController)
+                data.Agent.enabled = state;
+                controller.enabled = state;
+            }else if (type == "putDown" && controller)
             {
-                aiController.enabled = state;
-                aiController.agent.enabled = state;
-                aiController.CheckForLitter();
+                controller.enabled = state;
+                data.Agent.enabled = state;
+                controller.CheckForLitter();
             }
         }
 
