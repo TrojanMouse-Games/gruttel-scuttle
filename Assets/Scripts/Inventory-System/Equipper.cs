@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.RegionManagement;
+using TrojanMouse.PowerUps;
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory {
     public class Equipper : MonoBehaviour{
@@ -18,8 +19,11 @@ namespace TrojanMouse.Inventory {
         }
 
 
-        public void PickUp(Transform obj, LitterObject type, int previousIndex = -1){           
-            
+        public void PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1){           
+            if(powerUp != type.type && type.type != PowerupType.NORMAL) { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
+                return; 
+            }
+            Debug.Log($"{powerUp} | {type.type}");
             bool success = inventoryHandler.AddToInventory(type);                       
             if(success){
                 Debug.Log(success); 
