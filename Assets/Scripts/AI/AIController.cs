@@ -16,22 +16,19 @@ namespace TrojanMouse.AI
     {
         #region VARIABLES
         [Header("AI State & Type")]
-        public AIState.AIType aiType; // The type of AI. Friendly, Nuetral or Hostile.
-        public AIState.currState currentState; // The current state of the AI. Wandering, Fleeing etc.
-        private AIState.currState previousState; // The state that was last set, used for returning when litter is found.
+        public AIType aiType; // The type of AI. Friendly, Nuetral or Hostile.
+        public AIState currentState; // The current state of the AI. Wandering, Fleeing etc.
+        private AIState previousState; // The state that was last set, used for returning when litter is found.
 
         [Header("Public Variables")]
+        public AIData data;
         public Transform currentTarget; // The current AI target.
-        public float wanderRadius = 15f; // How far the AI should wander.
-        public float litterDetectionRadius = 50f; // Range in which AI will find litter.
-        public float wanderTimer; // The time between wander movements.
-        public NavMeshAgent agent; // NavMeshAgent reference.
-        public LayerMask whatIsLitter; // What the AI will go and process as litter.
         public Collider[] globalLitterArray;
         public Color baseColor;
         //bools for distraction
         public bool beingDirected;
         public bool distracted;
+        public LayerMask litterLayerMask;
 
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
@@ -99,24 +96,22 @@ namespace TrojanMouse.AI
 
                 switch (currentState)
                 {
-                    case AIState.currState.Nothing:
-                        // Reset the timer
-                        timer = 0;
+                    case AIState.Nothing:
                         if (timer > 10)
                         {
-                            //currentState = (AIState.currState)UnityEngine.Random.Range(0, 8);
+                            //currentState = (AIState)UnityEngine.Random.Range(0, 8);
                             // Default to the wandering state.
-                            currentState = AIState.currState.Wandering;
+                            currentState = AIState.Wandering;
                         }
                         // Make sure this is false so more modules can be spawned.
                         moduleSpawnCheck = false;
                         break;
-                    case AIState.currState.Wandering:
+                    case AIState.Wandering:
                         if (wanderScript == null)
                         {
                             //First we reset the timer, and then set the state back to nothing.
                             timer = 0;
-                            currentState = AIState.currState.Nothing;
+                            currentState = AIState.Nothing;
                             break;
                         }
 
@@ -131,21 +126,21 @@ namespace TrojanMouse.AI
                         }
 
                         if (doWander == true)
-                            wanderScript.Wander(wanderTimer, wanderRadius, blocked, hit, agent);
+                            wanderScript.Wander(data, blocked, hit);
 
                         //I also need to add some logic for detecting enemies or other AI.
                         break;
-                    case AIState.currState.Moving:
+                    case AIState.Moving:
                         if (ignoreFSMTarget)
                             Debug.LogWarning("Moving state was called whilst ignore bool was true, assuming it was called externally...");
                         else
                             GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
                         break;
-                    case AIState.currState.Processing:
+                    case AIState.Processing:
                         //Debug.Log($"Currently processing litter on {agent.name}");
                         CheckForLitter();
                         break;
-                    case AIState.currState.Patrolling:
+                    case AIState.Patrolling:
                         if (!moduleSpawnCheck && patrolScript == null)
                         {
                             moduleSpawnCheck = true;
@@ -157,13 +152,13 @@ namespace TrojanMouse.AI
                         {
                             //First we reset the timer, and then set the state back to nothing.
                             timer = 0;
-                            currentState = AIState.currState.Nothing;
+                            currentState = AIState.Nothing;
                         }
                         break;
-                    case AIState.currState.Fleeing:
-                        Flee();
+                    case AIState.Fleeing:
+                        //Flee();
                         break;
-                    case AIState.currState.Dead:
+                    case AIState.Dead:
                         Rigidbody rb = gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
 
                         // Clean up the script sequentially, delete anything that could throw errors.
@@ -177,7 +172,7 @@ namespace TrojanMouse.AI
 
                     default:
                         // Fall back state
-                        currentState = AIState.currState.Wandering;
+                        currentState = AIState.Wandering;
                         break;
                 }
             }
@@ -185,32 +180,6 @@ namespace TrojanMouse.AI
             {
                 GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", Color.red);
             }
-        }
-
-        // TODO:- Make the transition back out of this state using a check to see if the AI has gotten far enough away from the target.
-        // STRETCH:- Convert to use NavMeshHit to create a more dynamic, realistic looking flee. Maybe it will only try this more dynamic style once it's a set distance away.
-        /// <summary>
-        /// This function handles the fleeing of the AI. Forcing the AI to run away from its target/agressor. Reuses some variables.
-        /// <para>Ignores the check for litter, as it doesn't make sense for them to care about litter when fleeing.</para>
-        /// </summary>
-        private void Flee()
-        {
-            //CheckForLitter(); 
-
-            // Probably a better way to do this, but this is relatively simple.
-            float distance = Vector3.Distance(gameObject.transform.position, currentTarget.transform.position);
-            // Get the direction, then invert it
-            Vector3 dir = -(currentTarget.position - transform.position);
-
-            if (distance <= wanderRadius)
-            {
-                // Increase speed
-                agent.speed *= 1.5f;
-                // Run away from target
-                agent.SetDestination(transform.position + dir.normalized);
-            }
-            else
-                agent.speed = 3.5f;
         }
 
         /// <summary>
@@ -227,14 +196,14 @@ namespace TrojanMouse.AI
 
             // Function is accessed by other classes, so first we make sure to set the state to
             // "Moving" as not to confuse the script.
-            currentState = AIState.currState.Moving;
+            currentState = AIState.Moving;
 
             if (ignoreFSMTarget)
                 // Move to the position passed in
-                agent.SetDestination(position);
+                data.Agent.SetDestination(position);
             else
                 // Move to the current target.
-                agent.SetDestination(currentTarget.transform.position);
+                data.Agent.SetDestination(currentTarget.transform.position);
         }
 
         //  TODO: PASS IN PREV STATE
@@ -244,6 +213,7 @@ namespace TrojanMouse.AI
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
         public Collider[] CheckForLitter()
         {
+            return new Collider[1];
             throw new NotImplementedException();
 
             // // Create a new litter array each time the function is called.
@@ -273,7 +243,7 @@ namespace TrojanMouse.AI
             // else
             // {
             //     currentlyProcessing = false;
-            //     currentState = AIState.currState.Wandering;
+            //     currentState = AIState.Wandering;
             // }
             // return litterArray;
         }
@@ -294,7 +264,7 @@ namespace TrojanMouse.AI
             //         // Tell the AI that it's done processing litter.
             //         currentlyProcessing = false;
             //         // Set the state back to wandering.
-            //         currentState = AIState.currState.Wandering;
+            //         currentState = AIState.Wandering;
             //         // Exit the loop.
             //         return litterArray;
             //     }
@@ -330,7 +300,7 @@ namespace TrojanMouse.AI
             //     }
 
             //     // If litter is found, set AI State
-            //     currentState = AIState.currState.Processing;
+            //     currentState = AIState.Processing;
             //     // Validation to make sure AI is back on navmesh before setting destination, if it fails warn us.
             //     if (agent.isOnNavMesh)
             //     {
@@ -349,9 +319,14 @@ namespace TrojanMouse.AI
         #region OTHER FUNCTIONS 
         private void Initialization()
         {
-            agent = gameObject.GetComponent<NavMeshAgent>();
-            agent.enabled = true;
-            timer = wanderTimer;
+            data = new AIData(
+                agent: gameObject.GetComponent<NavMeshAgent>(),
+                litterLayer: litterLayerMask,
+                wanderCooldown: 0
+            );
+            data.Agent = gameObject.GetComponent<NavMeshAgent>();
+            data.Agent.enabled = true;
+            timer = data.WanderCooldown;
             baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_BaseColor");
 
             // Thing for setting up char stats, powerups etc
@@ -361,7 +336,7 @@ namespace TrojanMouse.AI
             //followPoint = GameObject.FindGameObjectWithTag("PlayerFollowPoint");
 
             // Simple check to make sure the agent is on a navmesh, if not destroy it
-            if (agent.isOnNavMesh == false)
+            if (data.Agent.isOnNavMesh == false)
             {
                 Destroy(this.gameObject);
             }
@@ -369,13 +344,13 @@ namespace TrojanMouse.AI
             // Add the correct type of AI to the script. Allows for added behaviour
             switch (aiType)
             {
-                case AIState.AIType.Neutral:
+                case AIType.Neutral:
                     neutral = gameObject.AddComponent<Neutral>();
                     break;
-                case AIState.AIType.Friendly:
+                case AIType.Friendly:
                     friendly = gameObject.AddComponent<Friendly>();
                     break;
-                case AIState.AIType.Hostile:
+                case AIType.Hostile:
                     hostile = gameObject.AddComponent<Hostile>();
                     break;
             }
@@ -389,15 +364,19 @@ namespace TrojanMouse.AI
 
         private void OnDrawGizmosSelected()
         {
+            if (data == null)
+            {
+                return;
+            }
             Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, litterDetectionRadius);
+            Gizmos.DrawWireSphere(transform.position, data.DetectionRadius);
         }
 
         void DisplayLineRenderer()
         {
             LineRenderer lr = GetComponent<LineRenderer>();
 
-            float distance = Vector3.Distance(transform.position, agent.destination);
+            float distance = Vector3.Distance(transform.position, data.Agent.destination);
 
             if (distance == 0)
             {
@@ -409,7 +388,7 @@ namespace TrojanMouse.AI
                 lr.enabled = true;
 
                 lr.SetPosition(0, transform.position);
-                lr.SetPosition(1, agent.destination);
+                lr.SetPosition(1, data.Agent.destination);
             }
         }
 
@@ -441,9 +420,9 @@ namespace TrojanMouse.AI
 
                 // Cleanup the Components
                 case 2:
-                    if (agent != null)
+                    if (data.Agent != null)
                     {
-                        Destroy(agent);
+                        Destroy(data.Agent);
                     }
                     break;
 
@@ -464,37 +443,5 @@ namespace TrojanMouse.AI
             }
             #endregion
         }
-
-        #region AI STATE CLASS
-        public static class AIState
-        {
-            /// <summary>
-            /// The three behaviour extensions of the AI. Not yet implemented really.
-            /// Will eventually change certain features like flee chance and speed etc.
-            /// <para>Basically, these will later determine what chance the AI has to do something.</para>
-            /// </summary>
-            public enum AIType
-            {
-                Friendly,
-                Hostile,
-                Neutral
-            }
-
-            /// <summary>
-            /// The current state of the AI. This is used in the switch case.
-            /// More can be added, so it is very expandable
-            /// </summary>
-            public enum currState
-            {
-                Nothing,
-                Wandering,
-                Moving,
-                Processing,
-                Patrolling,
-                Fleeing,
-                Dead
-            }
-        }
-        #endregion
     }
 }
