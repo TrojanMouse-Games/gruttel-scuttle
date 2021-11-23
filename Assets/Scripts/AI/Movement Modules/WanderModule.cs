@@ -2,30 +2,59 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace TrojanMouse.AI.Movement {
+namespace TrojanMouse.AI.Movement
+{
     /// <summary>
     /// This is the wander class, it holds all the functions neccesary to get the wander working with the AI. 
     /// With it's main class being Wander()
     /// </summary>
     [RequireComponent(typeof(AIController))]
-    public class WanderModule : MonoBehaviour {
+    public class WanderModule : MonoBehaviour
+    {
         float wanderCooldown;
         bool cleanup = false;
         float timer;
-        public float maxWanderDuration;
+        public float maxWanderDuration = 30f;
         [SerializeField]
         private float timeLeftTillScriptCleanup;
-        AIController aIController;
+        AIController aiController;
 
-        private void Update() {
+        private Coroutine disableScript;
+
+        // Variable used for the RandomNav Function
+        Vector3 newPos;
+
+        private void OnEnable()
+        {
+            timeLeftTillScriptCleanup = maxWanderDuration;
+            aiController = gameObject.GetComponent<AIController>();
+            aiController.currentState = AIState.Wandering;
+            disableScript = StartCoroutine(WaitForDelete(maxWanderDuration));
+        }
+
+        /// <summary>
+        /// Supposed to reset variables on disable, but just gave me more headaches as it seems to keep resetting things regardless
+        /// of whether the script is enabled or not.
+        /// </summary>
+        private void OnDisable()
+        {
+            StopCoroutine(disableScript);
+            StopCoroutine(Cooldown(.1f));
+            timer = 0f;
+            timeLeftTillScriptCleanup = maxWanderDuration;
+            cleanup = false;
+            Debug.Log("timer=0");
+            aiController.timer = 0f;
+            aiController.currentState = AIState.Wandering;
+        }
+
+        private void Update()
+        {
             // Might be a good idea to just access the AIControllers timer to avoid sync issues.
             // Start the timer
             timer += Time.deltaTime;
 
-            timeLeftTillScriptCleanup = maxWanderDuration - Time.time;
-
-            if (!cleanup)
-                StartCoroutine(WaitForDelete(maxWanderDuration));
+            timeLeftTillScriptCleanup -= (timeLeftTillScriptCleanup > 0) ? Time.deltaTime : 0;
         }
 
         /// <summary>
@@ -39,32 +68,24 @@ namespace TrojanMouse.AI.Movement {
         /// <param name="blocked">Checks to see if the current picked point is blocked, Passed in from controller.</param>
         /// <param name="hit">Used for storing the navmesh location variable, passed in from controller.</param>
         /// <param name="agent">The navmesh agent, passed in from controller.</param>
-        public void Wander(AIData data, bool blocked, NavMeshHit hit) {
+        public void Wander(AIData data, bool blocked, NavMeshHit hit)
+        {
             data.WanderCooldown = wanderCooldown;
-            if (timer >= wanderCooldown) {
-                if (!blocked) {
-                    RaycastHit vision;
-
-                    Vector3 newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
-                    blocked = UnityEngine.AI.NavMesh.Raycast(transform.position, newPos, out hit, UnityEngine.AI.NavMesh.AllAreas);
-                    Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out vision, 5f);
-                    Debug.DrawLine(transform.position, newPos, blocked ? Color.red : Color.green);
+            if (timer >= wanderCooldown)
+            {
+                newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
+                blocked = UnityEngine.AI.NavMesh.Raycast(transform.position, newPos, out hit, UnityEngine.AI.NavMesh.AllAreas);
+                Debug.DrawLine(transform.position, newPos, blocked ? Color.red : Color.green);
+                if (!blocked)
+                {
                     data.Agent.SetDestination(newPos);
                     StartCoroutine(Cooldown(1));
-
                     timer = 0;
-
-                    if (Physics.Raycast(transform.position, transform.forward, out vision, 50f)) {
-                        if (vision.transform.gameObject.tag == "NPC") {
-                            newPos = gameObject.transform.position;
-                            //Debug.Log("Moving to an NPC" + "(" + vision.transform.name + ")");
-                            data.Agent.SetDestination(newPos);
-                        }
-                    }
-                } else {
-                    Vector3 newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
+                }
+                else
+                {
+                    newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
                     timer = 0;
-                    blocked = false;
                 }
             }
         }
@@ -82,7 +103,8 @@ namespace TrojanMouse.AI.Movement {
         /// <param name="dist">How far it should pick from around the origin</param>
         /// <param name="layermask">The layermask of things to hit</param>
         /// <returns>nav hit point, which is a point on the navmesh</returns>
-        private static Vector3 RandomWanderPoint(Vector3 origin, float dist, int layermask) {
+        private static Vector3 RandomWanderPoint(Vector3 origin, float dist, int layermask)
+        {
             Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
             randDirection += origin;
             NavMeshHit navHit;
@@ -90,9 +112,10 @@ namespace TrojanMouse.AI.Movement {
             return navHit.position;
         }
 
-        IEnumerator Cooldown(float coolDown) {
+        IEnumerator Cooldown(float coolDown)
+        {
             yield return new WaitForSeconds(coolDown);
-            wanderCooldown = UnityEngine.Random.Range(2f, 10f);
+            wanderCooldown = UnityEngine.Random.Range(1f, 10f);
         }
 
         /// <summary>
@@ -100,17 +123,18 @@ namespace TrojanMouse.AI.Movement {
         /// </summary>
         /// <param name="time">How long before the script gets cleaned up</param>
         /// <returns>waits for the alloted time before continuing</returns>
-        IEnumerator WaitForDelete(float time) {
+        IEnumerator WaitForDelete(float time)
+        {
             yield return new WaitForSeconds(time);
-            cleanup = true;
-            DestroyScript();
+            DisableScript();
         }
 
         /// <summary>
-        /// Destroys script, is public so it can be called elsewhere if needed.
+        /// Disables script, is public so it can be called elsewhere if needed.
         /// </summary>
-        public void DestroyScript() {
-            Destroy(this);
+        public void DisableScript()
+        {
+            this.enabled = false;
         }
     }
 }
