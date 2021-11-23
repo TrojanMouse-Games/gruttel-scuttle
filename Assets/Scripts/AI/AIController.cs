@@ -29,10 +29,10 @@ namespace TrojanMouse.AI
         public bool beingDirected;
         public bool distracted;
         public LayerMask litterLayerMask;
+        public float timer = 0f; // Internal timer used for state changes and tracking.
 
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
-        private float timer = 0f; // Internal timer used for state changes and tracking.
         private bool blocked = false; // Internal true/false for checking whether the current AI path is blocked.
         private bool moduleSpawnCheck = false; // Check to see whether a module has been spawned or not, to avoid duplicate spawning. Might not be needed.
         private bool ignoreFSMTarget = false; // Ignores the currentTarget value for when the AI moves.
@@ -41,8 +41,9 @@ namespace TrojanMouse.AI
 
         [Header("Scripts")] // All internal & private for the most part.
         // Movement Modules, in order of most used.
-        private WanderModule wanderScript; // Reference to the Wander Module.
-        private Patrol patrolScript; // Reference to the Patrol module.
+        private ModuleManager moduleManager; // The script that manages all the modules on the AI.
+        // private WanderModule wanderScript; // Reference to the Wander Module.
+        // private Patrol patrolScript; // Reference to the Patrol module.
         private MoveWithMouseGrab moveToMouse; // Reference to the Move to Mouse Point module.
         // Behaviour Modules
         private Friendly friendly; // Refernce to the friendly behaviour.
@@ -107,26 +108,15 @@ namespace TrojanMouse.AI
                         moduleSpawnCheck = false;
                         break;
                     case AIState.Wandering:
-                        if (wanderScript == null)
+                        // Enable the wandering module.
+                        if (moduleManager.wander != null)
                         {
-                            //First we reset the timer, and then set the state back to nothing.
-                            timer = 0;
-                            currentState = AIState.Nothing;
-                            break;
-                        }
+                            moduleManager.wander.enabled = true;
+                            moduleManager.wander.Wander(data, blocked, hit);
 
-                        // Spawn the Wander module.
-                        if (!moduleSpawnCheck && wanderScript == null)
-                        {
-                            moduleSpawnCheck = true;
-                            wanderScript = gameObject.AddComponent<WanderModule>();
-                            wanderScript.maxWanderDuration = 30f; // Change this to change the wander duration.
                             doWander = true;
-                            //Debug.Log("Adding the wander movement module to " + this.name);
+                            Debug.Log($"Enabled wandering on {this.gameObject.name}");
                         }
-
-                        if (doWander == true)
-                            wanderScript.Wander(data, blocked, hit);
 
                         //I also need to add some logic for detecting enemies or other AI.
                         break;
@@ -141,14 +131,13 @@ namespace TrojanMouse.AI
                         CheckForLitter();
                         break;
                     case AIState.Patrolling:
-                        if (!moduleSpawnCheck && patrolScript == null)
+                        if (moduleManager.patrol != null)
                         {
-                            moduleSpawnCheck = true;
-                            patrolScript = gameObject.AddComponent<Patrol>();
-                            Debug.Log("Adding the patrol movement module to " + this.name);
+                            moduleManager.patrol.enabled = true;
+                            Debug.Log($"Enabled patrolling on {this.gameObject.name}");
                         }
 
-                        if (patrolScript == null)
+                        if (moduleManager.patrol.enabled == false)
                         {
                             //First we reset the timer, and then set the state back to nothing.
                             timer = 0;
@@ -324,6 +313,10 @@ namespace TrojanMouse.AI
                 litterLayer: litterLayerMask,
                 wanderCooldown: 0
             );
+
+            moduleManager = gameObject.GetComponent<ModuleManager>();
+            moduleManager.CheckScripts();
+
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
             timer = data.WanderCooldown;
@@ -429,11 +422,8 @@ namespace TrojanMouse.AI
                 // Clean up other modules
                 case 3:
                     // Movement module check
-                    if (patrolScript != null)
-                        Destroy(patrolScript);
-
-                    if (wanderScript != null)
-                        Destroy(wanderScript);
+                    moduleManager.wander.enabled = false;
+                    moduleManager.patrol.StopPatrol();
                     break;
 
                 // Clean up self script
