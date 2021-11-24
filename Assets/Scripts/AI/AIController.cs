@@ -167,7 +167,7 @@ namespace TrojanMouse.AI
             }
             else
             {
-                GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", Color.red);
+                GetComponent<MeshRenderer>().materials[0].SetColor("_Color", Color.red);
             }
         }
 
@@ -320,7 +320,7 @@ namespace TrojanMouse.AI
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
             timer = data.WanderCooldown;
-            baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_BaseColor");
+            baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_Color");
 
             // Thing for setting up char stats, powerups etc
 
