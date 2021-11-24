@@ -43,9 +43,8 @@ namespace TrojanMouse.AI.Movement
             timer = 0f;
             timeLeftTillScriptCleanup = maxWanderDuration;
             cleanup = false;
-            Debug.Log("timer=0");
             aiController.timer = 0f;
-            aiController.currentState = AIState.Wandering;
+            aiController.currentState = AIState.Nothing;
         }
 
         private void Update()
@@ -84,6 +83,7 @@ namespace TrojanMouse.AI.Movement
                 }
                 else
                 {
+                    //Debug.Log($"{data.Agent.name} is blocked! Finding a new point..");
                     newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
                     timer = 0;
                 }
@@ -134,6 +134,7 @@ namespace TrojanMouse.AI.Movement
         /// </summary>
         public void DisableScript()
         {
+            //Debug.Log("ran");
             this.enabled = false;
         }
     }
