@@ -34,10 +34,8 @@ namespace TrojanMouse.AI
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
         private bool blocked = false; // Internal true/false for checking whether the current AI path is blocked.
-        private bool moduleSpawnCheck = false; // Check to see whether a module has been spawned or not, to avoid duplicate spawning. Might not be needed.
         private bool ignoreFSMTarget = false; // Ignores the currentTarget value for when the AI moves.
         private bool currentlyProcessing = true; // Check to see whether the AI is currently processing anything or not.
-        private bool doWander;
 
         [Header("Scripts")] // All internal & private for the most part.
         // Movement Modules, in order of most used.
@@ -105,7 +103,6 @@ namespace TrojanMouse.AI
                             currentState = AIState.Wandering;
                         }
                         // Make sure this is false so more modules can be spawned.
-                        moduleSpawnCheck = false;
                         break;
                     case AIState.Wandering:
                         // Enable the wandering module.
@@ -113,8 +110,6 @@ namespace TrojanMouse.AI
                         {
                             moduleManager.wander.enabled = true;
                             moduleManager.wander.Wander(data, blocked, hit);
-
-                            doWander = true;
                             //Debug.Log($"Enabled wandering on {this.gameObject.name}");
                         }
 
