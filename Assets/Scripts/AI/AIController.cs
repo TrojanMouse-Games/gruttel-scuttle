@@ -115,7 +115,7 @@ namespace TrojanMouse.AI
                             moduleManager.wander.Wander(data, blocked, hit);
 
                             doWander = true;
-                            Debug.Log($"Enabled wandering on {this.gameObject.name}");
+                            //Debug.Log($"Enabled wandering on {this.gameObject.name}");
                         }
 
                         //I also need to add some logic for detecting enemies or other AI.
