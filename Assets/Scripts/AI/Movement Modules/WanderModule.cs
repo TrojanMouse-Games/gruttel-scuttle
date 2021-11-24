@@ -12,7 +12,6 @@ namespace TrojanMouse.AI.Movement
     public class WanderModule : MonoBehaviour
     {
         float wanderCooldown;
-        bool cleanup = false;
         float timer;
         public float maxWanderDuration = 30f;
         [SerializeField]
@@ -42,7 +41,6 @@ namespace TrojanMouse.AI.Movement
             StopCoroutine(Cooldown(.1f));
             timer = 0f;
             timeLeftTillScriptCleanup = maxWanderDuration;
-            cleanup = false;
             aiController.timer = 0f;
             aiController.currentState = AIState.Nothing;
         }
