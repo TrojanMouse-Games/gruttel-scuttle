@@ -140,7 +140,11 @@ namespace TrojanMouse.AI
                         }
                         break;
                     case AIState.Fleeing:
-                        //Flee();
+                        if (moduleManager.fleeModule != null)
+                        {
+                            moduleManager.fleeModule.enabled = true;
+                            moduleManager.fleeModule.Flee(data, currentTarget.gameObject);
+                        }
                         break;
                     case AIState.Dead:
                         Rigidbody rb = gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;

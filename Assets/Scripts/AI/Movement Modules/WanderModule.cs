@@ -71,19 +71,19 @@ namespace TrojanMouse.AI.Movement
             if (timer >= wanderCooldown)
             {
                 newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
-                blocked = UnityEngine.AI.NavMesh.Raycast(transform.position, newPos, out hit, UnityEngine.AI.NavMesh.AllAreas);
+                blocked = NavMesh.Raycast(transform.position, newPos, out hit, NavMesh.AllAreas);
                 Debug.DrawLine(transform.position, newPos, blocked ? Color.red : Color.green);
                 if (!blocked)
                 {
                     data.Agent.SetDestination(newPos);
-                    StartCoroutine(Cooldown(1));
+                    StartCoroutine(Cooldown(.1f));
                     timer = 0;
                 }
                 else
                 {
                     //Debug.Log($"{data.Agent.name} is blocked! Finding a new point..");
-                    newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
                     timer = 0;
+                    return;
                 }
             }
         }
