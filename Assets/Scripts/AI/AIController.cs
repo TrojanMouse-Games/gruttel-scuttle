@@ -2,8 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using JoshsScripts.CharacterStats;
-//using JoshsScripts.PowerUp;
+using TrojanMouse.Inventory;
+using TrojanMouse.RegionManagement;
+using TrojanMouse.PowerUps;
 using TrojanMouse.AI.Behaviours;
 using TrojanMouse.AI.Movement;
 using UnityEngine;
@@ -47,6 +48,9 @@ namespace TrojanMouse.AI
         private Friendly friendly; // Refernce to the friendly behaviour.
         private Neutral neutral; // Refernce to the neutral behaviour.
         private Hostile hostile; // Refernce to the hostile behaviour.
+        private Equipper equipper; // reference to the equipper script
+        private Powerup powerUp; // reference to the equipper script
+        private Inventory.Inventory inventory; // reference to the equipper script
         #endregion
 
         private void Start()
@@ -91,7 +95,7 @@ namespace TrojanMouse.AI
             else if (!distracted)
             {
                 // Detect and process the litter
-                CheckForLitter();
+                GetLitter();
 
                 switch (currentState)
                 {
@@ -119,11 +123,14 @@ namespace TrojanMouse.AI
                         if (ignoreFSMTarget)
                             Debug.LogWarning("Moving state was called whilst ignore bool was true, assuming it was called externally...");
                         else
-                            GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
+                            if (currentTarget != null)
+                                GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
+                            else
+                                currentState = AIState.Nothing;
                         break;
                     case AIState.Processing:
                         //Debug.Log($"Currently processing litter on {agent.name}");
-                        CheckForLitter();
+                        //GetLitter();
                         break;
                     case AIState.Patrolling:
                         if (moduleManager.patrol != null)
@@ -180,7 +187,6 @@ namespace TrojanMouse.AI
         public void GotoPoint(Vector3 position, bool ignoreFSMTarget)
         {
             Debug.LogWarning("Forcing AI to move to requested point!");
-            CheckForLitter();
 
             // Function is accessed by other classes, so first we make sure to set the state to
             // "Moving" as not to confuse the script.
@@ -199,41 +205,49 @@ namespace TrojanMouse.AI
         /// This function checks for litter and then starts processing it if any is found.
         /// </summary>
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
-        public Collider[] CheckForLitter()
+        public Region GetLitter()
         {
-            return new Collider[1];
-            throw new NotImplementedException();
+            Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform);
+            if (closestRegion.transform.childCount <= 0)
+            {
+                return closestRegion;
+            }
 
-            // // Create a new litter array each time the function is called.
-            // Collider[] litterArray = Physics.OverlapSphere(transform.position, litterDetectionRadius, whatIsLitter);
+            moduleManager.DisableAllModules();
 
-            // // check through the list and check if the litter is the right type for the gruttel
-            // // remove the litter from the list as its not the right type
-            // List<Collider> litter = new List<Collider>(litterArray);
-            // CharacterType[] pickupTypes = GetComponent<CharacterStats>().Specialties;
-            // foreach (Collider l in litterArray)
-            // {
-            //     CharacterType litterType = l.GetComponent<PowerUpHolder>().PowerUp.type;
-            //     if (pickupTypes[0] != litterType)
-            //     {
-            //         litter.Remove(l);
-            //     }
-            // }
+            if (!inventory.HasSlotsLeft())
+            {
+                Region closesHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform);
+                if (data.Agent.remainingDistance <= data.Agent.stoppingDistance)
+                {
+                    equipper.Drop(Region.RegionType.HOME);
+                    currentTarget = gameObject.transform;
+                    data.Agent.SetDestination(closesHomeRegion.transform.position);
+                }
+            }
+            else
+            {
+                LitterObject litterType = null;
+                foreach (Transform obj in closestRegion.transform)
+                {
+                    Debug.Log(closestRegion.transform);
+                    LitterObject type = closestRegion.transform.GetChild(0).GetComponent<LitterObjectHolder>().type;
+                    bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
+                    if (!cantPickup)
+                    {
+                        litterType = type;
+                        break;
+                    }
+                }
 
-            // litterArray = litter.ToArray();
+                if (litterType)
+                { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
+                    equipper.PickUp(closestRegion.transform.GetChild(0), powerUp.Type, litterType);
+                    data.Agent.SetDestination(closestRegion.transform.GetChild(0).position);
+                }
+            }
 
-            // if (litterArray.Length > 0)
-            // {
-            //     currentlyProcessing = true;
-            //     globalLitterArray = litterArray;
-            //     return ProcessLitter(currentlyProcessing, litterArray);
-            // }
-            // else
-            // {
-            //     currentlyProcessing = false;
-            //     currentState = AIState.Wandering;
-            // }
-            // return litterArray;
+            return closestRegion;
         }
 
         /// <summary>
@@ -320,7 +334,9 @@ namespace TrojanMouse.AI
             data.Agent.enabled = true;
             timer = data.WanderCooldown;
             baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_Color");
-
+            equipper = GetComponent<Equipper>();
+            powerUp = GetComponent<Powerup>();
+            inventory = GetComponent<Inventory.Inventory>();
             // Thing for setting up char stats, powerups etc
 
             // UNUSED AS OF NOW.

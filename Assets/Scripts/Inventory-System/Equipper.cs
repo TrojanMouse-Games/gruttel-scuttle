@@ -8,6 +8,7 @@ namespace TrojanMouse.Inventory {
     public class Equipper : MonoBehaviour{
         int slots, currentIndex;
         GameObject selectedObject; // OBJECT TO FIND
+        public GameObject HeldObject{ get{ return selectedObject; }}
         [SerializeField] Transform itemParent;
         [SerializeField] float dropOffset;
 
@@ -19,21 +20,22 @@ namespace TrojanMouse.Inventory {
         }
 
 
-        public void PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1){           
+        public bool PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1){           
             if(powerUp != type.type && type.type != PowerupType.NORMAL) { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
-                return; 
+                return false; 
             }
             Debug.Log($"{powerUp} | {type.type}");
             bool success = inventoryHandler.AddToInventory(type);                       
             if(success){
-                Debug.Log(success); 
+                // josh is gay                
                 selectedObject = inventoryHandler.Equip(itemParent, currentIndex);                
                 if(selectedObject){                   
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;
                     selectedObject.GetComponent<Rigidbody>().isKinematic = true;                    
                 }
                 Destroy(obj.gameObject);                
-            }            
+            }         
+            return success;   
         }
 
         public void Drop(Region.RegionType _type){        

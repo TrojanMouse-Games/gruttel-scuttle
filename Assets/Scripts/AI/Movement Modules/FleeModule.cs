@@ -4,6 +4,10 @@ namespace TrojanMouse.AI.Movement
 {
     public class FleeModule : MonoBehaviour
     {
+        private void Start() {
+            
+        }
+
         // TODO:- Make the transition back out of this state using a check to see if the AI has gotten far enough away from the target.
         // STRETCH:- Convert to use NavMeshHit to create a more dynamic, realistic looking flee. Maybe it will only try this more dynamic style once it's a set distance away.
         /// <summary>

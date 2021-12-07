@@ -120,7 +120,7 @@ namespace TrojanMouse.AI.Movement
             {
                 controller.enabled = state;
                 data.Agent.enabled = state;
-                controller.CheckForLitter();
+                controller.GetLitter();
             }
         }
 

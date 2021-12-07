@@ -28,7 +28,7 @@ namespace TrojanMouse.RegionManagement{
 
         ///<summary>This function returns all regions of a given passed type e.g. 'Litter_Region'</summary>
         public Region[] GetRegions(Region.RegionType _type) => regions[_type].ToArray(); // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
-        public Region GetClosestRegion(Region.RegionType _type, Transform transform){
+        public Region GetClosestRegion(Region.RegionType _type, Transform transform){            
             Region[] regionsOfType = regions[_type].ToArray();
             Region closestRegion = null;
 
