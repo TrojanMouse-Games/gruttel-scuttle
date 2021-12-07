@@ -296,7 +296,11 @@ GameObject:
   - component: {fileID: 7504798510929981477}
   - component: {fileID: 8286404246055093716}
   - component: {fileID: 8259659090422898085}
+  - component: {fileID: 6507078522426872120}
   - component: {fileID: 1336344032309610651}
+  - component: {fileID: -7411683464639970031}
+  - component: {fileID: 7905987685307776842}
+  - component: {fileID: -683719600563106338}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -446,6 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wander: {fileID: 0}
   patrol: {fileID: 0}
+  fleeModule: {fileID: 0}
 --- !u!114 &8286404246055093716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,6 +481,18 @@ MonoBehaviour:
   timeToPatrol: 30
   patrol: 1
   CPatrolPoint: {fileID: 0}
+--- !u!114 &6507078522426872120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848986660407067151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc8f86b5c6937e41b57c38e87470f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!208 &1336344032309610651
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -492,3 +509,44 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &-7411683464639970031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848986660407067151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf5a0029fc5eca40abe89d1c5fcc1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!114 &7905987685307776842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848986660407067151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37e2f04e483aae4084962773801309c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemParent: {fileID: 7848986660407067153}
+  dropOffset: 1
+  inventoryHandler: {fileID: -683719600563106338}
+--- !u!114 &-683719600563106338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848986660407067151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f6095b2b990d145b7334f393520f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSlots: 1
