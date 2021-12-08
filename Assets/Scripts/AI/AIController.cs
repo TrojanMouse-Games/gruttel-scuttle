@@ -209,8 +209,6 @@ namespace TrojanMouse.AI
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
         public AIState GetLitter()
         {            
-                      
-            
             if (!inventory.HasSlotsLeft())
             {
                 Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
@@ -227,6 +225,7 @@ namespace TrojanMouse.AI
             }
             else
             {   
+                // Pass in the last arg, this is the place we're telling the gruttle to go to
                 Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
                 if (!closestRegion){
                     return AIState.Nothing;
@@ -254,73 +253,6 @@ namespace TrojanMouse.AI
             }
 
             return AIState.Processing;
-        }
-
-        /// <summary>
-        /// This is how the litter processing works. Works in tandem with Josh's Pickup/Powerup system.
-        /// Uses a Overlap sphere to get colliders and adds them to an array.
-        /// </summary>
-        private Collider[] ProcessLitter(bool isProcessing, Collider[] litterArray)
-        {
-            throw new NotImplementedException();
-
-            // if (currentlyProcessing)
-            // {
-            //     // Small error check to make sure the AI has things to process.
-            //     if (litterArray.Length <= 0)
-            //     {
-            //         // Tell the AI that it's done processing litter.
-            //         currentlyProcessing = false;
-            //         // Set the state back to wandering.
-            //         currentState = AIState.Wandering;
-            //         // Exit the loop.
-            //         return litterArray;
-            //     }
-            //     else
-            //     {
-            //         // Tell the AI that it still has litter to process
-            //         currentlyProcessing = true;
-            //     }
-
-            //     // LITTER ITERATION
-            //     Vector3 targetPos = transform.position;
-
-            //     foreach (Collider litter in litterArray)
-            //     { // ITERATES THROUGH ALL LITTER UNTIL IT CAN FIND LITTER WHICH CAN BE PICKED UP
-            //         // Small error reporting
-            //         PickUpHandler pickUpHandler = litter.GetComponent<PickUpHandler>();
-            //         if (!pickUpHandler)
-            //         {
-            //             Debug.LogError($"No Pickup Handler found on this {litterArray[0].transform.name}, please add one to avoid this error! Continuing..");
-            //             // if an error is found, return and continue.
-            //             return litterArray;
-            //         }
-            //         if (pickUpHandler.PickUp(transform, characterStats.Specialties[0]) == PickUpHandler.ErrType.TooFar)
-            //         { // Call Joshs pickup function. -- WE WANT THIS ERROR TO OCCUR SO THAT AI WILL MOVE
-            //             targetPos = litter.transform.position;
-            //             int distractionChance = UnityEngine.Random.Range(0, 2500);
-            //             if (distractionChance == 0)
-            //             {
-            //                 distracted = true;
-            //             }
-            //             break;
-            //         }
-            //     }
-
-            //     // If litter is found, set AI State
-            //     currentState = AIState.Processing;
-            //     // Validation to make sure AI is back on navmesh before setting destination, if it fails warn us.
-            //     if (agent.isOnNavMesh)
-            //     {
-            //         // Move to litter
-            //         agent.SetDestination(targetPos);
-            //     }
-            //     else
-            //     {
-            //         Debug.LogWarning($"{agent.transform.name}'s target isn't valid!!");
-            //     }
-            // }
-            // return litterArray;
         }
         #endregion
 
