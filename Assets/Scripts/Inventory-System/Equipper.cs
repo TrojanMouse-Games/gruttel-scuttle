@@ -20,27 +20,29 @@ namespace TrojanMouse.Inventory {
         }
 
 
-        public bool PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1){           
-            if(powerUp != type.type && type.type != PowerupType.NORMAL) { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
+        public bool PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1){     
+            if((powerUp != type.type && type.type != PowerupType.NORMAL) || selectedObject) { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
                 return false; 
-            }
-            Debug.Log($"{powerUp} | {type.type}");
+            }           
+                
             bool success = inventoryHandler.AddToInventory(type);                       
-            if(success){
-                // josh is gay                
+            if(success){                           
                 selectedObject = inventoryHandler.Equip(itemParent, currentIndex);                
                 if(selectedObject){                   
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;
-                    selectedObject.GetComponent<Rigidbody>().isKinematic = true;                    
+                    selectedObject.GetComponent<Rigidbody>().isKinematic = true;          
+                    selectedObject.GetComponent<Collider>().enabled = false;          
                 }
                 Destroy(obj.gameObject);                
             }         
             return success;   
         }
 
-        public void Drop(Region.RegionType _type){        
-            GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform).transform); // SPAWN LITTER
-            
+        public void Drop(Region.RegionType _type){                    
+            GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform.position).transform); // SPAWN LITTER
+            droppedItem.GetComponent<Rigidbody>().isKinematic = false;
+            droppedItem.GetComponent<Collider>().enabled = true;          
+
             inventoryHandler.Dequip(selectedObject);
             inventoryHandler.RemoveFromInventory(selectedObject.GetComponent<LitterObjectHolder>().type);
         }

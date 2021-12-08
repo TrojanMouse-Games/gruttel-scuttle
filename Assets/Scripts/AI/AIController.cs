@@ -51,6 +51,8 @@ namespace TrojanMouse.AI
         private Equipper equipper; // reference to the equipper script
         private Powerup powerUp; // reference to the equipper script
         private Inventory.Inventory inventory; // reference to the equipper script
+        [Header("Joshs temp vars")]
+        [SerializeField] float pickupRange;
         #endregion
 
         private void Start()
@@ -95,10 +97,13 @@ namespace TrojanMouse.AI
             else if (!distracted)
             {
                 // Detect and process the litter
+                #region JOSHS OVERRIDES - REMOVE LATER ON
+                moduleManager.DisableAllModules();
+                currentState = AIState.Processing;
                 GetLitter();
-
+                #endregion
                 switch (currentState)
-                {
+                {                    
                     case AIState.Nothing:
                         if (timer > 10)
                         {
@@ -129,7 +134,7 @@ namespace TrojanMouse.AI
                                 currentState = AIState.Nothing;
                         break;
                     case AIState.Processing:
-                        //Debug.Log($"Currently processing litter on {agent.name}");
+                        //Debug.Log($"Currently processing litter on {data.Agent.name}");
                         //GetLitter();
                         break;
                     case AIState.Patrolling:
@@ -164,7 +169,6 @@ namespace TrojanMouse.AI
                         Cleanup(3);
                         Cleanup(4);
                         break;
-
                     default:
                         // Fall back state
                         currentState = AIState.Wandering;
@@ -205,49 +209,50 @@ namespace TrojanMouse.AI
         /// This function checks for litter and then starts processing it if any is found.
         /// </summary>
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
-        public Region GetLitter()
-        {
-            Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform);
-            if (closestRegion.transform.childCount <= 0)
-            {
-                return closestRegion;
-            }
-
-            moduleManager.DisableAllModules();
-
+        public void GetLitter()
+        {            
+                      
+            
             if (!inventory.HasSlotsLeft())
             {
-                Region closesHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform);
-                if (data.Agent.remainingDistance <= data.Agent.stoppingDistance)
-                {
-                    equipper.Drop(Region.RegionType.HOME);
-                    currentTarget = gameObject.transform;
-                    data.Agent.SetDestination(closesHomeRegion.transform.position);
+                Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
+                Vector3 homePos = closestHomeRegion.transform.position;
+                data.Agent.SetDestination(closestHomeRegion.transform.position);     
+
+                if (Mathf.Abs((transform.position - new Vector3(homePos.x, transform.position.y, homePos.z)).magnitude) <= pickupRange)
+                {    
+                    equipper.Drop(Region.RegionType.HOME);                                        
                 }
             }
             else
-            {
+            {   
+                Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
+                if (!closestRegion){
+                    return;
+                } 
+
                 LitterObject litterType = null;
+                Transform litterObj = null;
                 foreach (Transform obj in closestRegion.transform)
-                {
-                    Debug.Log(closestRegion.transform);
-                    LitterObject type = closestRegion.transform.GetChild(0).GetComponent<LitterObjectHolder>().type;
+                {                    
+                    LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                     bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
-                    if (!cantPickup)
-                    {
+                    
+                    if (!cantPickup )
+                    {                        
+                        data.Agent.SetDestination(obj.position);
                         litterType = type;
+                        litterObj = obj;
                         break;
                     }
-                }
-
-                if (litterType)
-                { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
-                    equipper.PickUp(closestRegion.transform.GetChild(0), powerUp.Type, litterType);
-                    data.Agent.SetDestination(closestRegion.transform.GetChild(0).position);
+                }                
+                if (litterType && Mathf.Abs((transform.position - litterObj.position).magnitude) <= pickupRange)
+                {                     
+                    equipper.PickUp(litterObj, powerUp.Type, litterType);                    
                 }
             }
 
-            return closestRegion;
+            return;
         }
 
         /// <summary>
@@ -372,6 +377,10 @@ namespace TrojanMouse.AI
 
         private void OnDrawGizmosSelected()
         {
+            // JOSHS STUFF
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, pickupRange);
+            // --
             if (data == null)
             {
                 return;
