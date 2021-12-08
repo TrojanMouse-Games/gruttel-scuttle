@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a61a0cad776744abab2f884b9d8417, type: 3}
+  m_Name: Cycle_2
+  m_EditorClassIdentifier: 
+  stages:
+  - stageName: Preperation
+    timeBetweenStages: 1
+    powerUpsToPickUp: []
+    litterOnStart: 5
+    litterForWave: 10
+    durationOfWave: 20
+  - stageName: Main Round
+    timeBetweenStages: 0
+    powerUpsToPickUp: []
+    litterOnStart: 60
+    litterForWave: 100
+    durationOfWave: 40
+  - stageName: Aftermath
+    timeBetweenStages: 0
+    powerUpsToPickUp: []
+    litterOnStart: 0
+    litterForWave: 0
+    durationOfWave: 10
