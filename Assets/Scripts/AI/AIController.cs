@@ -98,9 +98,7 @@ namespace TrojanMouse.AI
             {
                 // Detect and process the litter
                 #region JOSHS OVERRIDES - REMOVE LATER ON
-                moduleManager.DisableAllModules();
-                currentState = AIState.Processing;
-                GetLitter();
+                currentState = GetLitter();
                 #endregion
                 switch (currentState)
                 {                    
@@ -209,13 +207,16 @@ namespace TrojanMouse.AI
         /// This function checks for litter and then starts processing it if any is found.
         /// </summary>
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
-        public void GetLitter()
+        public AIState GetLitter()
         {            
                       
             
             if (!inventory.HasSlotsLeft())
             {
                 Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
+                if(!closestHomeRegion){
+                    return AIState.Nothing;
+                }
                 Vector3 homePos = closestHomeRegion.transform.position;
                 data.Agent.SetDestination(closestHomeRegion.transform.position);     
 
@@ -228,7 +229,7 @@ namespace TrojanMouse.AI
             {   
                 Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
                 if (!closestRegion){
-                    return;
+                    return AIState.Nothing;
                 } 
 
                 LitterObject litterType = null;
@@ -252,7 +253,7 @@ namespace TrojanMouse.AI
                 }
             }
 
-            return;
+            return AIState.Processing;
         }
 
         /// <summary>
