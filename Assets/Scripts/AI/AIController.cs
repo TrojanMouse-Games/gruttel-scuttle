@@ -69,9 +69,6 @@ namespace TrojanMouse.AI
         }
 
         #region STATE FUNCTIONS
-        /// <summary>
-        /// 
-        /// </summary>
         private void HFSM()
         {
             // Main AI logic. Incorporates AI FSM(Finite State Machine) flow.
