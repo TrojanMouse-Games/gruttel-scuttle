@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using TrojanMouse.;
+using TrojanMouse.StressSystem;
 using CassyScripts.Level_System;
 
 //15/10/21 initially by Cassy -- Edited By Josh with approval :P 
