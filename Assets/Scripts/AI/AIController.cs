@@ -238,7 +238,7 @@ namespace TrojanMouse.AI
                     LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                     bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
                     
-                    if (!cantPickup )
+                    if (!cantPickup)
                     {                        
                         data.Agent.SetDestination(obj.position);
                         litterType = type;
