@@ -10,13 +10,13 @@ namespace TrojanMouse.AI.Movement {
         [Tooltip("Most of these will self assign")]
         [Header("Public Variables")]
         public Camera mainCam; // Reference to the main camera.
-        public LayerMask whatToSelect, whatToIgnore, objectMask; // The two layermasks which dictate what can be clicked on.
+        public LayerMask whatToSelect, whatToIgnore; // The two layermasks which dictate what can be clicked on.
         public float rayDistance; // How far to fire the ray.
 
+        public RaycastHit hit; // hit var.
         public bool directing; // this will be the check to tell the script whether the player has already clicked on an AI.
 
         // Internal variables
-        RaycastHit hit; // Internal hit var.
         Transform selected; // The currently selected obj.
         Ray worldPoint; // Internal global script wide variable used for the raycast.
 
@@ -58,7 +58,7 @@ namespace TrojanMouse.AI.Movement {
                 // Toggle anything that needs to be turned off
             } else if (directing) {
                 // Now that we've selected an AI to move, we watch for a second click
-                if (Input.GetButtonDown("Fire1") && FireRay(objectMask, rayDistance)) {
+                if (Input.GetButtonDown("Fire1") && FireRay(whatToIgnore, rayDistance)) {
 
                     // Move AI to location
                     // Access the targets AI controller

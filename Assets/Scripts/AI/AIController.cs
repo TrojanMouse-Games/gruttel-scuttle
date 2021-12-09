@@ -44,6 +44,7 @@ namespace TrojanMouse.AI
         // private WanderModule wanderScript; // Reference to the Wander Module.
         // private Patrol patrolScript; // Reference to the Patrol module.
         private MoveWithMouseGrab moveToMouse; // Reference to the Move to Mouse Point module.
+        private MoveWithMouseClick moveToClick;
         // Behaviour Modules
         private Friendly friendly; // Refernce to the friendly behaviour.
         private Neutral neutral; // Refernce to the neutral behaviour.
@@ -225,7 +226,7 @@ namespace TrojanMouse.AI
             }
             else
             {   
-                // Pass in the last arg, this is the place we're telling the gruttle to go to
+                // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
                 Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
                 if (!closestRegion){
                     return AIState.Nothing;
