@@ -13,10 +13,10 @@ namespace TrojanMouse.AI.Movement {
         public LayerMask whatToSelect, whatToIgnore; // The two layermasks which dictate what can be clicked on.
         public float rayDistance; // How far to fire the ray.
 
+        public RaycastHit hit; // hit var.
         public bool directing; // this will be the check to tell the script whether the player has already clicked on an AI.
 
         // Internal variables
-        RaycastHit hit; // Internal hit var.
         Transform selected; // The currently selected obj.
         Ray worldPoint; // Internal global script wide variable used for the raycast.
 

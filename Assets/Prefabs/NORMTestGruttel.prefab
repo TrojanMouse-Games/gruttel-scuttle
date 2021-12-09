@@ -48,7 +48,6 @@ GameObject:
   - component: {fileID: 557920139527360729}
   - component: {fileID: 567785079368845480}
   - component: {fileID: 3390314261474722869}
-  - component: {fileID: 7478997364203625878}
   - component: {fileID: 7810772837769678876}
   - component: {fileID: 1798814502319712839}
   - component: {fileID: 271316650194720979}
@@ -246,22 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc8f86b5c6937e41b57c38e87470f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &7478997364203625878
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849900152481928962}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &7810772837769678876
 MonoBehaviour:
   m_ObjectHideFlags: 0
