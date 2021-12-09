@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
@@ -2572,13 +2572,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681461692745047908, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6681461692745047908, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6681461692745047909, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.42
+      value: 3.59
       objectReference: {fileID: 0}
     - target: {fileID: 6712578497034865740, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
         type: 3}
