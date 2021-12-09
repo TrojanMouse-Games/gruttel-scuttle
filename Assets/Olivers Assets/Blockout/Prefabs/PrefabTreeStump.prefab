@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3841898173722321105}
   - component: {fileID: 215875492631277428}
   - component: {fileID: 2673456836667972542}
+  - component: {fileID: 7699280227864485470}
+  - component: {fileID: 658119492842594717}
   m_Layer: 0
   m_Name: PrefabTreeStump
   m_TagString: Untagged
@@ -82,6 +84,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7699280227864485470
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4475164762988132971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 204.8, y: 117.3, z: 264.7}
+  m_Center: {x: -0.0000076293945, y: 57.8, z: 64.69}
+--- !u!65 &658119492842594717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4475164762988132971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 113.2, y: 256.1, z: 150.8}
+  m_Center: {x: -0.0000076293945, y: 243.3, z: 12.2}
 --- !u!1 &5356280979137885407
 GameObject:
   m_ObjectHideFlags: 0

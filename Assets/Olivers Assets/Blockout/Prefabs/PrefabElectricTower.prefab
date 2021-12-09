@@ -333,6 +333,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3903192099605003332}
+  - component: {fileID: 6371104896832308313}
+  - component: {fileID: 8197017466304820996}
+  - component: {fileID: 540372042663625899}
   m_Layer: 0
   m_Name: PrefabElectricTower
   m_TagString: Untagged
@@ -360,6 +363,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6371104896832308313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422882435472123646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 539, y: 1183, z: 62.4}
+  m_Center: {x: 0, y: 998, z: 0}
+--- !u!65 &8197017466304820996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422882435472123646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 91.9, y: 391.35, z: 63.8}
+  m_Center: {x: 247.53, y: 194.29, z: 6.4}
+--- !u!65 &540372042663625899
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422882435472123646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 91.9, y: 391.35, z: 63.8}
+  m_Center: {x: -240.2, y: 194.29, z: 6.4}
 --- !u!1 &5518330647659734607
 GameObject:
   m_ObjectHideFlags: 0

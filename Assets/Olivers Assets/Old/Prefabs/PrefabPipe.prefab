@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4877393835322433814}
   - component: {fileID: 7226883856337606108}
   - component: {fileID: -3043281316635478955}
+  - component: {fileID: 6363328290148009035}
   m_Layer: 0
   m_Name: PrefabPipe
   m_TagString: Untagged
@@ -99,6 +100,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!136 &6363328290148009035
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172689927386543113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 250.65
+  m_Height: 1209.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8885968571162604345
 PrefabInstance:
   m_ObjectHideFlags: 0

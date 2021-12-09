@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6310480948145415375}
   - component: {fileID: 6934575210232081258}
   - component: {fileID: 5177019851571208096}
+  - component: {fileID: 3677499483001504320}
+  - component: {fileID: 1566699724995846910}
   m_Layer: 0
   m_Name: PrefabPan
   m_TagString: Untagged
@@ -82,6 +84,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3677499483001504320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690242727581564533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1102.5, y: 137.2, z: 1086.91}
+  m_Center: {x: 0, y: 25.2, z: 0}
+--- !u!65 &1566699724995846910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690242727581564533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 125.9, y: 112.4, z: 758.1}
+  m_Center: {x: 0, y: 4.2, z: -916.6}
 --- !u!1001 &6219425391130300818
 PrefabInstance:
   m_ObjectHideFlags: 0
