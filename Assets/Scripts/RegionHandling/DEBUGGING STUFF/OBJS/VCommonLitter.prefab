@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7000658050550888977}
   - component: {fileID: -2090348513316775258}
   - component: {fileID: 7685914163449065634}
-  - component: {fileID: 7588535239436846373}
   m_Layer: 7
   m_Name: VCommonLitter
   m_TagString: Untagged
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7000658050550888982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -128,20 +127,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 6f9fe5bc1523c6b42985ba13558b55d7, type: 2}
   parent: {fileID: 0}
---- !u!114 &7588535239436846373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7000658050550888982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abba093ed623284cbb2e56f1e71b0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGruttel:
-    serializedVersion: 2
-    m_Bits: 64
-  distToPickUp: 3
-  cooldown: 2
