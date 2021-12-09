@@ -2,12 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace TrojanMouse.Menu {
     public class Buttons : MonoBehaviour {
         AsyncOperation async;
 
         public string playScene = "CritDay";
+        public GameObject playButton;
+        public GameObject levelPanel;
+
+        public void LevelSelectOne()
+        {
+            playScene = "Area1_Rectangle";
+            LevelSelected();
+        }
+        public void LevelSelectTwo()
+        {
+            playScene = "Area2_Circle";
+            LevelSelected();
+        }
+        public void LevelSelectThree()
+        {
+            playScene = "Area3_SemiCircle";
+            LevelSelected();
+        }
+        public void LevelSelected()
+        {
+            levelPanel.SetActive(false);
+            playButton.SetActive(true);
+
+
+        }
 
         public void LoadScene(float wait)
         {
