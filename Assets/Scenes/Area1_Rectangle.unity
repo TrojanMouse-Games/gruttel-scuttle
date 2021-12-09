@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 226825780}
   - component: {fileID: 226825782}
   - component: {fileID: 226825781}
+  - component: {fileID: 226825783}
   m_Layer: 0
   m_Name: Home Region
   m_TagString: Untagged
@@ -257,6 +258,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.08, y: 1, z: 3.94}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &226825783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226825779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &456582180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -529,6 +546,8 @@ MonoBehaviour:
   xMinClamp: 14
   zoomSpeed: 2
   xMaxClamp: 111
+  yMinClamp: 9.35
+  yMaxClamp: 11.6
 --- !u!114 &698207696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,7 +2949,7 @@ PrefabInstance:
     - target: {fileID: 6681461692745047908, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6681461692745047909, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
         type: 3}
@@ -4176,6 +4195,7 @@ GameObject:
   - component: {fileID: 1235971035}
   - component: {fileID: 1235971037}
   - component: {fileID: 1235971036}
+  - component: {fileID: 1235971038}
   m_Layer: 0
   m_Name: Litter Region
   m_TagString: Untagged
@@ -4228,6 +4248,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.08, y: 1, z: 3.94}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1235971038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235971034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1254678527
 GameObject:
   m_ObjectHideFlags: 0
