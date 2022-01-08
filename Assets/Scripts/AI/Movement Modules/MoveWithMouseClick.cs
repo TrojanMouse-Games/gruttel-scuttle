@@ -71,6 +71,7 @@ namespace TrojanMouse.AI.Movement {
                     aiController.GotoPoint(hit.point, true);
                     //aiController.CheckForLitter();
                     directing = false;
+                    //aiController.currentState = aiController.GetLitter();
 
                     aiController.beingDirected = true;
                     Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
@@ -94,12 +95,18 @@ namespace TrojanMouse.AI.Movement {
         /// <typeparam name="AIController">The AIController</typeparam>
         /// <returns>if yes returns true, no false</returns>
         private bool CheckAI() {
-            if (hit.transform.GetComponent<AIController>() == null) {
+            AIController localAIc = hit.transform.GetComponent<AIController>();
+            if (localAIc == null) {
                 return false;
             }
 
-            Debug.Log($"{hit.transform.name} is distracted: {hit.transform.GetComponent<AIController>().distracted}");
-            return !hit.transform.GetComponent<AIController>().distracted;
+            if(localAIc.distracted)
+            {
+                localAIc.distracted = false;
+            }
+
+            Debug.Log($"{hit.transform.name} is distracted: {localAIc.distracted}");
+            return !localAIc.distracted;
         }
 
         /// <summary>

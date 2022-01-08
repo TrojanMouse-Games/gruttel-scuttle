@@ -31,6 +31,8 @@ namespace TrojanMouse.AI
         public bool distracted;
         public LayerMask litterLayerMask;
         public float timer = 0f; // Internal timer used for state changes and tracking.
+        public GameObject distractionMarker;
+        public int distractionChance;
 
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
@@ -97,12 +99,14 @@ namespace TrojanMouse.AI
             }
             else if (!distracted)
             {
+                distractionMarker.SetActive(false);
+
                 // Detect and process the litter
                 #region JOSHS OVERRIDES - REMOVE LATER ON
                 currentState = GetLitter();
                 #endregion
                 switch (currentState)
-                {                    
+                {
                     case AIState.Nothing:
                         if (timer > 10)
                         {
@@ -128,9 +132,9 @@ namespace TrojanMouse.AI
                             Debug.LogWarning("Moving state was called whilst ignore bool was true, assuming it was called externally...");
                         else
                             if (currentTarget != null)
-                                GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
-                            else
-                                currentState = AIState.Nothing;
+                            GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
+                        else
+                            currentState = AIState.Nothing;
                         break;
                     case AIState.Processing:
                         //Debug.Log($"Currently processing litter on {data.Agent.name}");
@@ -209,51 +213,65 @@ namespace TrojanMouse.AI
         /// </summary>
         /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
         public AIState GetLitter()
-        {            
-            if (!inventory.HasSlotsLeft())
+        {
+            if (distracted == false)
             {
-                Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
-                if(!closestHomeRegion){
-                    return AIState.Nothing;
+                distractionChance = UnityEngine.Random.Range(0, 500);
+                if (distractionChance == 0)
+                {
+                    distracted = true;
+                    distractionMarker.SetActive(true);
+                    data.Agent.SetDestination(transform.position);
+                    currentState = AIState.Nothing;
                 }
-                Vector3 homePos = closestHomeRegion.transform.position;
-                data.Agent.SetDestination(closestHomeRegion.transform.position);     
-
-                if (Mathf.Abs((transform.position - new Vector3(homePos.x, transform.position.y, homePos.z)).magnitude) <= pickupRange)
-                {    
-                    equipper.Drop(Region.RegionType.HOME);                                        
-                }
-            }
-            else
-            {   
-                // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
-                Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
-                if (!closestRegion){
-                    return AIState.Nothing;
-                } 
-
-                LitterObject litterType = null;
-                Transform litterObj = null;
-                foreach (Transform obj in closestRegion.transform)
-                {                    
-                    LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
-                    bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
-                    
-                    if (!cantPickup)
-                    {                        
-                        data.Agent.SetDestination(obj.position);
-                        litterType = type;
-                        litterObj = obj;
-                        break;
+                if (!inventory.HasSlotsLeft())
+                {
+                    Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
+                    if (!closestHomeRegion)
+                    {
+                        return AIState.Nothing;
                     }
-                }                
-                if (litterType && Mathf.Abs((transform.position - litterObj.position).magnitude) <= pickupRange)
-                {                     
-                    equipper.PickUp(litterObj, powerUp.Type, litterType);                    
-                }
-            }
+                    Vector3 homePos = closestHomeRegion.transform.position;
+                    data.Agent.SetDestination(closestHomeRegion.transform.position);
 
-            return AIState.Processing;
+                    if (Mathf.Abs((transform.position - new Vector3(homePos.x, transform.position.y, homePos.z)).magnitude) <= pickupRange)
+                    {
+                        equipper.Drop(Region.RegionType.HOME);
+                    }
+                }
+                else
+                {
+                    // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
+                    Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
+                    if (!closestRegion)
+                    {
+                        return AIState.Nothing;
+                    }
+
+                    LitterObject litterType = null;
+                    Transform litterObj = null;
+                    foreach (Transform obj in closestRegion.transform)
+                    {
+                        LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
+                        bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
+
+                        if (!cantPickup)
+                        {
+                            data.Agent.SetDestination(obj.position);
+                            litterType = type;
+                            litterObj = obj;
+                            break;
+                        }
+                    }
+                    if (litterType && Mathf.Abs((transform.position - litterObj.position).magnitude) <= pickupRange)
+                    {
+                        equipper.PickUp(litterObj, powerUp.Type, litterType);
+                    }
+                }
+
+                return currentState = AIState.Processing;
+            }
+            return currentState = AIState.Nothing;
         }
         #endregion
 
@@ -281,6 +299,8 @@ namespace TrojanMouse.AI
             // UNUSED AS OF NOW.
             // This assigns the player follow point;
             //followPoint = GameObject.FindGameObjectWithTag("PlayerFollowPoint");
+
+            distractionMarker.SetActive(false);
 
             // Simple check to make sure the agent is on a navmesh, if not destroy it
             if (data.Agent.isOnNavMesh == false)
