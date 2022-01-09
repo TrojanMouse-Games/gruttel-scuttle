@@ -1753,6 +1753,7 @@ GameObject:
   - component: {fileID: 950051503}
   - component: {fileID: 950051501}
   - component: {fileID: 950051500}
+  - component: {fileID: 950051502}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1793,6 +1794,38 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950051498}
   m_Enabled: 1
+--- !u!114 &950051502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950051498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!20 &950051503
 Camera:
   m_ObjectHideFlags: 0
@@ -3574,7 +3607,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 475.19724
     y: 204.24443
-    width: 129.78021
+    width: 170.54791
     height: 40
   tint: {r: 0.6721078, g: 0.8773585, b: 0.12829298, a: 1}
   useCustomTint: 1
@@ -3605,7 +3638,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -315.10675
     y: 201.7915
-    width: 60
+    width: 76.02739
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3636,7 +3669,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 49.450516
     y: 203.7329
-    width: 101.208786
+    width: 141.78079
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3665,8 +3698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 45
   indentLevel: 0
-  storyText: Gruttels are quick footed, but also dim-witted. They run towards new
-    fun, daydream constantly and just generally get distracted easily.
+  storyText: Gruttels are fleet of foot, but dim of wit. They run towards new fun,
+    daydream constantly, and generally get distracted easily.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3695,7 +3728,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 239.72354
     y: 203.05792
-    width: 114.39559
+    width: 154.10956
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3724,7 +3757,7 @@ MonoBehaviour:
   itemId: 37
   indentLevel: 0
   storyText: Much like how you are clicking right now, all you have to do is click
-    on a Gruttel and click on the trash you would like them to pick up. It couldn't
+    on a gruttel then click on the litter you would like them to pick up. It couldn't
     be easier!
   description: 
   character: {fileID: 0}
@@ -3754,7 +3787,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -138.17484
     y: 204.05876
-    width: 97.91208
+    width: 137.6712
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3800,7 +3833,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -5.425271
     y: -244.96176
-    width: 60
+    width: 77.39725
     height: 40
   tint: {r: 0.5981666, g: 0.8867924, b: 0.85918486, a: 1}
   useCustomTint: 1
@@ -3838,19 +3871,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 358.0002, y: 332.20285}
+  scrollPos: {x: 679.5947, y: 395.1505}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.9100001
+  zoom: 0.73000026
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1909431884}
+  selectedBlocks: []
   selectedCommands: []
   variables: []
   description: 
@@ -3891,9 +3923,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 66
   indentLevel: 0
-  storyText: It is your job to put them back on their work path when they wonder
-    or stop. All you have to do is click and command them to a task, then boom! just
-    like that they'll get back to work... until the next distraction that is.
+  storyText: It is down to you to put them back to work when they get distracted.
+    All you have to do is click and direct them to a task, then boom! Just like that,
+    they'll get back to work...until the next distraction, that is!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3921,7 +3953,7 @@ MonoBehaviour:
   itemId: 9
   indentLevel: 0
   storyText: 'Hi there and welcome to the Gruttel Game! We here at Trojan Mouse are
-    so excited to finally be able to introduce you to the planet of Holmfens in our
+    so excited to finally be able to introduce you to the planet of Holmfen in our
     offical game demo! '
   description: 
   character: {fileID: 0}
@@ -3949,7 +3981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 19
   indentLevel: 0
-  storyText: Will you help us demonstrate things to the new player pretty please?
+  storyText: Will you help us demonstrate things to the new player, pretty please?
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4030,7 +4062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 16
   indentLevel: 0
-  storyText: Ah, there he is! Hello there little Gruttel!
+  storyText: Ah, there he is! Hello there, little gruttel!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4084,7 +4116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: "Unfortunatly I don't speak Gruttel, but he seems pleased to meet us!
+  storyText: "Unfortunatly, I don't speak Gruttel, but he seems pleased to meet us!
     \n(I think)"
   description: 
   character: {fileID: 0}
@@ -4202,10 +4234,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: In this tutorial we'll get you familar with your goal and controls for
-    your offical visit to the Gruttel Village. But first, let's wake up this little
-    guy over here and get you aquainted. I mean you can't put on a show without the
-    stars!
+  storyText: In this tutorial, we'll get you familar with your goal and controls
+    for your offical visit to the Gruttel Village. But first, let's wake up this
+    little guy over here and get you acquainted. I mean, you can't put on a show
+    without the stars!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4322,10 +4354,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 25
   indentLevel: 0
-  storyText: You need to command the Gruttels in the effort to clean up their planet.
-    You will select a group of Gruttles to take out with you and you must tackle
-    all the trash before it's too late! Don't let another area become burried and
-    lost to the junk!
+  storyText: The gruttels need you to take command in the effort to clean up their
+    planet. Select a group of gruttels to take out with you and tackle the trash
+    piles before it's too late! Don't let another area become buried and lost to
+    the junk!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4352,10 +4384,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 24
   indentLevel: 0
-  storyText: This is where you come in. The Gruttels are less than fond of this mess
-    and have been working hard for a long time to recyle it into their village. Unfortunately
-    the trash is getting too much for them to handle alone and they need you to help
-    them stay organised in their efforts.
+  storyText: This is where you come in. The gruttels are less than fond of this mess
+    and have been working hard to recyle it into their village. Unfortunately, the
+    rubbish is starting to pile up and they need your help to keep them organised
+    in their efforts.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4382,9 +4414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 23
   indentLevel: 0
-  storyText: As you may know Holmfens was once a lush, beautiful planet of... uhhh...
-    Not greenary... Purplery let's say. Now that all changed a while ago. The planet
-    found itself victim to all the trash of space. Now it's a littered, jumbled mess.
+  storyText: Holmfen was once a lush, beautiful planet of...uhhh...not greenery...purplery,
+    let's say! That all changed when the planet found itself victim to all the litter
+    from space. Now it's a cluttered, jumbled mess.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4413,7 +4445,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 178.2229
     y: -245.41858
-    width: 60
+    width: 69.17808
     height: 40
   tint: {r: 0.9245283, g: 0.09158063, b: 0.09158063, a: 1}
   useCustomTint: 1
@@ -4639,9 +4671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 36
   indentLevel: 0
-  storyText: 'Don''t you worry because commanding the Gruttels is easy peasy lemon
-    squeezy! Being as friendly as they are, it doesn''t take much to convince them
-    to help out. '
+  storyText: 'Commanding the gruttels is easy peasy lemon squeezy! Being as friendly
+    as they are, it doesn''t take much to convince them to help out. '
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4668,7 +4699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 38
   indentLevel: 0
-  storyText: When you start the game you'll notice two things at the top of your
+  storyText: When you start the game, you'll notice two icons at the top of your
     screen.
   description: 
   character: {fileID: 0}
@@ -4696,9 +4727,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 44
   indentLevel: 0
-  storyText: The other is the Clean-up Bar. This indeicates how much trash has built
-    up. You need to keep it low because when it fills the land will be burried under
-    the trash and you will have lost the game!
+  storyText: The other is the Clean-up Bar. This indicates how much trash has built
+    up. If this fills up, the land will be buried under the rubbish and you will
+    have lost the game. Keep it low to keep the trash under control.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4725,9 +4756,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 43
   indentLevel: 0
-  storyText: One of these that looks like an old alarm clock is your timer. This
-    tells you how long you have to go before you have successfully completed the
-    level!
+  storyText: One of these looks like an old alarm clock. This is your timer. It tells
+    you how long you have to go until you have successfully completed the level.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4754,10 +4784,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 42
   indentLevel: 0
-  storyText: As you might have guessed, each Gruttel type is suited to picking up
+  storyText: As you might have guessed, each gruttel type is suited to picking up
     a corresponding trash type. A tip to work out and remember which gruttel handles
-    which trash is to focus on matching the colour of the Gruttle with the colour
-    of the trash, it's a strategy that seems to work for now!
+    which trash is to focus on matching the colour of the gruttel with the colour
+    of the trash. It's a strategy that seems to work for now!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4784,9 +4814,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 41
   indentLevel: 0
-  storyText: 'We have indentified at least 3 types of Gruttel that you should be
-    aware of: Regular, Strong and Radiated. Conveniently, we have also indentified
-    3 types of trash you''ll encounter out there in the world: Light, Heavy and Radiation.'
+  storyText: 'We have indentified at least three types of gruttel that you should
+    be aware of: Regular, Strong, and Irradiated. Conveniently, we have also indentified
+    three types of trash you''ll encounter out there in Holmfen: Light, Heavy and
+    Radiation.'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4813,8 +4844,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 40
   indentLevel: 0
-  storyText: 'You should know that Gruttels much like people come in all shapes and
-    sizes. After all, they aren''t just one race of identical lizards! '
+  storyText: 'You should know that gruttels, much like people, come in many different
+    shapes and sizes. After all, they aren''t just one race of identical creatures! '
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4842,9 +4873,9 @@ MonoBehaviour:
   itemId: 39
   indentLevel: 0
   storyText: Once they have trash, they'll automatically take it to a recycling machine.
-    It's also worth noting that if you leave a Gruttel alone, they will pick up trash
-    without your commands, however this is not the most efficetn way as Gruttels
-    have a bad habbit of getitng distracted...
+    It's also worth noting that if you leave a gruttel alone, they will pick up litter
+    without your commands, however this is not the most efficient tactic as gruttels
+    have a bad habit of getting distracted...
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4921,7 +4952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 49
   indentLevel: 0
-  text: Gruttle Types
+  text: Gruttel Types
   description: 
   targetBlock: {fileID: 1909431882}
   hideIfVisited: 0
@@ -4998,7 +5029,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 77.69183
     y: -136.42288
-    width: 60
+    width: 81.506836
     height: 40
   tint: {r: 0.6400341, g: 0.16300285, b: 0.9339623, a: 1}
   useCustomTint: 1
@@ -5209,7 +5240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 71
   indentLevel: 0
-  storyText: Goodbye friend and good luck! Remember we're always here if you need
+  storyText: Goodbye, friend, and good luck! Remember, we're always here if you need
     us again!
   description: 
   character: {fileID: 0}
@@ -5258,8 +5289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 68
   indentLevel: 0
-  storyText: Now what else would you like to hear next? Or would you prefer me to
-    repeat myself?
+  storyText: What would you like to hear next? Would you like me to repeat anything?
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -5288,7 +5318,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 55.834656
     y: 10.049892
-    width: 86.92307
+    width: 128.08215
     height: 40
   tint: {r: 0.8962264, g: 0.4523407, b: 0.7902028, a: 1}
   useCustomTint: 1
