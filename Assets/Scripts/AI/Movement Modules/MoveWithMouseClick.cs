@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using FMODUnity;
+using FMODUnity;
 using UnityEngine;
 
 namespace TrojanMouse.AI.Movement {
@@ -23,8 +23,8 @@ namespace TrojanMouse.AI.Movement {
         private bool awaitingLocationClick; // This is to tell the code that the script that we're waiting for the second user input, I.e telling the AI where to go.
 
         //Audio
-        //[SerializeField] private EventReference firstClick;
-        //[SerializeField] private EventReference secondClick;
+        [SerializeField] private EventReference SelectionSound;
+        [SerializeField] private EventReference DirectionSound;
         #endregion
 
         #region UNITY FUNCTIONS
@@ -44,7 +44,7 @@ namespace TrojanMouse.AI.Movement {
             #region MAIN LOGIC
             // Check to see if the mouse has been pressed, if yes, do logic
             if (Input.GetButtonDown("Fire1") && !directing && FireRay(whatToSelect, rayDistance)) {
-                //RuntimeManager.PlayOneShot(firstClick);
+                RuntimeManager.PlayOneShot(SelectionSound);
                 // Check to see if the hit obj is an AI
                 if (CheckAI()) {
                     // if yes, save it to a local transform
@@ -65,7 +65,7 @@ namespace TrojanMouse.AI.Movement {
                     AIController aiController = selected.GetComponent<AIController>();
 
                     // OTIS ADD AUDIO CODE HERE FOR SENDING THE GRUTTLES TO A NEW LOCATION.
-                    //RuntimeManager.PlayOneShot(secondClick);
+                    RuntimeManager.PlayOneShot(DirectionSound);
 
                     // Call the movement function
                     aiController.GotoPoint(hit.point, true);

@@ -422,7 +422,6 @@ GameObject:
   m_Component:
   - component: {fileID: 698207693}
   - component: {fileID: 698207692}
-  - component: {fileID: 698207691}
   - component: {fileID: 698207694}
   - component: {fileID: 698207695}
   - component: {fileID: 698207696}
@@ -435,14 +434,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &698207691
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698207690}
-  m_Enabled: 1
 --- !u!20 &698207692
 Camera:
   m_ObjectHideFlags: 0
@@ -571,6 +562,20 @@ MonoBehaviour:
     m_Bits: 191
   rayDistance: 500
   directing: 0
+  SelectionSound:
+    Guid:
+      Data1: -1541613484
+      Data2: 1278781249
+      Data3: 652888225
+      Data4: 72153333
+    Path: event:/Gruttel Sounds/Selected
+  DirectionSound:
+    Guid:
+      Data1: 1124819275
+      Data2: 1211477480
+      Data3: 1411811254
+      Data4: -1588378278
+    Path: event:/Gruttel Sounds/Directed
 --- !u!114 &698207697
 MonoBehaviour:
   m_ObjectHideFlags: 0
