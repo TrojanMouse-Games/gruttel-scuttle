@@ -27,8 +27,13 @@ namespace TrojanMouse.GameplayLoop{
 
         [Tooltip("The camera should interpolate to a given point after this being invoked")][SerializeField] CameraControl cameraToVillage;
 
-        int curLevel, curStage, remainingLitterToSpawn; // These are the level controllers
+        #region LEVEL DICTATORS
+        int curLevel, curStage; // These are the level controllers
+        int numOfGruttelsToPick;
+        int numOfPowerupsToSet;
+        int remainingLitterToSpawn;
         int litterToFilter; //E.G. LITTER ON THE FIELD
+        #endregion
         #endregion
 
         private void Start() {   
@@ -42,6 +47,7 @@ namespace TrojanMouse.GameplayLoop{
         }
 
         private void Update() {
+            // INTRODUCTION HANDLING
             if(curStage == 0){
                 // PREP STAGE --
                     // ZOOM IN ON VILLAGE
@@ -49,11 +55,23 @@ namespace TrojanMouse.GameplayLoop{
                     // SELECT GRUTTELS
                     // DISPENCE POWERUPS TO PUT ON GRUTTELS                
             }
+            else{
+                // SPAWN LITTER
+            }
 
 
+            
 
-            //curStage = (curStage + 1) % cycles[curLevel].stages.Length;
-            //curLevel = (curLevel + 1) % cycles.Length;
+            // LEVEL MANAGEMENT
+            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, numOfPowerupsToSet, remainingLitterToSpawn, litterToFilter)){ 
+                if(curStage + 1 > cycles[curLevel].stages.Length){ 
+                    curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
+                    curStage = 0;
+                }                
+                else{
+                    curStage = (curStage + 1) % cycles[curLevel].stages.Length; // STAGE INCREMENTOR
+                }                
+            }
         }
 
 
