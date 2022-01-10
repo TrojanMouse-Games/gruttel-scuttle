@@ -6,6 +6,6 @@ using UnityEngine;
 namespace TrojanMouse.GameplayLoop{
 [CreateAssetMenu(fileName = "Cycle", menuName = "ScriptableObjects/GameLoop/Create Cycle")]
     public class Cycle : ScriptableObject{
-        public Stage[] stages;         
+        public Stage[] stages;                 
     }
 }
