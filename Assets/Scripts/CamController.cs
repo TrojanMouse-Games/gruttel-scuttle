@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CamController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class CamController : MonoBehaviour
     private float yMaxClamp = 11.6f;
 
     private Vector3 cameraPos;
+    private Vector3 dragOrigin;
+
+    private UnityEvent CameraMovement;
     //for ref default cam position should be 111, 10.48, 25.6
 
     // Start is called before the first frame update
@@ -30,6 +34,12 @@ public class CamController : MonoBehaviour
         //Start camera position
         cameraPos = new Vector3(xMaxClamp, transform.position.y, transform.position.z);
         transform.position = cameraPos;
+        CameraMovement = new UnityEvent();
+
+        CameraMovement.AddListener(KeyboardCamMovement);
+        CameraMovement.AddListener(MouseCamMovement);
+#if UNITY_ANDROID
+#endif
     }
 
     // Update is called once per frame
@@ -40,7 +50,7 @@ public class CamController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CamMovement();
+        CameraMovement.Invoke();
     }
     //Scrolls camera in and out to zoom
     public void CamScroll()
@@ -91,7 +101,7 @@ public class CamController : MonoBehaviour
         }
     }
     //pans camera left andf right
-    public void CamMovement()
+    public void KeyboardCamMovement()
     {
         //horizontal input
         float hMove = Input.GetAxis("Horizontal");
@@ -103,5 +113,22 @@ public class CamController : MonoBehaviour
         tempPos.x = Mathf.Clamp(tempPos.x, xMinClamp, xMaxClamp);
         //change position
         transform.position = tempPos;
+    }
+
+    public void MouseCamMovement()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            dragOrigin = Input.mousePosition;
+            return;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin) * speed;
+            Vector3 move = new Vector3(pos.x, 0, 0);
+
+            transform.Translate(move, Space.World);
+        }
     }
 }
