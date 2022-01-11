@@ -103,7 +103,7 @@ namespace TrojanMouse.GameplayLoop{
             }
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
-            Debug.Log(curStage);     
+            
         }
     
     
