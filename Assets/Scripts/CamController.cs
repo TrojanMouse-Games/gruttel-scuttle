@@ -11,6 +11,7 @@ public class CamController : MonoBehaviour
 
     [SerializeField]
     private float speed = 2;
+    private float dragSpeed = 0.5f;
     [SerializeField]
     private float xMinClamp = 14;
     [SerializeField]
@@ -25,7 +26,8 @@ public class CamController : MonoBehaviour
     private Vector3 cameraPos;
     private Vector3 dragOrigin;
 
-    private UnityEvent CameraMovement;
+    public UnityEvent CameraMovement;
+    public bool canDrag = true;
     //for ref default cam position should be 111, 10.48, 25.6
 
     // Start is called before the first frame update
@@ -47,10 +49,10 @@ public class CamController : MonoBehaviour
     {
         //The scroll is jaggy in FixedUpdate
         CamScroll();
+        CameraMovement.Invoke();
     }
     private void FixedUpdate()
     {
-        CameraMovement.Invoke();
     }
     //Scrolls camera in and out to zoom
     public void CamScroll()
@@ -117,6 +119,8 @@ public class CamController : MonoBehaviour
 
     public void MouseCamMovement()
     {
+        if (!canDrag) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
@@ -125,7 +129,7 @@ public class CamController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin) * speed;
+            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin) * dragSpeed;
             Vector3 move = new Vector3(pos.x, 0, 0);
 
             transform.Translate(move, Space.World);
