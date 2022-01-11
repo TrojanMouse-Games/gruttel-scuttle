@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7000658050550888978}
   - component: {fileID: 7000658050550888979}
   - component: {fileID: 7000658050550888976}
-  - component: {fileID: 7000658050550888977}
   - component: {fileID: -2090348513316775258}
   - component: {fileID: 7685914163449065634}
-  - component: {fileID: 7588535239436846373}
+  - component: {fileID: 8459133598321587067}
   m_Layer: 7
   m_Name: VCommonLitter
   m_TagString: Untagged
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7000658050550888982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7000658050550888977
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7000658050550888982}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-2090348513316775258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,20 +114,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 6f9fe5bc1523c6b42985ba13558b55d7, type: 2}
   parent: {fileID: 0}
---- !u!114 &7588535239436846373
-MonoBehaviour:
+--- !u!65 &8459133598321587067
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7000658050550888982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abba093ed623284cbb2e56f1e71b0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGruttel:
-    serializedVersion: 2
-    m_Bits: 64
-  distToPickUp: 3
-  cooldown: 2
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

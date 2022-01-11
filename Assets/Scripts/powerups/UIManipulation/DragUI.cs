@@ -16,6 +16,7 @@ namespace TrojanMouse.PowerUps{
         Camera camera;
         private void Start() {
             parent = transform.parent;
+            canvas = parent.parent.GetComponent<Canvas>();
             camera = Camera.main;
             type = transform.GetComponent<Powerup>().Type;
         } 
@@ -23,7 +24,7 @@ namespace TrojanMouse.PowerUps{
         ///<summary>Drags the UI element to the position of the mouse when clicked on</summary>
         public void Drag(BaseEventData _data){        
             PointerEventData pointData = (PointerEventData)_data;
-            transform.parent = parent.parent;
+            transform.SetParent(parent.parent);
 
             Vector2 pos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle( // GETS THE LOCAL POSITION OF THE UI ELEMENT ON THE SCREEN SINCE IT USES A DIFFERENT COORDINATE SYSTEM TO NORMAL 2D/3D SPACE
@@ -39,7 +40,7 @@ namespace TrojanMouse.PowerUps{
         ///<summary>Checks to see if what this element is on is a Gruttel or not, if it is then it'll delete the object and powerup the Gruttel otherwise teleport the element back into place</summary>
         public void Drop(BaseEventData _data){                       
             if(!IsGruttel(type)){
-                transform.parent = parent; 
+                transform.SetParent(parent); 
                 return;
             }
             Destroy(gameObject);
