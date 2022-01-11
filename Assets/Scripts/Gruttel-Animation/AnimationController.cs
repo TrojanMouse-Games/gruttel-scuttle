@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+   [SerializeField] Animator anim;
+   Vector3 previousPos;
+    void Update(){
+        Vector3 dir = (transform.position - previousPos).normalized;
+        anim.SetFloat("speed", dir.magnitude);
+        previousPos = transform.position;
     }
 }
