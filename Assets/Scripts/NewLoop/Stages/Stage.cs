@@ -21,8 +21,8 @@ namespace TrojanMouse.GameplayLoop{
         public PowerupType[] powerupsToDispence;
 
 
-        public bool IsComplete(int numOfGruttelsToPick, int numOfPowerupsToSet, int remainingLitterToSpawn, int litterToFilter){
-            if(numOfGruttelsToPick <= 0 && numOfPowerupsToSet <= 0 && remainingLitterToSpawn <= 0 && litterToFilter == litterSettings.numOfLitterToSpawn){ // IF STAGE HAS COMPLETED...
+        public bool IsComplete(int numOfGruttelsToPick, int numOfPowerupsToSet, int litterToBeRecycled){
+            if(numOfGruttelsToPick <= 0 && numOfPowerupsToSet <= 0 && litterToBeRecycled <= 0){ // IF STAGE HAS COMPLETED...
                 return true;
             }
             return false;

@@ -10,7 +10,7 @@ using TrojanMouse.RegionManagement;
 namespace TrojanMouse.GameplayLoop{
 
     [Serializable] public class CameraControl : UnityEvent<bool>{}
-
+    [Serializable] public class RecycleObject : UnityEvent{}
     [Serializable] public class VillageSettings{
         [Tooltip("Place all the nodes for this level in here, all nodes will spawn a Gruttel on them")] public Transform[] gruttelSpawnPoints;
         [Tooltip("Gruttel Prefab here...")] public GameObject gruttelPrefab;
@@ -31,13 +31,14 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] Cycle[] cycles;
 
         [Tooltip("The camera should interpolate to a given point after this being invoked")][SerializeField] CameraControl cameraToVillage;
+        [Tooltip("Can be used to play animation on recycler")][SerializeField] RecycleObject recycleObject;
 
         #region LEVEL DICTATORS
         bool isRunning; // THIS IS USED FOR ITERATING THROUGH STAGES
         int curLevel, curStage; // These are the level controllers
         int numOfGruttelsToPick;        
         int remainingLitterToSpawn;
-        int litterRecycled;
+        int litterToBeRecycled;
         float spawnDelayHolder, spawnDelay;
         #endregion
         #endregion
@@ -74,13 +75,14 @@ namespace TrojanMouse.GameplayLoop{
                 // RETURN CAMERA TO GAME MODE
                 cameraToVillage?.Invoke(false); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 remainingLitterToSpawn = cycles[curLevel].stages[curStage].litterSettings.numOfLitterToSpawn;               
+                litterToBeRecycled = remainingLitterToSpawn;
 
                 spawnDelayHolder = cycles[curLevel].stages[curStage].litterSettings.durationOfPhase / remainingLitterToSpawn;
             }
             #endregion           
 
             #region LEVEL MANAGEMENT
-            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, remainingLitterToSpawn, litterRecycled)){ 
+            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, litterToBeRecycled)){ 
                 isRunning = false;
                 if(curStage + 1 > cycles[curLevel].stages.Length){ 
                     curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
@@ -97,12 +99,17 @@ namespace TrojanMouse.GameplayLoop{
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)]; 
-                remainingLitterToSpawn -= (region.litterManager.SpawnLitter(region.GetComponent<Collider>(), 1) == 0)? 1 : 0;                
-                //Debug.Log(region.litterManager.SpawnLitter(region.GetComponent<Collider>(), 1)); -- ISSUE WITH SPAWNING LITTER, NOT NEGATING PROPERALLY                
+                remainingLitterToSpawn -= (region.litterManager.SpawnLitter(region.GetComponent<Collider>(), 1) < 0)? 1 : 0;   
             }
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
             Debug.Log(curStage);     
+        }
+    
+    
+        public void RecycleObj(){
+            litterToBeRecycled--;
+            recycleObject?.Invoke();
         }
     }
 }
