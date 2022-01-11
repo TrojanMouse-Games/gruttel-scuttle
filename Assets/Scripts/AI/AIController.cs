@@ -180,7 +180,7 @@ namespace TrojanMouse.AI
             }
             else
             {
-                GetComponent<MeshRenderer>().materials[0].SetColor("_Color", Color.red);
+                //GetComponent<MeshRenderer>().materials[0].SetColor("_Color", Color.red);
             }
         }
 
@@ -290,7 +290,7 @@ namespace TrojanMouse.AI
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
             timer = data.WanderCooldown;
-            baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_Color");
+            //baseColor = GetComponent<MeshRenderer>().materials[0].GetColor("_Color");
             equipper = GetComponent<Equipper>();
             powerUp = GetComponent<Powerup>();
             inventory = GetComponent<Inventory.Inventory>();

@@ -75,7 +75,7 @@ namespace TrojanMouse.AI.Movement {
 
                     aiController.beingDirected = true;
                     Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
-                    selected.GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
+                    //selected.GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
                 }
             }
             #endregion
@@ -83,7 +83,7 @@ namespace TrojanMouse.AI.Movement {
 
         IEnumerator ChangeColorSelect(Transform transform) {
             yield return new WaitForSeconds(0.25f);
-            transform.GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", Color.gray);
+            //transform.GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", Color.gray);
         }
         #endregion
 
