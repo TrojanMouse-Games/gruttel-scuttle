@@ -50,8 +50,8 @@ namespace TrojanMouse.RegionManagement{
                 #endregion
 
                 Instantiate(selectedLitter.litterObject, spawnPos, Quaternion.identity, region.transform);
-            }
-            return region.transform.childCount - Mathf.Min(maxLitter, maxLitterInRegion); // RETURNS THE EXCESS (NEGATIVE VALUES MEANS THERE IS STILL ROOM TO SPAWN)
+            }            
+            return region.transform.childCount - maxLitter; // RETURNS THE EXCESS (NEGATIVE VALUES MEANS THERE IS STILL ROOM TO SPAWN)
         }
     }
 }

@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 
-namespace TrojanMouse.AI.Movement {
-    public class MoveWithMouseClick : MonoBehaviour {
+namespace TrojanMouse.AI.Movement
+{
+    public class MoveWithMouseClick : MonoBehaviour
+    {
         #region VARIABLES
         [Tooltip("Most of these will self assign")]
         [Header("Public Variables")]
@@ -29,13 +31,15 @@ namespace TrojanMouse.AI.Movement {
 
         #region UNITY FUNCTIONS
         // Start is called before the first frame update
-        void Start() {
+        void Start()
+        {
             //Get the cam ref
             mainCam = Camera.main;
         }
 
         // Update is called once per frame
-        void Update() {
+        void Update()
+        {
             // The current position of the mouse
             Vector2 mousePos = Input.mousePosition;
             // The current place of the mouse in the world
@@ -43,10 +47,12 @@ namespace TrojanMouse.AI.Movement {
 
             #region MAIN LOGIC
             // Check to see if the mouse has been pressed, if yes, do logic
-            if (Input.GetButtonDown("Fire1") && !directing && FireRay(whatToSelect, rayDistance)) {
+            if (Input.GetButtonDown("Fire1") && !directing && FireRay(whatToSelect, rayDistance))
+            {
                 RuntimeManager.PlayOneShot(SelectionSound);
                 // Check to see if the hit obj is an AI
-                if (CheckAI()) {
+                if (CheckAI())
+                {
                     // if yes, save it to a local transform
                     selected = hit.transform;
                     //Debug.Log(hit.transform.name);
@@ -56,9 +62,12 @@ namespace TrojanMouse.AI.Movement {
                     StartCoroutine(ChangeColorSelect(hit.transform));
                 }
                 // Toggle anything that needs to be turned off
-            } else if (directing) {
+            }
+            else if (directing)
+            {
                 // Now that we've selected an AI to move, we watch for a second click
-                if (Input.GetButtonDown("Fire1") && FireRay(whatToIgnore, rayDistance)) {
+                if (Input.GetButtonDown("Fire1") && FireRay(whatToIgnore, rayDistance))
+                {
 
                     // Move AI to location
                     // Access the targets AI controller
@@ -71,19 +80,20 @@ namespace TrojanMouse.AI.Movement {
                     aiController.GotoPoint(hit.point, true);
                     //aiController.CheckForLitter();
                     directing = false;
-                    //aiController.currentState = aiController.GetLitter();
+                    //aiController.currentState = aiController.GetLitter();a
 
                     aiController.beingDirected = true;
                     Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
-                    selected.GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
+                    selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
                 }
             }
             #endregion
         }
 
-        IEnumerator ChangeColorSelect(Transform transform) {
+        IEnumerator ChangeColorSelect(Transform transform)
+        {
             yield return new WaitForSeconds(0.25f);
-            transform.GetComponent<MeshRenderer>().materials[0].SetColor("_BaseColor", Color.gray);
+            transform.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", Color.gray);
         }
         #endregion
 
@@ -94,13 +104,15 @@ namespace TrojanMouse.AI.Movement {
         /// </summary>
         /// <typeparam name="AIController">The AIController</typeparam>
         /// <returns>if yes returns true, no false</returns>
-        private bool CheckAI() {
+        private bool CheckAI()
+        {
             AIController localAIc = hit.transform.GetComponent<AIController>();
-            if (localAIc == null) {
+            if (localAIc == null)
+            {
                 return false;
             }
 
-            if(localAIc.distracted)
+            if (localAIc.distracted)
             {
                 localAIc.distracted = false;
             }
@@ -115,7 +127,8 @@ namespace TrojanMouse.AI.Movement {
         /// <param name="lMask">The layermask to be used.</param>
         /// <param name="rDistance">How far to fire the ray.</param>
         /// <returns></returns>
-        bool FireRay(LayerMask lMask, float rDistance) {
+        bool FireRay(LayerMask lMask, float rDistance)
+        {
             return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Collide)) ? true : false;
         }
         #endregion
