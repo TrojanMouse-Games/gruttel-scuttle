@@ -5,6 +5,7 @@ using System;
 using UnityEngine.Events;
 using TrojanMouse.PowerUps;
 using TrojanMouse.RegionManagement;
+using UnityEngine.UI;
 
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.GameplayLoop{
@@ -22,6 +23,7 @@ namespace TrojanMouse.GameplayLoop{
     [Serializable] public class PowerupSettings{
         [Tooltip("This is where the powerups will be deposited")] public Transform powerupStorage;
         [Tooltip("Powerup Prefab here...")] public GameObject powerupPrefab;
+        public Sprite buffPower, radioPower;
     }
 
     public class GameLoop : MonoBehaviour{
@@ -68,6 +70,7 @@ namespace TrojanMouse.GameplayLoop{
                     pu.Type = powerUp;
                     clonedPowerup.name = powerUp.ToString();      
                     // CHANGE IMAGE OF POWERUP CORROSPONDING TO TYPE
+                    clonedPowerup.GetComponent<Image>().sprite = (powerUp == PowerupType.BUFF)? villageSettings.powerupSettings.buffPower : villageSettings.powerupSettings.radioPower;
                 }                        
             }
             else if(!isRunning){
