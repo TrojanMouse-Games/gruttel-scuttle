@@ -80,7 +80,7 @@ namespace TrojanMouse.GameplayLoop{
             #endregion           
 
             #region LEVEL MANAGEMENT
-            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, remainingLitterToSpawn, litterRecycled){ 
+            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, remainingLitterToSpawn, litterRecycled)){ 
                 isRunning = false;
                 if(curStage + 1 > cycles[curLevel].stages.Length){ 
                     curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
