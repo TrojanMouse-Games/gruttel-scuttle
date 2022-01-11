@@ -80,7 +80,7 @@ namespace TrojanMouse.GameplayLoop{
             #endregion           
 
             #region LEVEL MANAGEMENT
-            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, remainingLitterToSpawn, litterToFilter)){ 
+            if(cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, remainingLitterToSpawn, litterRecycled){ 
                 isRunning = false;
                 if(curStage + 1 > cycles[curLevel].stages.Length){ 
                     curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
@@ -98,8 +98,7 @@ namespace TrojanMouse.GameplayLoop{
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)]; 
                 remainingLitterToSpawn -= (region.litterManager.SpawnLitter(region.GetComponent<Collider>(), 1) == 0)? 1 : 0;                
-                //Debug.Log(region.litterManager.SpawnLitter(region.GetComponent<Collider>(), 1)); -- ISSUE WITH SPAWNING LITTER, NOT NEGATING PROPERALLY
-                
+                //Debug.Log(region.litterManager.SpawnLitter(region.GetComponent<Collider>(), 1)); -- ISSUE WITH SPAWNING LITTER, NOT NEGATING PROPERALLY                
             }
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
