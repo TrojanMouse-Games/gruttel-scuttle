@@ -207,6 +207,20 @@ namespace TrojanMouse.AI
                 data.Agent.SetDestination(currentTarget.transform.position);
         }
 
+        IEnumerator GenerateDistractionChance()
+        {
+            yield return new WaitForSeconds(1);
+            distractionChance = UnityEngine.Random.Range(0, 20);
+            if (distractionChance == 0)
+            {
+                distracted = true;
+                distractionMarker.SetActive(true);
+                data.Agent.SetDestination(transform.position);
+                currentState = AIState.Nothing;
+            }
+            StartCoroutine(GenerateDistractionChance());
+        }
+
         //  TODO: PASS IN PREV STATE
         /// <summary>
         /// This function checks for litter and then starts processing it if any is found.
@@ -216,14 +230,6 @@ namespace TrojanMouse.AI
         {
             if (distracted == false)
             {
-                distractionChance = UnityEngine.Random.Range(0, 500);
-                if (distractionChance == 0)
-                {
-                    distracted = true;
-                    distractionMarker.SetActive(true);
-                    data.Agent.SetDestination(transform.position);
-                    currentState = AIState.Nothing;
-                }
                 if (!inventory.HasSlotsLeft())
                 {
                     Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
@@ -321,6 +327,8 @@ namespace TrojanMouse.AI
                     hostile = gameObject.AddComponent<Hostile>();
                     break;
             }
+
+            StartCoroutine(GenerateDistractionChance());
         }
 
         public void Timer()

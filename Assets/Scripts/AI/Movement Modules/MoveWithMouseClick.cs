@@ -136,13 +136,15 @@ namespace TrojanMouse.AI.Movement
                 return false;
             }
 
+            Debug.Log($"{hit.transform.name} is distracted: {localAIc.distracted}");
+
             if (localAIc.distracted)
             {
                 localAIc.distracted = false;
+                return false;
             }
 
-            Debug.Log($"{hit.transform.name} is distracted: {localAIc.distracted}");
-            return !localAIc.distracted;
+            return true;
         }
 
         /// <summary>
