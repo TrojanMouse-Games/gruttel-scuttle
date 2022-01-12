@@ -20,7 +20,7 @@ public class CinemachineControl : MonoBehaviour
 
     public bool canDrag = true;
     Vector2 dragOrigin;
-    int dragSpeed = 100;
+    int dragSpeed = 50;
 
 
     // Start is called before the first frame update

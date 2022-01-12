@@ -43,19 +43,21 @@ namespace TrojanMouse.StressSystem
 
         void UpdateStress()
         {
-            if (gruttels.Count > 0 && GameLoop.current.curStage == 1 && timer > peacefulPeriod)
+            if (gruttels.Count > 0 && GameLoop.current.curStage == 1)
             {
                 timer += calculationCooldown;
-                float stress = 0;
-                foreach (StressLocal gruttel in gruttels)
-                {
-                    stress += gruttel.GruttelStress;
-                }
+                if (timer > peacefulPeriod) {
+                    float stress = 0;
+                    foreach (StressLocal gruttel in gruttels)
+                    {
+                        stress += gruttel.GruttelStress;
+                    }
 
-                average = stress / gruttels.Count;
-                if (average >= 100)
-                {
-                    SceneManager.LoadScene("LoseScreen");
+                    average = stress / gruttels.Count;
+                    if (average >= 100)
+                    {
+                        SceneManager.LoadScene("LoseScreen");
+                    }
                 }
             }
         }
