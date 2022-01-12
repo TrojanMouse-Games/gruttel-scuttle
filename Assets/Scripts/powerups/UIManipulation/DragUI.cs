@@ -71,7 +71,7 @@ namespace TrojanMouse.PowerUps
                 {
                     return false;
                 }
-                gruttel.Type = selectedType;
+                gruttel.UpdateType(selectedType);
             }
             return (hit.transform) ? true : false;
         }

@@ -1624,7 +1624,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9017613002790396856}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8298214413678611809}
@@ -1684,6 +1684,7 @@ GameObject:
   - component: {fileID: 9134461449078113822}
   - component: {fileID: 9134461449078114017}
   - component: {fileID: 9134461449078114016}
+  - component: {fileID: -6900343593846015828}
   m_Layer: 6
   m_Name: Gruttel
   m_TagString: NPC
@@ -2005,6 +2006,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 2553501623213131299}
   smoothingSpeed: 0.2
+--- !u!114 &-6900343593846015828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e635df4b72b0a4db637379cdc293f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stress: 0
+  litterToFullyStressGruttel: 10
+  whatIsLitter:
+    serializedVersion: 2
+    m_Bits: 8
+  FOV: 25
 --- !u!1001 &8216054026033364530
 PrefabInstance:
   m_ObjectHideFlags: 0
