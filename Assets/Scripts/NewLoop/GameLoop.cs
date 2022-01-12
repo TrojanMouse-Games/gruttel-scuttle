@@ -46,6 +46,8 @@ namespace TrojanMouse.GameplayLoop
         public Text cycleText;
         public Text stageText;
 
+        int timer;
+
 
         #region LEVEL DICTATORS
         bool isRunning; // THIS IS USED FOR ITERATING THROUGH STAGES
@@ -71,16 +73,17 @@ namespace TrojanMouse.GameplayLoop
             }
             Camera.main.GetComponent<MoveWithMouseClick>().enabled = false;
             prepCam.SetActive(false);
+            StartCoroutine(CountDownStage());
         }
 
         private void Update()
         {
+            if (cycles[0].stages[curStage].levelComplete) {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
+            }
             #region DEPENDENCY MANAGEMENT
             if (curStage == 0 && !isRunning)
             { // PREP STAGE --
-                cycleText.text = "Wave: DemoDay";
-                //when we have more then one wave do that instead.
-                stageText.text = "Stage: Prep";
                 isRunning = true;
                 // ZOOM IN ON VILLAGE
                 prepCam.SetActive(true);
@@ -125,16 +128,6 @@ namespace TrojanMouse.GameplayLoop
                 {
                     curStage = (curStage + 1) % cycles[curLevel].stages.Length; // STAGE INCREMENTOR
                 }
-                switch (curStage)
-                {
-                    case 0:
-                        stageText.text = "Stage: Prep";
-                        break;
-                    case 1:
-                        stageText.text = "Stage: Clean Up!";
-                        break;
-                }
-
             }
             #endregion    
 
@@ -148,7 +141,20 @@ namespace TrojanMouse.GameplayLoop
             }
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
+        }
 
+        IEnumerator CountDownStage() {
+            cycleText.text = cycles[0].stages[curStage].name;
+            yield return new WaitForSeconds(1);
+            float durationOfPhase = cycles[curLevel].stages[curStage].litterSettings.durationOfPhase;
+            if (durationOfPhase != 0) {
+                timer++;
+                if (timer >= durationOfPhase) {
+                    timer = 0;
+                    curStage++;
+                }
+            }
+            StartCoroutine(CountDownStage());
         }
 
 

@@ -16,10 +16,11 @@ namespace TrojanMouse.GameplayLoop{
     [Serializable] public class Stage{
         // LOOP WILL WAIT ON THESE BEFORE INCREMENTING
         [Header("STAGE DEPENDENCIES")]
+        public string name;
         public int numOfGruttelsToPick;        
         public LitterSettings litterSettings;
         public PowerupType[] powerupsToDispence;
-
+        public bool levelComplete = false;
 
         public bool IsComplete(int numOfGruttelsToPick, int numOfPowerupsToSet, int litterToBeRecycled){
             if(numOfGruttelsToPick <= 0 && numOfPowerupsToSet <= 0 && litterToBeRecycled <= 0){ // IF STAGE HAS COMPLETED...
