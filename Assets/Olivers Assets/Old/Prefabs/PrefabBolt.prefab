@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 254728017726266087}
   - component: {fileID: 3758010197241943362}
   - component: {fileID: 1424216193332814216}
+  - component: {fileID: 680746375188902844}
   m_Layer: 0
   m_Name: PrefabBolt
   m_TagString: Untagged
@@ -82,6 +83,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &680746375188902844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631393885596778589}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1498.1, y: 450, z: 450}
+  m_Center: {x: -641.09, y: 0, z: 0}
 --- !u!1001 &4064401538342216684
 PrefabInstance:
   m_ObjectHideFlags: 0
