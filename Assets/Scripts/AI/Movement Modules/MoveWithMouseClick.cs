@@ -51,7 +51,7 @@ namespace TrojanMouse.AI.Movement
             {
                 RuntimeManager.PlayOneShot(SelectionSound);
                 // Check to see if the hit obj is an AI
-                if (CheckAI())
+                if (CheckAIAndDistract())
                 {
                     // if yes, save it to a local transform
                     selected = hit.transform;

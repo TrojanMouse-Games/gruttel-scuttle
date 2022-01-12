@@ -32,7 +32,6 @@ namespace TrojanMouse.StressSystem
         {
             Collider[] litter = Physics.OverlapSphere(transform.position, FOV, whatIsLitter);
 
-            Debug.LogError($"Litter: {litter.Length}");
             if (litter.Length <= 0)
             {
                 return;
