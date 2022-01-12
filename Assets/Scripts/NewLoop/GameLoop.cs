@@ -49,16 +49,18 @@ namespace TrojanMouse.GameplayLoop
 
         #region LEVEL DICTATORS
         bool isRunning; // THIS IS USED FOR ITERATING THROUGH STAGES
-        int curLevel, curStage; // These are the level controllers
+        public int curLevel, curStage; // These are the level controllers
         int numOfGruttelsToPick;
         int remainingLitterToSpawn;
         int litterToBeRecycled;
         float spawnDelayHolder, spawnDelay;
+        public static GameLoop current;
         #endregion
         #endregion
 
         private void Start()
         {
+            current = this;
             foreach (Transform node in villageSettings.gruttelSpawnPoints)
             {
                 // SPAWN GRUTTELS IN VILLAGE

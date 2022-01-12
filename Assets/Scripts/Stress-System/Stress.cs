@@ -6,17 +6,21 @@ using UnityEngine.SceneManagement;
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.StressSystem
 {
+    using GameplayLoop;
     public class Stress : MonoBehaviour
     {
         public static Stress current;
         List<StressLocal> gruttels = new List<StressLocal>();
 
         [HideInInspector] public float average;
+        float timer;
+        public float peacefulPeriod = 20f;
 
         [Header("Settings")]
         [Tooltip("Time until this script will calculate stress again")] [SerializeField] float calculationCooldown; // TIME BETWEEN EACH CALCULATION FOR STRESS
         [HideInInspector]
-        public float Cooldown{
+        public float Cooldown
+        {
             get
             {
                 return calculationCooldown;
@@ -39,8 +43,9 @@ namespace TrojanMouse.StressSystem
 
         void UpdateStress()
         {
-            if (gruttels.Count > 0 && Time.time >10)
+            if (gruttels.Count > 0 && GameLoop.current.curStage == 1 && timer < peacefulPeriod)
             {
+                timer += calculationCooldown;
                 float stress = 0;
                 foreach (StressLocal gruttel in gruttels)
                 {
@@ -51,10 +56,10 @@ namespace TrojanMouse.StressSystem
                 if (average >= 100)
                 {
                     SceneManager.LoadScene("LoseScreen");
-                }                
+                }
             }
         }
-    
-        
+
+
     }
 }
