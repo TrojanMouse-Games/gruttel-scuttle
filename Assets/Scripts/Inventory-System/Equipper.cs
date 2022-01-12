@@ -27,13 +27,12 @@ namespace TrojanMouse.Inventory {
                 
             bool success = inventoryHandler.AddToInventory(type);                       
             if(success){                           
-                selectedObject = inventoryHandler.Equip(itemParent, currentIndex);                
+                selectedObject = inventoryHandler.Equip(obj, currentIndex);                
                 if(selectedObject){                   
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;
                     selectedObject.GetComponent<Rigidbody>().isKinematic = true;          
                     selectedObject.GetComponent<Collider>().enabled = false;          
                 }
-                Destroy(obj.gameObject);                
             }         
             return success;   
         }

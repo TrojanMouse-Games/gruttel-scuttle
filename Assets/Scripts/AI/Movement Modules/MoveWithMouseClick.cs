@@ -141,6 +141,7 @@ namespace TrojanMouse.AI.Movement
             if (localAIc.distracted)
             {
                 localAIc.distracted = false;
+                localAIc.animator.SetBool("isDistracted", false);
                 return false;
             }
 

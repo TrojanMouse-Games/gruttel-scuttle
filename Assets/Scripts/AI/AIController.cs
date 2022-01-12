@@ -33,6 +33,7 @@ namespace TrojanMouse.AI
         public float timer = 0f; // Internal timer used for state changes and tracking.
         public GameObject distractionMarker;
         public int distractionChance;
+        public Animator animator;
 
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
@@ -214,6 +215,7 @@ namespace TrojanMouse.AI
             if (distractionChance == 0)
             {
                 distracted = true;
+                animator.SetBool("isDistracted", true);
                 distractionMarker.SetActive(true);
                 data.Agent.SetDestination(transform.position);
                 currentState = AIState.Nothing;
