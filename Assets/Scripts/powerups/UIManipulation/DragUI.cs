@@ -16,14 +16,14 @@ namespace TrojanMouse.PowerUps
         PowerupType type;
 
         Camera camera;
-        CamController cam;
+        CinemachineControl cam;
         private void Start()
         {
             parent = transform.parent;
             canvas = parent.parent.GetComponent<Canvas>();
             camera = Camera.main;
             type = transform.GetComponent<Powerup>().Type;
-            cam = camera.GetComponent<CamController>();
+            cam = camera.GetComponent<CinemachineControl>();
         }
 
         ///<summary>Drags the UI element to the position of the mouse when clicked on</summary>

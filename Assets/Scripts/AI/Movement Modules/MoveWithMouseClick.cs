@@ -47,7 +47,7 @@ namespace TrojanMouse.AI.Movement
 
             #region MAIN LOGIC
             // Check to see if the mouse has been pressed, if yes, do logic
-            if (Input.GetButtonUp("Fire1") && !directing && FireRay(whatToSelect, rayDistance))
+            if (Input.GetButtonDown("Fire1") && !directing && FireRay(whatToSelect, rayDistance))
             {
                 RuntimeManager.PlayOneShot(SelectionSound);
                 // Check to see if the hit obj is an AI
@@ -66,7 +66,7 @@ namespace TrojanMouse.AI.Movement
             else if (directing)
             {
                 // Now that we've selected an AI to move, we watch for a second click
-                if (Input.GetButtonUp("Fire1") && FireRay(whatToIgnore, rayDistance))
+                if (Input.GetButtonDown("Fire1") && FireRay(whatToIgnore, rayDistance))
                 {
 
                     // Move AI to location

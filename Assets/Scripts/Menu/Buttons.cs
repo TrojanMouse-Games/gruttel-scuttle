@@ -4,14 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace TrojanMouse.Menu {
-    public class Buttons : MonoBehaviour {
+namespace TrojanMouse.Menu
+{
+    public class Buttons : MonoBehaviour
+    {
         AsyncOperation async;
 
-        public string playScene = "CritDay";
+        public string playScene = "Area1_Rectangle";
         public GameObject playButton;
         public GameObject levelPanel;
 
+        public void LoadLevel(string level)
+        {
+            playScene = level;
+            LoadScene(0);
+        }
         public void LevelSelectOne()
         {
             playScene = "Area1_Rectangle";
@@ -27,12 +34,11 @@ namespace TrojanMouse.Menu {
             playScene = "Area3_SemiCircle";
             LevelSelected();
         }
+
         public void LevelSelected()
         {
             levelPanel.SetActive(false);
             playButton.SetActive(true);
-
-
         }
 
         public void LoadScene(float wait)
@@ -40,30 +46,37 @@ namespace TrojanMouse.Menu {
             StartCoroutine(DelayLoad(wait));
         }
 
-        public void CloseGame() {
+        public void CloseGame()
+        {
             Application.Quit();
         }
 
-        public void OpenLink(string url) {
+        public void OpenLink(string url)
+        {
             Application.OpenURL(url);
         }
 
-        IEnumerator LoadSceneAsyncProcess(string sceneName) {
+        IEnumerator LoadSceneAsyncProcess(string sceneName)
+        {
             async = SceneManager.LoadSceneAsync(sceneName);
             async.allowSceneActivation = false;
 
-            while (!async.isDone) {
+            while (!async.isDone)
+            {
                 Debug.Log($"[scene]:{sceneName} [load progress]: {async.progress}");
 
                 yield return null;
             }
         }
 
-        void Update() {
-            if (async == null) {
+        void Update()
+        {
+            if (async == null)
+            {
                 StartCoroutine(LoadSceneAsyncProcess(playScene));
             }
         }
+
         IEnumerator DelayLoad(float wait)
         {
             yield return new WaitForSeconds(wait);

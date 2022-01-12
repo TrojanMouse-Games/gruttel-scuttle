@@ -2117,7 +2117,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1600, y: 1200}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2955,6 +2955,22 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11410274, guid: c6289d5f8fa843145a2355af9cb09719, type: 3}
+      propertyPath: dimPortraits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410276, guid: c6289d5f8fa843145a2355af9cb09719, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410276, guid: c6289d5f8fa843145a2355af9cb09719, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410276, guid: c6289d5f8fa843145a2355af9cb09719, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 11410280, guid: c6289d5f8fa843145a2355af9cb09719, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -3507,7 +3523,7 @@ Transform:
   m_GameObject: {fileID: 1675553597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.026043653, y: -0.06997442, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -3607,7 +3623,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 475.19724
     y: 204.24443
-    width: 170.54791
+    width: 173.28763
     height: 40
   tint: {r: 0.6721078, g: 0.8773585, b: 0.12829298, a: 1}
   useCustomTint: 1
@@ -3638,7 +3654,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -315.10675
     y: 201.7915
-    width: 76.02739
+    width: 76.48401
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3669,7 +3685,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 49.450516
     y: 203.7329
-    width: 141.78079
+    width: 144.0639
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3728,7 +3744,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 239.72354
     y: 203.05792
-    width: 154.10956
+    width: 156.84927
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3787,7 +3803,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -138.17484
     y: 204.05876
-    width: 137.6712
+    width: 139.49768
     height: 40
   tint: {r: 0.6745098, g: 0.8784314, b: 0.12941177, a: 1}
   useCustomTint: 1
@@ -3833,7 +3849,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -5.425271
     y: -244.96176
-    width: 77.39725
+    width: 76.48401
     height: 40
   tint: {r: 0.5981666, g: 0.8867924, b: 0.85918486, a: 1}
   useCustomTint: 1
@@ -3882,7 +3898,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 1909431890}
   selectedCommands: []
   variables: []
   description: 
@@ -4445,7 +4462,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 178.2229
     y: -245.41858
-    width: 69.17808
+    width: 70.09132
     height: 40
   tint: {r: 0.9245283, g: 0.09158063, b: 0.09158063, a: 1}
   useCustomTint: 1
@@ -5029,7 +5046,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 77.69183
     y: -136.42288
-    width: 81.506836
+    width: 82.8767
     height: 40
   tint: {r: 0.6400341, g: 0.16300285, b: 0.9339623, a: 1}
   useCustomTint: 1
@@ -5317,8 +5334,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 55.834656
-    y: 10.049892
-    width: 128.08215
+    y: 8.68003
+    width: 130.36526
     height: 40
   tint: {r: 0.8962264, g: 0.4523407, b: 0.7902028, a: 1}
   useCustomTint: 1
@@ -5694,7 +5711,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1600, y: 1200}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
