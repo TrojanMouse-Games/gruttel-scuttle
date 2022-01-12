@@ -63,6 +63,18 @@ namespace TrojanMouse.AI.Movement
                 }
                 // Toggle anything that needs to be turned off
             }
+            else if (Input.GetButtonDown("Fire2") && FireRay(whatToSelect, rayDistance))
+            {
+                // Check to see if the hit obj is an AI
+                if (CheckAIAndDistract())
+                {
+                    // if yes, save it to a local transform
+                    selected = hit.transform;
+                    //Debug.Log(hit.transform.name);
+                    // Set the state to directing, this will make sure the user doesn't click on another AI.
+                }
+                // Toggle anything that needs to be turned off
+            }
             else if (directing)
             {
                 // Now that we've selected an AI to move, we watch for a second click
@@ -105,6 +117,18 @@ namespace TrojanMouse.AI.Movement
         /// <typeparam name="AIController">The AIController</typeparam>
         /// <returns>if yes returns true, no false</returns>
         private bool CheckAI()
+        {
+            AIController localAIc = hit.transform.GetComponent<AIController>();
+            if (localAIc == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        private bool CheckAIAndDistract()
         {
             AIController localAIc = hit.transform.GetComponent<AIController>();
             if (localAIc == null)
