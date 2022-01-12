@@ -63,7 +63,7 @@ namespace TrojanMouse.AI.Movement
                 }
                 // Toggle anything that needs to be turned off
             }
-            else if (Input.GetButtonDown("Fire2") && FireRay(whatToSelect, rayDistance))
+            else if (Input.GetButtonDown("Fire1") && FireRay(whatToSelect, rayDistance))
             {
                 // Check to see if the hit obj is an AI
                 if (CheckAIAndDistract())
