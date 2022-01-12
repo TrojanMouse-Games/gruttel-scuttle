@@ -16,8 +16,7 @@ namespace TrojanMouse.Menu
 
         public void LoadLevel(string level)
         {
-            playScene = level;
-            LoadScene(0);
+            SceneManager.LoadScene(level);
         }
         public void LevelSelectOne()
         {
