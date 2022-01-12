@@ -35,6 +35,11 @@ namespace TrojanMouse.GameplayLoop{
         [Tooltip("The camera should interpolate to a given point after this being invoked")][SerializeField] CameraControl cameraToVillage;
         [Tooltip("Can be used to play animation on recycler")][SerializeField] RecycleObject recycleObject;
 
+        public GameObject prepCam;
+        public Text cycleText;
+        public Text stageText;
+
+
         #region LEVEL DICTATORS
         bool isRunning; // THIS IS USED FOR ITERATING THROUGH STAGES
         int curLevel, curStage; // These are the level controllers
@@ -52,14 +57,19 @@ namespace TrojanMouse.GameplayLoop{
                 // FACE THE CAMERA TARGET POS
                 newGruttel.transform.LookAt(villageSettings.cameraTarget);
                 newGruttel.transform.rotation = Quaternion.Euler(0, newGruttel.transform.rotation.eulerAngles.y, 0);
-            }            
+            }
+            prepCam.SetActive(false);
         }
 
-        private void Update() {            
+        private void Update() {
             #region DEPENDENCY MANAGEMENT
             if(curStage == 0 && !isRunning){ // PREP STAGE --
-                isRunning = true;               
+                cycleText.text = "Wave: DemoDay";
+                //when we have more then one wave do that instead.
+                stageText.text = "Stage: Prep";
+                isRunning = true;
                 // ZOOM IN ON VILLAGE
+                prepCam.SetActive(true);
                 cameraToVillage?.Invoke(true); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 // SELECT GRUTTELS
 
@@ -76,6 +86,7 @@ namespace TrojanMouse.GameplayLoop{
             else if(!isRunning){
                 isRunning = true;
                 // RETURN CAMERA TO GAME MODE
+                prepCam.SetActive(false);
                 cameraToVillage?.Invoke(false); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 remainingLitterToSpawn = cycles[curLevel].stages[curStage].litterSettings.numOfLitterToSpawn;               
                 litterToBeRecycled = remainingLitterToSpawn;
@@ -93,7 +104,17 @@ namespace TrojanMouse.GameplayLoop{
                 }                
                 else{
                     curStage = (curStage + 1) % cycles[curLevel].stages.Length; // STAGE INCREMENTOR
-                }                
+                }
+                switch (curStage)
+                {
+                    case 0:
+                        stageText.text = "Stage: Prep";
+                        break;
+                    case 1:
+                        stageText.text = "Stage: Clean Up!";
+                        break;
+                }
+                     
             }
             #endregion    
 

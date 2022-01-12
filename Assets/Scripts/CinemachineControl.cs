@@ -28,7 +28,7 @@ public class CinemachineControl : MonoBehaviour
         switch (sceneName)
         {
             case "Area1_Rectangle":
-                minPos = 0; maxPos = 1; startPos = 0;
+                minPos = 0; maxPos = 1; startPos = 0.8f;
                 break;
             case "Area2_Circle":
                 minPos = -1000000; maxPos = 1000000; startPos = 0;
