@@ -367,9 +367,11 @@ namespace TrojanMouse.AI
             else
             {
                 lr.enabled = true;
-
-                lr.SetPosition(0, transform.position);
-                lr.SetPosition(1, data.Agent.destination);
+                Vector3[] path = data.Agent.path.corners;
+                lr.positionCount = path.Length;
+                for(int i = 0; i < path.Length; i++){
+                    lr.SetPosition(i, path[i] + new Vector3(0, .5f, 0));
+                }                
             }
         }
 
