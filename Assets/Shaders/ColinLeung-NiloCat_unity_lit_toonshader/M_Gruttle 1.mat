@@ -10,6 +10,7 @@ Material:
   m_Name: M_Gruttle 1
   m_Shader: {fileID: 4800000, guid: 9ea7e4b840fcf9e49ba20aea61a67ed3, type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _PARALLAXMAP _USEEMISSION_ON
+    _USEOCCLUSION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -52,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 253d5f2c841eb4742ac335e57e5f1632, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineZOffsetMaskTex:
@@ -84,12 +85,12 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: -0.06
-    - _CelShadeMidPoint: 0.58
-    - _CelShadeSoftness: 0.473
+    - _CelShadeMidPoint: 0.635
+    - _CelShadeSoftness: 0.432
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.534
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectLightMultiplier: 1
@@ -100,21 +101,21 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _IndirectLightMultiplier: 0
-    - _MainLightIgnoreCelShade: 1
+    - _MainLightIgnoreCelShade: 0.678
     - _Metallic: 0
     - _Mode: 0
-    - _OcclusionDirectStrength: 0.75
-    - _OcclusionIndirectStrength: 0.5
+    - _OcclusionDirectStrength: 1
+    - _OcclusionIndirectStrength: 0.445
     - _OcclusionRemapEnd: 1
-    - _OcclusionRemapStart: 0
+    - _OcclusionRemapStart: 0.387
     - _OcclusionStrength: 1
     - _OutlineWidth: 4
-    - _OutlineZOffset: 0.16
+    - _OutlineZOffset: 0
     - _OutlineZOffsetMaskRemapEnd: 1
-    - _OutlineZOffsetMaskRemapStart: 0.452
+    - _OutlineZOffsetMaskRemapStart: 0.483
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _ReceiveShadowMappingAmount: 0.479
+    - _ReceiveShadowMappingAmount: 0.664
     - _ReceiveShadowMappingPosOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 1
@@ -125,7 +126,7 @@ Material:
     - _UVSec: 0
     - _UseAlphaClipping: 0
     - _UseEmission: 1
-    - _UseOcclusion: 0
+    - _UseOcclusion: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

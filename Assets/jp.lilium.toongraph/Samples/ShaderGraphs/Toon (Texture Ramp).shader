@@ -1,4 +1,4 @@
-Shader "Toon Fixed(Texture Ramp)"
+Shader "Toon (Texture Ramp)"
 {
     Properties
     {
@@ -15,12 +15,13 @@ Shader "Toon Fixed(Texture Ramp)"
         [NoScaleOffset]_EmissionMap("Emission Map", 2D) = "black" {}
         [HDR]_EmissionColor("Emission Color", Color) = (1, 1, 1, 0)
         _OutlineWidth("Outline Width", Float) = 1
-        [NoScaleOffset]_OutlineMap("Outline Map", 2D) = "white" {}
+        _OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
         _ShadeToony("Shade Toony", Range(0, 1)) = 1
         [NoScaleOffset]_ShadeRamp("Shade Ramp", 2D) = "white" {}
         _ShadeEnvironmentalColor("Shade Environmental Color", Color) = (0.5019608, 0.5019608, 0.5019608, 1)
         _Curvature("Curvature", Range(0, 1)) = 1
         _ToonyLighting("Toony Lighting", Range(0, 1)) = 1
+        _SilColor("Silouette Color", Color) = (0, 0, 0, 1)
     }
     SubShader
     {
@@ -274,7 +275,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -296,8 +297,6 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
@@ -313,7 +312,7 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -693,7 +692,6 @@ Shader "Toon Fixed(Texture Ramp)"
             float3 ObjectSpaceNormal;
             float3 ObjectSpaceTangent;
             float3 ObjectSpacePosition;
-            float4 uv0;
         };
         struct PackedVaryings
         {
@@ -806,7 +804,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -828,19 +826,12 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
             // Graph Functions
             
-        void Unity_Multiply_half(half A, half B, out half Out)
-        {
-            Out = A * B;
-        }
-
-        // 39a2adacb021fa0c0e1927055b619ca4
+        // 49735d9b5dbe4bddc0f32ad2f736db4c
         #include "Assets/jp.lilium.toongraph/Contents/Shader/OutlineTransform.hlsl"
 
         struct Bindings_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5
@@ -862,7 +853,12 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        void Unity_Multiply_half(half A, half B, out half Out)
+        {
+            Out = A * B;
+        }
+
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -942,11 +938,6 @@ Shader "Toon Fixed(Texture Ramp)"
             Color_3 = _Lerp_0a061577e6824a22b2c504f65c3c4af7_Out_3;
         }
 
-        void Unity_Multiply_half(half3 A, half3 B, out half3 Out)
-        {
-            Out = A * B;
-        }
-
             // Graph Vertex
             struct VertexDescription
         {
@@ -960,23 +951,11 @@ Shader "Toon Fixed(Texture Ramp)"
         {
             VertexDescription description = (VertexDescription)0;
             half _Property_23a4f2ebe14845a095c2c5f4c5c4b4f4_Out_0 = _OutlineWidth;
-            UnityTexture2D _Property_d65473b547a1461d8c70344a9413c349_Out_0 = UnityBuildTexture2DStructNoScale(_OutlineMap);
-            #if defined(SHADER_API_GLES) && (SHADER_TARGET < 30)
-              half4 _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0 = half4(0.0f, 0.0f, 0.0f, 1.0f);
-            #else
-              half4 _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0 = SAMPLE_TEXTURE2D_LOD(_Property_d65473b547a1461d8c70344a9413c349_Out_0.tex, _Property_d65473b547a1461d8c70344a9413c349_Out_0.samplerstate, IN.uv0.xy, 0);
-            #endif
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_R_5 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.r;
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_G_6 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.g;
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_B_7 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.b;
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_A_8 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.a;
-            half _Multiply_45aa24cff85a482db70f8e118b2d3950_Out_2;
-            Unity_Multiply_half(_Property_23a4f2ebe14845a095c2c5f4c5c4b4f4_Out_0, _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_R_5, _Multiply_45aa24cff85a482db70f8e118b2d3950_Out_2);
             Bindings_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5 _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab;
             _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab.ObjectSpaceNormal = IN.ObjectSpaceNormal;
             _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab.ObjectSpacePosition = IN.ObjectSpacePosition;
             float3 _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab_OutlinePosition_1;
-            SG_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5(_Multiply_45aa24cff85a482db70f8e118b2d3950_Out_2, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab_OutlinePosition_1);
+            SG_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5(_Property_23a4f2ebe14845a095c2c5f4c5c4b4f4_Out_0, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab_OutlinePosition_1);
             description.Position = IN.ObjectSpacePosition;
             description.Normal = IN.ObjectSpaceNormal;
             description.Tangent = IN.ObjectSpaceTangent;
@@ -1072,17 +1051,11 @@ Shader "Toon Fixed(Texture Ramp)"
             _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8.ObjectSpacePosition = IN.ObjectSpacePosition;
             float3 _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8_Color_3;
             SG_MixFog_e65d935e3c006a842b7a2fb6063b4b4d(_ToonLightingTextureRamp_3adcc2730cf747f584033092ccf7d5f7_Color_1, _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8, _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8_Color_3);
-            half _Float_29a048b3742048f584bb6af5bb69d020_Out_0 = 0.25;
-            half3 _Multiply_38099c5df878419c82369715923bacec_Out_2;
-            Unity_Multiply_half(_ToonLightingTextureRamp_3adcc2730cf747f584033092ccf7d5f7_ShadeColor_3, (_Float_29a048b3742048f584bb6af5bb69d020_Out_0.xxx), _Multiply_38099c5df878419c82369715923bacec_Out_2);
-            Bindings_MixFog_e65d935e3c006a842b7a2fb6063b4b4d _MixFog_82fcdd0610e84a31a709a7150ce6bfef;
-            _MixFog_82fcdd0610e84a31a709a7150ce6bfef.ObjectSpacePosition = IN.ObjectSpacePosition;
-            float3 _MixFog_82fcdd0610e84a31a709a7150ce6bfef_Color_3;
-            SG_MixFog_e65d935e3c006a842b7a2fb6063b4b4d(_Multiply_38099c5df878419c82369715923bacec_Out_2, _MixFog_82fcdd0610e84a31a709a7150ce6bfef, _MixFog_82fcdd0610e84a31a709a7150ce6bfef_Color_3);
+            half4 _Property_a85bb0fd8bbe4267af1a4a8ec5c6957d_Out_0 = _OutlineColor;
             surface.BaseColor = _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8_Color_3;
             surface.Alpha = _ToonLightingTextureRamp_3adcc2730cf747f584033092ccf7d5f7_Aloha_2;
             surface.AlphaClipThreshold = 0.5;
-            surface.OutlineColor = _MixFog_82fcdd0610e84a31a709a7150ce6bfef_Color_3;
+            surface.OutlineColor = (_Property_a85bb0fd8bbe4267af1a4a8ec5c6957d_Out_0.xyz);
             return surface;
         }
 
@@ -1097,7 +1070,6 @@ Shader "Toon Fixed(Texture Ramp)"
             output.ObjectSpaceNormal =           input.normalOS;
             output.ObjectSpaceTangent =          input.tangentOS.xyz;
             output.ObjectSpacePosition =         input.positionOS;
-            output.uv0 =                         input.uv0;
 
             return output;
         }
@@ -1345,7 +1317,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -1367,8 +1339,6 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
@@ -1384,7 +1354,7 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -1786,7 +1756,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -1808,8 +1778,6 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
@@ -1825,7 +1793,7 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -2281,7 +2249,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -2303,8 +2271,6 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
@@ -2320,7 +2286,7 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -2701,7 +2667,6 @@ Shader "Toon Fixed(Texture Ramp)"
             float3 ObjectSpaceNormal;
             float3 ObjectSpaceTangent;
             float3 ObjectSpacePosition;
-            float4 uv0;
         };
         struct PackedVaryings
         {
@@ -2814,7 +2779,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -2836,19 +2801,12 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
             // Graph Functions
             
-        void Unity_Multiply_half(half A, half B, out half Out)
-        {
-            Out = A * B;
-        }
-
-        // 39a2adacb021fa0c0e1927055b619ca4
+        // 49735d9b5dbe4bddc0f32ad2f736db4c
         #include "Assets/jp.lilium.toongraph/Contents/Shader/OutlineTransform.hlsl"
 
         struct Bindings_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5
@@ -2870,7 +2828,12 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        void Unity_Multiply_half(half A, half B, out half Out)
+        {
+            Out = A * B;
+        }
+
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -2950,11 +2913,6 @@ Shader "Toon Fixed(Texture Ramp)"
             Color_3 = _Lerp_0a061577e6824a22b2c504f65c3c4af7_Out_3;
         }
 
-        void Unity_Multiply_half(half3 A, half3 B, out half3 Out)
-        {
-            Out = A * B;
-        }
-
             // Graph Vertex
             struct VertexDescription
         {
@@ -2968,23 +2926,11 @@ Shader "Toon Fixed(Texture Ramp)"
         {
             VertexDescription description = (VertexDescription)0;
             half _Property_23a4f2ebe14845a095c2c5f4c5c4b4f4_Out_0 = _OutlineWidth;
-            UnityTexture2D _Property_d65473b547a1461d8c70344a9413c349_Out_0 = UnityBuildTexture2DStructNoScale(_OutlineMap);
-            #if defined(SHADER_API_GLES) && (SHADER_TARGET < 30)
-              half4 _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0 = half4(0.0f, 0.0f, 0.0f, 1.0f);
-            #else
-              half4 _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0 = SAMPLE_TEXTURE2D_LOD(_Property_d65473b547a1461d8c70344a9413c349_Out_0.tex, _Property_d65473b547a1461d8c70344a9413c349_Out_0.samplerstate, IN.uv0.xy, 0);
-            #endif
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_R_5 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.r;
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_G_6 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.g;
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_B_7 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.b;
-            half _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_A_8 = _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_RGBA_0.a;
-            half _Multiply_45aa24cff85a482db70f8e118b2d3950_Out_2;
-            Unity_Multiply_half(_Property_23a4f2ebe14845a095c2c5f4c5c4b4f4_Out_0, _SampleTexture2DLOD_5faf4ad39f6f4e3e970c3a6b566b843e_R_5, _Multiply_45aa24cff85a482db70f8e118b2d3950_Out_2);
             Bindings_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5 _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab;
             _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab.ObjectSpaceNormal = IN.ObjectSpaceNormal;
             _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab.ObjectSpacePosition = IN.ObjectSpacePosition;
             float3 _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab_OutlinePosition_1;
-            SG_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5(_Multiply_45aa24cff85a482db70f8e118b2d3950_Out_2, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab_OutlinePosition_1);
+            SG_ToonOutlineTransform_aadd6ff8a7ff83a4fb272240ac26c2b5(_Property_23a4f2ebe14845a095c2c5f4c5c4b4f4_Out_0, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab, _ToonOutlineTransform_652306bda77e43328a84fa5b38e21cab_OutlinePosition_1);
             description.Position = IN.ObjectSpacePosition;
             description.Normal = IN.ObjectSpaceNormal;
             description.Tangent = IN.ObjectSpaceTangent;
@@ -3080,17 +3026,11 @@ Shader "Toon Fixed(Texture Ramp)"
             _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8.ObjectSpacePosition = IN.ObjectSpacePosition;
             float3 _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8_Color_3;
             SG_MixFog_e65d935e3c006a842b7a2fb6063b4b4d(_ToonLightingTextureRamp_3adcc2730cf747f584033092ccf7d5f7_Color_1, _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8, _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8_Color_3);
-            half _Float_29a048b3742048f584bb6af5bb69d020_Out_0 = 0.25;
-            half3 _Multiply_38099c5df878419c82369715923bacec_Out_2;
-            Unity_Multiply_half(_ToonLightingTextureRamp_3adcc2730cf747f584033092ccf7d5f7_ShadeColor_3, (_Float_29a048b3742048f584bb6af5bb69d020_Out_0.xxx), _Multiply_38099c5df878419c82369715923bacec_Out_2);
-            Bindings_MixFog_e65d935e3c006a842b7a2fb6063b4b4d _MixFog_82fcdd0610e84a31a709a7150ce6bfef;
-            _MixFog_82fcdd0610e84a31a709a7150ce6bfef.ObjectSpacePosition = IN.ObjectSpacePosition;
-            float3 _MixFog_82fcdd0610e84a31a709a7150ce6bfef_Color_3;
-            SG_MixFog_e65d935e3c006a842b7a2fb6063b4b4d(_Multiply_38099c5df878419c82369715923bacec_Out_2, _MixFog_82fcdd0610e84a31a709a7150ce6bfef, _MixFog_82fcdd0610e84a31a709a7150ce6bfef_Color_3);
+            half4 _Property_a85bb0fd8bbe4267af1a4a8ec5c6957d_Out_0 = _OutlineColor;
             surface.BaseColor = _MixFog_89e264823ce74a9b8d51f6b69cc5c3c8_Color_3;
             surface.Alpha = _ToonLightingTextureRamp_3adcc2730cf747f584033092ccf7d5f7_Aloha_2;
             surface.AlphaClipThreshold = 0.5;
-            surface.OutlineColor = _MixFog_82fcdd0610e84a31a709a7150ce6bfef_Color_3;
+            surface.OutlineColor = (_Property_a85bb0fd8bbe4267af1a4a8ec5c6957d_Out_0.xyz);
             return surface;
         }
 
@@ -3105,7 +3045,6 @@ Shader "Toon Fixed(Texture Ramp)"
             output.ObjectSpaceNormal =           input.normalOS;
             output.ObjectSpaceTangent =          input.tangentOS.xyz;
             output.ObjectSpacePosition =         input.positionOS;
-            output.uv0 =                         input.uv0;
 
             return output;
         }
@@ -3354,7 +3293,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -3376,8 +3315,6 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
@@ -3393,7 +3330,7 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
@@ -3796,7 +3733,7 @@ Shader "Toon Fixed(Texture Ramp)"
         float4 _EmissionMap_TexelSize;
         half4 _EmissionColor;
         half _OutlineWidth;
-        float4 _OutlineMap_TexelSize;
+        half4 _OutlineColor;
         half _ShadeToony;
         float4 _ShadeRamp_TexelSize;
         half4 _ShadeEnvironmentalColor;
@@ -3818,8 +3755,6 @@ Shader "Toon Fixed(Texture Ramp)"
         SAMPLER(sampler_OcclusionMap);
         TEXTURE2D(_EmissionMap);
         SAMPLER(sampler_EmissionMap);
-        TEXTURE2D(_OutlineMap);
-        SAMPLER(sampler_OutlineMap);
         TEXTURE2D(_ShadeRamp);
         SAMPLER(sampler_ShadeRamp);
 
@@ -3835,7 +3770,7 @@ Shader "Toon Fixed(Texture Ramp)"
             Out = A * B;
         }
 
-        // 4f31c905c12620f0927995406c21348b
+        // 76f53fe8936248969bc5201998a191c2
         #include "Assets/jp.lilium.toongraph/Contents/Shader/ToonLightingTextureRamp.hlsl"
 
         struct Bindings_ToonLightingTextureRamp_72cc73d224b6de64b903e0f9545d59f5
