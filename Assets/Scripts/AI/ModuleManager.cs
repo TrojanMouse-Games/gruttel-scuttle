@@ -8,6 +8,7 @@ public class ModuleManager : MonoBehaviour
     public WanderModule wander;
     public Patrol patrol;
     public FleeModule fleeModule;
+    public DistractionModule distractionModule;
     private AIController aiController;
 
     private void Start()
@@ -60,6 +61,18 @@ public class ModuleManager : MonoBehaviour
             fleeModule = gameObject.AddComponent<FleeModule>();
             fleeModule.enabled = false;
         }
+
+        try
+        {
+            distractionModule = gameObject.GetComponent<DistractionModule>();
+        }
+        catch (NullReferenceException err)
+        {
+            Debug.LogError($"No distraction module found on this {this.gameObject.name}, adding one..");
+            Debug.LogWarning($"{err.Message}, should be fixed now. Disabling module to avoid errors");
+            distractionModule = gameObject.AddComponent<DistractionModule>();
+            distractionModule.enabled = false;
+        }
     }
     public void DisableAllModules()
     {
@@ -94,6 +107,17 @@ public class ModuleManager : MonoBehaviour
         catch (NullReferenceException)
         {
             Debug.LogError("Tried to stop flee module, error occured. Forcefully stopping it.");
+            fleeModule.enabled = false;
+            goto DisableAllModules; // Not sure if this is a good way to go about it..
+        }
+
+        try
+        {
+            distractionModule.enabled = false;
+        }
+        catch (NullReferenceException)
+        {
+            Debug.LogError("Tried to stop distraction module, error occured. Forcefully stopping it.");
             fleeModule.enabled = false;
             goto DisableAllModules; // Not sure if this is a good way to go about it..
         }

@@ -31,8 +31,6 @@ namespace TrojanMouse.AI
         public bool distracted;
         public LayerMask litterLayerMask;
         public float timer = 0f; // Internal timer used for state changes and tracking.
-        public GameObject distractionMarker;
-        public int distractionChance;
         public Animator animator;
 
         // Internal Variables
@@ -100,7 +98,7 @@ namespace TrojanMouse.AI
             }
             else if (!distracted)
             {
-                distractionMarker.SetActive(false);
+                
 
                 // Detect and process the litter
                 #region JOSHS OVERRIDES - REMOVE LATER ON
@@ -208,20 +206,7 @@ namespace TrojanMouse.AI
                 data.Agent.SetDestination(currentTarget.transform.position);
         }
 
-        IEnumerator GenerateDistractionChance()
-        {
-            yield return new WaitForSeconds(1);
-            distractionChance = UnityEngine.Random.Range(0, 20);
-            if (distractionChance == 0)
-            {
-                distracted = true;
-                animator.SetBool("isDistracted", true);
-                distractionMarker.SetActive(true);
-                data.Agent.SetDestination(transform.position);
-                currentState = AIState.Nothing;
-            }
-            StartCoroutine(GenerateDistractionChance());
-        }
+        
 
         //  TODO: PASS IN PREV STATE
         /// <summary>
@@ -308,8 +293,6 @@ namespace TrojanMouse.AI
             // This assigns the player follow point;
             //followPoint = GameObject.FindGameObjectWithTag("PlayerFollowPoint");
 
-            distractionMarker.SetActive(false);
-
             // Simple check to make sure the agent is on a navmesh, if not destroy it
             if (data.Agent.isOnNavMesh == false)
             {
@@ -330,7 +313,7 @@ namespace TrojanMouse.AI
                     break;
             }
 
-            StartCoroutine(GenerateDistractionChance());
+            StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
         }
 
         public void Timer()
