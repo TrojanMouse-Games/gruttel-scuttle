@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TrojanMouse.Gruttel
 {
-    public class Data
+    public class Data : ScriptableObject
     {
         public GruttelBaseType baseType;
         public string gruttelName;
