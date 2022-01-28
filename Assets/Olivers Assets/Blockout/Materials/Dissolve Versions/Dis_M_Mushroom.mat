@@ -20,15 +20,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Mushroom 1
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Name: Dis_M_Mushroom
+  m_Shader: {fileID: -6465566751694194690, guid: 6f2fbf27bbd14ee44a8b3ee1f1c6a85e,
+    type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -106,9 +106,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_45c18bfbb1ea44b79c4b15bafd8079aa: 0.53
-    - Vector1_9b5525d0bf6145b69abcbb371caf8d1c: 0.08
+    - Vector1_0d45bfd0d895463d9e24c7986074f98b: 0.5
+    - Vector1_45c18bfbb1ea44b79c4b15bafd8079aa: 0
+    - Vector1_4843390087834871b010fcfc2b07b2ac: -0.03
+    - Vector1_9b5525d0bf6145b69abcbb371caf8d1c: 0.1
     - Vector1_dc37a6066bc140d9816486bb56f34f65: 0.5
+    - Vector1_f2a17940df21432c9de41bcd8a9a3810: 10
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -139,7 +142,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_1ce943054adf4e0891e8efa312fa46f5: {r: 1, g: 1, b: 1, a: 0}
-    - Vector4_dec240097adc473dbdc03c0c66c2ef54: {r: 1, g: 1, b: 0, a: 0}
+    - Vector4_dec240097adc473dbdc03c0c66c2ef54: {r: 0.1, g: 0.1, b: 0.1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
