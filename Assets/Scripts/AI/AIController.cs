@@ -2,13 +2,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 using TrojanMouse.Inventory;
 using TrojanMouse.RegionManagement;
 using TrojanMouse.PowerUps;
 using TrojanMouse.AI.Behaviours;
-using TrojanMouse.AI.Movement;
-using UnityEngine;
-using UnityEngine.AI;
 #endregion
 
 namespace TrojanMouse.AI
@@ -62,7 +61,7 @@ namespace TrojanMouse.AI
         private void Update()
         {
             // Start the Timer function
-            CheckDistractions();
+            CheckDistraction();
             Timer();
             HFSM();
         }
@@ -95,8 +94,6 @@ namespace TrojanMouse.AI
             }
             else if (!distracted)
             {
-                
-
                 // Detect and process the litter
                 #region JOSHS OVERRIDES - REMOVE LATER ON
                 currentState = GetLitter();
@@ -311,12 +308,13 @@ namespace TrojanMouse.AI
                     break;
             }
 
-            StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
+            if (moduleManager.distractionModule.enabled)
+                StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
         }
 
-        private void CheckDistractions()
+        private void CheckDistraction()
         {
-            distracted = moduleManager.distractionModule.distracted;
+             distracted = moduleManager.distractionModule.distracted;
         }
 
         public void Timer()

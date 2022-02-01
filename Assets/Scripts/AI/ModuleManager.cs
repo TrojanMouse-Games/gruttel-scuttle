@@ -114,12 +114,14 @@ public class ModuleManager : MonoBehaviour
         if (GameLoop.current.stageIntermission > 0)
         {
             //disable distraction
+            distractionModule.enabled = false;
             moveWithMouseClick.enabled = false;
             moveWithMouseGrab.enabled = true;
         }
         else
         {
             //enable distraction
+            distractionModule.enabled = true;
             moveWithMouseClick.enabled = true;
             moveWithMouseGrab.enabled = false;
         }
