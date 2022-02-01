@@ -97,8 +97,7 @@ namespace TrojanMouse.GameplayLoop
                     clonedPowerup.GetComponent<Image>().sprite = (powerUp == PowerupType.BUFF) ? villageSettings.powerupSettings.buffPower : villageSettings.powerupSettings.radioPower;
                 }
             }
-            else if (!isRunning)
-            {
+            else if (!isRunning){
                 isRunning = true;
                 // RETURN CAMERA TO GAME MODE
                 prepCam.SetActive(false);
@@ -112,24 +111,20 @@ namespace TrojanMouse.GameplayLoop
             #endregion           
 
             #region LEVEL MANAGEMENT
-            if (cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, litterToBeRecycled))
-            {
+            if (cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, litterToBeRecycled)){
                 isRunning = false;
-                if (curStage + 1 > cycles[curLevel].stages.Length)
-                {
+                if (curStage + 1 > cycles[curLevel].stages.Length){
                     curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
                     curStage = 0;
                 }
-                else
-                {
+                else{
                     curStage = (curStage + 1) % cycles[curLevel].stages.Length; // STAGE INCREMENTOR
                 }
             }
             #endregion    
 
             #region LITTER SPAWNER
-            if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0)
-            {
+            if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0){
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)];
@@ -138,7 +133,7 @@ namespace TrojanMouse.GameplayLoop
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
 
-            stageIntermission -= (stageIntermission >0)? Time.deltaTime : 0;
+            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;            
         }
 
         IEnumerator CountDownStage() {
