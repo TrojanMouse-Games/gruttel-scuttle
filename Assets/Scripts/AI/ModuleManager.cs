@@ -23,7 +23,7 @@ public class ModuleManager : MonoBehaviour
 
     private void Update()
     {
-        //CheckStage();
+        CheckStage();
     }
 
     public void CheckScripts()
