@@ -24,8 +24,7 @@ namespace TrojanMouse.GameplayLoop
         [Tooltip("When on the introduction phase, this is the position the camera will interpolate to")] public Transform cameraTarget;
         public PowerupSettings powerupSettings;
     }
-    [Serializable]
-    public class PowerupSettings
+    [Serializable] public class PowerupSettings
     {
         [Tooltip("This is where the powerups will be deposited")] public Transform powerupStorage;
         [Tooltip("Powerup Prefab here...")] public GameObject powerupPrefab;
@@ -59,12 +58,11 @@ namespace TrojanMouse.GameplayLoop
         public static GameLoop current;
         #endregion
         #endregion
-
-        private void Start()
-        {
+        [SerializeField] float postPrepStageIntermission;
+        [HideInInspector] public float stageIntermission;
+        private void Start(){
             current = this;
-            foreach (Transform node in villageSettings.gruttelSpawnPoints)
-            {
+            foreach (Transform node in villageSettings.gruttelSpawnPoints){
                 // SPAWN GRUTTELS IN VILLAGE
                 GameObject newGruttel = Instantiate(villageSettings.gruttelPrefab, node.position, node.rotation, villageSettings.gruttelFolder);
                 // FACE THE CAMERA TARGET POS
@@ -76,23 +74,21 @@ namespace TrojanMouse.GameplayLoop
             StartCoroutine(CountDownStage());
         }
 
-        private void Update()
-        {
+        private void Update(){
             if (cycles[0].stages[curStage].levelComplete) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
             }
             #region DEPENDENCY MANAGEMENT
-            if (curStage == 0 && !isRunning)
-            { // PREP STAGE --
+            if (curStage == 0 && !isRunning){ // PREP STAGE --
                 isRunning = true;
+                stageIntermission = postPrepStageIntermission;
                 // ZOOM IN ON VILLAGE
                 prepCam.SetActive(true);
                 cameraToVillage?.Invoke(true); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 // SELECT GRUTTELS
 
                 // DISPENCE POWERUPS TO PUT ON GRUTTELS   
-                foreach (PowerupType powerUp in cycles[curLevel].stages[curStage].powerupsToDispence)
-                {
+                foreach (PowerupType powerUp in cycles[curLevel].stages[curStage].powerupsToDispence){
                     GameObject clonedPowerup = Instantiate(villageSettings.powerupSettings.powerupPrefab, Vector3.zero, Quaternion.identity, villageSettings.powerupSettings.powerupStorage);
                     Powerup pu = clonedPowerup.GetComponent<Powerup>();
                     pu.Type = powerUp;
@@ -132,7 +128,7 @@ namespace TrojanMouse.GameplayLoop
             #endregion    
 
             #region LITTER SPAWNER
-            if (remainingLitterToSpawn > 0 && spawnDelay <= 0)
+            if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0)
             {
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
@@ -141,6 +137,8 @@ namespace TrojanMouse.GameplayLoop
             }
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
+
+            stageIntermission -= (stageIntermission >0)? Time.deltaTime : 0;
         }
 
         IEnumerator CountDownStage() {
