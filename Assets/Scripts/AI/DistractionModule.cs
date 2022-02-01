@@ -29,7 +29,7 @@ public class DistractionModule : MonoBehaviour
 
     public IEnumerator GenerateDistractionChance()
     {
-        int randomWait = UnityEngine.Random.Range(5, 20);
+        int randomWait = UnityEngine.Random.Range(5, 15);
         yield return new WaitForSeconds(randomWait);
         distractionChance = UnityEngine.Random.Range(0, 5);
         if (distractionChance == 0)
