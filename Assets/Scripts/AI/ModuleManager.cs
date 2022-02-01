@@ -9,6 +9,7 @@ public class ModuleManager : MonoBehaviour
     public WanderModule wander;
     public Patrol patrol;
     public FleeModule fleeModule;
+    public DistractionModule distractionModule;
 
     public MoveWithMouseClick moveWithMouseClick;
     public MoveWithMouseGrab moveWithMouseGrab;
@@ -69,6 +70,18 @@ public class ModuleManager : MonoBehaviour
             Debug.LogWarning($"{err.Message}, should be fixed now. Disabling module to avoid errors");
             fleeModule = gameObject.AddComponent<FleeModule>();
             fleeModule.enabled = false;
+        }
+
+        try
+        {
+            distractionModule = gameObject.GetComponent<DistractionModule>();
+        }
+        catch (NullReferenceException err)
+        {
+            Debug.LogError($"No distraction module found on this {this.gameObject.name}, adding one..");
+            Debug.LogWarning($"{err.Message}, should be fixed now. Disabling module to avoid errors");
+            distractionModule = gameObject.AddComponent<DistractionModule>();
+            distractionModule.enabled = false;
         }
 
         try
