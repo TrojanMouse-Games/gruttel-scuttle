@@ -1710,6 +1710,7 @@ GameObject:
   - component: {fileID: 9134461449078113819}
   - component: {fileID: 9134461449078113818}
   - component: {fileID: 9134461449078113821}
+  - component: {fileID: 7161643577560387700}
   - component: {fileID: 9134461449078113820}
   - component: {fileID: 9134461449078113823}
   - component: {fileID: 9134461449078113822}
@@ -1824,8 +1825,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   timer: 0
-  distractionMarker: {fileID: 9134461449789227875}
-  distractionChance: 0
   animator: {fileID: 2553501623213131299}
   pickupRange: 2
 --- !u!114 &9134461449078113816
@@ -1843,6 +1842,7 @@ MonoBehaviour:
   wander: {fileID: 0}
   patrol: {fileID: 0}
   fleeModule: {fileID: 0}
+  distractionModule: {fileID: 0}
 --- !u!114 &9134461449078113819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,6 +1885,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc8f86b5c6937e41b57c38e87470f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7161643577560387700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfbde7caead2744daa0db531e249d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aIController: {fileID: 9134461449078113817}
+  beingDirected: 0
+  distracted: 0
+  litterLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  distractionMarker: {fileID: 9134461449789227875}
+  distractionChance: 0
+  animator: {fileID: 2553501623213131299}
 --- !u!114 &9134461449078113820
 MonoBehaviour:
   m_ObjectHideFlags: 0

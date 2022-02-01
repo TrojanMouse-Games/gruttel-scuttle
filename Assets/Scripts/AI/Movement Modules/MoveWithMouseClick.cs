@@ -140,7 +140,7 @@ namespace TrojanMouse.AI.Movement
 
             if (localAIc.distracted)
             {
-                localAIc.distracted = false;
+                localAIc.moduleManager.distractionModule.distracted = false;
                 localAIc.animator.SetBool("isDistracted", false);
                 return false;
             }

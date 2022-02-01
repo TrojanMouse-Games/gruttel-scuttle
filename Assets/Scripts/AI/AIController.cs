@@ -41,11 +41,7 @@ namespace TrojanMouse.AI
 
         [Header("Scripts")] // All internal & private for the most part.
         // Movement Modules, in order of most used.
-        private ModuleManager moduleManager; // The script that manages all the modules on the AI.
-        // private WanderModule wanderScript; // Reference to the Wander Module.
-        // private Patrol patrolScript; // Reference to the Patrol module.
-        private MoveWithMouseGrab moveToMouse; // Reference to the Move to Mouse Point module.
-        private MoveWithMouseClick moveToClick;
+        public ModuleManager moduleManager; // The script that manages all the modules on the AI.
         // Behaviour Modules
         private Friendly friendly; // Refernce to the friendly behaviour.
         private Neutral neutral; // Refernce to the neutral behaviour.
@@ -66,6 +62,7 @@ namespace TrojanMouse.AI
         private void Update()
         {
             // Start the Timer function
+            CheckDistractions();
             Timer();
             HFSM();
         }
@@ -314,6 +311,11 @@ namespace TrojanMouse.AI
             }
 
             StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
+        }
+
+        private void CheckDistractions()
+        {
+            distracted = moduleManager.distractionModule.distracted;
         }
 
         public void Timer()

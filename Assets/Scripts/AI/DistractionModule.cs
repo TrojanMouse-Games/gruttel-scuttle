@@ -5,19 +5,18 @@ using TrojanMouse.AI;
 
 public class DistractionModule : MonoBehaviour
 {
-    public AIData data;
-    AIController aIController;
+    public AIController aIController;
 
     public bool beingDirected;
     public bool distracted;
     public LayerMask litterLayerMask;
-    public float timer = 0f; // Internal timer used for state changes and tracking.
     public GameObject distractionMarker;
     public int distractionChance;
     public Animator animator;
 
     private void Start()
     {
+        distracted = false;
         distractionMarker.SetActive(false);
     }
 
@@ -38,7 +37,7 @@ public class DistractionModule : MonoBehaviour
             distracted = true;
             animator.SetBool("isDistracted", true);
             distractionMarker.SetActive(true);
-            data.Agent.SetDestination(transform.position);
+            aIController.data.Agent.SetDestination(transform.position);
             aIController.currentState = AIState.Nothing;
         }
         StartCoroutine(GenerateDistractionChance());
