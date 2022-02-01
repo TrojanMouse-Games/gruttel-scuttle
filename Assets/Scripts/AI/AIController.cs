@@ -276,6 +276,7 @@ namespace TrojanMouse.AI
 
             moduleManager = gameObject.GetComponent<ModuleManager>();
             moduleManager.CheckScripts();
+            moduleManager.CheckStage();
 
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;

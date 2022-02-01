@@ -2,18 +2,27 @@ using System;
 using UnityEngine;
 using TrojanMouse.AI;
 using TrojanMouse.AI.Movement;
+using TrojanMouse.GameplayLoop;
 
 public class ModuleManager : MonoBehaviour
 {
     public WanderModule wander;
     public Patrol patrol;
     public FleeModule fleeModule;
-    public DistractionModule distractionModule;
+
+    public MoveWithMouseClick moveWithMouseClick;
+    public MoveWithMouseGrab moveWithMouseGrab;
+
     private AIController aiController;
 
     private void Start()
     {
         aiController = gameObject.GetComponent<AIController>();
+    }
+
+    private void Update()
+    {
+        //CheckStage();
     }
 
     public void CheckScripts()
@@ -64,16 +73,45 @@ public class ModuleManager : MonoBehaviour
 
         try
         {
-            distractionModule = gameObject.GetComponent<DistractionModule>();
+            moveWithMouseClick = Camera.main.GetComponent<MoveWithMouseClick>();
         }
         catch (NullReferenceException err)
         {
-            Debug.LogError($"No distraction module found on this {this.gameObject.name}, adding one..");
+            Debug.LogError($"No MoveWithMouseClick module found on this {Camera.main.gameObject.name}, adding one..");
             Debug.LogWarning($"{err.Message}, should be fixed now. Disabling module to avoid errors");
-            distractionModule = gameObject.AddComponent<DistractionModule>();
-            distractionModule.enabled = false;
+            moveWithMouseClick = Camera.main.gameObject.AddComponent<MoveWithMouseClick>();
+            moveWithMouseClick.enabled = false;
+        }
+
+        try
+        {
+            moveWithMouseGrab = Camera.main.GetComponent<MoveWithMouseGrab>();
+        }
+        catch (NullReferenceException err)
+        {
+            Debug.LogError($"No MoveWithMouseGrab module found on this {Camera.main.gameObject.name}, adding one..");
+            Debug.LogWarning($"{err.Message}, should be fixed now. Disabling module to avoid errors");
+            moveWithMouseGrab = Camera.main.gameObject.AddComponent<MoveWithMouseGrab>();
+            moveWithMouseGrab.enabled = false;
         }
     }
+
+    public void CheckStage()
+    {
+        if (GameLoop.current.stageIntermission > 0)
+        {
+            //disable distraction
+            moveWithMouseClick.enabled = false;
+            moveWithMouseGrab.enabled = true;
+        }
+        else
+        {
+            //enable distraction
+            moveWithMouseClick.enabled = true;
+            moveWithMouseGrab.enabled = false;
+        }
+    }
+
     public void DisableAllModules()
     {
         aiController.currentState = AIState.Nothing;
