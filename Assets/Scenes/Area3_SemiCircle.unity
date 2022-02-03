@@ -6256,6 +6256,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.08, y: 1, z: 3.94}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1819731095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3278290650341094257, guid: c79caca2f09be64479ff31620d18fa0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101661223}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1825066159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1617165440565961270, guid: d509f4a160b34f3418dcf00c2c8cc35e,
@@ -7863,10 +7875,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   prepCam: {fileID: 168806980}
-  cycleText: {fileID: 0}
+  cycleText: {fileID: 1819731095}
   stageText: {fileID: 0}
   curLevel: 0
   curStage: 0
+  postPrepStageIntermission: 0
+  stageIntermission: 0
 --- !u!114 &3480624099487408242
 MonoBehaviour:
   m_ObjectHideFlags: 0
