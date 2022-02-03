@@ -27,6 +27,7 @@ namespace TrojanMouse.AI.Movement
         //Audio
         [SerializeField] private EventReference SelectionSound;
         [SerializeField] private EventReference DirectionSound;
+        public EventReference undistrcatedSound;
         #endregion
 
         #region UNITY FUNCTIONS
@@ -49,7 +50,7 @@ namespace TrojanMouse.AI.Movement
             // Check to see if the mouse has been pressed, if yes, do logic
             if (Input.GetButtonDown("Fire1") && !directing && FireRay(whatToSelect, rayDistance))
             {
-                RuntimeManager.PlayOneShot(SelectionSound);
+                
                 // Check to see if the hit obj is an AI
                 if (CheckAIAndDistract())
                 {
@@ -58,7 +59,10 @@ namespace TrojanMouse.AI.Movement
                     //Debug.Log(hit.transform.name);
                     // Set the state to directing, this will make sure the user doesn't click on another AI.
                     directing = true;
-
+                    if (directing) 
+                    {
+                        RuntimeManager.PlayOneShot(SelectionSound);
+                    }
                     StartCoroutine(ChangeColorSelect(hit.transform));
                 }
                 // Toggle anything that needs to be turned off
@@ -140,9 +144,11 @@ namespace TrojanMouse.AI.Movement
 
             if (localAIc.distracted)
             {
+                RuntimeManager.PlayOneShot(undistrcatedSound);
                 localAIc.moduleManager.distractionModule.distracted = false;
                 localAIc.animator.SetBool("isDistracted", false);
                 return false;
+
             }
 
             return true;

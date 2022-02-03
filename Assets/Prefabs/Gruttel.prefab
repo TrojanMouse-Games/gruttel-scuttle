@@ -1826,6 +1826,7 @@ MonoBehaviour:
     m_Bits: 8
   timer: 0
   animator: {fileID: 2553501623213131299}
+  moduleManager: {fileID: 0}
   pickupRange: 2
 --- !u!114 &9134461449078113816
 MonoBehaviour:
@@ -1843,6 +1844,8 @@ MonoBehaviour:
   patrol: {fileID: 0}
   fleeModule: {fileID: 0}
   distractionModule: {fileID: 0}
+  moveWithMouseClick: {fileID: 0}
+  moveWithMouseGrab: {fileID: 0}
 --- !u!114 &9134461449078113819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1906,6 +1909,20 @@ MonoBehaviour:
   distractionMarker: {fileID: 9134461449789227875}
   distractionChance: 0
   animator: {fileID: 2553501623213131299}
+  distractedSound:
+    Guid:
+      Data1: -910085517
+      Data2: 1195260907
+      Data3: -652399968
+      Data4: 1605212735
+    Path: event:/Gruttel Sounds/Distracted
+  undistrcatedSound:
+    Guid:
+      Data1: -168363087
+      Data2: 1178371607
+      Data3: -1447001678
+      Data4: -690272761
+    Path: event:/Gruttel Sounds/Undistracted
 --- !u!114 &9134461449078113820
 MonoBehaviour:
   m_ObjectHideFlags: 0
