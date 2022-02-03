@@ -2082,23 +2082,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   FOV: 25
---- !u!114 &9175894861465479838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9134461449789227875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa186e9b9d73fec4185fd22cdb3b2786, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distractionMat: {fileID: 7209508367609607519}
-  targetColor:
-    serializedVersion: 2
-    rgba: 4278252287
-  transitionDuration: 1
 --- !u!95 &402454146568936681
 Animator:
   serializedVersion: 3
@@ -2118,6 +2101,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9175894861465479838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449789227875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa186e9b9d73fec4185fd22cdb3b2786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distractionMat: {fileID: 7209508367609607519}
+  targetColor:
+    serializedVersion: 2
+    rgba: 4294920960
+  transitionDuration: 1
 --- !u!1001 &8216054026033364530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2140,6 +2140,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc3885a67013e5b499dd8e9156e70a7a, type: 2}
     - target: {fileID: 919132149155446097, guid: 00f933048e3ca6340bd68e069b639be0,
         type: 3}
       propertyPath: m_Layer

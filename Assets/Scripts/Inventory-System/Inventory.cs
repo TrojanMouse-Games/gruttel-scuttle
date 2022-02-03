@@ -76,6 +76,7 @@ namespace TrojanMouse.Inventory {
         }
 
         public void Dequip(GameObject obj){
+            animator.SetBool("hasTrash", false);
             Destroy(obj);
         }
     }

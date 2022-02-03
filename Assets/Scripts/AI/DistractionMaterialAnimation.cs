@@ -29,6 +29,6 @@ public class DistractionMaterialAnimation : MonoBehaviour{
         {
             moveToTarget = !moveToTarget;
         }
-        distractionMat.material.color = Color.Lerp(distractionMat.material.color, moveToColor, Time.deltaTime / transitionDuration);
+        distractionMat.material.color = Color.Lerp(distractionMat.material.color, moveToColor, Time.deltaTime * transitionDuration);
     }
 }
