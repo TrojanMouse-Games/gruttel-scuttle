@@ -123,6 +123,7 @@ public class ModuleManager : MonoBehaviour
             //enable distraction
             distractionModule.enabled = true;
             moveWithMouseClick.enabled = true;
+            moveWithMouseGrab.ToggleAIComponents(true, "putDown");
             moveWithMouseGrab.enabled = false;
         }
     }
