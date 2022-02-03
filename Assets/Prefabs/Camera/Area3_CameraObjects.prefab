@@ -337,12 +337,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3615293011046143020}
   - component: {fileID: 3615293011046142997}
-  - component: {fileID: 3615293011046143018}
   - component: {fileID: 3615293011046143019}
   - component: {fileID: 3615293011046143016}
   - component: {fileID: 3615293011046143017}
   - component: {fileID: 3615293011046143022}
   - component: {fileID: 3615293011046143023}
+  - component: {fileID: 2991609166651282972}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -407,14 +407,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3615293011046143018
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615293011046143021}
-  m_Enabled: 1
 --- !u!114 &3615293011046143019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +457,10 @@ MonoBehaviour:
   xMaxClamp: 111
   yMinClamp: 9.35
   yMaxClamp: 11.6
+  CameraMovement:
+    m_PersistentCalls:
+      m_Calls: []
+  canDrag: 1
 --- !u!114 &3615293011046143017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +482,20 @@ MonoBehaviour:
     m_Bits: 191
   rayDistance: 500
   directing: 0
+  SelectionSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  DirectionSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &3615293011046143022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +545,21 @@ MonoBehaviour:
   camMoveSpeed: 1
   camZoomSpeed: 1
   virtualCam: {fileID: 3615293010647542617}
+  canDrag: 1
+--- !u!114 &2991609166651282972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615293011046143021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!1 &3615293011155220249
 GameObject:
   m_ObjectHideFlags: 0
