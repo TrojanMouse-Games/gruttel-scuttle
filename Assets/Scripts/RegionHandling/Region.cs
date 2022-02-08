@@ -5,8 +5,6 @@ using System;
 
 
 
-
-
 /* 
 --// HOW TO USE \\--
 Listening to feedback from my previous system, i was asked to try make it more minimal and ease of access for designers
