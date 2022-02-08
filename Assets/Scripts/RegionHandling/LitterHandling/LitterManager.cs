@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TrojanMouse.BallisticTrajectory;
 
 // DEVELOPED BY JOSH THOMPSON
 namespace TrojanMouse.RegionManagement
@@ -18,6 +19,7 @@ namespace TrojanMouse.RegionManagement
         public LitterTypes[] litter;
 
 
+        [Tooltip("This is the speed litter will be thrown into this region")]public float projectileSpeed;
         [Header("This is the MAX amount of litter inside this region")] public int maxLitterInRegion = 25;
 
         ///<summary>THIS FUNCTION SPAWNS LITTER INSIDE THE BOUNDARIES OF THIS REGION</summary>
@@ -25,16 +27,13 @@ namespace TrojanMouse.RegionManagement
         ///<param name="litterToSpawn">The amount of litter that'll spawn after calling this function</param>
         ///<param name="maxLitter">If this value is smaller than the scriptable object maxLitterInRegion, this will take priority. If it is < 0 then it'll be ignored</param>
         ///<returns>The excess value. If it returns a negative value, then there is still room to spawn more litter otherwise it is full</returns>
-        public int SpawnLitter(Collider region, int litterToSpawn, int maxLitter = -1)
-        {
+        public int SpawnLitter(Collider region, int litterToSpawn, int maxLitter = -1){            
             int numOfLitterInRegion = region.transform.childCount;
             maxLitter = (maxLitter < 0) ? maxLitterInRegion : maxLitter;
-            Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");
-
-
+            //Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");            
+             
             int iterationTo = Mathf.Clamp(numOfLitterInRegion + litterToSpawn, numOfLitterInRegion, Mathf.Min(maxLitter, maxLitterInRegion)); // THIS IS WHAT THE FOR LOOP WILL ITERATE UP TO. - IT ENSURES THE VALUE DOES NOT EXCEED THE MAX LITTER
-            for (int i = numOfLitterInRegion; i < iterationTo; i++)
-            {
+            for (int i = numOfLitterInRegion; i < iterationTo; i++){
                 #region SELECTING LITTER OBJECT
                 float chance = (float)UnityEngine.Random.Range(0, 100);
                 List<LitterTypes> possibleLitterToSpawn = new List<LitterTypes>();
@@ -55,9 +54,10 @@ namespace TrojanMouse.RegionManagement
                     UnityEngine.Random.Range(minPos.y, maxPos.y),
                     UnityEngine.Random.Range(minPos.z, maxPos.z)
                 );
-                #endregion
-
-                Instantiate(selectedLitter.litterObject, spawnPos, Quaternion.identity, region.transform);
+                #endregion                
+                Ballistics.current.RotateShooter(spawnPos, projectileSpeed);
+                GameObject newLitter = Instantiate(selectedLitter.litterObject, Ballistics.current.shooterObj.position, Quaternion.identity, region.transform);
+                newLitter.GetComponent<Rigidbody>().velocity = Ballistics.current.shooterObj.forward * projectileSpeed;
             }
             return region.transform.childCount - maxLitter; // RETURNS THE EXCESS (NEGATIVE VALUES MEANS THERE IS STILL ROOM TO SPAWN)
         }
