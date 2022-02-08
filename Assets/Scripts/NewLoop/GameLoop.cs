@@ -42,6 +42,7 @@ namespace TrojanMouse.GameplayLoop
         [Tooltip("Can be used to play animation on recycler")] [SerializeField] RecycleObject recycleObject;
 
         public GameObject prepCam;
+        public GameObject zoomOutCam;
         public Text cycleText;
         public Text stageText;
 
@@ -101,6 +102,7 @@ namespace TrojanMouse.GameplayLoop
                 isRunning = true;
                 // RETURN CAMERA TO GAME MODE
                 prepCam.SetActive(false);
+                zoomOutCam.SetActive(true);
                 Camera.main.GetComponent<MoveWithMouseClick>().enabled = true;
                 cameraToVillage?.Invoke(false); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 remainingLitterToSpawn = cycles[curLevel].stages[curStage].litterSettings.numOfLitterToSpawn;
@@ -125,6 +127,7 @@ namespace TrojanMouse.GameplayLoop
 
             #region LITTER SPAWNER
             if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0){
+                zoomOutCam.SetActive(false);
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)];
