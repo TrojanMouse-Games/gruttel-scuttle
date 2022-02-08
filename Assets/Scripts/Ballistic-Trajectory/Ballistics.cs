@@ -5,24 +5,17 @@ using UnityEngine;
 // DEVELOPED BY JOSH THOMPSON
 namespace TrojanMouse.BallisticTrajectory{
     public class Ballistics : MonoBehaviour{
-        public Transform shooterObj;
-        //public Vector3 targetPos;
-        //public float projectileSpeed = 20f;
-        [SerializeField] bool artillaryMode;
-        float h; // step size
+        public Transform shooterObj; // THE POINT AT WHICH PROJECTILES WILL SPAWN - AND THUS SHOOT OUT OF (THIS WILL BE THE PART WHICH AIMS UP/DOWN)
+        [SerializeField] bool artillaryMode; // IF DISABLED, IT WILL ENTER DIRECT SHOOTING MODE AND THEREFORE WILL SHOOT LIEK A GUN
+        
 
-        public static Ballistics current;
+        public static Ballistics current; // SINGLETON SO THAT ANY SCRIPT CAN EASILY ACCESS THIS SCRIPT
 
-        private void Awake(){
-            h = Time.fixedDeltaTime * 1f;
+        private void Awake(){            
             current = this;
         }
 
-        private void Update(){ 
-            //RotateShooter(); 
-        }
-
-
+        ///<summary>THIS FUNCTION WILL ROTATE THIS TRANSFORM ON THE Y AXIS</summary>
         public void RotateShooter(Vector3 targetPos, float speed){
             // GET ANGLES
             float? highAngle = 0f,
@@ -32,20 +25,20 @@ namespace TrojanMouse.BallisticTrajectory{
 
             // LOW ANGLE -- DIRECT SHOT
             // HIGH ANGLE -- ARTILLARY TYPE SHOT     
-            float? angle = (artillaryMode) ? highAngle : lowAngle;
+            float? angle = (artillaryMode) ? highAngle : lowAngle; // "float?" - Means that the float can contain a 'null' value which is handy when comparing values ||| SIMPLY A FLIP FLOP IF CONDITION WHICH SETS ANGLE TO X ANGLE BASED ON THE BOOLEAN
             if(angle != null){
-                shooterObj.localEulerAngles = new Vector3(360f - (float)angle, 0f, 0f);
-                transform.LookAt(targetPos);
-                transform.eulerAngles = new Vector3(0f, transform.rotation.eulerAngles.y, 0f);
+                shooterObj.localEulerAngles = new Vector3(360f - (float)angle, 0f, 0f); // ROTATES THE GUN UP/DOWN
+                transform.LookAt(targetPos); // FORCES THIS TRANSFORM TO FACE THE TARGET VECTOR
+                transform.eulerAngles = new Vector3(0f, transform.rotation.eulerAngles.y, 0f); // RESETS THE X/Z ANGLES SO THAT IT ONLY ROTATES ON THE Y AXIS
             }
             else{
                 Debug.LogError("OUT OF REACH: Brute forcing speed improvement");                
             }
         }
 
-        void CalculateAngleToHitTarget(ref float? thetaA, ref float? thetaB, Vector3 targetPos, float speed)
-        {
-            float v = speed;
+        ///<summary>THIS FUNCTION WILL ROTATE THE SHOOTER OBJECT ON THE X/Z AXIS - WILL RETURN A HIGH/LOW ANGLE</summary>
+        void CalculateAngleToHitTarget(ref float? thetaA, ref float? thetaB, Vector3 targetPos, float speed){
+            float v = speed; // VELOCITY
             Vector3 targetVec = targetPos - shooterObj.position; // DIRECTION
 
             float y = targetVec.y; // VERTICAL DISTANCE
@@ -54,11 +47,11 @@ namespace TrojanMouse.BallisticTrajectory{
             float g = 9.81f; // GRAVITY
 
             // ANGLE CALCULATION
-            float vSqr = v * v;
-            float underTheRoot = (vSqr * vSqr) - g * (g * x * x + 2 * y * vSqr);
+            float vSqr = v * v; // VELOCITY SQUARED
+            float underTheRoot = (vSqr * vSqr) - g 
+                                * (g * x * x + 2 * y * vSqr);
 
-            if (underTheRoot < 0)
-            {
+            if (underTheRoot < 0){
                 thetaA = null;
                 thetaB = null;
                 return;
