@@ -27,8 +27,13 @@ public class DistractionModule : MonoBehaviour
         }
     }
 
+    private void OnDisable() {
+        
+    }
+
     public IEnumerator GenerateDistractionChance()
     {
+        //Debug.Log("I am running");
         int randomWait = UnityEngine.Random.Range(5, 15);
         yield return new WaitForSeconds(randomWait);
         distractionChance = UnityEngine.Random.Range(0, 5);
