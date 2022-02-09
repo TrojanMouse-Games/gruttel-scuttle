@@ -11,7 +11,6 @@ public class AnimationController : MonoBehaviour
     void Update(){
         Vector3 dir = (transform.position - previousPos).normalized;
         curSpeed = Mathf.SmoothDamp(curSpeed, dir.magnitude, ref velocity, smoothingSpeed);
-        anim.SetFloat("speed", curSpeed);
         previousPos = transform.position;
     }
 }
