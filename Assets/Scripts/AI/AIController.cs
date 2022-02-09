@@ -284,8 +284,6 @@ namespace TrojanMouse.AI
 
             moduleManager = gameObject.GetComponent<ModuleManager>();
             moduleManager.CheckScripts();
-            // ISSUE IS CAUSED BY THIS CALL
-            moduleManager.CheckStage();
 
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
@@ -295,10 +293,6 @@ namespace TrojanMouse.AI
             powerUp = GetComponent<Powerup>();
             inventory = GetComponent<Inventory.Inventory>();
             // Thing for setting up char stats, powerups etc
-
-            // UNUSED AS OF NOW.
-            // This assigns the player follow point;
-            //followPoint = GameObject.FindGameObjectWithTag("PlayerFollowPoint");
 
             // Simple check to make sure the agent is on a navmesh, if not destroy it
             if (data.Agent.isOnNavMesh == false)
@@ -320,11 +314,8 @@ namespace TrojanMouse.AI
                     break;
             }
 
-            if (moduleManager.distractionModule.enabled)
-            {
-                Debug.LogError("HEY MATT I'm DUMB");
-                StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
-            }
+            
+            
         }
 
         private void CheckDistraction()

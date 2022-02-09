@@ -14,9 +14,7 @@ namespace TrojanMouse.GameplayLoop
 
     [Serializable] public class CameraControl : UnityEvent<bool> { }
     [Serializable] public class RecycleObject : UnityEvent { }
-    [Serializable]
-    public class VillageSettings
-    {
+    [Serializable] public class VillageSettings{
         [Tooltip("Place all the nodes for this level in here, all nodes will spawn a Gruttel on them")] public Transform[] gruttelSpawnPoints;
         [Tooltip("Gruttel Prefab here...")] public GameObject gruttelPrefab;
         [Tooltip("To keep hierarchy clean, choose a folder the Gruttels will spawn within")] public Transform gruttelFolder;
@@ -24,15 +22,14 @@ namespace TrojanMouse.GameplayLoop
         [Tooltip("When on the introduction phase, this is the position the camera will interpolate to")] public Transform cameraTarget;
         public PowerupSettings powerupSettings;
     }
-    [Serializable] public class PowerupSettings
-    {
+    [Serializable] public class PowerupSettings{
         [Tooltip("This is where the powerups will be deposited")] public Transform powerupStorage;
         [Tooltip("Powerup Prefab here...")] public GameObject powerupPrefab;
         public Sprite buffPower, radioPower;
     }
 
-    public class GameLoop : MonoBehaviour
-    {
+    
+    public class GameLoop : MonoBehaviour{
         #region VARIABLES
 
         [SerializeField] VillageSettings villageSettings;
@@ -56,12 +53,19 @@ namespace TrojanMouse.GameplayLoop
         int litterToBeRecycled;
         float spawnDelayHolder, spawnDelay;
         public static GameLoop current;
+        public event Action<bool> CheckStage;
+
         #endregion
         #endregion
         [SerializeField] float postPrepStageIntermission;
         [HideInInspector] public float stageIntermission;
-        private void Start(){
+        
+        private void Awake(){
             current = this;
+        }
+        
+        private void Start(){
+            
             foreach (Transform node in villageSettings.gruttelSpawnPoints){
                 // SPAWN GRUTTELS IN VILLAGE
                 GameObject newGruttel = Instantiate(villageSettings.gruttelPrefab, node.position, node.rotation, villageSettings.gruttelFolder);
@@ -73,7 +77,7 @@ namespace TrojanMouse.GameplayLoop
             prepCam.SetActive(false);
             StartCoroutine(CountDownStage());
         }
-
+        
         private void Update(){
             if (cycles[0].stages[curStage].levelComplete) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
@@ -96,6 +100,7 @@ namespace TrojanMouse.GameplayLoop
                     // CHANGE IMAGE OF POWERUP CORROSPONDING TO TYPE
                     clonedPowerup.GetComponent<Image>().sprite = (powerUp == PowerupType.BUFF) ? villageSettings.powerupSettings.buffPower : villageSettings.powerupSettings.radioPower;
                 }
+                CheckStage?.Invoke(false);
             }
             else if (!isRunning){
                 isRunning = true;
@@ -112,7 +117,8 @@ namespace TrojanMouse.GameplayLoop
 
             #region LEVEL MANAGEMENT
             if (cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, litterToBeRecycled)){
-                isRunning = false;
+                isRunning = false;                
+
                 if (curStage + 1 > cycles[curLevel].stages.Length){
                     curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
                     curStage = 0;
@@ -133,7 +139,11 @@ namespace TrojanMouse.GameplayLoop
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
 
-            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;            
+            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;    
+
+            if(stageIntermission <= 0){
+                CheckStage?.Invoke(true);
+            }        
         }
 
         IEnumerator CountDownStage() {

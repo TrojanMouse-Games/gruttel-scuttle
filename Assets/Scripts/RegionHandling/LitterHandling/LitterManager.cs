@@ -29,7 +29,7 @@ namespace TrojanMouse.RegionManagement
         {
             int numOfLitterInRegion = region.transform.childCount;
             maxLitter = (maxLitter < 0) ? maxLitterInRegion : maxLitter;
-            Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");
+            //Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");
 
 
             int iterationTo = Mathf.Clamp(numOfLitterInRegion + litterToSpawn, numOfLitterInRegion, Mathf.Min(maxLitter, maxLitterInRegion)); // THIS IS WHAT THE FOR LOOP WILL ITERATE UP TO. - IT ENSURES THE VALUE DOES NOT EXCEED THE MAX LITTER
