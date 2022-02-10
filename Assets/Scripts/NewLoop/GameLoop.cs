@@ -42,6 +42,7 @@ namespace TrojanMouse.GameplayLoop
         public GameObject zoomOutCam;
         public Text cycleText;
         public Text stageText;
+        public Text tipText;
 
         int timer;
 
@@ -66,6 +67,8 @@ namespace TrojanMouse.GameplayLoop
         }
         
         private void Start(){
+
+            
             
             foreach (Transform node in villageSettings.gruttelSpawnPoints){
                 // SPAWN GRUTTELS IN VILLAGE
@@ -76,6 +79,7 @@ namespace TrojanMouse.GameplayLoop
             }
             Camera.main.GetComponent<MoveWithMouseClick>().enabled = false;
             prepCam.SetActive(false);
+            tipText.text = "Drag and drop your powerful Nana Betsy's onto your Gruttels";
             StartCoroutine(CountDownStage());
         }
         
@@ -108,6 +112,7 @@ namespace TrojanMouse.GameplayLoop
                 // RETURN CAMERA TO GAME MODE
                 prepCam.SetActive(false);
                 zoomOutCam.SetActive(true);
+                tipText.text = "Before the scuttle starts, drag and drop your Gruttels whereever you like!";
                 Camera.main.GetComponent<MoveWithMouseClick>().enabled = true;
                 cameraToVillage?.Invoke(false); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 remainingLitterToSpawn = cycles[curLevel].stages[curStage].litterSettings.numOfLitterToSpawn;
@@ -134,6 +139,7 @@ namespace TrojanMouse.GameplayLoop
             #region LITTER SPAWNER
             if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0){
                 zoomOutCam.SetActive(false);
+                tipText.text = "Click a Gruttel and a location to help them pick up litter and take it to the recycling machines.";
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)];
@@ -155,6 +161,7 @@ namespace TrojanMouse.GameplayLoop
         }
 
         IEnumerator CountDownStage() {
+            
             cycleText.text = cycles[0].stages[curStage].name;
             yield return new WaitForSeconds(1);
             float durationOfPhase = cycles[curLevel].stages[curStage].litterSettings.durationOfPhase;
@@ -167,7 +174,6 @@ namespace TrojanMouse.GameplayLoop
             }
             StartCoroutine(CountDownStage());
         }
-
 
         public void RecycleObj()
         {
