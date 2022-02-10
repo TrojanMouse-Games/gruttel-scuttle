@@ -48,6 +48,7 @@ namespace TrojanMouse.Menu
         public void CloseGame()
         {
             Application.Quit();
+            Debug.Log("QUIT");
         }
 
         public void OpenLink(string url)
@@ -62,7 +63,7 @@ namespace TrojanMouse.Menu
 
             while (!async.isDone)
             {
-                Debug.Log($"[scene]:{sceneName} [load progress]: {async.progress}");
+                //Debug.Log($"[scene]:{sceneName} [load progress]: {async.progress}");
 
                 yield return null;
             }
