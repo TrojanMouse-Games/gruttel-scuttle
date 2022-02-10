@@ -112,7 +112,7 @@ namespace TrojanMouse.GameplayLoop
                 // RETURN CAMERA TO GAME MODE
                 prepCam.SetActive(false);
                 zoomOutCam.SetActive(true);
-                tipText.text = "Before the scuttle starts, drag and drop your Gruttels whereever you like!";
+                tipText.text = $"You have {Mathf.FloorToInt(stageIntermission)} seconds before the scuttle starts, drag and drop your Gruttels wherever you like!";
                 Camera.main.GetComponent<MoveWithMouseClick>().enabled = true;
                 cameraToVillage?.Invoke(false); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 remainingLitterToSpawn = cycles[curLevel].stages[curStage].litterSettings.numOfLitterToSpawn;
@@ -139,7 +139,7 @@ namespace TrojanMouse.GameplayLoop
             #region LITTER SPAWNER
             if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0){
                 zoomOutCam.SetActive(false);
-                tipText.text = "Click a Gruttel and a location to help them pick up litter and take it to the recycling machines.";
+                //tipText.text = "Click a Gruttel and a location to help them pick up litter and take it to the recycling machines.";
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)];
@@ -148,16 +148,16 @@ namespace TrojanMouse.GameplayLoop
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
 
-            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;    
-
+            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;
             /*
             NEED TO FIND WAY TO STOP THIS BEING CALLED EACH FRAME, right now though...
             it works, don't touch it or I'll have several mental breakdowns which will involve
             me pissing, shitting and throwing up at the same time.
             */
-            if(stageIntermission <= 0){
+            if (stageIntermission <= 0)
+            {
                 CheckStage?.Invoke(true);
-            }        
+            }
         }
 
         IEnumerator CountDownStage() {
