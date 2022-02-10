@@ -397,10 +397,11 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
-  sourceProjectPath: 
-  sourceBankPath: 
+  HasSourceProject: 0
+  HasPlatforms: 0
+  sourceProjectPath: E:/UNI/GAM220/Gruttel Game/Gruttel Proto/FMOD Project/Gruttel
+    FMOD/Gruttel FMOD/Gruttel FMOD.fspro
+  sourceBankPath: FMOD Banks/Desktop
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -422,7 +423,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
