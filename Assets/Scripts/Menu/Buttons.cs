@@ -20,12 +20,12 @@ namespace TrojanMouse.Menu
         }
         public void LevelSelectOne()
         {
-            playScene = "Area1_Rectangle";
+            playScene = "Area3_SemiCircle";
             LevelSelected();
         }
         public void LevelSelectTwo()
         {
-            playScene = "Area2_Circle";
+            playScene = "Area1_Rectangle";
             LevelSelected();
         }
         public void LevelSelectThree()
