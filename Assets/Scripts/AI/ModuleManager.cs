@@ -110,7 +110,7 @@ public class ModuleManager : MonoBehaviour
     {
         
         if(state){
-            //enable distraction
+            //enable distraction, this is after the prep phase
             distractionModule.enabled = true;
             moveWithMouseClick.enabled = true;
             moveWithMouseGrab.ToggleAIComponents(true, "putDown");
@@ -121,7 +121,9 @@ public class ModuleManager : MonoBehaviour
             }
             //Debug.Log("checked");
         }
-        else{
+        else
+        {
+            // disabled distraction, this is in the prep phase.
             distractionModule.enabled = false;
             moveWithMouseClick.enabled = false;
             moveWithMouseGrab.enabled = true;
