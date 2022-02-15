@@ -66,10 +66,7 @@ namespace TrojanMouse.GameplayLoop
             current = this;
         }
         
-        private void Start(){
-
-            
-            
+        private void Start(){            
             foreach (Transform node in villageSettings.gruttelSpawnPoints){
                 // SPAWN GRUTTELS IN VILLAGE
                 GameObject newGruttel = Instantiate(villageSettings.gruttelPrefab, node.position, node.rotation, villageSettings.gruttelFolder);
