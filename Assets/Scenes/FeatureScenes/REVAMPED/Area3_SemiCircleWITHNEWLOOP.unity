@@ -425,6 +425,12 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 3615293011174587189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &285175193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6727708101794933758, guid: 9922fff28e2b6ce42a3867c13e8997ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 3615293011174587189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &338548714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1741,6 +1747,12 @@ Transform:
   m_Father: {fileID: 1415662130}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &929798642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3615293010984106492, guid: 9922fff28e2b6ce42a3867c13e8997ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 3615293011174587189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1008242592
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,6 +3979,9 @@ MonoBehaviour:
     powerupPrefab: {fileID: 3428340782540745377, guid: a7cba7972e6dc2c4a945f03e05c16d91,
       type: 3}
     powerupSpawnFolder: {fileID: 868248721}
+    prepCamera: {fileID: 929798642}
+    readyStageCamera: {fileID: 285175193}
+    mainCamera: {fileID: 0}
   levels:
   - {fileID: 11400000, guid: f448b5b390724a2418229b002f85917d, type: 2}
   curLevel: 0

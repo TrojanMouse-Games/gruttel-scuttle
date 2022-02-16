@@ -20,6 +20,7 @@ namespace TrojanMouse.GameplayLoop{
         
         GLNode CreateBehaviourTree(Level level){
             spawnDelayHolder = CalculateSpawnDelay(levels[curLevel]);
+            GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera};
 
             #region NODES
             #region PREP NODES
@@ -27,6 +28,8 @@ namespace TrojanMouse.GameplayLoop{
             GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.numOfPowerupsToDispence, prerequisiteSettings.powerupSpawnFolder);
             PowerupsUsed arePowerupsUsed = new PowerupsUsed(prerequisiteSettings.powerupSpawnFolder);
+
+            ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);
             #endregion
             
             #region MAIN NODES
@@ -35,7 +38,7 @@ namespace TrojanMouse.GameplayLoop{
             #endregion
             #endregion
 
-            GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, areGruttelsSelected, spawnPowerups, arePowerupsUsed});
+            GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, areGruttelsSelected, spawnPowerups, arePowerupsUsed});
             GLSequence mainStage = new GLSequence(new List<GLNode>{spawnLitter, isLitterCleared});
 
             
@@ -113,6 +116,11 @@ namespace TrojanMouse.GameplayLoop{
             [Header("Powerup Settings")]
             [Tooltip("Powerup Prefab here...")] public GameObject powerupPrefab;
             [Tooltip("This is where the powerups will be deposited (SHOULD BE INSIDE A CANVAS OBJECT)")] public Transform powerupSpawnFolder;
+
+            [Header("Camera Settings")]
+            public GameObject prepCamera;
+            public GameObject readyStageCamera;
+            public GameObject mainCamera;
         }
     }
 }
