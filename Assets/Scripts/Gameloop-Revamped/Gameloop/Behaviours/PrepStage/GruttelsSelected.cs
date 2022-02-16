@@ -25,7 +25,7 @@ namespace TrojanMouse.GameplayLoop{
                 return NodeState.SUCCESS;
             }            
             RaycastHit hit;
-            if(Physics.Raycast(GameLoopBT.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){
+            if(Physics.Raycast(GameLoopBT.instance.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){
                 if(!gruttelsSelected.Contains(hit.collider.transform)){
                     gruttelsSelected.Add(hit.collider.transform);
                     hit.collider.transform.localScale = Vector3.one * 1.25f;          

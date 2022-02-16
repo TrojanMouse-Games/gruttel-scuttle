@@ -5,6 +5,8 @@ using System;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GameLoopBT : MonoBehaviour{        
+        public static GameLoopBT instance;
+
         #region VARIABLES
         [SerializeField] Prerequisites prerequisiteSettings;
         
@@ -12,9 +14,13 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
+
+        float spawnDelayHolder, spawnDelay;
         #endregion
         
         GLNode CreateBehaviourTree(Level level){
+            spawnDelayHolder = CalculateSpawnDelay(levels[curLevel]);
+
             #region NODES
             #region PREP NODES
             SpawnGruttels spawnGruttels = new SpawnGruttels(prerequisiteSettings.gruttelObj, prerequisiteSettings.gruttelVillageSpawnPoints, prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned, prerequisiteSettings.gruttelVillageFolder); // PASS IN BOTH FOLDERS, IF BOTH EMPTY, THEN SPAWN GRUTTELS
@@ -22,11 +28,18 @@ namespace TrojanMouse.GameplayLoop{
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.numOfPowerupsToDispence, prerequisiteSettings.powerupSpawnFolder);
             PowerupsUsed arePowerupsUsed = new PowerupsUsed(prerequisiteSettings.powerupSpawnFolder);
             #endregion
+            
+            #region MAIN NODES
+            SpawnLitter spawnLitter = new SpawnLitter(level.litterToSpawnForWave);
+            IsLitterCleared isLitterCleared = new IsLitterCleared();
+            #endregion
             #endregion
 
             GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, areGruttelsSelected, spawnPowerups, arePowerupsUsed});
+            GLSequence mainStage = new GLSequence(new List<GLNode>{spawnLitter, isLitterCleared});
 
-            return new GLSequence(new List<GLNode>{prepStage});
+            
+            return new GLSequence(new List<GLNode>{prepStage, mainStage});
         }
 
 
@@ -35,7 +48,16 @@ namespace TrojanMouse.GameplayLoop{
 
 
 
-        private void Awake() {            
+        private void Awake() {    
+            #region SINGLETON CREATION
+            if(!instance){
+                instance = this;
+            }   
+            else{
+                Destroy(this);
+            }
+            #endregion
+            
             cam = Camera.main;
             topNode = CreateBehaviourTree(levels[curLevel]);
         }
@@ -54,16 +76,29 @@ namespace TrojanMouse.GameplayLoop{
         }
 
         ///<summary>THIS FUNCTION WILL ALLOW BT BEHAVIOURS TO CALL THIS FUNCTION, BECAUSE THEY DO NOT DERIVE FROM MONOBEHAVIOUR SO THIS WILL NOT WORK OTHERWISE... SIMPLY SPAWNS OBJECTS</summary>
-        public static GameObject SpawnObj(GameObject obj, Vector3 spawnPoint, Quaternion rotation, Transform parent){
+        public GameObject SpawnObj(GameObject obj, Vector3 spawnPoint, Quaternion rotation, Transform parent){
             return Instantiate(obj, spawnPoint, rotation, parent);
         }
         
         ///<summary>THIS FUNCTION WILL RETURN A MOUSE RAY, 'INPUT.MOUSEPOSITION' ONLY DERIVES FROM MONOBEHAVIOUR WHICH THE BT BEHAVIOURS DO NOT, SO THIS NEEDS TO BE HERE TO WORK</summary>
-        public static Ray GetMouse(Camera cam){            
+        public Ray GetMouse(Camera cam){            
             if(Input.GetMouseButtonDown(0)){
                 return cam.ScreenPointToRay(Input.mousePosition);
             }
             return new Ray();
+        }
+
+        public bool CanSpawn(){
+            spawnDelay -= (spawnDelay >0) ? Time.deltaTime : 0;
+            if(spawnDelay <=0){
+                spawnDelay = spawnDelayHolder;
+                return true;
+            }
+            return false;
+        }
+
+        float CalculateSpawnDelay(Level level){
+            return level.timeToSpawnAllLitter / level.litterToSpawnForWave;
         }
         
         [Serializable] public class Prerequisites{

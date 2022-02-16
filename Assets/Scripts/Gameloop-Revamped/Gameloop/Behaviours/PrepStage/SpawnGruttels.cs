@@ -25,7 +25,7 @@ namespace TrojanMouse.GameplayLoop{
             // SPAWN GRUTTELS AT SPAWN POINTS    
             foreach(Transform spawn in spawnPoints){
                 Vector3 dir = (lookAtObject.position - spawn.position);                
-                GameObject newGruttel = GameLoopBT.SpawnObj(gruttelObj, spawn.position, Quaternion.LookRotation(dir, Vector3.up), villageFolder);
+                GameObject newGruttel = GameLoopBT.instance.SpawnObj(gruttelObj, spawn.position, Quaternion.LookRotation(dir, Vector3.up), villageFolder);
                 newGruttel.transform.eulerAngles = new Vector3(0, newGruttel.transform.eulerAngles.y, 0);
             }     
             hasSpawned = true;

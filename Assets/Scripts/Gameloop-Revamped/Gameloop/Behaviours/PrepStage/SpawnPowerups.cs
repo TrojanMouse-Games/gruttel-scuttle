@@ -21,7 +21,7 @@ namespace TrojanMouse.GameplayLoop{
             }
 
             for(int i = 0; i < quantity; i++){
-                GameObject powerup = GameLoopBT.SpawnObj(powerupObj, Vector3.zero, Quaternion.identity, storage);
+                GameObject powerup = GameLoopBT.instance.SpawnObj(powerupObj, Vector3.zero, Quaternion.identity, storage);
             }
             hasSpawned = true;
             return NodeState.SUCCESS;
