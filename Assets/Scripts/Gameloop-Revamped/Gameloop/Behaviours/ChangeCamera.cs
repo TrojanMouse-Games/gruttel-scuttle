@@ -6,9 +6,11 @@ namespace TrojanMouse.GameplayLoop{
     public class ChangeCamera : GLNode{
         GameObject selectedCamera;
         GameObject[] cameras;
-        public ChangeCamera(GameObject selectedCamera, GameObject[] cameras){
+        bool isEnabled;
+        public ChangeCamera(GameObject selectedCamera, GameObject[] cameras, bool isEnabled = true){
             this.selectedCamera = selectedCamera;
             this.cameras = cameras;
+            this.isEnabled = isEnabled;
         }
         public override NodeState Evaluate(){
             foreach(GameObject cam in cameras){
@@ -17,7 +19,7 @@ namespace TrojanMouse.GameplayLoop{
                 }
                 cam.SetActive(false);
             }
-            selectedCamera.SetActive(true);
+            selectedCamera.SetActive(isEnabled);
             return NodeState.SUCCESS;
         }
     }

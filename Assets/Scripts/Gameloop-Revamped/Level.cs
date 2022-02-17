@@ -8,6 +8,7 @@ namespace TrojanMouse.GameplayLoop{
         [Header("Prep-Stage Settings")]
         [Tooltip("Players will have to select x amount of Gruttels to then proceed onto next stage")] public int numOfGruttelsToSelect;
         [Tooltip("Number of powerups to dispence to the player to be used on the Gruttels!")] public int numOfPowerupsToDispence;
+        [Tooltip("Time (seconds) until the main round starts")] public float readyStageIntermission;
 
         [Header("Main-Stage Settings")]
         [Tooltip("Total amount of litter to start spawning over a duration of time")] public int litterToSpawnForWave;

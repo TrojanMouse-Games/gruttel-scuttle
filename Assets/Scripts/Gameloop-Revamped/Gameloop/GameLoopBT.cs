@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GameLoopBT : MonoBehaviour{        
@@ -28,21 +29,34 @@ namespace TrojanMouse.GameplayLoop{
             GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.numOfPowerupsToDispence, prerequisiteSettings.powerupSpawnFolder);
             PowerupsUsed arePowerupsUsed = new PowerupsUsed(prerequisiteSettings.powerupSpawnFolder);
-
+            ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on {level.numOfGruttelsToSelect} Gruttels to proceed");
+            ChangeUIText addPowerups = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Nana Betsy's onto your Gruttels");
+            EnableAI disableAI = new EnableAI(false);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);
             #endregion
-            
+            #region READY NODES
+            ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
+            ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
+            Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission);
+            #endregion
             #region MAIN NODES
+            ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
+            ChangeCamera mainCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras, false);
             SpawnLitter spawnLitter = new SpawnLitter(level.litterToSpawnForWave);
             IsLitterCleared isLitterCleared = new IsLitterCleared();
+
+            EnableAI enableAI = new EnableAI(true);
+            #endregion
+            #region AFTERMATH NODES
             #endregion
             #endregion
 
-            GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, areGruttelsSelected, spawnPowerups, arePowerupsUsed});
-            GLSequence mainStage = new GLSequence(new List<GLNode>{spawnLitter, isLitterCleared});
+            GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, selectGruttelsText, disableAI, areGruttelsSelected, spawnPowerups, addPowerups, arePowerupsUsed});
+            GLSequence readyStage = new GLSequence(new List<GLNode>{dragGruttelsText, readyCam, timeToDragGruttels});
+            GLSequence mainStage = new GLSequence(new List<GLNode>{mainRoundText, enableAI, mainCam, spawnLitter, isLitterCleared});
 
             
-            return new GLSequence(new List<GLNode>{prepStage, mainStage});
+            return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
         }
 
 
@@ -121,6 +135,11 @@ namespace TrojanMouse.GameplayLoop{
             public GameObject prepCamera;
             public GameObject readyStageCamera;
             public GameObject mainCamera;
+
+            [Header("UI Settings")]
+            public Text cycleText;
+            public Text stageText;
+            public Text tipText;
         }
     }
 }
