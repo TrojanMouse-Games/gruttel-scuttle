@@ -38,9 +38,9 @@ namespace TrojanMouse.Inventory {
         }
 
         public void Drop(Region.RegionType _type){                    
-            GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform.position).transform); // SPAWN LITTER
-            droppedItem.GetComponent<Rigidbody>().isKinematic = false;
-            droppedItem.GetComponent<Collider>().enabled = true;          
+            //GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform.position).transform); // SPAWN LITTER
+            //droppedItem.GetComponent<Rigidbody>().isKinematic = false;
+            //droppedItem.GetComponent<Collider>().enabled = true;          
 
             inventoryHandler.Dequip(selectedObject);
             inventoryHandler.RemoveFromInventory(selectedObject.GetComponent<LitterObjectHolder>().type);

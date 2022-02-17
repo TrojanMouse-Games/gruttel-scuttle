@@ -240,28 +240,28 @@ namespace TrojanMouse.AI
                 else
                 {
                     // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
-                    Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
-                    if (!closestRegion)
-                    {
-                        return AIState.Nothing;
-                    }
-
+                    //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
+                    //if (!closestRegion)
+                    //{
+                    //    return AIState.Nothing;
+                    //}
+                    Collider[] litter = Physics.OverlapSphere(transform.position, data.DetectionRadius, litterLayerMask);
                     LitterObject litterType = null;
                     Transform litterObj = null;
-                    foreach (Transform obj in closestRegion.transform)
-                    {
+
+                    foreach (Collider obj in litter){
                         LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                         bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
 
                         if (!cantPickup)
                         {
-                            data.Agent.SetDestination(obj.position);
+                            data.Agent.SetDestination(obj.transform.position);
                             litterType = type;
-                            litterObj = obj;
+                            litterObj = obj.transform;
                             break;
                         }
                     }
-                    if (litterType && Mathf.Abs((transform.position - litterObj.position).magnitude) <= pickupRange)
+                    if (litterType && Mathf.Abs((litterObj.position - transform.position).magnitude) <= pickupRange)
                     {
                         equipper.PickUp(litterObj, powerUp.Type, litterType);
                     }
