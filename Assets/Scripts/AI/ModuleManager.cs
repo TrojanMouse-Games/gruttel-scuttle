@@ -19,7 +19,7 @@ public class ModuleManager : MonoBehaviour
     private void Start()
     {
         aiController = gameObject.GetComponent<AIController>();
-        GameLoop.current.CheckStage += CheckStage;
+        //GameLoop.current.CheckStage += CheckStage; // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
     }
 
     public void CheckScripts()

@@ -11,7 +11,6 @@ namespace TrojanMouse.GameplayLoop{
         [Tooltip("Time (seconds) until the main round starts")] public float readyStageIntermission;
 
         [Header("Main-Stage Settings")]
-        [Tooltip("Total amount of litter to start spawning over a duration of time")] public int litterToSpawnForWave;
-        [Tooltip("Time it takes for 'LitterToSpawnForWave' amount of litter to finish spawning (Seconds)")] public float timeToSpawnAllLitter;
+        public Waves[] wavesInLevel;
     }
 }

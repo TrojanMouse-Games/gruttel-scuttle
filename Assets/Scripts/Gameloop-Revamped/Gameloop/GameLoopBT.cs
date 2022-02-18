@@ -12,15 +12,14 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] Prerequisites prerequisiteSettings;
         
         [SerializeField] Level[] levels;
-        [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
+        [SerializeField] int curLevel, curWave; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
 
-        float spawnDelayHolder, spawnDelay;
+        float spawnDelay;
         #endregion
         
-        GLNode CreateBehaviourTree(Level level){
-            spawnDelayHolder = CalculateSpawnDelay(levels[curLevel]);
+        GLNode CreateBehaviourTree(Level level){            
             GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera};
 
             #region NODES
@@ -42,7 +41,7 @@ namespace TrojanMouse.GameplayLoop{
             #region MAIN NODES
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
             ChangeCamera mainCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras, false);
-            SpawnLitter spawnLitter = new SpawnLitter(level.litterToSpawnForWave);
+            LitterHandler litterHandler = new LitterHandler(level);
             IsLitterCleared isLitterCleared = new IsLitterCleared();
 
             EnableAI enableAI = new EnableAI(true);
@@ -53,7 +52,7 @@ namespace TrojanMouse.GameplayLoop{
 
             GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, selectGruttelsText, disableAI, areGruttelsSelected, spawnPowerups, addPowerups, arePowerupsUsed});
             GLSequence readyStage = new GLSequence(new List<GLNode>{dragGruttelsText, readyCam, timeToDragGruttels});
-            GLSequence mainStage = new GLSequence(new List<GLNode>{mainRoundText, enableAI, mainCam, spawnLitter, isLitterCleared});
+            GLSequence mainStage = new GLSequence(new List<GLNode>{mainRoundText, enableAI, mainCam, litterHandler, isLitterCleared});
 
             
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
@@ -103,19 +102,6 @@ namespace TrojanMouse.GameplayLoop{
                 return cam.ScreenPointToRay(Input.mousePosition);
             }
             return new Ray();
-        }
-
-        public bool CanSpawn(){
-            spawnDelay -= (spawnDelay >0) ? Time.deltaTime : 0;
-            if(spawnDelay <=0){
-                spawnDelay = spawnDelayHolder;
-                return true;
-            }
-            return false;
-        }
-
-        float CalculateSpawnDelay(Level level){
-            return level.timeToSpawnAllLitter / level.litterToSpawnForWave;
         }
         
         [Serializable] public class Prerequisites{
