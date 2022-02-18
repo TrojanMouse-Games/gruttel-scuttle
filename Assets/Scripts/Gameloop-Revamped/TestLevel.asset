@@ -13,7 +13,16 @@ MonoBehaviour:
   m_Name: TestLevel
   m_EditorClassIdentifier: 
   numOfGruttelsToSelect: 4
-  numOfPowerupsToDispence: 3
+  powerups:
+  - name: BUFF
+    powerup: 1
+    image: {fileID: 21300000, guid: f4cf73cd05e493c42b062cc48a04f5e8, type: 3}
+  - name: BUFF
+    powerup: 1
+    image: {fileID: 21300000, guid: f4cf73cd05e493c42b062cc48a04f5e8, type: 3}
+  - name: IRRADIATED
+    powerup: 2
+    image: {fileID: 21300000, guid: 6a546288e81342844a8675ff02d72b12, type: 3}
   readyStageIntermission: 10
   wavesInLevel:
   - {fileID: 11400000, guid: a0d2fcdf0a17d9d48aac1965fb46ed06, type: 2}
