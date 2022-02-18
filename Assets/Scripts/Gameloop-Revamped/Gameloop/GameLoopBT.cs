@@ -30,13 +30,14 @@ namespace TrojanMouse.GameplayLoop{
             PowerupsUsed arePowerupsUsed = new PowerupsUsed(prerequisiteSettings.powerupSpawnFolder);
             ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on {level.numOfGruttelsToSelect} Gruttels to proceed");
             ChangeUIText addPowerups = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Nana Betsy's onto your Gruttels");
-            EnableAI disableAI = new EnableAI(false);
+            EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);
             #endregion
             #region READY NODES
             ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
             Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission);
+            EnableAI dragAI = new EnableAI(EnableAI.AIState.Dragable);
             #endregion
             #region MAIN NODES
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
@@ -44,14 +45,14 @@ namespace TrojanMouse.GameplayLoop{
             LitterHandler litterHandler = new LitterHandler(level);
             IsLitterCleared isLitterCleared = new IsLitterCleared();
 
-            EnableAI enableAI = new EnableAI(true);
+            EnableAI enableAI = new EnableAI(EnableAI.AIState.Enabled);
             #endregion
             #region AFTERMATH NODES
             #endregion
             #endregion
 
             GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, selectGruttelsText, disableAI, areGruttelsSelected, spawnPowerups, addPowerups, arePowerupsUsed});
-            GLSequence readyStage = new GLSequence(new List<GLNode>{dragGruttelsText, readyCam, timeToDragGruttels});
+            GLSequence readyStage = new GLSequence(new List<GLNode>{dragGruttelsText, readyCam, dragAI, timeToDragGruttels});
             GLSequence mainStage = new GLSequence(new List<GLNode>{mainRoundText, enableAI, mainCam, litterHandler, isLitterCleared});
 
             

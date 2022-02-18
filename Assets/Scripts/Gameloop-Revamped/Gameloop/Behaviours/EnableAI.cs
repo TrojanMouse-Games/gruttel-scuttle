@@ -5,13 +5,19 @@ using UnityEngine.UI;
 
 namespace TrojanMouse.GameplayLoop{ 
     public class EnableAI : GLNode{
-        bool isEnabled;
-        public EnableAI(bool isEnabled){
-            this.isEnabled = isEnabled;
+        AIState aiState;
+        public EnableAI(AIState state){
+            this.aiState = state;
         }
         public override NodeState Evaluate(){
             
             return NodeState.SUCCESS;
+        }
+
+        public enum AIState{
+            Disabled,
+            Enabled,
+            Dragable
         }
     }
 }
