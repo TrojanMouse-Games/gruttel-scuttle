@@ -22,6 +22,10 @@ namespace TrojanMouse.GameplayLoop{
         public override NodeState Evaluate(){
             // IF NOT X AMT OF GRUTTELS ARE NOT SELECTED RETURN FAILURE OTHERWISE RETURN SUCCESS!
             if(gruttelsSelected.Count >= gruttelsNeededToSelect){
+                // DO THINGS HERE
+                foreach(Transform gruttel in gruttelsSelected){
+                    gruttel.localScale = Vector3.one;
+                }
                 return NodeState.SUCCESS;
             }            
             RaycastHit hit;
