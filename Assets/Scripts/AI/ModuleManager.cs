@@ -16,10 +16,46 @@ public class ModuleManager : MonoBehaviour
 
     private AIController aiController;
 
+   
     private void Start()
     {
-        aiController = gameObject.GetComponent<AIController>();
+        aiController = gameObject.GetComponent<AIController>();        
         //GameLoop.current.CheckStage += CheckStage; // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
+    }
+
+    private void Awake() {
+        GameLoopBT.SetAIState += SetState;
+    }
+    void SetState(EnableAI.AIState state){       
+        bool successfullyChangedState = false;
+        try{
+            switch(state){
+                case EnableAI.AIState.Enabled: // ENABLE AI
+                    distractionModule.enabled = true;
+                    moveWithMouseClick.enabled = true;
+                    moveWithMouseGrab.enabled = false;
+                    successfullyChangedState = true;
+                    break;
+                case EnableAI.AIState.Disabled: // DISABLE ALL MODULES
+                    distractionModule.enabled = false;
+                    moveWithMouseClick.enabled = false;
+                    moveWithMouseGrab.enabled = false;
+                    successfullyChangedState = true;
+                    break;
+                case EnableAI.AIState.Dragable: // DISABLES ALL BUT DRAGGING STATES
+                    distractionModule.enabled = false;
+                    moveWithMouseClick.enabled = false;
+                    moveWithMouseGrab.enabled = true;
+                    successfullyChangedState = true;
+                    break;
+            }
+        }
+        catch(Exception err){ Debug.LogError($"{err}"); }
+
+        
+        if(!successfullyChangedState){            
+            SetState(state); // RECURSIVE BECAUSE THESE SCRIPTS DONT EXIST AT THE TIME OF CALLING THIS FUNCTION
+        }
     }
 
     public void CheckScripts()
@@ -105,6 +141,7 @@ public class ModuleManager : MonoBehaviour
         }
     }
 
+    /*
     bool poop;
     public void CheckStage(bool state)
     {
@@ -130,7 +167,7 @@ public class ModuleManager : MonoBehaviour
             //Debug.Log("checked2");
         }
     }
-
+    */
     public void DisableAllModules()
     {
         aiController.currentState = AIState.Nothing;

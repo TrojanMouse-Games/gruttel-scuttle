@@ -15,7 +15,7 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] int curLevel, curWave; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
-
+        public static event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
         float spawnDelay;
         #endregion
         
@@ -73,13 +73,20 @@ namespace TrojanMouse.GameplayLoop{
             else{
                 Destroy(this);
             }
-            #endregion
+            #endregion            
+            cam = Camera.main;           
+
+            if(topNode == null){
+                topNode = CreateBehaviourTree(levels[curLevel]);
+            }
+        }
+
+        private void Start() {
             
-            cam = Camera.main;
-            topNode = CreateBehaviourTree(levels[curLevel]);
         }
 
         void Update(){
+            
             switch(topNode.Evaluate()){
                 case NodeState.SUCCESS:
                     curLevel = (curLevel + 1) % levels.Length; // ITERATES TO THE NEXT LEVEL OR 0                    
@@ -105,6 +112,10 @@ namespace TrojanMouse.GameplayLoop{
             return new Ray();
         }
         
+        public void ChangeAIState(EnableAI.AIState state){
+            SetAIState?.Invoke(state);
+        }
+
         [Serializable] public class Prerequisites{
             [Header("Gruttel Settings")]
             [Tooltip("This is the Gruttel prefab. 1 will for spawn every spawnpoint...")] public GameObject gruttelObj;
