@@ -29,6 +29,11 @@ public class ModuleManager : MonoBehaviour
     void SetState(EnableAI.AIState state){       
         bool successfullyChangedState = false;
         try{
+            if(!moveWithMouseClick || !moveWithMouseGrab || !distractionModule){
+                distractionModule = GetComponent<DistractionModule>();
+                moveWithMouseClick = Camera.main.GetComponent<MoveWithMouseClick>();
+                moveWithMouseGrab = Camera.main.GetComponent<MoveWithMouseGrab>();            
+            }
             switch(state){
                 case EnableAI.AIState.Enabled: // ENABLE AI
                     distractionModule.enabled = true;
@@ -50,8 +55,9 @@ public class ModuleManager : MonoBehaviour
                     break;
             }
         }
-        catch(Exception err){ Debug.LogError($"{err}"); }
+        catch(Exception err){}// Debug.LogError($"{err}"); }
 
+        
         
         if(!successfullyChangedState){            
             SetState(state); // RECURSIVE BECAUSE THESE SCRIPTS DONT EXIST AT THE TIME OF CALLING THIS FUNCTION
