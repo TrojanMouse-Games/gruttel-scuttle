@@ -16,25 +16,29 @@ public class ModuleManager : MonoBehaviour
 
     private AIController aiController;
 
-   
+
     private void Start()
     {
-        aiController = gameObject.GetComponent<AIController>();        
+        aiController = gameObject.GetComponent<AIController>();
         //GameLoop.current.CheckStage += CheckStage; // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         GameLoopBT.SetAIState += SetState;
     }
-    void SetState(EnableAI.AIState state){       
+
+    void SetState(EnableAI.AIState state)
+    {
         bool successfullyChangedState = false;
-        try{
-            if(!moveWithMouseClick || !moveWithMouseGrab || !distractionModule){
-                distractionModule = GetComponent<DistractionModule>();
-                moveWithMouseClick = Camera.main.GetComponent<MoveWithMouseClick>();
-                moveWithMouseGrab = Camera.main.GetComponent<MoveWithMouseGrab>();            
+        try
+        {
+            if (!moveWithMouseClick || !moveWithMouseGrab || !distractionModule)
+            {
+                CheckScripts();
             }
-            switch(state){
+            switch (state)
+            {
                 case EnableAI.AIState.Enabled: // ENABLE AI
                     distractionModule.enabled = true;
                     moveWithMouseClick.enabled = true;
@@ -42,9 +46,7 @@ public class ModuleManager : MonoBehaviour
                     successfullyChangedState = true;
                     break;
                 case EnableAI.AIState.Disabled: // DISABLE ALL MODULES
-                    distractionModule.enabled = false;
-                    moveWithMouseClick.enabled = false;
-                    moveWithMouseGrab.enabled = false;
+                    DisableAllModules();
                     successfullyChangedState = true;
                     break;
                 case EnableAI.AIState.Dragable: // DISABLES ALL BUT DRAGGING STATES
@@ -55,11 +57,12 @@ public class ModuleManager : MonoBehaviour
                     break;
             }
         }
-        catch(Exception err){}// Debug.LogError($"{err}"); }
+        // Would avoid doing this josh, might lead to an error happening but it wont log it because all you're doing is catching it.
+        catch (Exception err) { }// Debug.LogError($"{err}"); }
 
-        
-        
-        if(!successfullyChangedState){            
+        if (!successfullyChangedState)
+        {
+            // Not true, scripts exsist, but aren't set.
             SetState(state); // RECURSIVE BECAUSE THESE SCRIPTS DONT EXIST AT THE TIME OF CALLING THIS FUNCTION
         }
     }
@@ -146,34 +149,7 @@ public class ModuleManager : MonoBehaviour
             moveWithMouseGrab.enabled = false;
         }
     }
-
-    /*
-    bool poop;
-    public void CheckStage(bool state)
-    {
-        
-        if(state){
-            //enable distraction, this is after the prep phase
-            distractionModule.enabled = true;
-            moveWithMouseClick.enabled = true;
-            moveWithMouseGrab.ToggleAIComponents(true, "putDown");
-            moveWithMouseGrab.enabled = false;
-            if(!poop){
-                poop = true;
-                StartCoroutine(distractionModule.GenerateDistractionChance());
-            }
-            //Debug.Log("checked");
-        }
-        else
-        {
-            // disabled distraction, this is in the prep phase.
-            distractionModule.enabled = false;
-            moveWithMouseClick.enabled = false;
-            moveWithMouseGrab.enabled = true;
-            //Debug.Log("checked2");
-        }
-    }
-    */
+    
     public void DisableAllModules()
     {
         aiController.currentState = AIState.Nothing;
