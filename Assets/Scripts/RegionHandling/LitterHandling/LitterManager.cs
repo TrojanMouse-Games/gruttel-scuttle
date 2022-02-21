@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TrojanMouse.BallisticTrajectory;
+using FMODUnity;
+
 
 // DEVELOPED BY JOSH THOMPSON
 namespace TrojanMouse.RegionManagement
 {
     [CreateAssetMenu(fileName = "Litter Manager Settings", menuName = "ScriptableObjects/Region/Litter Manager Settings")]
     public class LitterManager : ScriptableObject
+       
     {
         [Serializable]
         public class LitterTypes
@@ -17,6 +20,8 @@ namespace TrojanMouse.RegionManagement
             [Tooltip("This is the object that'll actually spawn")] public GameObject litterObject;
         }
         public LitterTypes[] litter;
+
+        public EventReference rubbishSounds;
 
 
         [Tooltip("This is the speed litter will be thrown into this region")]public float projectileSpeed;
@@ -30,7 +35,8 @@ namespace TrojanMouse.RegionManagement
         public int SpawnLitter(Collider region, int litterToSpawn, int maxLitter = -1){            
             int numOfLitterInRegion = region.transform.childCount;
             maxLitter = (maxLitter < 0) ? maxLitterInRegion : maxLitter;
-            //Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");            
+            //Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");
+            RuntimeManager.PlayOneShot(rubbishSounds);
              
             int iterationTo = Mathf.Clamp(numOfLitterInRegion + litterToSpawn, numOfLitterInRegion, Mathf.Min(maxLitter, maxLitterInRegion)); // THIS IS WHAT THE FOR LOOP WILL ITERATE UP TO. - IT ENSURES THE VALUE DOES NOT EXCEED THE MAX LITTER
             for (int i = numOfLitterInRegion; i < iterationTo; i++){
@@ -54,7 +60,8 @@ namespace TrojanMouse.RegionManagement
                     UnityEngine.Random.Range(minPos.y, maxPos.y),
                     UnityEngine.Random.Range(minPos.z, maxPos.z)
                 );
-                #endregion                
+                #endregion   
+                
                 Ballistics.current.RotateShooter(spawnPos, projectileSpeed);
                 GameObject newLitter = Instantiate(selectedLitter.litterObject, Ballistics.current.shooterObj.position, Quaternion.identity, region.transform);
                 newLitter.GetComponent<Rigidbody>().velocity = Ballistics.current.shooterObj.forward * projectileSpeed;

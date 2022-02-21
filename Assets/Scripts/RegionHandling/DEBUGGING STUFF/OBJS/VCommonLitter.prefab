@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7000658050550888977}
   - component: {fileID: -2090348513316775258}
   - component: {fileID: 7685914163449065634}
+  - component: {fileID: 4595618673492484343}
+  - component: {fileID: -8493465529927954129}
   m_Layer: 3
   m_Name: VCommonLitter
   m_TagString: Untagged
@@ -128,6 +130,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 6f9fe5bc1523c6b42985ba13558b55d7, type: 2}
   parent: {fileID: 0}
+--- !u!114 &4595618673492484343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000658050550888982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1301491917
+      Data2: 1217088938
+      Data3: -582573438
+      Data4: 1735280118
+    Path: event:/Environment/Rubbish Drop/Big (Skip)
+  Event: 
+  PlayEvent: 7
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &-8493465529927954129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000658050550888982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1997948641
+      Data2: 1295659142
+      Data3: 441292437
+      Data4: -581291058
+    Path: event:/Environment/Rubbish Recycled/recycle
+  Event: 
+  PlayEvent: 2
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &6620518805626126860
 PrefabInstance:
   m_ObjectHideFlags: 0
