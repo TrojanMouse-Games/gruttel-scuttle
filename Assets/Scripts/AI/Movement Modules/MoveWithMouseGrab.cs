@@ -59,7 +59,7 @@ namespace TrojanMouse.AI.Movement
                 // Set the state to grabbing
                 grabbing = true;
                 // Turn off the AI Components
-               
+
                 ToggleAIComponents(false, "pickUp");
             }
             else if (grabbing)
@@ -75,7 +75,7 @@ namespace TrojanMouse.AI.Movement
                     target.transform.position = newPos;
 
                     // OTIS ADD AUDIO CODE HERE FOR PICKING UP THE GRUTTLES
-                   
+
 
                 }
                 else
@@ -108,19 +108,23 @@ namespace TrojanMouse.AI.Movement
         /// </summary>
         /// <param name="state">The state of the components, if you want to turn them off, pass false or true to enable them.</param>
         /// <param name="type">The type of  disable the code does. Only difference is execution and an extra litter check in the putDown</param>
-        private void ToggleAIComponents(bool state, string type)
+        public void ToggleAIComponents(bool state, string type)
         {
-            AIController controller = target.GetComponent<AIController>();
-            AIData data = controller.data;
-            if (type == "pickUp" && controller)
+            if (target != null)
             {
-                data.Agent.enabled = state;
-                controller.enabled = state;
-            }else if (type == "putDown" && controller)
-            {
-                controller.enabled = state;
-                data.Agent.enabled = state;
-                controller.GetLitter();
+                AIController controller = target.GetComponent<AIController>();
+                AIData data = controller.data;
+                if (type == "pickUp" && controller)
+                {
+                    data.Agent.enabled = state;
+                    controller.enabled = state;
+                }
+                else if (type == "putDown" && controller)
+                {
+                    controller.enabled = state;
+                    data.Agent.enabled = state;
+                    controller.GetLitter();
+                }
             }
         }
 

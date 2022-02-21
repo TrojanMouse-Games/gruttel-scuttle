@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8012271358983605008}
   - component: {fileID: 6353667147245737475}
   - component: {fileID: 2350407828654874553}
+  - component: {fileID: 6293207548855747112}
   m_Layer: 0
   m_Name: PrefabTree2
   m_TagString: Untagged
@@ -175,6 +176,22 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 1
   m_AffectedAgents: ffffffff
+--- !u!208 &6293207548855747112
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153338535539966075}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 49.3, y: 68.05, z: 86.4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.8, y: 0, z: 35.7}
+  m_TimeToStationary: 0.5
 --- !u!1 &4821626345657319373
 GameObject:
   m_ObjectHideFlags: 0

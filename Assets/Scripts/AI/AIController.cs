@@ -8,6 +8,7 @@ using TrojanMouse.Inventory;
 using TrojanMouse.RegionManagement;
 using TrojanMouse.PowerUps;
 using TrojanMouse.AI.Behaviours;
+using TrojanMouse.GameplayLoop;
 #endregion
 
 namespace TrojanMouse.AI
@@ -27,16 +28,18 @@ namespace TrojanMouse.AI
         public Color baseColor;
         //bools for distraction
         public bool beingDirected;
-        public bool distracted;
+        public bool distracted = false;
         public LayerMask litterLayerMask;
         public float timer = 0f; // Internal timer used for state changes and tracking.
         public Animator animator;
+        public float currSpeed;
 
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
         private bool blocked = false; // Internal true/false for checking whether the current AI path is blocked.
         private bool ignoreFSMTarget = false; // Ignores the currentTarget value for when the AI moves.
         private bool currentlyProcessing = true; // Check to see whether the AI is currently processing anything or not.
+        Vector3 lastPosition;
 
         [Header("Scripts")] // All internal & private for the most part.
         // Movement Modules, in order of most used.
@@ -58,8 +61,16 @@ namespace TrojanMouse.AI
             Initialization();
         }
 
+        private void LateUpdate()
+        {
+            lastPosition = transform.position;
+        }
+
         private void Update()
         {
+            // update anim float
+            animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
+            //print((transform.position - lastPosition).magnitude);
             // Start the Timer function
             CheckDistraction();
             Timer();
@@ -200,7 +211,7 @@ namespace TrojanMouse.AI
                 data.Agent.SetDestination(currentTarget.transform.position);
         }
 
-        
+
 
         //  TODO: PASS IN PREV STATE
         /// <summary>
@@ -229,28 +240,28 @@ namespace TrojanMouse.AI
                 else
                 {
                     // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
-                    Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
-                    if (!closestRegion)
-                    {
-                        return AIState.Nothing;
-                    }
-
+                    //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
+                    //if (!closestRegion)
+                    //{
+                    //    return AIState.Nothing;
+                    //}
+                    Collider[] litter = Physics.OverlapSphere(transform.position, data.DetectionRadius, litterLayerMask);
                     LitterObject litterType = null;
                     Transform litterObj = null;
-                    foreach (Transform obj in closestRegion.transform)
-                    {
+
+                    foreach (Collider obj in litter){
                         LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                         bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
 
                         if (!cantPickup)
                         {
-                            data.Agent.SetDestination(obj.position);
+                            data.Agent.SetDestination(obj.transform.position);
                             litterType = type;
-                            litterObj = obj;
+                            litterObj = obj.transform;
                             break;
                         }
                     }
-                    if (litterType && Mathf.Abs((transform.position - litterObj.position).magnitude) <= pickupRange)
+                    if (litterType && Mathf.Abs((litterObj.position - transform.position).magnitude) <= pickupRange)
                     {
                         equipper.PickUp(litterObj, powerUp.Type, litterType);
                     }
@@ -273,7 +284,6 @@ namespace TrojanMouse.AI
 
             moduleManager = gameObject.GetComponent<ModuleManager>();
             moduleManager.CheckScripts();
-            moduleManager.CheckStage();
 
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
@@ -283,10 +293,6 @@ namespace TrojanMouse.AI
             powerUp = GetComponent<Powerup>();
             inventory = GetComponent<Inventory.Inventory>();
             // Thing for setting up char stats, powerups etc
-
-            // UNUSED AS OF NOW.
-            // This assigns the player follow point;
-            //followPoint = GameObject.FindGameObjectWithTag("PlayerFollowPoint");
 
             // Simple check to make sure the agent is on a navmesh, if not destroy it
             if (data.Agent.isOnNavMesh == false)
@@ -308,13 +314,20 @@ namespace TrojanMouse.AI
                     break;
             }
 
-            if (moduleManager.distractionModule.enabled)
-                StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
+            
+            
         }
 
         private void CheckDistraction()
         {
-             distracted = moduleManager.distractionModule.distracted;
+            if (GameLoop.current.stageIntermission > 0)
+            {
+                distracted = false;
+            }
+            else
+            {
+                distracted = moduleManager.distractionModule.distracted;
+            }
         }
 
         public void Timer()
@@ -353,9 +366,10 @@ namespace TrojanMouse.AI
                 lr.enabled = true;
                 Vector3[] path = data.Agent.path.corners;
                 lr.positionCount = path.Length;
-                for(int i = 0; i < path.Length; i++){
+                for (int i = 0; i < path.Length; i++)
+                {
                     lr.SetPosition(i, path[i] + new Vector3(0, .5f, 0));
-                }                
+                }
             }
         }
 

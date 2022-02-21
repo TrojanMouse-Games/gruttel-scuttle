@@ -106,7 +106,7 @@ Assets/**/NavMesh.asset filter=lfs diff=lfs merge=lfs -text
 *.pdf  filter=lfs diff=lfs merge=lfs -text
 
 ## Collapse Unity-generated files on GitHub
-*.asset linguist-generated
+*.asset linguist-generated text=auto
 *.mat linguist-generated
 *.meta linguist-generated
 *.prefab linguist-generated

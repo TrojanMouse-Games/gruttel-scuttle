@@ -19,11 +19,7 @@ public class ModuleManager : MonoBehaviour
     private void Start()
     {
         aiController = gameObject.GetComponent<AIController>();
-    }
-
-    private void Update()
-    {
-        CheckStage();
+        GameLoop.current.CheckStage += CheckStage;
     }
 
     public void CheckScripts()
@@ -109,21 +105,29 @@ public class ModuleManager : MonoBehaviour
         }
     }
 
-    public void CheckStage()
+    bool poop;
+    public void CheckStage(bool state)
     {
-        if (GameLoop.current.stageIntermission > 0)
-        {
-            //disable distraction
-            distractionModule.enabled = false;
-            moveWithMouseClick.enabled = false;
-            moveWithMouseGrab.enabled = true;
+        
+        if(state){
+            //enable distraction, this is after the prep phase
+            distractionModule.enabled = true;
+            moveWithMouseClick.enabled = true;
+            moveWithMouseGrab.ToggleAIComponents(true, "putDown");
+            moveWithMouseGrab.enabled = false;
+            if(!poop){
+                poop = true;
+                StartCoroutine(distractionModule.GenerateDistractionChance());
+            }
+            //Debug.Log("checked");
         }
         else
         {
-            //enable distraction
-            distractionModule.enabled = true;
-            moveWithMouseClick.enabled = true;
-            moveWithMouseGrab.enabled = false;
+            // disabled distraction, this is in the prep phase.
+            distractionModule.enabled = false;
+            moveWithMouseClick.enabled = false;
+            moveWithMouseGrab.enabled = true;
+            //Debug.Log("checked2");
         }
     }
 

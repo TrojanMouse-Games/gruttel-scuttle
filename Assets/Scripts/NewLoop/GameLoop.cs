@@ -14,9 +14,7 @@ namespace TrojanMouse.GameplayLoop
 
     [Serializable] public class CameraControl : UnityEvent<bool> { }
     [Serializable] public class RecycleObject : UnityEvent { }
-    [Serializable]
-    public class VillageSettings
-    {
+    [Serializable] public class VillageSettings{
         [Tooltip("Place all the nodes for this level in here, all nodes will spawn a Gruttel on them")] public Transform[] gruttelSpawnPoints;
         [Tooltip("Gruttel Prefab here...")] public GameObject gruttelPrefab;
         [Tooltip("To keep hierarchy clean, choose a folder the Gruttels will spawn within")] public Transform gruttelFolder;
@@ -24,15 +22,14 @@ namespace TrojanMouse.GameplayLoop
         [Tooltip("When on the introduction phase, this is the position the camera will interpolate to")] public Transform cameraTarget;
         public PowerupSettings powerupSettings;
     }
-    [Serializable] public class PowerupSettings
-    {
+    [Serializable] public class PowerupSettings{
         [Tooltip("This is where the powerups will be deposited")] public Transform powerupStorage;
         [Tooltip("Powerup Prefab here...")] public GameObject powerupPrefab;
         public Sprite buffPower, radioPower;
     }
 
-    public class GameLoop : MonoBehaviour
-    {
+    
+    public class GameLoop : MonoBehaviour{
         #region VARIABLES
 
         [SerializeField] VillageSettings villageSettings;
@@ -42,8 +39,10 @@ namespace TrojanMouse.GameplayLoop
         [Tooltip("Can be used to play animation on recycler")] [SerializeField] RecycleObject recycleObject;
 
         public GameObject prepCam;
+        public GameObject zoomOutCam;
         public Text cycleText;
         public Text stageText;
+        public Text tipText;
 
         int timer;
 
@@ -56,12 +55,21 @@ namespace TrojanMouse.GameplayLoop
         int litterToBeRecycled;
         float spawnDelayHolder, spawnDelay;
         public static GameLoop current;
+        public event Action<bool> CheckStage;
+
         #endregion
         #endregion
         [SerializeField] float postPrepStageIntermission;
         [HideInInspector] public float stageIntermission;
-        private void Start(){
+        
+        private void Awake(){
             current = this;
+        }
+        
+        private void Start(){
+
+            
+            
             foreach (Transform node in villageSettings.gruttelSpawnPoints){
                 // SPAWN GRUTTELS IN VILLAGE
                 GameObject newGruttel = Instantiate(villageSettings.gruttelPrefab, node.position, node.rotation, villageSettings.gruttelFolder);
@@ -71,9 +79,10 @@ namespace TrojanMouse.GameplayLoop
             }
             Camera.main.GetComponent<MoveWithMouseClick>().enabled = false;
             prepCam.SetActive(false);
+            tipText.text = "Drag and drop your powerful Nana Betsy's onto your Gruttels";
             StartCoroutine(CountDownStage());
         }
-
+        
         private void Update(){
             if (cycles[0].stages[curStage].levelComplete) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
@@ -96,11 +105,14 @@ namespace TrojanMouse.GameplayLoop
                     // CHANGE IMAGE OF POWERUP CORROSPONDING TO TYPE
                     clonedPowerup.GetComponent<Image>().sprite = (powerUp == PowerupType.BUFF) ? villageSettings.powerupSettings.buffPower : villageSettings.powerupSettings.radioPower;
                 }
+                CheckStage?.Invoke(false);
             }
             else if (!isRunning){
                 isRunning = true;
                 // RETURN CAMERA TO GAME MODE
                 prepCam.SetActive(false);
+                zoomOutCam.SetActive(true);
+                tipText.text = $"You have {Mathf.FloorToInt(stageIntermission)} seconds before the scuttle starts, drag and drop your Gruttels wherever you like!";
                 Camera.main.GetComponent<MoveWithMouseClick>().enabled = true;
                 cameraToVillage?.Invoke(false); // CAMERA SHOULD RECIEVE THIS AND THEN INTERPOLATE TO THIS POSITION
                 remainingLitterToSpawn = cycles[curLevel].stages[curStage].litterSettings.numOfLitterToSpawn;
@@ -112,7 +124,8 @@ namespace TrojanMouse.GameplayLoop
 
             #region LEVEL MANAGEMENT
             if (cycles[curLevel].stages[curStage].IsComplete(numOfGruttelsToPick, villageSettings.powerupSettings.powerupStorage.parent.GetComponentsInChildren<Powerup>().Length, litterToBeRecycled)){
-                isRunning = false;
+                isRunning = false;                
+
                 if (curStage + 1 > cycles[curLevel].stages.Length){
                     curLevel = (curLevel + 1) % cycles.Length; // LEVEL INCREMENTOR
                     curStage = 0;
@@ -125,6 +138,8 @@ namespace TrojanMouse.GameplayLoop
 
             #region LITTER SPAWNER
             if (remainingLitterToSpawn > 0 && spawnDelay <= 0 && stageIntermission <=0){
+                zoomOutCam.SetActive(false);
+                //tipText.text = "Click a Gruttel and a location to help them pick up litter and take it to the recycling machines.";
                 spawnDelay = spawnDelayHolder;
                 Region[] regions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
                 Region region = regions[UnityEngine.Random.Range(0, regions.Length)];
@@ -133,10 +148,20 @@ namespace TrojanMouse.GameplayLoop
             spawnDelay -= (spawnDelay > 0) ? Time.deltaTime : 0;
             #endregion
 
-            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;            
+            stageIntermission -= (stageIntermission >0 && curStage != 0)? Time.deltaTime : 0;
+            /*
+            NEED TO FIND WAY TO STOP THIS BEING CALLED EACH FRAME, right now though...
+            it works, don't touch it or I'll have several mental breakdowns which will involve
+            me pissing, shitting and throwing up at the same time.
+            */
+            if (stageIntermission <= 0)
+            {
+                CheckStage?.Invoke(true);
+            }
         }
 
         IEnumerator CountDownStage() {
+            
             cycleText.text = cycles[0].stages[curStage].name;
             yield return new WaitForSeconds(1);
             float durationOfPhase = cycles[curLevel].stages[curStage].litterSettings.durationOfPhase;
@@ -149,7 +174,6 @@ namespace TrojanMouse.GameplayLoop
             }
             StartCoroutine(CountDownStage());
         }
-
 
         public void RecycleObj()
         {
