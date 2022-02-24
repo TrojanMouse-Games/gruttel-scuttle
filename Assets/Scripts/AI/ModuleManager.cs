@@ -36,19 +36,20 @@ public class ModuleManager : MonoBehaviour
         {
             CheckScripts();
         }
-        switch (state){
+        switch (state)
+        {
             case EnableAI.AIState.Enabled: // ENABLE AI
                 distractionModule.enabled = true;
                 moveWithMouseClick.enabled = true;
                 moveWithMouseGrab.enabled = false;
                 break;
             case EnableAI.AIState.Disabled: // DISABLE ALL MODULES
-                DisableAllModules();
+                ChangeAllModuleStates(1, false);
+                ChangeAllModuleStates(2, false);
                 break;
-            case EnableAI.AIState.Dragable: // DISABLES ALL BUT DRAGGING STATES
-                distractionModule.enabled = false;
-                moveWithMouseClick.enabled = false;
-                moveWithMouseGrab.enabled = true;
+            case EnableAI.AIState.Dragable: // DISABLES ALL BUT GRAB MODULE
+                ChangeAllModuleStates(1, false);
+                moveWithMouseClick.enabled = false; // disable this manually, which leaves only the grab module enabled.
                 break;
         }
 
@@ -138,52 +139,91 @@ public class ModuleManager : MonoBehaviour
         }
     }
 
-    public void DisableAllModules()
+    /// <summary>
+    /// Needs additional work, avoid passing in a true bool for now.
+    /// </summary>
+    /// <param name="type">Determines what it disables, 1 disable AI movement modules or 2 disable mouse modules</param>
+    /// <param name="state">determines whether the AI is enabled or disabled</param>
+    public void ChangeAllModuleStates(int type, bool state)
     {
         aiController.currentState = AIState.Nothing;
-    DisableAllModules:
-        try
+        switch (type)
         {
-            wander.enabled = false;
-        }
-        catch (NullReferenceException)
-        {
-            Debug.LogError("Couldn't disable the wandering module, trying again...");
-            wander.enabled = false;
-            goto DisableAllModules; // Not sure if this is a good way to go about it..
-        }
+            case 1:
+            DisableAllAIMovementModules:
+                try
+                {
+                    wander.enabled = state;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Couldn't disable the wandering module, trying again...");
+                    wander.enabled = false;
+                    goto DisableAllAIMovementModules; // Not sure if this is a good way to go about it..
+                }
 
-        try
-        {
-            patrol.enabled = false;
-        }
-        catch (NullReferenceException)
-        {
-            Debug.LogError("Tried to stop the patrol module, error occured. Forcefully stopping it.");
-            patrol.enabled = false;
-            goto DisableAllModules; // Not sure if this is a good way to go about it..
-        }
+                try
+                {
+                    patrol.enabled = state;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Tried to stop the patrol module, error occured. Forcefully stopping it.");
+                    patrol.enabled = false;
+                    goto DisableAllAIMovementModules; // Not sure if this is a good way to go about it..
+                }
 
-        try
-        {
-            fleeModule.enabled = false;
-        }
-        catch (NullReferenceException)
-        {
-            Debug.LogError("Tried to stop flee module, error occured. Forcefully stopping it.");
-            fleeModule.enabled = false;
-            goto DisableAllModules; // Not sure if this is a good way to go about it..
-        }
+                try
+                {
+                    fleeModule.enabled = state;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Tried to stop flee module, error occured. Forcefully stopping it.");
+                    fleeModule.enabled = false;
+                    goto DisableAllAIMovementModules; // Not sure if this is a good way to go about it..
+                }
 
-        try
-        {
-            distractionModule.enabled = false;
-        }
-        catch (NullReferenceException)
-        {
-            Debug.LogError("Tried to stop distraction module, error occured. Forcefully stopping it.");
-            fleeModule.enabled = false;
-            goto DisableAllModules; // Not sure if this is a good way to go about it..
+                try
+                {
+                    distractionModule.enabled = state;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Tried to stop distraction module, error occured. Forcefully stopping it.");
+                    fleeModule.enabled = false;
+                    goto DisableAllAIMovementModules; // Not sure if this is a good way to go about it..
+                }
+                break;
+
+            // Mouse related stuff
+            case 2:
+                DisableAllMouseModules:
+                try
+                {
+                    moveWithMouseGrab.enabled = state;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Tried to stop grab module, error occured. Forcefully stopping it.");
+                    moveWithMouseGrab.enabled = false;
+                    goto DisableAllMouseModules; // Not sure if this is a good way to go about it..
+                }
+
+                try
+                {
+                    moveWithMouseClick.enabled = state;
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogError("Tried to stop click module, error occured. Forcefully stopping it.");
+                    moveWithMouseGrab.enabled = false;
+                    goto DisableAllMouseModules; // Not sure if this is a good way to go about it..
+                }
+                break;
+            default:
+                Debug.LogError("Invalid type was entered. Please enter 1 or 2. Stopping script to avoid errors.");
+                break;
         }
     }
 }
