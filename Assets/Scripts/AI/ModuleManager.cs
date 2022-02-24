@@ -19,52 +19,40 @@ public class ModuleManager : MonoBehaviour
 
     private void Start()
     {
-        aiController = gameObject.GetComponent<AIController>();
         //GameLoop.current.CheckStage += CheckStage; // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
     }
 
     private void Awake()
     {
+        aiController = GetComponent<AIController>();
         GameLoopBT.SetAIState += SetState;
     }
 
     void SetState(EnableAI.AIState state)
     {
-        bool successfullyChangedState = false;
-        try
-        {
-            if (!moveWithMouseClick || !moveWithMouseGrab || !distractionModule)
-            {
-                CheckScripts();
-            }
-            switch (state)
-            {
-                case EnableAI.AIState.Enabled: // ENABLE AI
-                    distractionModule.enabled = true;
-                    moveWithMouseClick.enabled = true;
-                    moveWithMouseGrab.enabled = false;
-                    successfullyChangedState = true;
-                    break;
-                case EnableAI.AIState.Disabled: // DISABLE ALL MODULES
-                    DisableAllModules();
-                    successfullyChangedState = true;
-                    break;
-                case EnableAI.AIState.Dragable: // DISABLES ALL BUT DRAGGING STATES
-                    distractionModule.enabled = false;
-                    moveWithMouseClick.enabled = false;
-                    moveWithMouseGrab.enabled = true;
-                    successfullyChangedState = true;
-                    break;
-            }
-        }
-        // Would avoid doing this josh, might lead to an error happening but it wont log it because all you're doing is catching it.
-        catch (Exception err) { }// Debug.LogError($"{err}"); }
 
-        if (!successfullyChangedState)
+
+        if (!moveWithMouseClick || !moveWithMouseGrab || !distractionModule)
         {
-            // Not true, scripts exsist, but aren't set.
-            SetState(state); // RECURSIVE BECAUSE THESE SCRIPTS DONT EXIST AT THE TIME OF CALLING THIS FUNCTION
+            CheckScripts();
         }
+        switch (state){
+            case EnableAI.AIState.Enabled: // ENABLE AI
+                distractionModule.enabled = true;
+                moveWithMouseClick.enabled = true;
+                moveWithMouseGrab.enabled = false;
+                break;
+            case EnableAI.AIState.Disabled: // DISABLE ALL MODULES
+                DisableAllModules();
+                break;
+            case EnableAI.AIState.Dragable: // DISABLES ALL BUT DRAGGING STATES
+                distractionModule.enabled = false;
+                moveWithMouseClick.enabled = false;
+                moveWithMouseGrab.enabled = true;
+                break;
+        }
+
+
     }
 
     public void CheckScripts()
@@ -149,7 +137,7 @@ public class ModuleManager : MonoBehaviour
             moveWithMouseGrab.enabled = false;
         }
     }
-    
+
     public void DisableAllModules()
     {
         aiController.currentState = AIState.Nothing;
