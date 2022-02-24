@@ -49,7 +49,8 @@ public class ModuleManager : MonoBehaviour
                 break;
             case EnableAI.AIState.Dragable: // DISABLES ALL BUT GRAB MODULE
                 ChangeAllModuleStates(1, false);
-                moveWithMouseClick.enabled = false; // disable this manually, which leaves only the grab module enabled.
+                ChangeAllModuleStates(2, false);
+                moveWithMouseGrab.enabled = true; // enable this manually, which leaves only the grab module enabled.
                 break;
         }
 
