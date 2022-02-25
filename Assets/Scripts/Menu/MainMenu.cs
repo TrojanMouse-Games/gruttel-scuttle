@@ -9,11 +9,11 @@ namespace TrojanMouse.Menu
     /// </summary>
     public class MainMenu : MonoBehaviour
     {
-        public string sceneToPlay;
+        string sceneToPlay;
 
         [Header("UI Elements")]
-        public GameObject playButton;
-        public GameObject levelPanel;
+        public GameObject playButton; // The play button itself
+        public GameObject levelPanel; // The level selection panel
 
         // to be used later.
         AsyncOperation async;
