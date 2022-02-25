@@ -36,7 +36,7 @@ namespace TrojanMouse.GameplayLoop{
             #region READY NODES
             ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
-            Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission);
+            Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer);
             EnableAI dragAI = new EnableAI(EnableAI.AIState.Dragable);
             #endregion
             #region MAIN NODES
@@ -138,6 +138,7 @@ namespace TrojanMouse.GameplayLoop{
             public Text cycleText;
             public Text stageText;
             public Text tipText;
+            public Image intermissionTimer;
         }
     }
 }

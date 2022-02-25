@@ -5,16 +5,23 @@ using UnityEngine.UI;
 
 namespace TrojanMouse.GameplayLoop{ 
     public class Intermission : GLNode{
-        public float duration;
-        public Intermission(float duration){
-            this.duration = duration;
+        public float maxDuration, remainingDuration;
+        public Image imageUI;
+        public Intermission(float duration, Image imageUI = null){
+            this.maxDuration = duration;
+            this.remainingDuration = duration;
+            
+            this.imageUI = imageUI;
         }
 
         public override NodeState Evaluate(){
-            if(duration <= 0){
+            if(imageUI){
+                imageUI.fillAmount = (remainingDuration / maxDuration);
+            }
+            if(remainingDuration <= 0){
                 return NodeState.SUCCESS;
             }
-            duration -= Time.deltaTime;
+            remainingDuration -= Time.deltaTime;
             return NodeState.FAILURE;
         }
     }
