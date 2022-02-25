@@ -31,7 +31,7 @@ namespace TrojanMouse.Menu
         /// <param name="level">The level to load.</param>
         public void LoadLevel(string alternateLevel)
         {
-            if (alternateLevel == null)
+            if (alternateLevel == "")
             {
                 SceneManager.LoadScene(sceneToPlay);
             }
