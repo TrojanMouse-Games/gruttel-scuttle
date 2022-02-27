@@ -367,7 +367,7 @@ Transform:
   m_Children:
   - {fileID: 59655904}
   m_Father: {fileID: 474409353}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &254287349
 MonoBehaviour:
@@ -926,6 +926,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1927153302}
   - {fileID: 1919040767}
   - {fileID: 1415662130}
   - {fileID: 2147344149}
@@ -2164,7 +2165,7 @@ Transform:
   - {fileID: 1123715828}
   - {fileID: 1536363854}
   m_Father: {fileID: 474409353}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447833965
 GameObject:
@@ -3293,6 +3294,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474409353}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1927153301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1927153302}
+  m_Layer: 0
+  m_Name: GRUTTELVILLAGESTORAGE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1927153302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927153301}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474409353}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1935510294
@@ -3924,11 +3955,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2116046644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4534d01a1620707438aae9016733128d, type: 3}
+  m_Script: {fileID: 11500000, guid: dd6534c8780a7cf48ad77e678907d122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  villageSettings:
-    gruttelSpawnPoints:
+  prerequisiteSettings:
+    gruttelObj: {fileID: 9134461449078114019, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
+      type: 3}
+    gruttelVillageSpawnPoints:
     - {fileID: 1008242593}
     - {fileID: 1935510295}
     - {fileID: 2103298048}
@@ -3937,33 +3970,26 @@ MonoBehaviour:
     - {fileID: 1892000324}
     - {fileID: 1123715828}
     - {fileID: 1536363854}
-    gruttelPrefab: {fileID: 9134461449078114019, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
+    gruttelVillageFolder: {fileID: 1927153302}
+    gruttelPlayFolder: {fileID: 1919040767}
+    whatIsGruttel:
+      serializedVersion: 2
+      m_Bits: 64
+    objectForGruttelsToLookAtWhenSpawned: {fileID: 2147344149}
+    powerupPrefab: {fileID: 3428340782540745377, guid: a7cba7972e6dc2c4a945f03e05c16d91,
       type: 3}
-    gruttelFolder: {fileID: 1919040767}
-    cameraTarget: {fileID: 2147344149}
-    powerupSettings:
-      powerupStorage: {fileID: 868248721}
-      powerupPrefab: {fileID: 3428340782540745377, guid: a7cba7972e6dc2c4a945f03e05c16d91,
-        type: 3}
-      buffPower: {fileID: 21300000, guid: f4cf73cd05e493c42b062cc48a04f5e8, type: 3}
-      radioPower: {fileID: 21300000, guid: 6a546288e81342844a8675ff02d72b12, type: 3}
-  cycles:
-  - {fileID: 11400000, guid: 94d1f5ee63c9b37419bfea0866705fe6, type: 2}
-  cameraToVillage:
-    m_PersistentCalls:
-      m_Calls: []
-  recycleObject:
-    m_PersistentCalls:
-      m_Calls: []
-  prepCam: {fileID: 929798642}
-  zoomOutCam: {fileID: 285175193}
-  cycleText: {fileID: 2009489997}
-  stageText: {fileID: 0}
-  tipText: {fileID: 1645455057}
+    powerupSpawnFolder: {fileID: 868248721}
+    prepCamera: {fileID: 929798642}
+    readyStageCamera: {fileID: 285175193}
+    mainCamera: {fileID: 0}
+    cycleText: {fileID: 2009489997}
+    stageText: {fileID: 0}
+    tipText: {fileID: 1645455057}
+    intermissionTimer: {fileID: 0}
+  levels:
+  - {fileID: 11400000, guid: f448b5b390724a2418229b002f85917d, type: 2}
   curLevel: 0
-  curStage: 0
-  postPrepStageIntermission: 12
-  stageIntermission: 0
+  curWave: 0
 --- !u!114 &2116046646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4026,7 +4052,7 @@ Transform:
   m_Children:
   - {fileID: 1176219156}
   m_Father: {fileID: 474409353}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3615293011174587189
 PrefabInstance:
