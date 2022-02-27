@@ -1,16 +1,19 @@
+using UnityEngine;
+using TrojanMouse.AI.Movement; 
+
 namespace TrojanMouse.GameplayLoop{ 
-    public class EnableWander : GLNode{
+    public class EnableAIDrag : GLNode{
          
         bool isEnabled;
         bool hasApplied = false;
-        public EnableWander(bool isEnabled){
+        public EnableAIDrag(bool isEnabled){
             this.isEnabled = isEnabled;
         }
         public override NodeState Evaluate(){
             if(hasApplied){
                 return NodeState.SUCCESS;
             }            
-            GameLoopBT.instance.ChangeWanderState(isEnabled);
+            Camera.main.GetComponent<MoveWithMouseGrab>().enabled = isEnabled;
             hasApplied = true;
             return NodeState.SUCCESS;
         }        

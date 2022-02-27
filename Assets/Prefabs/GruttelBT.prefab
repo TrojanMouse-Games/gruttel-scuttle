@@ -840,7 +840,6 @@ GameObject:
   - component: {fileID: 4038203337082293053}
   - component: {fileID: 4038203337082293052}
   - component: {fileID: 4038203337082293187}
-  - component: {fileID: 4038203337082293186}
   - component: {fileID: 7418478410234672526}
   m_Layer: 6
   m_Name: GruttelBT
@@ -1083,20 +1082,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &4038203337082293186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038203337082293185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 918a6fc52b3b2fe44be7073d1f669f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 7323249858517388033}
-  smoothingSpeed: 0.2
 --- !u!114 &7418478410234672526
 MonoBehaviour:
   m_ObjectHideFlags: 0

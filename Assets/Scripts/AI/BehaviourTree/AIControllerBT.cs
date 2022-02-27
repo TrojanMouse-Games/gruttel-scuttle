@@ -9,6 +9,9 @@ namespace TrojanMouse.AI{
         public AIData data;
         public LayerMask litterLayerMask;
 
+        [HideInInspector] public Animator animator;
+        [HideInInspector] public bool distracted;
+        Vector3 lastPosition;
         GLNode topNode;
         GLNode CreateBehaviourTree(){
             #region NODES            
@@ -19,21 +22,13 @@ namespace TrojanMouse.AI{
 
 
 
-
-
-
-
-
-        
-
-
-
         private void Awake() {
             data = new AIData(
                 agent: gameObject.GetComponent<NavMeshAgent>(),
                 litterLayer: litterLayerMask,
                 wanderCooldown: 5
             );
+            animator = GetComponent<Animator>();
 
             if(topNode == null){
                 topNode = CreateBehaviourTree();
@@ -50,6 +45,11 @@ namespace TrojanMouse.AI{
                 case NodeState.RUNNING:
                     break;
             }
+
+            animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
+        }
+        private void LateUpdate() {
+            lastPosition = transform.position;
         }
     }
 }

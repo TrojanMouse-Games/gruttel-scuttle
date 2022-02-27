@@ -51,13 +51,13 @@ namespace TrojanMouse.AI.Movement
             {
                 //RuntimeManager.PlayOneShot(pickup);
                 // Check to see if its an AI
-                if (CheckAI())
-                {
+                if (CheckAI()){
                     // if yes, save it to a local transform
                     target = hit.transform;
+                    grabbing = true;
                 }
                 // Set the state to grabbing
-                grabbing = true;
+                
                 // Turn off the AI Components
 
                 ToggleAIComponents(false, "pickUp");
@@ -68,7 +68,7 @@ namespace TrojanMouse.AI.Movement
                 if (Input.GetButton("Fire1") && FireRay(whatToIgnore, rayDistance))
                 {
                     // Create the offset, and then create the dampened new position.
-                    Vector3 offset = new Vector3(0, 3, 0);
+                    Vector3 offset = new Vector3(0, 3, 0);        
                     Vector3 newPos = Vector3.SmoothDamp(target.transform.position, hit.point + offset, ref posVelocity, amountOfSmoothing);
 
                     // Set the target to the new smoothed position.
@@ -100,7 +100,7 @@ namespace TrojanMouse.AI.Movement
         /// </summary>
         /// <typeparam name="AIController">The AIController</typeparam>
         /// <returns>if yes returns true, no false</returns>
-        private bool CheckAI() => (hit.transform.GetComponent<AIController>()) ? true : false;
+        private bool CheckAI() => (hit.transform.GetComponent<AIController>() || hit.transform.GetComponent<AIControllerBT>()) ? true : false;
 
         /// <summary>
         /// Changes the state of a few of the AIComps based on the passed in bool and type. pickUp disables things in a different order

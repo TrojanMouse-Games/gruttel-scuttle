@@ -84,6 +84,7 @@ namespace TrojanMouse.AI.Movement
                     // Move AI to location
                     // Access the targets AI controller
                     AIController aiController = selected.GetComponent<AIController>();
+                    AIControllerBT aiControllerBT = selected.GetComponent<AIControllerBT>();
 
                     // OTIS ADD AUDIO CODE HERE FOR SENDING THE GRUTTLES TO A NEW LOCATION.
                     RuntimeManager.PlayOneShot(DirectionSound);
@@ -119,7 +120,8 @@ namespace TrojanMouse.AI.Movement
         private bool CheckAI()
         {
             AIController localAIc = hit.transform.GetComponent<AIController>();
-            if (localAIc == null)
+            AIControllerBT localAIcBT = hit.transform.GetComponent<AIControllerBT>();
+            if (localAIc == null || localAIcBT == null)
             {
                 return false;
             }
@@ -131,17 +133,23 @@ namespace TrojanMouse.AI.Movement
         private bool CheckAIAndDistract()
         {
             AIController localAIc = hit.transform.GetComponent<AIController>();
-            if (localAIc == null)
+            AIControllerBT localAIcBT = hit.transform.GetComponent<AIControllerBT>();
+            if (localAIc == null || localAIcBT == null)
             {
                 return false;
             }
 
             //Debug.Log($"{hit.transform.name} is distracted: {localAIc.distracted}");
 
-            if (localAIc.distracted)
+            if (localAIc && localAIc.distracted)
             {
                 localAIc.moduleManager.distractionModule.distracted = false;
                 localAIc.animator.SetBool("isDistracted", false);
+                return false;
+            }
+            else if(localAIcBT && localAIcBT.distracted){
+                
+                localAIcBT.animator.SetBool("isDistracted", false);
                 return false;
             }
 

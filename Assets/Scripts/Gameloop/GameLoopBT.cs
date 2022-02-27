@@ -15,7 +15,7 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] int curLevel, curWave; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
-        public static event Action<bool> SetWanderState;  // CHANGES THE BEHAVIOUR OF ALL AI
+        public static event Action<bool> SetWanderState;  // CHANGES THE BEHAVIOUR OF Wander AI        
         float spawnDelay;
         #endregion
         
@@ -33,15 +33,16 @@ namespace TrojanMouse.GameplayLoop{
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);
 
             EnableWander disableWander = new EnableWander(false);
-            GLSelector disableAI = new GLSelector(new List<GLNode>{disableWander});            
+            EnableAIDrag disableDragAIPrep = new EnableAIDrag(false);  
+            EnableAIMouseClick disableMouseClickAIPrep = new EnableAIMouseClick(false);  
+            GLSequence disableAI = new GLSequence(new List<GLNode>{disableWander, disableDragAIPrep, disableMouseClickAIPrep});            
             #endregion
             #region READY NODES
             ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
             Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer);
             
-            
-            GLSelector enableDragAI = new GLSelector(new List<GLNode>{disableWander}); 
+            EnableAIDrag enableDragAI = new EnableAIDrag(true);             
             #endregion
             #region MAIN NODES
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
@@ -50,7 +51,9 @@ namespace TrojanMouse.GameplayLoop{
             IsLitterCleared isLitterCleared = new IsLitterCleared();
 
             EnableWander enableWander = new EnableWander(true);
-            GLSelector enableAI = new GLSelector(new List<GLNode>{enableWander}); 
+            EnableAIDrag disableDragAIMain = new EnableAIDrag(false);  
+            EnableAIMouseClick enableMouseClickAIPrep = new EnableAIMouseClick(true);  
+            GLSequence enableAI = new GLSequence(new List<GLNode>{enableWander, disableDragAIMain, enableMouseClickAIPrep}); 
             #endregion
             #region AFTERMATH NODES
             #endregion
@@ -115,7 +118,6 @@ namespace TrojanMouse.GameplayLoop{
         public void ChangeWanderState(bool state){
             SetWanderState?.Invoke(state);
         }
-
         [Serializable] public class Prerequisites{
             [Header("Gruttel Settings")]
             [Tooltip("This is the Gruttel prefab. 1 will for spawn every spawnpoint...")] public GameObject gruttelObj;
