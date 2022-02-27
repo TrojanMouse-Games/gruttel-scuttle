@@ -319,7 +319,8 @@ namespace TrojanMouse.AI
         }
 
         private void CheckDistraction()
-        {
+        { // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
+        /*
             if (GameLoop.current.stageIntermission > 0)
             {
                 distracted = false;
@@ -328,6 +329,7 @@ namespace TrojanMouse.AI
             {
                 distracted = moduleManager.distractionModule.distracted;
             }
+        */
         }
 
         public void Timer()

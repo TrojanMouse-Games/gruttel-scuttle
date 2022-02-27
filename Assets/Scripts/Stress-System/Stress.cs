@@ -43,7 +43,7 @@ namespace TrojanMouse.StressSystem
 
         void UpdateStress()
         {
-            if (gruttels.Count > 0 && GameLoop.current.curStage == 1)
+            if (gruttels.Count > 0 /*&& GameLoop.current.curStage == 1*/) // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
             {
                 timer += calculationCooldown;
                 if (timer > peacefulPeriod) {

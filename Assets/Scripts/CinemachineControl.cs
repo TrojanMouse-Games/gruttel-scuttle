@@ -40,6 +40,9 @@ public class CinemachineControl : MonoBehaviour
             case "Area3_SemiCircle":
                 minPos = 0; maxPos = 4; startPos = 2;
                 break;
+            case "Area3_SemiCircleWITHNEWLOOP":
+                minPos = 0; maxPos = 4; startPos = 2;
+                break;
         }
         //fetches the virtual camera component
         vcamComponent = virtualCam.GetComponent<CinemachineVirtualCamera>();
