@@ -25,9 +25,9 @@ public class ModuleManager : MonoBehaviour
     private void Awake()
     {
         aiController = GetComponent<AIController>();
-        GameLoopBT.SetAIState += SetState;
+        //GameLoopBT.SetAIState += SetState;
     }
-
+    /*
     void SetState(EnableAI.AIState state)
     {
 
@@ -56,7 +56,7 @@ public class ModuleManager : MonoBehaviour
 
 
     }
-
+    */
     public void CheckScripts()
     {
         try
