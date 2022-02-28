@@ -14,7 +14,7 @@ namespace TrojanMouse.StressSystem{
         }
         
         void Update(){
-            fillbar.fillAmount = Mathf.SmoothDamp(fillbar.fillAmount, Stress.current.average/100, ref velocity, smoothingSpeed);
+            fillbar.fillAmount = Mathf.SmoothDamp(fillbar.fillAmount, Stress.current.amountOfLitter/Stress.current.maxStress, ref velocity, smoothingSpeed);
         }
     }
 }

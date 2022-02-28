@@ -27,7 +27,9 @@ namespace TrojanMouse.RegionManagement{
         Dictionary<Region.RegionType, List<Region>> regions = new Dictionary<Region.RegionType, List<Region>>();
 
         ///<summary>This function returns all regions of a given passed type e.g. 'Litter_Region'</summary>
-        public Region[] GetRegions(Region.RegionType _type) => regions[_type].ToArray(); // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
+        public Region[] GetRegions(Region.RegionType _type) { 
+            return (!regions.ContainsKey(_type)) ? null : regions[_type].ToArray(); 
+        } // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
         #endregion
         #region REGION COLLECTION
         // THIS REGION IS PURELY FOR COLLECTING REGIONS IN THE HIERARCHY AND STORING THEM IN THIS SCRIPT FOR LATER MANIPULATION
