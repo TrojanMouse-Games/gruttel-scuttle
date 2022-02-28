@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace TrojanMouse.Gruttel
 {
-    public enum Gender
+    public enum GruttelGender
     {
+        None,
         Male,
         Female
     }
 
-    public enum Type
+    public enum GruttelType
     {
         Normal,
         Buff,
