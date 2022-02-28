@@ -3602,7 +3602,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2063303443}
   - component: {fileID: 2063303446}
-  - component: {fileID: 2063303445}
   - component: {fileID: 2063303444}
   m_Layer: 5
   m_Name: Stress Bar
@@ -3649,21 +3648,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillbar: {fileID: 2063303446}
   smoothingSpeed: 1
---- !u!114 &2063303445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2063303442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4925f70cb23e2740aa49c6771ebce9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  average: 0
-  peacefulPeriod: 20
-  calculationCooldown: 1
 --- !u!114 &2063303446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3939,6 +3923,7 @@ GameObject:
   - component: {fileID: 2116046647}
   - component: {fileID: 2116046646}
   - component: {fileID: 2116046645}
+  - component: {fileID: 2116046648}
   m_Layer: 0
   m_Name: Region Handler
   m_TagString: Untagged
@@ -4023,6 +4008,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116046648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116046644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4925f70cb23e2740aa49c6771ebce9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfLitter: 0
+  calculationCooldown: 1
+  maxLitter: 100
 --- !u!1 &2147344148
 GameObject:
   m_ObjectHideFlags: 0
