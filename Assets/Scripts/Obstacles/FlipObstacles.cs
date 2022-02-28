@@ -30,7 +30,7 @@ public class FlipObstacles : MonoBehaviour
         {
             if (hit.transform == gateLeft.transform || hit.transform == gateRight.transform)
             {
-                Debug.Log("clicked obstacle");
+                //Debug.Log("clicked obstacle");
                 //if the left gate is raised, lower left and raise right
                 if (isFlipped)
                 {
