@@ -1716,6 +1716,7 @@ GameObject:
   - component: {fileID: 9134461449078114017}
   - component: {fileID: 9134461449078114016}
   - component: {fileID: -6900343593846015828}
+  - component: {fileID: -6420834088398067262}
   m_Layer: 6
   m_Name: Gruttel
   m_TagString: NPC
@@ -2058,6 +2059,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   FOV: 25
+--- !u!114 &-6420834088398067262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6363de8fb21fac843a815fe1dad5cd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    reference: {fileID: 0}
+    meshList: {fileID: 0}
+    personalityList: {fileID: 11400000, guid: b48eaa81c388aa24091c07f6015d489d, type: 2}
+    nickname: 
+    notableAchievement: 
+    traits: []
+    bios: []
+    type: 0
+    baseColor: {r: 0, g: 0, b: 0, a: 0}
+    overallStress: 0
+  personalityList: {fileID: 11400000, guid: b48eaa81c388aa24091c07f6015d489d, type: 2}
 --- !u!1001 &8216054026033364530
 PrefabInstance:
   m_ObjectHideFlags: 0

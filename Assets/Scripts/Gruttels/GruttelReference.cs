@@ -7,14 +7,11 @@ namespace TrojanMouse.Gruttel
     public class GruttelReference : MonoBehaviour
     {
         public GruttelData data;
+        public PersonalityLists personalityList;
 
         private void Start()
         {
-            if (data == null)
-            {
-                data = new GruttelData();
-            }
-            data.reference = this;
+            data = new GruttelData(this);
         }
     }
 }
