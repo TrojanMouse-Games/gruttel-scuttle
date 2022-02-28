@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -27,24 +27,9 @@ namespace TrojanMouse.RegionManagement{
         Dictionary<Region.RegionType, List<Region>> regions = new Dictionary<Region.RegionType, List<Region>>();
 
         ///<summary>This function returns all regions of a given passed type e.g. 'Litter_Region'</summary>
-        public Region[] GetRegions(Region.RegionType _type) => regions[_type].ToArray(); // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
-        public Region GetClosestRegion(Region.RegionType _type, Vector3 position){            
-            Region[] regionsOfType = regions[_type].ToArray();
-            Region closestRegion = null;
-
-            float closestNumber = Mathf.Infinity;
-            foreach(Region region in regionsOfType){
-                float curDist = (region.transform.position - position).magnitude;
-                if(curDist < closestNumber){
-                    if(_type == Region.RegionType.LITTER_REGION && region.transform.childCount <= 0){
-                        continue;
-                    }
-                    closestNumber = curDist;
-                    closestRegion = region;
-                }
-            }
-            return closestRegion;
-        }
+        public Region[] GetRegions(Region.RegionType _type) { 
+            return (!regions.ContainsKey(_type)) ? null : regions[_type].ToArray(); 
+        } // QUERY FUNCTION, PASS IN A TYPE YOU WANT AND IT WILL OUTPUT ALL REQUESTED REGIONS OF A TYPE
         #endregion
         #region REGION COLLECTION
         // THIS REGION IS PURELY FOR COLLECTING REGIONS IN THE HIERARCHY AND STORING THEM IN THIS SCRIPT FOR LATER MANIPULATION
