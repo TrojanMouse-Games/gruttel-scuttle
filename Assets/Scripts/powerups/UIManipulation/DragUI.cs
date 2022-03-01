@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TrojanMouse.AI;
 
 namespace TrojanMouse.PowerUps
 {
@@ -73,6 +74,8 @@ namespace TrojanMouse.PowerUps
                     return false;
                 }
                 gruttel.UpdateType(selectedType);
+                hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
+                Debug.Log("color");
             }
             return (hit.transform) ? true : false;
         }

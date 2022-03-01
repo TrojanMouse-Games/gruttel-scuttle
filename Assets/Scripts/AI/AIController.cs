@@ -288,7 +288,7 @@ namespace TrojanMouse.AI
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
             timer = data.WanderCooldown;
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_Color");
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
             equipper = GetComponent<Equipper>();
             powerUp = GetComponent<Powerup>();
             inventory = GetComponent<Inventory.Inventory>();
@@ -373,6 +373,11 @@ namespace TrojanMouse.AI
                     lr.SetPosition(i, path[i] + new Vector3(0, .5f, 0));
                 }
             }
+        }
+
+        public void UpdateColor()
+        {
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
         }
 
         /// <summary>

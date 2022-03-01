@@ -63,6 +63,7 @@ namespace TrojanMouse.AI.Movement
                     {
                         RuntimeManager.PlayOneShot(SelectionSound);
                     }
+                    // if click on a gruttel, make it grey
                     StartCoroutine(ChangeColorSelect(hit.transform));
                 }
                 // Toggle anything that needs to be turned off
