@@ -16,6 +16,8 @@ namespace TrojanMouse.Menu
         public GameObject playButton; // The play button itself
         public GameObject levelPanel; // The level selection panel
         public Slider loadingBar; // Used for displaying loading progress
+        public Canvas[] menuCanvases;
+        public Canvas[] optionsCanvas;
 
         // to be used later.
         AsyncOperation asyncLoad;
@@ -84,6 +86,51 @@ namespace TrojanMouse.Menu
         {
             levelPanel.SetActive(false);
             playButton.SetActive(true);
+        }
+
+        /// <summary>
+        /// Disable all canvases and enable the selected canvas.
+        /// </summary>
+        /// <param name="canvasToEnable">the canvas to enable</param>
+        public void EnableUI(Canvas canvasToEnable)
+        {
+            foreach(Canvas c in menuCanvases)
+            {
+                c.enabled = false;
+            }
+
+            canvasToEnable.enabled = true;
+        }
+
+        /// <summary>
+        /// Disable all options menus and enable the selected options menu.
+        /// </summary>
+        /// <param name="canvasToEnable">the options menu to enable</param>
+        public void EnableOptionsMenu(Canvas canvasToEnable)
+        {
+
+            foreach (Canvas c in optionsCanvas)
+            {
+                c.enabled = false;
+            }
+
+            canvasToEnable.enabled = true;
+        }
+
+        /// <summary>
+        /// This will apply the settings.
+        /// </summary>
+        public void ApplySettings()
+        {
+
+        }
+        
+        /// <summary>
+        /// This will load all the settings.
+        /// </summary>
+        public void LoadSettings()
+        {
+
         }
 
         /// <summary>
