@@ -100,6 +100,7 @@ namespace TrojanMouse.Menu
         /// </summary>
         public void QuitGame()
         {
+            StartCoroutine(Delay(.25f));
             Application.Quit();
         }
 
@@ -116,6 +117,11 @@ namespace TrojanMouse.Menu
         {
             yield return new WaitForSeconds(1);
             asyncLoad.allowSceneActivation = true;
+        }
+
+        IEnumerator Delay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
         }
         #endregion
     }
