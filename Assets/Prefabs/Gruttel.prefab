@@ -1710,13 +1710,14 @@ GameObject:
   - component: {fileID: 9134461449078113819}
   - component: {fileID: 9134461449078113818}
   - component: {fileID: 9134461449078113821}
+  - component: {fileID: 7161643577560387700}
   - component: {fileID: 9134461449078113820}
   - component: {fileID: 9134461449078113823}
   - component: {fileID: 9134461449078113822}
   - component: {fileID: 9134461449078114017}
   - component: {fileID: 9134461449078114016}
   - component: {fileID: -6900343593846015828}
-  - component: {fileID: -6420834088398067262}
+  - component: {fileID: 1736692516325270186}
   m_Layer: 6
   m_Name: Gruttel
   m_TagString: NPC
@@ -1825,9 +1826,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   timer: 0
-  distractionMarker: {fileID: 9134461449789227875}
-  distractionChance: 0
   animator: {fileID: 2553501623213131299}
+  currSpeed: 0
+  moduleManager: {fileID: 0}
   pickupRange: 2
 --- !u!114 &9134461449078113816
 MonoBehaviour:
@@ -1841,9 +1842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34c42d8a2b010a4fbcaee9d1d5febb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wander: {fileID: 0}
-  patrol: {fileID: 0}
-  fleeModule: {fileID: 0}
+  wander: {fileID: 9134461449078113819}
+  patrol: {fileID: 9134461449078113818}
+  fleeModule: {fileID: 9134461449078113821}
+  distractionModule: {fileID: 7161643577560387700}
+  moveWithMouseClick: {fileID: 0}
+  moveWithMouseGrab: {fileID: 0}
 --- !u!114 &9134461449078113819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1886,6 +1890,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc8f86b5c6937e41b57c38e87470f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7161643577560387700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfbde7caead2744daa0db531e249d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aIController: {fileID: 9134461449078113817}
+  beingDirected: 0
+  distracted: 0
+  litterLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  distractionMarker: {fileID: 9134461449789227875}
+  distractionChance: 0
+  animator: {fileID: 2553501623213131299}
+  distractedSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  undistrcatedSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &9134461449078113820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1937,7 +1976,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9134461449078114019}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 0
@@ -1948,7 +1987,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 79571735395d21d4eabb3d504e986b60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2022,7 +2061,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -2059,7 +2098,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   FOV: 25
---- !u!114 &-6420834088398067262
+--- !u!114 &1736692516325270186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2074,7 +2113,6 @@ MonoBehaviour:
   data:
     reference: {fileID: 0}
     meshList: {fileID: 0}
-    personalityList: {fileID: 11400000, guid: b48eaa81c388aa24091c07f6015d489d, type: 2}
     nickname: 
     notableAchievement: 
     traits: []
@@ -2083,6 +2121,42 @@ MonoBehaviour:
     baseColor: {r: 0, g: 0, b: 0, a: 0}
     overallStress: 0
   personalityList: {fileID: 11400000, guid: b48eaa81c388aa24091c07f6015d489d, type: 2}
+--- !u!95 &402454146568936681
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449789227875}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 396ebafb1185fc24a9a0f72082b6e87e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9175894861465479838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449789227875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa186e9b9d73fec4185fd22cdb3b2786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distractionMat: {fileID: 7209508367609607519}
+  targetColor:
+    serializedVersion: 2
+    rgba: 4294920960
+  transitionDuration: 1
 --- !u!1001 &8216054026033364530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2103,8 +2177,13 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 00f933048e3ca6340bd68e069b639be0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.091
+      value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc3885a67013e5b499dd8e9156e70a7a, type: 2}
     - target: {fileID: 919132149155446097, guid: 00f933048e3ca6340bd68e069b639be0,
         type: 3}
       propertyPath: m_Layer
@@ -2113,7 +2192,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 00f933048e3ca6340bd68e069b639be0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 00f933048e3ca6340bd68e069b639be0,
         type: 3}
@@ -2131,6 +2210,12 @@ Transform:
 --- !u!1 &9134461449789227875 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 00f933048e3ca6340bd68e069b639be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8216054026033364530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7209508367609607519 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
     type: 3}
   m_PrefabInstance: {fileID: 8216054026033364530}
   m_PrefabAsset: {fileID: 0}
