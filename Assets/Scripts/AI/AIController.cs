@@ -320,14 +320,14 @@ namespace TrojanMouse.AI
 
         private void CheckDistraction()
         {
-            if (GameLoop.current.stageIntermission > 0)
-            {
-                distracted = false;
-            }
-            else
-            {
-                distracted = moduleManager.distractionModule.distracted;
-            }
+            // if (GameLoop.current.stageIntermission > 0)
+            // {
+            //     distracted = false;
+            // }
+            // else
+            // {
+            //     distracted = moduleManager.distractionModule.distracted;
+            // }
         }
 
         public void Timer()
