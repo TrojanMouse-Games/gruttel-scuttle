@@ -5,18 +5,18 @@ using UnityEditor;
 
 namespace TrojanMouse.Gruttel
 {
-    [CustomEditor(typeof(PersonalityLists))]
-    public class PersonalityListsEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
+    //[CustomEditor(typeof(PersonalityLists))]
+    //public class PersonalityListsEditor : Editor
+    //{
+    //    public override void OnInspectorGUI()
+    //    {
+    //        base.OnInspectorGUI();
 
-            PersonalityLists lists = (PersonalityLists)target;
-            if (GUILayout.Button("Import List"))
-            {
-                lists.ImportList();
-            }
-        }
-    }
+    //        PersonalityLists lists = (PersonalityLists)target;
+    //        if (GUILayout.Button("Import List"))
+    //        {
+    //            lists.ImportList();
+    //        }
+    //    }
+    //}
 }
