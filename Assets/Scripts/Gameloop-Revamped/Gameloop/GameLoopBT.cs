@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GameLoopBT : MonoBehaviour{        
@@ -36,7 +37,7 @@ namespace TrojanMouse.GameplayLoop{
             #region READY NODES
             ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
-            Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer);
+            Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer, prerequisiteSettings.timerLabel);
             EnableAI dragAI = new EnableAI(EnableAI.AIState.Dragable);
             #endregion
             #region MAIN NODES
@@ -139,6 +140,7 @@ namespace TrojanMouse.GameplayLoop{
             public Text stageText;
             public Text tipText;
             public Image intermissionTimer;
+            public TextMeshProUGUI timerLabel;
         }
     }
 }

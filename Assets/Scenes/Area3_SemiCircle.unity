@@ -3206,7 +3206,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
@@ -3864,7 +3864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1863995071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4799,7 +4799,8 @@ MonoBehaviour:
     cycleText: {fileID: 2009489997}
     stageText: {fileID: 0}
     tipText: {fileID: 1645455057}
-    intermissionTimer: {fileID: 1863995071}
+    intermissionTimer: {fileID: 1511427928}
+    timerLabel: {fileID: 1206139957}
   levels:
   - {fileID: 11400000, guid: 3c85ca674b4582149b3f1c979f60e90a, type: 2}
   curLevel: 0
@@ -5114,7 +5115,7 @@ PrefabInstance:
     - target: {fileID: 3615293011046142997, guid: 9922fff28e2b6ce42a3867c13e8997ef,
         type: 3}
       propertyPath: field of view
-      value: 60
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3615293011046142997, guid: 9922fff28e2b6ce42a3867c13e8997ef,
         type: 3}
