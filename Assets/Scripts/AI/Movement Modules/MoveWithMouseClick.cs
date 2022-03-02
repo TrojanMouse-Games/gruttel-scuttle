@@ -205,6 +205,11 @@ namespace TrojanMouse.AI.Movement
         {
             return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Collide)) ? true : false;
         }
+
+        public void ChangeScriptState(bool state)
+        {
+            this.enabled = state;
+        }
         #endregion
     }
 }

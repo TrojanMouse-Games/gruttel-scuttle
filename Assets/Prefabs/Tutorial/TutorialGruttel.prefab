@@ -1703,6 +1703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8471254294815661145}
   - component: {fileID: 2553501623213131299}
+  - component: {fileID: 1781458027863604683}
   - component: {fileID: 9134461449078113815}
   - component: {fileID: 9134461449078113814}
   - component: {fileID: 9134461449078113820}
@@ -1710,6 +1711,7 @@ GameObject:
   - component: {fileID: 9134461449078113822}
   - component: {fileID: 9134461449078114017}
   - component: {fileID: 9134461449078114016}
+  - component: {fileID: 1413778265}
   m_Layer: 6
   m_Name: TutorialGruttel
   m_TagString: NPC
@@ -1759,6 +1761,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1781458027863604683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42b186fb3697804184d1d3fd447eafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 9134461449078113814}
 --- !u!136 &9134461449078113815
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1889,7 +1904,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.5078125
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1950,6 +1965,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 2553501623213131299}
   smoothingSpeed: 0.2
+--- !u!114 &1413778265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8054769ca8347dc43bb5db38e6c239df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &402454146568936681
 Animator:
   serializedVersion: 3
@@ -2030,12 +2057,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f933048e3ca6340bd68e069b639be0, type: 3}
---- !u!23 &7209508367609607519 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8216054026033364530}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8471254296143305177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 00f933048e3ca6340bd68e069b639be0,
@@ -2045,6 +2066,12 @@ Transform:
 --- !u!1 &9134461449789227875 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 00f933048e3ca6340bd68e069b639be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8216054026033364530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7209508367609607519 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
     type: 3}
   m_PrefabInstance: {fileID: 8216054026033364530}
   m_PrefabAsset: {fileID: 0}
