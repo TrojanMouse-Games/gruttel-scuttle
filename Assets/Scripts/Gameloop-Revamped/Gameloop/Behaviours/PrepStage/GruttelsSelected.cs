@@ -11,6 +11,7 @@ namespace TrojanMouse.GameplayLoop{
         Camera cam;
 
         Transform villageFolder, playFolder;
+        bool hasApplied = false;
         public GruttelsSelected(int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder){
             this.gruttelsNeededToSelect = quantity;
             this.maxDistance = maxRayDistance;
@@ -21,12 +22,19 @@ namespace TrojanMouse.GameplayLoop{
         } 
         public override NodeState Evaluate(){
             // IF NOT X AMT OF GRUTTELS ARE NOT SELECTED RETURN FAILURE OTHERWISE RETURN SUCCESS!
-            if(gruttelsSelected.Count >= gruttelsNeededToSelect){
+            if(hasApplied){
+                return NodeState.SUCCESS;
+            }
+            if(gruttelsSelected.Count >= gruttelsNeededToSelect && !hasApplied){
+                hasApplied = true;
                 // DO THINGS HERE
                 foreach(Transform gruttel in gruttelsSelected){
                     gruttel.localScale = Vector3.one;
                 }
-                return NodeState.SUCCESS;
+                foreach(Transform child in villageFolder){
+                    child.gameObject.SetActive(false);
+                }
+                return NodeState.SUCCESS;                
             }            
             RaycastHit hit;
             if(Physics.Raycast(GameLoopBT.instance.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){

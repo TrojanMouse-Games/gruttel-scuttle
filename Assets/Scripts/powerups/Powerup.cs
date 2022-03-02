@@ -24,9 +24,11 @@ namespace TrojanMouse.PowerUps
                     break;
                 case PowerupType.BUFF:
                     color = Color.yellow;
+                    transform.localScale = Vector3.one * 1.5f;                    
                     break;
                 case PowerupType.IRRADIATED:
                     color = Color.green;
+                    transform.localScale = Vector3.one * .75f;
                     break;
             }
 

@@ -14,7 +14,7 @@ namespace TrojanMouse.GameplayLoop{
         public override NodeState Evaluate(){
             if(hasApplied){
                 return NodeState.SUCCESS;
-            }            
+            }   
             GameLoopBT.instance.ChangeAIState(aiState);
             hasApplied = true;
             return NodeState.SUCCESS;
