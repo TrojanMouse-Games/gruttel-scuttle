@@ -14,10 +14,29 @@ public class TutorialAIController : MonoBehaviour
     public LayerMask litterLayerMask;
     [SerializeField] float pickupRange;
     public bool holdingLitter;
+    public Animator animator;
 
     private Inventory inventory; // reference to the equipper script
     private Equipper equipper; // reference to the equipper script
     private Powerup powerUp; // reference to the equipper script
+    Vector3 lastPosition;
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
+    }
+
+    /// <summary>
+    /// LateUpdate is called every frame, if the Behaviour is enabled.
+    /// It is called after all Update functions have been called.
+    /// </summary>
+    void LateUpdate()
+    {
+        lastPosition = transform.position;
+    }
 
     /// <summary>
     /// Moves the gruttel to a point
