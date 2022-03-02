@@ -34,12 +34,14 @@ namespace TrojanMouse.GameplayLoop{
             ChangeUIText addPowerupsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Nana Betsy's onto your Gruttels");
             EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);
+            EnableGruttelStats enableStats = new EnableGruttelStats(prerequisiteSettings.statScript, true);
             #endregion
             #region READY NODES
             ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
             Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer, prerequisiteSettings.timerLabel);
             EnableAI dragAI = new EnableAI(EnableAI.AIState.Dragable);
+            EnableGruttelStats disableStats = new EnableGruttelStats(prerequisiteSettings.statScript, false);
             #endregion
             #region MAIN NODES
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
@@ -53,10 +55,37 @@ namespace TrojanMouse.GameplayLoop{
             #endregion
             #endregion
 
-            GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, selectGruttelsText, disableAI, areGruttelsSelected, spawnPowerups, addPowerupsText, arePowerupsUsed});
-            GLSequence readyStage = new GLSequence(new List<GLNode>{dragGruttelsText, readyCam, dragAI, timeToDragGruttels});
-            GLSequence mainStage = new GLSequence(new List<GLNode>{mainRoundText, enableAI, mainCam, litterHandler, isLitterCleared});
-
+            #region PREPSTAGE
+            GLSequence prepStage = new GLSequence(new List<GLNode>{
+                spawnGruttels, 
+                prepCam, 
+                selectGruttelsText, 
+                disableAI, 
+                enableStats, 
+                areGruttelsSelected,
+                disableStats, 
+                spawnPowerups, 
+                addPowerupsText, 
+                arePowerupsUsed
+            });
+            #endregion
+            #region READYSTAGE
+            GLSequence readyStage = new GLSequence(new List<GLNode>{
+                dragGruttelsText, 
+                readyCam, 
+                dragAI, 
+                timeToDragGruttels
+            });
+            #endregion
+            #region MAINSTAGE
+            GLSequence mainStage = new GLSequence(new List<GLNode>{
+                mainRoundText, 
+                enableAI,
+                mainCam, 
+                litterHandler, 
+                isLitterCleared
+                });
+            #endregion
             
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
         }
@@ -75,10 +104,6 @@ namespace TrojanMouse.GameplayLoop{
             if(topNode == null){
                 topNode = CreateBehaviourTree(levels[curLevel]);
             }
-        }
-
-        private void Start() {
-            
         }
 
         void Update(){
@@ -136,6 +161,7 @@ namespace TrojanMouse.GameplayLoop{
             public Text tipText;
             public Image intermissionTimer;
             public TextMeshProUGUI timerLabel;
+            public ShowGruttelStats statScript;
         }
     }
 }
