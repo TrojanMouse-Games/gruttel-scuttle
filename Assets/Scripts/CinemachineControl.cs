@@ -62,9 +62,9 @@ public class CinemachineControl : MonoBehaviour
     void Update()
     {
         //gets horizontal input
-        hMove = Input.GetAxis("Horizontal") + CamMovementDrag();
+        hMove = Input.GetAxis("Horizontal") + CamHoriMovementDrag();
         //gets horizontal input
-        vMove = Input.GetAxis("Vertical") + CamMovementDrag();
+        vMove = Input.GetAxis("Vertical") + CamVertMovementDrag();
         //gets scroll input
         scrollMove = Input.GetAxis("Mouse ScrollWheel");
 
@@ -85,7 +85,7 @@ public class CinemachineControl : MonoBehaviour
         }
     }
 
-    float CamMovementDrag()
+    float CamHoriMovementDrag()
     {
         if (!canDrag) return 0;
         if (Input.touchCount < 1) return 0;
@@ -104,7 +104,25 @@ public class CinemachineControl : MonoBehaviour
 
         return 0;
     }
+    float CamVertMovementDrag()
+    {
+        if (!canDrag) return 0;
+        if (Input.touchCount < 1) return 0;
 
+        Touch touch = Input.GetTouch(0);
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                dragOrigin = touch.position;
+                break;
+            case TouchPhase.Moved:
+                Vector3 pos = GetComponent<Camera>().ScreenToViewportPoint(dragOrigin - touch.position) * dragSpeed;
+                dragOrigin = touch.position;
+                return pos.y;
+        }
+
+        return 0;
+    }
     void CamHoriMovement()
     {
         //as long as if within range, moves camera along dolly
