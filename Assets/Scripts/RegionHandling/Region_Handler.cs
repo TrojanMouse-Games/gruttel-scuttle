@@ -77,11 +77,6 @@ namespace TrojanMouse.RegionManagement
         }
         #endregion
 
-
-
-
-
-
         private void OnDrawGizmosSelected()
         {
             if (!Application.isEditor) { return; }
