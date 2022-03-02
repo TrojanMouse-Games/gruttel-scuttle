@@ -249,7 +249,8 @@ namespace TrojanMouse.AI
                     LitterObject litterType = null;
                     Transform litterObj = null;
 
-                    foreach (Collider obj in litter){
+                    foreach (Collider obj in litter)
+                    {
                         LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                         bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
 
@@ -314,22 +315,12 @@ namespace TrojanMouse.AI
                     break;
             }
 
-            
-            
+            //StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
         }
 
         private void CheckDistraction()
-        { // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
-        /*
-            if (GameLoop.current.stageIntermission > 0)
-            {
-                distracted = false;
-            }
-            else
-            {
-                distracted = moduleManager.distractionModule.distracted;
-            }
-        */
+        {
+            distracted = moduleManager.distractionModule.distracted;
         }
 
         public void Timer()

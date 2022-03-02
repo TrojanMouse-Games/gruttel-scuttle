@@ -75,7 +75,6 @@ namespace TrojanMouse.PowerUps
                 }
                 gruttel.UpdateType(selectedType);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
-                Debug.Log("color");
             }
             return (hit.transform) ? true : false;
         }

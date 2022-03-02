@@ -21,6 +21,7 @@ public class DistractionModule : MonoBehaviour
     {
         distracted = false;
         distractionMarker.SetActive(false);
+        StartCoroutine(GenerateDistractionChance());
     }
 
     private void Update() {
@@ -37,7 +38,7 @@ public class DistractionModule : MonoBehaviour
     public IEnumerator GenerateDistractionChance()
     {
         //Debug.Log("I am running");
-        int randomWait = UnityEngine.Random.Range(5, 15);
+        int randomWait = UnityEngine.Random.Range(5, 20);
         yield return new WaitForSeconds(randomWait);
         distractionChance = UnityEngine.Random.Range(0, 5);
         if (distractionChance == 0)
