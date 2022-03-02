@@ -10,7 +10,7 @@ namespace TrojanMouse.GameplayLoop{
         [Header("Wave Settings")]
         [Tooltip("Total amount of litter to start spawning over a duration of time")] public int litterToSpawnForWave;
         [Tooltip("Time it takes for 'LitterToSpawnForWave' amount of litter to finish spawning (Seconds)")] public float timeToSpawnAllLitter;
-        [Tooltip("Time until next wave starts")] public float intermissionBeforeNextWave;
+        [Tooltip("Time until next wave starts")] public float intermissionBeforeNextWave;        
 
         [Header("Shooter Settings -- PUT NAMES OF PLACES IN HERE")]
         public string[] shootersInThisWave;

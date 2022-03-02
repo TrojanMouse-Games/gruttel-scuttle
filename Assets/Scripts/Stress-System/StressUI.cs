@@ -16,9 +16,8 @@ namespace TrojanMouse.StressSystem
             fillbar = (!fillbar) ? GetComponent<Slider>() : fillbar;
         }
 
-        void Update()
-        {
-            fillbar.value = Mathf.SmoothDamp(fillbar.value, Stress.current.amountOfLitter / Stress.current.maxLitter, ref velocity, smoothingSpeed);
+        void Update(){
+            fillbar.value = Mathf.SmoothDamp(fillbar.value, (float)Stress.current.amountOfLitter / (float)Stress.current.maxLitter, ref velocity, smoothingSpeed);            
         }
     }
 }

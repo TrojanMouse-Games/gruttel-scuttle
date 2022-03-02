@@ -13,7 +13,7 @@ namespace TrojanMouse.GameplayLoop{
 
         [Header("Main-Stage Settings")]
         public Waves[] wavesInLevel;
-
+        [Tooltip("Max litter until stress reaches 100% stress")] public int maxLitter;
         [Serializable] public class PowerupsToBeDispenced{
             public string name;
             [Tooltip("Powerups to be dispenced to player")] public PowerupType powerup;

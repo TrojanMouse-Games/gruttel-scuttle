@@ -19,7 +19,7 @@ namespace TrojanMouse.StressSystem
         [Tooltip("Time until this script will calculate stress again")] [SerializeField] float calculationCooldown; // TIME BETWEEN EACH CALCULATION FOR STRESS
 
         public float maxLitter;
-        [SerializeField] float stress;
+        float stress;
         [HideInInspector] public float Cooldown{
             get{
                 return calculationCooldown;

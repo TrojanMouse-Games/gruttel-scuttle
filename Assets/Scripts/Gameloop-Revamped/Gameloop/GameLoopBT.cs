@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using TrojanMouse.StressSystem;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GameLoopBT : MonoBehaviour{        
@@ -60,12 +61,6 @@ namespace TrojanMouse.GameplayLoop{
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
         }
 
-
-
-
-
-
-
         private void Awake() {    
             #region SINGLETON CREATION
             if(!instance){
@@ -98,6 +93,7 @@ namespace TrojanMouse.GameplayLoop{
                 case NodeState.RUNNING:
                     break;
             }
+            Stress.current.maxLitter = levels[curLevel].maxLitter;
         }
 
         ///<summary>THIS FUNCTION WILL ALLOW BT BEHAVIOURS TO CALL THIS FUNCTION, BECAUSE THEY DO NOT DERIVE FROM MONOBEHAVIOUR SO THIS WILL NOT WORK OTHERWISE... SIMPLY SPAWNS OBJECTS</summary>
