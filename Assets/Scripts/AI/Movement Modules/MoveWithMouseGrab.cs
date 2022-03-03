@@ -14,7 +14,7 @@ namespace TrojanMouse.AI.Movement
         public float rayDistance; // How far to fire the ray.
 
         private Camera mainCam; // The camera to be used for firing the ray.
-        private bool grabbing; // Dictates whether the AI has been grabbed.
+        public bool grabbing; // Dictates whether the AI has been grabbed.
 
         // Damping vars
         [SerializeField] private float amountOfSmoothing; // How much the position is smoothed when moving
@@ -55,9 +55,10 @@ namespace TrojanMouse.AI.Movement
                 {
                     // if yes, save it to a local transform
                     target = hit.transform;
+                    // Set the state to grabbing
+                    grabbing = true;
                 }
-                // Set the state to grabbing
-                grabbing = true;
+
                 // Turn off the AI Components
 
                 ToggleAIComponents(false, "pickUp");
@@ -67,6 +68,7 @@ namespace TrojanMouse.AI.Movement
                 // Check to see if the mouse has been pressed, if yes, do logic 
                 if (Input.GetButton("Fire1") && FireRay(whatToIgnore, rayDistance))
                 {
+                    target.transform.GetComponent<AIController>().animator.SetBool("isPickedUp", true);
                     // Create the offset, and then create the dampened new position.
                     Vector3 offset = new Vector3(0, 3, 0);
                     Vector3 newPos = Vector3.SmoothDamp(target.transform.position, hit.point + offset, ref posVelocity, amountOfSmoothing);
@@ -81,6 +83,7 @@ namespace TrojanMouse.AI.Movement
                 else
                 {
                     grabbing = false;
+                    target.transform.GetComponent<AIController>().animator.SetBool("isPickedUp", false);
                     // Re-enable the components after dropping the AI.
 
                     // OTIS ADD AUDIO CODE HERE FOR DROPPING THE GRUTTLES
