@@ -1717,6 +1717,7 @@ GameObject:
   - component: {fileID: 9134461449078114017}
   - component: {fileID: 9134461449078114016}
   - component: {fileID: -6900343593846015828}
+  - component: {fileID: 1736692516325270186}
   m_Layer: 6
   m_Name: Gruttel
   m_TagString: NPC
@@ -1793,7 +1794,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 350
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1841,10 +1842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34c42d8a2b010a4fbcaee9d1d5febb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wander: {fileID: 0}
-  patrol: {fileID: 0}
-  fleeModule: {fileID: 0}
-  distractionModule: {fileID: 0}
+  wander: {fileID: 9134461449078113819}
+  patrol: {fileID: 9134461449078113818}
+  fleeModule: {fileID: 9134461449078113821}
+  distractionModule: {fileID: 7161643577560387700}
   moveWithMouseClick: {fileID: 0}
   moveWithMouseGrab: {fileID: 0}
 --- !u!114 &9134461449078113819
@@ -1910,6 +1911,20 @@ MonoBehaviour:
   distractionMarker: {fileID: 9134461449789227875}
   distractionChance: 0
   animator: {fileID: 2553501623213131299}
+  distractedSound:
+    Guid:
+      Data1: -910085517
+      Data2: 1195260907
+      Data3: -652399968
+      Data4: 1605212735
+    Path: event:/Gruttel Sounds/Distracted
+  undistrcatedSound:
+    Guid:
+      Data1: -168363087
+      Data2: 1178371607
+      Data3: -1447001678
+      Data4: -690272761
+    Path: event:/Gruttel Sounds/Undistracted
 --- !u!114 &9134461449078113820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,6 +2098,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   FOV: 25
+--- !u!114 &1736692516325270186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6363de8fb21fac843a815fe1dad5cd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    reference: {fileID: 0}
+    meshList: {fileID: 0}
+    nickname: 
+    notableAchievement: 
+    traits: []
+    bios: []
+    type: 0
+    baseColor: {r: 0, g: 0, b: 0, a: 0}
+    overallStress: 0
+  personalityList: {fileID: 11400000, guid: b48eaa81c388aa24091c07f6015d489d, type: 2}
 --- !u!95 &402454146568936681
 Animator:
   serializedVersion: 3
@@ -2163,12 +2201,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f933048e3ca6340bd68e069b639be0, type: 3}
---- !u!23 &7209508367609607519 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8216054026033364530}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8471254296143305177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 00f933048e3ca6340bd68e069b639be0,
@@ -2178,6 +2210,12 @@ Transform:
 --- !u!1 &9134461449789227875 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 00f933048e3ca6340bd68e069b639be0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8216054026033364530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7209508367609607519 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 00f933048e3ca6340bd68e069b639be0,
     type: 3}
   m_PrefabInstance: {fileID: 8216054026033364530}
   m_PrefabAsset: {fileID: 0}

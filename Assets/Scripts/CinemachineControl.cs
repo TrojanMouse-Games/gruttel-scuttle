@@ -9,10 +9,14 @@ public class CinemachineControl : MonoBehaviour
     //by Cassy 
 
     [SerializeField]
-    private float camMoveSpeed = 1;
+    private float camHoriMoveSpeed = 1;
+    [SerializeField]
+    private float camVertMoveSpeed = 1;
     [SerializeField]
     private float camZoomSpeed = 1;
-    float hMove; float minPos; float maxPos; float startPos; float fov = 50; float scrollMove; float maxZoom = 30; float minZoom = 70;
+    float hMove; float minHPos; float maxHPos; float startHPos;
+    float vMove; float minVPos = -5; float maxVPos = 5;
+    float fov = 50; float scrollMove; float maxZoom = 30; float minZoom = 70;
     //drag the scene's main v cam here
     public GameObject virtualCam;
     CinemachineVirtualCamera vcamComponent; CinemachineTrackedDolly dolly;
@@ -32,13 +36,16 @@ public class CinemachineControl : MonoBehaviour
         switch (sceneName)
         {
             case "Area1_Rectangle":
-                minPos = 0; maxPos = 1; startPos = 0.8f;
+                minHPos = 0; maxHPos = 1; startHPos = 0.8f;
                 break;
             case "Area2_Circle":
-                minPos = -1000000; maxPos = 1000000; startPos = 0;
+                minHPos = -1000000; maxHPos = 1000000; startHPos = 0;
                 break;
             case "Area3_SemiCircle":
-                minPos = 0; maxPos = 4; startPos = 2;
+                minHPos = 0; maxHPos = 4; startHPos = 2;
+                break;
+            case "Area3_SemiCircleWITHNEWLOOP":
+                minHPos = 0; maxHPos = 4; startHPos = 2;
                 break;
         }
         //fetches the virtual camera component
@@ -46,7 +53,7 @@ public class CinemachineControl : MonoBehaviour
         //gets the dolly cam component
         dolly = vcamComponent.GetCinemachineComponent<CinemachineTrackedDolly>();
         //sets to start position to 0
-        dolly.m_PathPosition = startPos;
+        dolly.m_PathPosition = startHPos; dolly.m_PathOffset.y = 0;
         //sets the fov to the starting preset
         vcamComponent.m_Lens.FieldOfView = fov;
     }
@@ -55,7 +62,9 @@ public class CinemachineControl : MonoBehaviour
     void Update()
     {
         //gets horizontal input
-        hMove = Input.GetAxis("Horizontal") + CamMovementDrag();
+        hMove = Input.GetAxis("Horizontal") + CamHoriMovementDrag();
+        //gets horizontal input
+        vMove = Input.GetAxis("Vertical") + CamVertMovementDrag();
         //gets scroll input
         scrollMove = Input.GetAxis("Mouse ScrollWheel");
 
@@ -66,12 +75,17 @@ public class CinemachineControl : MonoBehaviour
         //if movement input received
         if (hMove != 0)
         {
-            //function to move camera
-            CamMovement();
+            //function to move camera horizontally
+            CamHoriMovement();
+        }
+        if (vMove != 0)
+        {
+            //function to move camera vertically
+            CamVertMovement();
         }
     }
 
-    float CamMovementDrag()
+    float CamHoriMovementDrag()
     {
         if (!canDrag) return 0;
         if (Input.touchCount < 1) return 0;
@@ -90,22 +104,57 @@ public class CinemachineControl : MonoBehaviour
 
         return 0;
     }
+    float CamVertMovementDrag()
+    {
+        if (!canDrag) return 0;
+        if (Input.touchCount < 1) return 0;
 
-    void CamMovement()
+        Touch touch = Input.GetTouch(0);
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                dragOrigin = touch.position;
+                break;
+            case TouchPhase.Moved:
+                Vector3 pos = GetComponent<Camera>().ScreenToViewportPoint(dragOrigin - touch.position) * dragSpeed;
+                dragOrigin = touch.position;
+                return pos.y;
+        }
+
+        return 0;
+    }
+    void CamHoriMovement()
     {
         //as long as if within range, moves camera along dolly
-        if (minPos <= dolly.m_PathPosition && dolly.m_PathPosition <= maxPos)
+        if (minHPos <= dolly.m_PathPosition && dolly.m_PathPosition <= maxHPos)
         {
-            dolly.m_PathPosition += (hMove * camMoveSpeed * Time.deltaTime);
+            dolly.m_PathPosition += (hMove * camHoriMoveSpeed * Time.deltaTime);
         }
         //sets position to min/max if it goes out of bounds
-        if (minPos > dolly.m_PathPosition)
+        if (minHPos > dolly.m_PathPosition)
         {
-            dolly.m_PathPosition = minPos;
+            dolly.m_PathPosition = minHPos;
         }
-        if (dolly.m_PathPosition > maxPos)
+        if (dolly.m_PathPosition > maxHPos)
         {
-            dolly.m_PathPosition = maxPos;
+            dolly.m_PathPosition = maxHPos;
+        }
+    }
+    void CamVertMovement()
+    {
+        //as long as if within range, pans camera vertically
+        if (minVPos <= dolly.m_PathOffset.y && dolly.m_PathOffset.y <= maxVPos)
+        {
+            dolly.m_PathOffset.y += (vMove * camVertMoveSpeed * Time.deltaTime);
+        }
+        //sets position to min/max if it goes out of bounds
+        if (minVPos > dolly.m_PathOffset.y)
+        {
+            dolly.m_PathOffset.y = minVPos;
+        }
+        if (dolly.m_PathOffset.y > maxVPos)
+        {
+            dolly.m_PathOffset.y = maxVPos;
         }
     }
     void CamZoom()

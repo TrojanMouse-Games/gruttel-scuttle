@@ -27,7 +27,7 @@ namespace TrojanMouse.RegionManagement
         ///<param name="litterToSpawn">The amount of litter that'll spawn after calling this function</param>
         ///<param name="maxLitter">If this value is smaller than the scriptable object maxLitterInRegion, this will take priority. If it is < 0 then it'll be ignored</param>
         ///<returns>The excess value. If it returns a negative value, then there is still room to spawn more litter otherwise it is full</returns>
-        public int SpawnLitter(Collider region, int litterToSpawn, int maxLitter = -1){            
+        public int SpawnLitter(Collider region, Ballistics shooter, int litterToSpawn, int maxLitter = -1){            
             int numOfLitterInRegion = region.transform.childCount;
             maxLitter = (maxLitter < 0) ? maxLitterInRegion : maxLitter;
             //Debug.Log($"Max | Number: {maxLitter} | {numOfLitterInRegion}");            
@@ -55,9 +55,11 @@ namespace TrojanMouse.RegionManagement
                     UnityEngine.Random.Range(minPos.z, maxPos.z)
                 );
                 #endregion                
-                Ballistics.current.RotateShooter(spawnPos, projectileSpeed);
-                GameObject newLitter = Instantiate(selectedLitter.litterObject, Ballistics.current.shooterObj.position, Quaternion.identity, region.transform);
-                newLitter.GetComponent<Rigidbody>().velocity = Ballistics.current.shooterObj.forward * projectileSpeed;
+                //Ballistics.current.RotateShooter(spawnPos, projectileSpeed);
+                bool canShoot = shooter.RotateShooter(spawnPos, projectileSpeed);
+                if(!canShoot){ return 1; } // MEANS THAT NOTHING SHOULD BE NEGATED OFF THE LITTER TO SPAWN VARIABLE
+                GameObject newLitter = Instantiate(selectedLitter.litterObject, shooter.transform.GetChild(0).position, Quaternion.identity, region.transform);
+                newLitter.GetComponent<Rigidbody>().velocity = shooter.transform.GetChild(0).forward * projectileSpeed;
             }
             return region.transform.childCount - maxLitter; // RETURNS THE EXCESS (NEGATIVE VALUES MEANS THERE IS STILL ROOM TO SPAWN)
         }
