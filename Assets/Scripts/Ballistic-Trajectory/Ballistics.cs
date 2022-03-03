@@ -16,7 +16,7 @@ namespace TrojanMouse.BallisticTrajectory{
         }
 
         ///<summary>THIS FUNCTION WILL ROTATE THIS TRANSFORM ON THE Y AXIS</summary>
-        public bool RotateShooter(Vector3 targetPos, float speed){           
+        public void RotateShooter(Vector3 targetPos, float speed){
             // GET ANGLES
             float? highAngle = 0f,
                   lowAngle = 0f;
@@ -32,10 +32,8 @@ namespace TrojanMouse.BallisticTrajectory{
                 transform.eulerAngles = new Vector3(0f, transform.rotation.eulerAngles.y, 0f); // RESETS THE X/Z ANGLES SO THAT IT ONLY ROTATES ON THE Y AXIS
             }
             else{
-                Debug.LogError("SHOOTER OUT OF REACH");
-                return false;                
+                Debug.LogError("OUT OF REACH: Brute forcing speed improvement");                
             }
-            return true;
         }
 
         ///<summary>THIS FUNCTION WILL ROTATE THE SHOOTER OBJECT ON THE X/Z AXIS - WILL RETURN A HIGH/LOW ANGLE</summary>

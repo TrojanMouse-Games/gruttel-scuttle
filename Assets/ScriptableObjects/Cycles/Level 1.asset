@@ -9,6 +9,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 61306efcac91a6f4aacabdcb7d062ce0, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
+  stages:
+  - name: Preparation
+    numOfGruttelsToPick: 8
+    litterSettings:
+      numOfLitterToSpawn: 0
+      durationOfPhase: 0
+    powerupsToDispence: 010000000200000002000000
+    levelComplete: 0
+  - name: Wave 1
+    numOfGruttelsToPick: 0
+    litterSettings:
+      numOfLitterToSpawn: 100
+      durationOfPhase: 30
+    powerupsToDispence: 
+    levelComplete: 0
+  - name: Wave 2
+    numOfGruttelsToPick: 0
+    litterSettings:
+      numOfLitterToSpawn: 200
+      durationOfPhase: 30
+    powerupsToDispence: 
+    levelComplete: 0
+  - name: Wave 3
+    numOfGruttelsToPick: 0
+    litterSettings:
+      numOfLitterToSpawn: 300
+      durationOfPhase: 30
+    powerupsToDispence: 
+    levelComplete: 0
+  - name: Wave 4
+    numOfGruttelsToPick: 0
+    litterSettings:
+      numOfLitterToSpawn: 400
+      durationOfPhase: 30
+    powerupsToDispence: 
+    levelComplete: 0
+  - name: Aftermath
+    numOfGruttelsToPick: 0
+    litterSettings:
+      numOfLitterToSpawn: 400
+      durationOfPhase: 30
+    powerupsToDispence: 
+    levelComplete: 0

@@ -249,8 +249,7 @@ namespace TrojanMouse.AI
                     LitterObject litterType = null;
                     Transform litterObj = null;
 
-                    foreach (Collider obj in litter)
-                    {
+                    foreach (Collider obj in litter){
                         LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                         bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
 
@@ -289,7 +288,7 @@ namespace TrojanMouse.AI
             data.Agent = gameObject.GetComponent<NavMeshAgent>();
             data.Agent.enabled = true;
             timer = data.WanderCooldown;
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_Color");
             equipper = GetComponent<Equipper>();
             powerUp = GetComponent<Powerup>();
             inventory = GetComponent<Inventory.Inventory>();
@@ -315,12 +314,20 @@ namespace TrojanMouse.AI
                     break;
             }
 
-            //StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
+            
+            
         }
 
         private void CheckDistraction()
         {
-            distracted = moduleManager.distractionModule.distracted;
+            // if (GameLoop.current.stageIntermission > 0)
+            // {
+            //     distracted = false;
+            // }
+            // else
+            // {
+            //     distracted = moduleManager.distractionModule.distracted;
+            // }
         }
 
         public void Timer()
@@ -364,11 +371,6 @@ namespace TrojanMouse.AI
                     lr.SetPosition(i, path[i] + new Vector3(0, .5f, 0));
                 }
             }
-        }
-
-        public void UpdateColor()
-        {
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
         }
 
         /// <summary>

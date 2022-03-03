@@ -5755,11 +5755,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6776636989468460409, guid: 30e68d63996cfa640b048813c6d67426,
         type: 3}
-      propertyPath: undistrcatedSound.Path
-      value: event:/Gruttel Sounds/Undistracted
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776636989468460409, guid: 30e68d63996cfa640b048813c6d67426,
-        type: 3}
       propertyPath: DirectionSound.Guid.Data1
       value: 1124819275
       objectReference: {fileID: 0}
@@ -5798,26 +5793,6 @@ PrefabInstance:
       propertyPath: SelectionSound.Guid.Data4
       value: 72153333
       objectReference: {fileID: 0}
-    - target: {fileID: 6776636989468460409, guid: 30e68d63996cfa640b048813c6d67426,
-        type: 3}
-      propertyPath: undistrcatedSound.Guid.Data1
-      value: -168363087
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776636989468460409, guid: 30e68d63996cfa640b048813c6d67426,
-        type: 3}
-      propertyPath: undistrcatedSound.Guid.Data2
-      value: 1178371607
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776636989468460409, guid: 30e68d63996cfa640b048813c6d67426,
-        type: 3}
-      propertyPath: undistrcatedSound.Guid.Data3
-      value: -1447001678
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776636989468460409, guid: 30e68d63996cfa640b048813c6d67426,
-        type: 3}
-      propertyPath: undistrcatedSound.Guid.Data4
-      value: -690272761
-      objectReference: {fileID: 0}
     - target: {fileID: 6776636991234547199, guid: 30e68d63996cfa640b048813c6d67426,
         type: 3}
       propertyPath: m_PathPosition
@@ -5825,7 +5800,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6776636989468460390, guid: 30e68d63996cfa640b048813c6d67426, type: 3}
-    - {fileID: 6776636989468460386, guid: 30e68d63996cfa640b048813c6d67426, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 30e68d63996cfa640b048813c6d67426, type: 3}
 --- !u!1 &1329300415 stripped
 GameObject:
@@ -5853,36 +5827,6 @@ MonoBehaviour:
       Data3: -1239366465
       Data4: -1921043719
     Path: event:/Music/Cycle 2
-  Event: 
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &1329300418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329300415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1304102134
-      Data2: 1241816646
-      Data3: -342675284
-      Data4: 481558340
-    Path: event:/UI/Countdown Timer
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -6272,42 +6216,6 @@ Transform:
   m_Father: {fileID: 1472211086}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1785665985 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6681461690957049267, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 889919992}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1785665989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785665985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &1828953748
 GameObject:
   m_ObjectHideFlags: 0
