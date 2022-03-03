@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TrojanMouse.RegionManagement;
 using UnityEngine.SceneManagement;
-
+using TrojanMouse.GameplayLoop;
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.StressSystem
 {
@@ -13,6 +13,9 @@ namespace TrojanMouse.StressSystem
         [HideInInspector] public bool isCountingDown;
 
         [HideInInspector] public float amountOfLitter;
+
+        [HideInInspector] public bool startStress;
+
 
         [Header("Settings")]
         [Tooltip("Time until this script will calculate stress again")] [SerializeField] float calculationCooldown; // TIME BETWEEN EACH CALCULATION FOR STRESS
@@ -38,11 +41,10 @@ namespace TrojanMouse.StressSystem
 
         private void Update(){
             #region STRESS COUNTDOWN
-            if(amountOfLitter >= maxLitter && !isCountingDown){
+            if(amountOfLitter >= maxLitter && !isCountingDown && startStress){
                 isCountingDown = true;
                 curCountdown = Time.time + maxStressCountdown;
             }
-
             if(Time.time >= curCountdown && isCountingDown){
                 isCountingDown = false;
                 if(amountOfLitter >= maxLitter){

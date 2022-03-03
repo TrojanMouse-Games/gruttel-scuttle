@@ -14,7 +14,7 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] Prerequisites prerequisiteSettings;
         
         [SerializeField] Level[] levels;
-        [SerializeField] int curLevel, curWave; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
+        [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
         public static event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
@@ -46,8 +46,10 @@ namespace TrojanMouse.GameplayLoop{
             #region MAIN NODES
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
             ChangeCamera mainCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras, false);
+            EnableStress enableStress = new EnableStress(true);
             LitterHandler litterHandler = new LitterHandler(level);
             IsLitterCleared isLitterCleared = new IsLitterCleared();
+            EnableStress disableStress = new EnableStress(false);
 
             EnableAI enableAI = new EnableAI(EnableAI.AIState.Enabled);
             #endregion
@@ -82,9 +84,11 @@ namespace TrojanMouse.GameplayLoop{
             GLSequence mainStage = new GLSequence(new List<GLNode>{
                 mainRoundText, 
                 enableAI,
-                mainCam, 
+                mainCam,
+                enableStress,
                 litterHandler, 
-                isLitterCleared
+                isLitterCleared,
+                disableStress
                 });
             #endregion
             

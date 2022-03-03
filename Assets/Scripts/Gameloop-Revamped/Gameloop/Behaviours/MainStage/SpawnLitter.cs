@@ -31,11 +31,9 @@ namespace TrojanMouse.GameplayLoop{
         
         
         public override NodeState Evaluate(){
-            if(litterToSpawn <= 0){
+            if(litterToSpawn <= 0){                
                 return NodeState.SUCCESS;    
             }
-
-            
             if(CanSpawn()){
                 Region region = regionObjs[Random.Range(0, regionObjs.Length)]; // SELECTS A RANDOM REGION TO SPAWN THE LITTER WITHIN
                 Ballistics shooter = shooterObjs[Random.Range(0, shooterObjs.Length)]; // SELECTS A RANDOM SHOOTER TO SPAWN THE LITTER AT
