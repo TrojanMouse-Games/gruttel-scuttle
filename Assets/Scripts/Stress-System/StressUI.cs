@@ -7,17 +7,19 @@ namespace TrojanMouse.StressSystem
 {
     public class StressUI : MonoBehaviour
     {
-        [SerializeField] Slider fillbar;
+        [SerializeField] Image fillbar;
         [SerializeField] float smoothingSpeed;
+        [SerializeField] Animator animator;
         float velocity;
 
         private void Awake()
         {
-            fillbar = (!fillbar) ? GetComponent<Slider>() : fillbar;
+            fillbar = (!fillbar) ? GetComponent<Image>() : fillbar;
         }
 
         void Update(){
-            fillbar.value = Mathf.SmoothDamp(fillbar.value, (float)Stress.current.amountOfLitter / (float)Stress.current.maxLitter, ref velocity, smoothingSpeed);            
+            fillbar.fillAmount = Mathf.SmoothDamp(fillbar.fillAmount, (float)Stress.current.amountOfLitter / (float)Stress.current.maxLitter, ref velocity, smoothingSpeed);  
+            animator.SetBool("Wobble", (Stress.current.isCountingDown)? true: false);         
         }
     }
 }

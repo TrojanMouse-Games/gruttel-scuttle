@@ -14,7 +14,7 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] Prerequisites prerequisiteSettings;
         
         [SerializeField] Level[] levels;
-        [SerializeField] int curLevel, curWave; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
+        [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
         public static event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
@@ -22,7 +22,7 @@ namespace TrojanMouse.GameplayLoop{
         #endregion
         
         GLNode CreateBehaviourTree(Level level){            
-            GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera};
+            GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera}; // STORES ALL THE CAMERAS INTO AN ARRAY
 
             #region NODES
             #region PREP NODES
@@ -34,18 +34,22 @@ namespace TrojanMouse.GameplayLoop{
             ChangeUIText addPowerupsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Nana Betsy's onto your Gruttels");
             EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);
+            EnableGruttelStats enableStats = new EnableGruttelStats(prerequisiteSettings.statScript, true);
             #endregion
             #region READY NODES
             ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
             Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer, prerequisiteSettings.timerLabel);
             EnableAI dragAI = new EnableAI(EnableAI.AIState.Dragable);
+            EnableGruttelStats disableStats = new EnableGruttelStats(prerequisiteSettings.statScript, false);
             #endregion
             #region MAIN NODES
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
             ChangeCamera mainCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras, false);
+            EnableStress enableStress = new EnableStress(true);
             LitterHandler litterHandler = new LitterHandler(level);
             IsLitterCleared isLitterCleared = new IsLitterCleared();
+            EnableStress disableStress = new EnableStress(false);
 
             EnableAI enableAI = new EnableAI(EnableAI.AIState.Enabled);
             #endregion
@@ -53,39 +57,63 @@ namespace TrojanMouse.GameplayLoop{
             #endregion
             #endregion
 
-            GLSequence prepStage = new GLSequence(new List<GLNode>{spawnGruttels, prepCam, selectGruttelsText, disableAI, areGruttelsSelected, spawnPowerups, addPowerupsText, arePowerupsUsed});
-            GLSequence readyStage = new GLSequence(new List<GLNode>{dragGruttelsText, readyCam, dragAI, timeToDragGruttels});
-            GLSequence mainStage = new GLSequence(new List<GLNode>{mainRoundText, enableAI, mainCam, litterHandler, isLitterCleared});
-
+            // EACH ACTION LABELLED IN THESE SEQUENCES ARE ACTED OUT AS A CHECKLIST SYSTEM, ONCE ONE IS COMPLETED, IT WILL ENTER THE NEXT PHASE.
+            #region PREPSTAGE
+            GLSequence prepStage = new GLSequence(new List<GLNode>{
+                spawnGruttels, 
+                prepCam, 
+                selectGruttelsText, 
+                disableAI, 
+                enableStats, 
+                areGruttelsSelected,
+                disableStats, 
+                spawnPowerups, 
+                addPowerupsText, 
+                arePowerupsUsed
+            });
+            #endregion
+            #region READYSTAGE
+            GLSequence readyStage = new GLSequence(new List<GLNode>{
+                dragGruttelsText, 
+                readyCam, 
+                dragAI, 
+                timeToDragGruttels
+            });
+            #endregion
+            #region MAINSTAGE
+            GLSequence mainStage = new GLSequence(new List<GLNode>{
+                mainRoundText, 
+                enableAI,
+                mainCam,
+                enableStress,
+                litterHandler, 
+                isLitterCleared,
+                disableStress
+                });
+            #endregion
             
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
         }
 
-        private void Awake() {    
+        private void Awake() {
             #region SINGLETON CREATION
-            if(!instance){
-                instance = this;
-            }   
-            else{
+            if (instance){
                 Destroy(this);
+                return;
             }
+            instance = this;
             #endregion            
-            cam = Camera.main;           
+            cam = Camera.main; // ASSIGN THE CAMERA VARIABLE
 
-            if(topNode == null){
-                topNode = CreateBehaviourTree(levels[curLevel]);
+            if(topNode == null){                
+                topNode = CreateBehaviourTree(levels[curLevel]); // THIS INITIATES THE TREE FROM WHEN THE GAME STARTS. IT WILL START THE TREE AT LEVEL 1
             }
         }
 
-        private void Start() {
-            
-        }
-
-        void Update(){
-            
-            switch(topNode.Evaluate()){
+        void Update(){            
+            switch(topNode.Evaluate()){ // THIS LINE CALLS THE EVALUATE FUNCTION WHICH ULTIMATELY TRIGGERS THE TREE TO BE SEARCHED FOR ACTIONS
                 case NodeState.SUCCESS:
-                    curLevel = (curLevel + 1) % levels.Length; // ITERATES TO THE NEXT LEVEL OR 0                    
+                    curLevel = (curLevel + 1) % levels.Length; // ITERATES TO THE NEXT LEVEL OR 0                  
                     topNode = CreateBehaviourTree(levels[curLevel]); // CREATE BT FOR NEXT LEVEL
                     break;
                 case NodeState.FAILURE:
@@ -93,9 +121,8 @@ namespace TrojanMouse.GameplayLoop{
                 case NodeState.RUNNING:
                     break;
             }
-            Stress.current.maxLitter = levels[curLevel].maxLitter;
-        }
-
+            Stress.current.maxLitter = prerequisiteSettings.gruttelPlayFolder.childCount * prerequisiteSettings.maxLitterStressPerGruttel; // THIS IS MULTIPLIED PER GRUTTEL
+        }   
         ///<summary>THIS FUNCTION WILL ALLOW BT BEHAVIOURS TO CALL THIS FUNCTION, BECAUSE THEY DO NOT DERIVE FROM MONOBEHAVIOUR SO THIS WILL NOT WORK OTHERWISE... SIMPLY SPAWNS OBJECTS</summary>
         public GameObject SpawnObj(GameObject obj, Vector3 spawnPoint, Quaternion rotation, Transform parent){
             return Instantiate(obj, spawnPoint, rotation, parent);
@@ -108,10 +135,13 @@ namespace TrojanMouse.GameplayLoop{
             return new Ray();
         }
         
+        /// <summary>THIS FUNCTION WILL CHANGE THE AI STATE TO THE PASSED STATE</summary>
+        /// <param name="state">THE STATE YOU WISH TO FORCE CHANGE ALL AI TO</param>
         public void ChangeAIState(EnableAI.AIState state){
             SetAIState?.Invoke(state);
         }
 
+        // SETTINGS FOR THE INSPECTOR
         [Serializable] public class Prerequisites{
             [Header("Gruttel Settings")]
             [Tooltip("This is the Gruttel prefab. 1 will for spawn every spawnpoint...")] public GameObject gruttelObj;
@@ -119,6 +149,7 @@ namespace TrojanMouse.GameplayLoop{
             [Tooltip("This is folder where the Gruttels will initially spawn within")] public Transform gruttelVillageFolder;
             [Tooltip("After selected, Gruttels will move into this folder, where they will be activated and used to play the level")] public Transform gruttelPlayFolder;
             [Tooltip("This is needed for Gruttel selection, please choose the layermask the gameobject uses!")] public LayerMask whatIsGruttel;
+            [Tooltip("For every Gruttel, this will be the stress the game will be able to handle")] public float maxLitterStressPerGruttel;
             public Transform objectForGruttelsToLookAtWhenSpawned;
 
             [Header("Powerup Settings")]
@@ -136,6 +167,7 @@ namespace TrojanMouse.GameplayLoop{
             public Text tipText;
             public Image intermissionTimer;
             public TextMeshProUGUI timerLabel;
+            public ShowGruttelStats statScript;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace TrojanMouse.GameplayLoop{
         Transform villageFolder;
 
         bool hasSpawned;
-        public SpawnGruttels(GameObject gruttelObj, Transform[] spawnPoints, Transform lookAtObject, Transform villageFolder){
+        public SpawnGruttels(GameObject gruttelObj, Transform[] spawnPoints, Transform lookAtObject, Transform villageFolder){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             this.gruttelObj = gruttelObj;
             this.spawnPoints = spawnPoints;
             this.lookAtObject = lookAtObject;

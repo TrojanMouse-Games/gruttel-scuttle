@@ -12,9 +12,17 @@ namespace TrojanMouse.PowerUps
         public Canvas canvas;
         [SerializeField] LayerMask whatIsGruttel;
         [SerializeField] bool lockGruttelToOneType;
+        
         Vector2 startingPos; // POSITION THIS ITEM WAS SPAWNED AT
         Transform parent; // USE THIS TO TELEPORT THE ELEMENT BACK INTO THE ORDER GROUP
         PowerupType type;
+
+       
+        [System.Serializable] public class gruttelSettings{
+            public Mesh type;
+            public Material texture;
+        }
+        [SerializeField] gruttelSettings[] gruttelTypes;
 
         Camera camera;
         CinemachineControl cam;
@@ -73,7 +81,23 @@ namespace TrojanMouse.PowerUps
                 if (gruttel.Type != PowerupType.NORMAL && lockGruttelToOneType){
                     return false;
                 }
-                gruttel.UpdateType(selectedType);
+
+                Mesh curMesh = null;
+                Material curMaterial = null;
+                switch(selectedType){
+                    case PowerupType.BUFF:
+                        curMesh = gruttelTypes[0].type;
+                        curMaterial = gruttelTypes[0].texture;
+                        break;
+                    case PowerupType.IRRADIATED:
+                        curMesh = gruttelTypes[1].type;
+                        curMaterial = gruttelTypes[1].texture;
+                        break;
+                }
+
+
+
+                gruttel.UpdateType(selectedType, true, curMesh, curMaterial);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;
