@@ -101,7 +101,7 @@ namespace TrojanMouse.GameplayLoop{
             #endregion            
             cam = Camera.main; // ASSIGN THE CAMERA VARIABLE
 
-            if(topNode == null){
+            if(topNode == null){                
                 topNode = CreateBehaviourTree(levels[curLevel]); // THIS INITIATES THE TREE FROM WHEN THE GAME STARTS. IT WILL START THE TREE AT LEVEL 1
             }
         }
@@ -109,7 +109,7 @@ namespace TrojanMouse.GameplayLoop{
         void Update(){            
             switch(topNode.Evaluate()){ // THIS LINE CALLS THE EVALUATE FUNCTION WHICH ULTIMATELY TRIGGERS THE TREE TO BE SEARCHED FOR ACTIONS
                 case NodeState.SUCCESS:
-                    curLevel = (curLevel + 1) % levels.Length; // ITERATES TO THE NEXT LEVEL OR 0                    
+                    curLevel = (curLevel + 1) % levels.Length; // ITERATES TO THE NEXT LEVEL OR 0                  
                     topNode = CreateBehaviourTree(levels[curLevel]); // CREATE BT FOR NEXT LEVEL
                     break;
                 case NodeState.FAILURE:
@@ -117,9 +117,8 @@ namespace TrojanMouse.GameplayLoop{
                 case NodeState.RUNNING:
                     break;
             }
-            Stress.current.maxLitter = levels[curLevel].maxLitter; // THIS NEEDS TO BE CHANGED TO BE GRUTTEL SPECIFIC
-        }
-
+            Stress.current.maxLitter = prerequisiteSettings.gruttelPlayFolder.childCount * prerequisiteSettings.maxLitterStressPerGruttel; // THIS IS MULTIPLIED PER GRUTTEL
+        }   
         ///<summary>THIS FUNCTION WILL ALLOW BT BEHAVIOURS TO CALL THIS FUNCTION, BECAUSE THEY DO NOT DERIVE FROM MONOBEHAVIOUR SO THIS WILL NOT WORK OTHERWISE... SIMPLY SPAWNS OBJECTS</summary>
         public GameObject SpawnObj(GameObject obj, Vector3 spawnPoint, Quaternion rotation, Transform parent){
             return Instantiate(obj, spawnPoint, rotation, parent);
@@ -146,6 +145,7 @@ namespace TrojanMouse.GameplayLoop{
             [Tooltip("This is folder where the Gruttels will initially spawn within")] public Transform gruttelVillageFolder;
             [Tooltip("After selected, Gruttels will move into this folder, where they will be activated and used to play the level")] public Transform gruttelPlayFolder;
             [Tooltip("This is needed for Gruttel selection, please choose the layermask the gameobject uses!")] public LayerMask whatIsGruttel;
+            [Tooltip("For every Gruttel, this will be the stress the game will be able to handle")] public float maxLitterStressPerGruttel;
             public Transform objectForGruttelsToLookAtWhenSpawned;
 
             [Header("Powerup Settings")]
