@@ -8,8 +8,17 @@ namespace TrojanMouse.Gruttel
     [System.Serializable]
     public class GruttelData
     {
+        [Header("Static Variables")]
+        public static List<string> listOfNames;
+        public static List<string> listOfTraits;
+        public static List<string> listOfNotableAchievements;
+        public static List<string> listOfPrimaryBios;
+        public static List<string> listOfSecondaryBios;
+        public static List<string> listOfTertiaryBios;
+
+        public static bool staticsInitialized = false;
+
         [Header("References")]
-        public GruttelReference reference;
         public GruttelMeshList meshList;
 
         [Header("Personality")]
@@ -17,6 +26,7 @@ namespace TrojanMouse.Gruttel
         public string notableAchievement;
         public string[] traits;
         public string[] bios;
+        public Vector2Int traitsMinMax;
 
 
         [Header("Gruttel Visual Information")]
@@ -27,9 +37,24 @@ namespace TrojanMouse.Gruttel
         public int overallStress;
 
 
-        public GruttelData(GruttelReference _reference)
+        public GruttelData(GruttelReference reference)
         {
-            reference = _reference;
+            PersonalityLists lists = reference.personalityList;
+
+            traitsMinMax = lists.traitsMinMax;
+
+            if (!staticsInitialized)
+            {
+                listOfNames = new List<string>(lists.listOfNames);
+                listOfTraits = new List<string>(lists.listOfTraits);
+                listOfNotableAchievements = new List<string>(lists.listOfNotableAchievements);
+                listOfPrimaryBios = new List<string>(lists.listOfPrimaryBios);
+                listOfSecondaryBios = new List<string>(lists.listOfSecondaryBios);
+                listOfTertiaryBios = new List<string>(lists.listOfTertiaryBios);
+
+                staticsInitialized = true;
+            }
+
             GenerateRandomGruttel();
             type = GruttelType.Normal;
         }
@@ -43,38 +68,35 @@ namespace TrojanMouse.Gruttel
         {
             nickname = GetRandomName();
             notableAchievement = GetRandomNotableAchievement();
-            traits = GetRandomTraits(3);
+            traits = GetRandomTraits();
             bios = GetRandomBios();
         }
 
         public string GetRandomName()
         {
+            string name = CutRandomFromList(listOfNames);
 
-            int i = Random.Range(0, reference.personalityList.listOfNames.Count);
-
-            return reference.personalityList.listOfNames[i];
+            return name;
         }
 
         public string GetRandomNotableAchievement()
         {
-            int i = Random.Range(0, reference.personalityList.listOfNotableAchievements.Count);
+            string notableAchievement = CutRandomFromList(listOfNotableAchievements);
 
-            return reference.personalityList.listOfNotableAchievements[i];
+            return notableAchievement;
         }
 
-        public string[] GetRandomTraits(int numberOfTraits)
+        public string[] GetRandomTraits()
         {
-            List<string> traitValues = new List<string>();
-            List<int> traitIndexes = new List<int>();
+            int randomTraitAmount = Random.Range(traitsMinMax.x, traitsMinMax.y + 1);
 
-            while (traitValues.Count < numberOfTraits)
+            List<string> traitValues = new List<string>();
+
+            for (int i = 0; i < randomTraitAmount; i++)
             {
-                int i = Random.Range(0, reference.personalityList.listOfTraits.Count);
-                if (!traitIndexes.Contains(i))
-                {
-                    traitIndexes.Add(i);
-                    traitValues.Add(reference.personalityList.listOfTraits[i]);
-                }
+                string trait = CutRandomFromList(listOfTraits);
+
+                traitValues.Add(trait);
             }
 
             return traitValues.ToArray();
@@ -84,16 +106,36 @@ namespace TrojanMouse.Gruttel
         {
             List<string> bioValues = new List<string>();
 
-            int i = Random.Range(0, reference.personalityList.listOfPrimaryBios.Count);
-            bioValues.Add(reference.personalityList.listOfPrimaryBios[i]);
+            bioValues.Add(CutRandomFromList(listOfPrimaryBios));
 
-            i = Random.Range(0, reference.personalityList.listOfSecondaryBios.Count);
-            bioValues.Add(reference.personalityList.listOfSecondaryBios[i]);
+            bioValues.Add(CutRandomFromList(listOfSecondaryBios));
 
-            i = Random.Range(0, reference.personalityList.listOfTertiaryBios.Count);
-            bioValues.Add(reference.personalityList.listOfTertiaryBios[i]);
+            bioValues.Add(CutRandomFromList(listOfTertiaryBios));
 
             return bioValues.ToArray();
+        }
+
+        /// <summary>
+        /// Generate a random value at within the list and remove the value, returning the value removed.
+        /// </summary>
+        /// <param name="list">The list to remove a value from</param>
+        /// <typeparam name="T">Generic Type</typeparam>
+        /// <returns>The value at the index</returns>
+        public T CutRandomFromList<T>(List<T> list)
+        {
+            if (list.Count == 0)
+            {
+                Debug.LogError($"We have run out of to give out. Try generating less Gruttels or adding more traits!");
+                return default(T);
+            }
+
+            int index = Random.Range(0, list.Count);
+
+            T value = list[index];
+
+            list.RemoveAt(index);
+
+            return value;
         }
     }
 }
