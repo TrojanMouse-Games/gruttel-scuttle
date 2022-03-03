@@ -31,6 +31,10 @@ namespace TrojanMouse.PowerUps
                 case PowerupType.IRRADIATED:
                     meshRenderer.sharedMesh = mesh;
                     meshRenderer.material = mat;
+                    //TEMPORARY CODE -- PELASE REMOVE WHEN RIGGED VERSION COMES OUT
+                    transform.GetComponent<Animator>().enabled = false;
+                    transform.GetChild(8).rotation = Quaternion.identity;
+                    transform.GetChild(8).localPosition = new Vector3(0,1.25f,0);
                     break;
             }       
         }
