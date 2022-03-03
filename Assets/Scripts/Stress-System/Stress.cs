@@ -5,8 +5,7 @@ using TrojanMouse.RegionManagement;
 namespace TrojanMouse.StressSystem
 {
     using GameplayLoop;
-    public class Stress : MonoBehaviour
-    {
+    public class Stress : MonoBehaviour{
         public static Stress current;
         Region[] litterRegions = new Region[] { };
 

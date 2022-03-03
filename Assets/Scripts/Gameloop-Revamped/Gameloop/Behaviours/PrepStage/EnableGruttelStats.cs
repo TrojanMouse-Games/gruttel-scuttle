@@ -8,7 +8,7 @@ namespace TrojanMouse.GameplayLoop{
         ShowGruttelStats statScript;
         bool isEnabled;
         bool hasApplied;
-        public EnableGruttelStats(ShowGruttelStats statScript, bool isEnabled){
+        public EnableGruttelStats(ShowGruttelStats statScript, bool isEnabled) { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             this.statScript = statScript;
             this.isEnabled = isEnabled;
         }
@@ -22,7 +22,7 @@ namespace TrojanMouse.GameplayLoop{
             if(!isEnabled){ // IF DISABLING THE STAT SCRIPT, THIS WILL MAKE SURE THE UI IS DISABLED PRIOR
                 statScript.EnableUI(false);
             }
-            statScript.enabled = isEnabled;
+            statScript.enabled = isEnabled; // ENABLES/DISABLES THE SCRIPT
             hasApplied = true;
             return NodeState.SUCCESS;
         }

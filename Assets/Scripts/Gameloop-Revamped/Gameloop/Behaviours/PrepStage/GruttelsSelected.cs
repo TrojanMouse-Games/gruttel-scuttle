@@ -12,7 +12,7 @@ namespace TrojanMouse.GameplayLoop{
 
         Transform villageFolder, playFolder;
         bool hasApplied = false;
-        public GruttelsSelected(int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder){
+        public GruttelsSelected(int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             this.gruttelsNeededToSelect = quantity;
             this.maxDistance = maxRayDistance;
             this.whatIsGruttel = whatIsGruttel;
@@ -30,6 +30,8 @@ namespace TrojanMouse.GameplayLoop{
                 // DO THINGS HERE
                 foreach(Transform gruttel in gruttelsSelected){
                     gruttel.localScale = Vector3.one;
+                    // TELEPORT THEM TO THE PLAY AREA
+                    //...
                 }
                 foreach(Transform child in villageFolder){
                     child.gameObject.SetActive(false);
@@ -37,13 +39,13 @@ namespace TrojanMouse.GameplayLoop{
                 return NodeState.SUCCESS;                
             }            
             RaycastHit hit;
-            if(Physics.Raycast(GameLoopBT.instance.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){
-                if(!gruttelsSelected.Contains(hit.collider.transform)){
+            if(Physics.Raycast(GameLoopBT.instance.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){ // FIRES A RAYCAST FROM WHEN THE USER CLICKS
+                if(!gruttelsSelected.Contains(hit.collider.transform)){ // IF GRUTTEL IS NOT ALREADY CLICKED, ADD IT TO THE SELECTED HASHSET FOR COMPARISON
                     gruttelsSelected.Add(hit.collider.transform);
-                    hit.collider.transform.localScale = Vector3.one * 1.25f;          
-                    hit.collider.transform.parent = playFolder;          
+                    hit.collider.transform.localScale = Vector3.one * 1.15f;
+                    hit.collider.transform.parent = playFolder; // MOVES IT TO THE PLAYER FOLDER
                 }
-                else{
+                else{ // IF GRUTTEL IS ALREADY SELECTED, REMOVE IT FROM THE HASHSET 
                     gruttelsSelected.Remove(hit.collider.transform);
                     hit.collider.transform.localScale = Vector3.one;           
                     hit.collider.transform.parent = villageFolder;         

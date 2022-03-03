@@ -8,10 +8,10 @@ namespace TrojanMouse.GameplayLoop{
     public class LitterHandler : GLNode{
         Level level;
         
-        GLSequence spawnManager = new GLSequence(new List<GLNode>{}, true);
-        public LitterHandler(Level level){         
-            foreach(Waves wave in level.wavesInLevel){
-                List<Ballistics> shootersInWave = new List<Ballistics>();
+        GLSequence spawnManager = new GLSequence(new List<GLNode>{}, true); // CREATE A NEW SEQUENCE FOR ITERATING THROUGH ALL THE WAVES
+        public LitterHandler(Level level){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+            foreach (Waves wave in level.wavesInLevel){ // ITERATES THROUGH EVERY WAVE IN THE LEVEL AND SEARCHES FOR THE THE OBJECTS STATED AS STRINGS IN THE WAVE E.G. THE SHOOTERS, THEN POPULATES THE LISTS
+                List<Ballistics> shootersInWave = new List<Ballistics>(); 
                 List<Region> regionsInWave = new List<Region>();
                 #region POPULATE LISTS
                 foreach(string shooterObj in wave.shootersInThisWave){
@@ -29,9 +29,9 @@ namespace TrojanMouse.GameplayLoop{
                 #endregion
 
                 spawnManager.realTimeNodes.Add(
-                    new SpawnLitter(shootersInWave.ToArray(), regionsInWave.ToArray(), wave.litterToSpawnForWave, wave.timeToSpawnAllLitter)
+                    new SpawnLitter(shootersInWave.ToArray(), regionsInWave.ToArray(), wave.litterToSpawnForWave, wave.timeToSpawnAllLitter) // ADDS THE WAVE TO THE SEQUENCE, FILLING ALL PARAMETERS NEEDED
                 );
-                spawnManager.realTimeNodes.Add(new Intermission(wave.intermissionBeforeNextWave));
+                spawnManager.realTimeNodes.Add(new Intermission(wave.intermissionBeforeNextWave)); // ADDS AN INTERMISSION TO THE SEQUENCE, UNTIL THE NEXT WAVE STARTS
             }
         }
         public override NodeState Evaluate(){

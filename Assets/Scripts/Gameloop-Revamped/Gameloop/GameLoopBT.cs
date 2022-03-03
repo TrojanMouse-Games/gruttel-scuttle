@@ -22,7 +22,7 @@ namespace TrojanMouse.GameplayLoop{
         #endregion
         
         GLNode CreateBehaviourTree(Level level){            
-            GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera};
+            GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera}; // STORES ALL THE CAMERAS INTO AN ARRAY
 
             #region NODES
             #region PREP NODES
@@ -55,6 +55,7 @@ namespace TrojanMouse.GameplayLoop{
             #endregion
             #endregion
 
+            // EACH ACTION LABELLED IN THESE SEQUENCES ARE ACTED OUT AS A CHECKLIST SYSTEM, ONCE ONE IS COMPLETED, IT WILL ENTER THE NEXT PHASE.
             #region PREPSTAGE
             GLSequence prepStage = new GLSequence(new List<GLNode>{
                 spawnGruttels, 
@@ -90,25 +91,23 @@ namespace TrojanMouse.GameplayLoop{
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
         }
 
-        private void Awake() {    
+        private void Awake() {
             #region SINGLETON CREATION
-            if(!instance){
-                instance = this;
-            }   
-            else{
+            if (instance){
                 Destroy(this);
+                return;
             }
+            instance = this;
             #endregion            
-            cam = Camera.main;           
+            cam = Camera.main; // ASSIGN THE CAMERA VARIABLE
 
             if(topNode == null){
-                topNode = CreateBehaviourTree(levels[curLevel]);
+                topNode = CreateBehaviourTree(levels[curLevel]); // THIS INITIATES THE TREE FROM WHEN THE GAME STARTS. IT WILL START THE TREE AT LEVEL 1
             }
         }
 
-        void Update(){
-            
-            switch(topNode.Evaluate()){
+        void Update(){            
+            switch(topNode.Evaluate()){ // THIS LINE CALLS THE EVALUATE FUNCTION WHICH ULTIMATELY TRIGGERS THE TREE TO BE SEARCHED FOR ACTIONS
                 case NodeState.SUCCESS:
                     curLevel = (curLevel + 1) % levels.Length; // ITERATES TO THE NEXT LEVEL OR 0                    
                     topNode = CreateBehaviourTree(levels[curLevel]); // CREATE BT FOR NEXT LEVEL
@@ -118,7 +117,7 @@ namespace TrojanMouse.GameplayLoop{
                 case NodeState.RUNNING:
                     break;
             }
-            Stress.current.maxLitter = levels[curLevel].maxLitter;
+            Stress.current.maxLitter = levels[curLevel].maxLitter; // THIS NEEDS TO BE CHANGED TO BE GRUTTEL SPECIFIC
         }
 
         ///<summary>THIS FUNCTION WILL ALLOW BT BEHAVIOURS TO CALL THIS FUNCTION, BECAUSE THEY DO NOT DERIVE FROM MONOBEHAVIOUR SO THIS WILL NOT WORK OTHERWISE... SIMPLY SPAWNS OBJECTS</summary>
@@ -133,10 +132,13 @@ namespace TrojanMouse.GameplayLoop{
             return new Ray();
         }
         
+        /// <summary>THIS FUNCTION WILL CHANGE THE AI STATE TO THE PASSED STATE</summary>
+        /// <param name="state">THE STATE YOU WISH TO FORCE CHANGE ALL AI TO</param>
         public void ChangeAIState(EnableAI.AIState state){
             SetAIState?.Invoke(state);
         }
 
+        // SETTINGS FOR THE INSPECTOR
         [Serializable] public class Prerequisites{
             [Header("Gruttel Settings")]
             [Tooltip("This is the Gruttel prefab. 1 will for spawn every spawnpoint...")] public GameObject gruttelObj;

@@ -8,14 +8,14 @@ namespace TrojanMouse.GameplayLoop{
          
         AIState aiState;
         bool hasApplied = false;
-        public EnableAI(AIState aiState){
+        public EnableAI(AIState aiState){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             this.aiState = aiState;
         }
         public override NodeState Evaluate(){
-            if(hasApplied){
+            if(hasApplied){ // MAKES SURE THIS IS ONLY RAN ONCE BY CREATING THIS SAFETY BLANKET
                 return NodeState.SUCCESS;
             }   
-            GameLoopBT.instance.ChangeAIState(aiState);
+            GameLoopBT.instance.ChangeAIState(aiState); // INVOKES AN EVENT
             hasApplied = true;
             return NodeState.SUCCESS;
         }
