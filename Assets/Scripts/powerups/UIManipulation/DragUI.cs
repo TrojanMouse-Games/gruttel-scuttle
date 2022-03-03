@@ -17,7 +17,12 @@ namespace TrojanMouse.PowerUps
         Transform parent; // USE THIS TO TELEPORT THE ELEMENT BACK INTO THE ORDER GROUP
         PowerupType type;
 
-        [SerializeField] Mesh[] gruttelTypes;
+       
+        [System.Serializable] public class gruttelSettings{
+            public Mesh type;
+            public Material texture;
+        }
+        [SerializeField] gruttelSettings[] gruttelTypes;
 
         Camera camera;
         CinemachineControl cam;
@@ -78,18 +83,21 @@ namespace TrojanMouse.PowerUps
                 }
 
                 Mesh curMesh = null;
+                Material curMaterial = null;
                 switch(selectedType){
                     case PowerupType.BUFF:
-                        curMesh = gruttelTypes[0];
+                        curMesh = gruttelTypes[0].type;
+                        curMaterial = gruttelTypes[0].texture;
                         break;
                     case PowerupType.IRRADIATED:
-                        curMesh = gruttelTypes[1];
+                        curMesh = gruttelTypes[1].type;
+                        curMaterial = gruttelTypes[1].texture;
                         break;
                 }
 
 
 
-                gruttel.UpdateType(selectedType, curMesh);
+                gruttel.UpdateType(selectedType, true, curMesh, curMaterial);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;

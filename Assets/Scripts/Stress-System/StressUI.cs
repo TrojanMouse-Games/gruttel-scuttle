@@ -20,7 +20,6 @@ namespace TrojanMouse.StressSystem
         void Update(){
             fillbar.fillAmount = Mathf.SmoothDamp(fillbar.fillAmount, (float)Stress.current.amountOfLitter / (float)Stress.current.maxLitter, ref velocity, smoothingSpeed);  
             animator.SetBool("Wobble", (Stress.current.isCountingDown)? true: false);         
-            Debug.Log(Stress.current.isCountingDown);   
         }
     }
 }
