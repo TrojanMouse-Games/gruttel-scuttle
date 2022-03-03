@@ -15,11 +15,14 @@ public class CinemachineControl : MonoBehaviour
     [SerializeField]
     private float camZoomSpeed = 1;
     float hMove; float minHPos; float maxHPos; float startHPos;
-    float vMove; float minVPos = -5; float maxVPos = 5;
+    float vMove; float minVPos; float maxVPos; float startVPos;
     float fov = 50; float scrollMove; float maxZoom = 30; float minZoom = 70;
     //drag the scene's main v cam here
     public GameObject virtualCam;
+    public GameObject targetVirtualCam;
     CinemachineVirtualCamera vcamComponent; CinemachineTrackedDolly dolly;
+    CinemachineVirtualCamera targetVcamComponent; CinemachineTrackedDolly targetDolly;
+    private bool rotatingTarget = false;
     string sceneName;
 
     public bool canDrag = true;
@@ -43,9 +46,22 @@ public class CinemachineControl : MonoBehaviour
                 break;
             case "Area3_SemiCircle":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
+                minVPos = -5; maxVPos = 5; startVPos = 0;
                 break;
             case "Area3_SemiCircleWITHNEWLOOP":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
+                break;
+            case "Village":
+                minHPos = 0; maxHPos = 4; startHPos = 2;
+                minVPos = -2; maxVPos = 2; startVPos = -2;
+                //fetches the target virtual camera component
+                targetVcamComponent = targetVirtualCam.GetComponent<CinemachineVirtualCamera>();
+                //gets the target dolly cam component
+                targetDolly = targetVcamComponent.GetCinemachineComponent<CinemachineTrackedDolly>();
+                //sets to target start position
+                targetDolly.m_PathPosition = startHPos; targetDolly.m_PathOffset.y = startVPos;
+                //sets for the rest of the script that we are using a second dolly to follow
+                rotatingTarget = true;
                 break;
         }
         //fetches the virtual camera component
@@ -53,7 +69,7 @@ public class CinemachineControl : MonoBehaviour
         //gets the dolly cam component
         dolly = vcamComponent.GetCinemachineComponent<CinemachineTrackedDolly>();
         //sets to start position to 0
-        dolly.m_PathPosition = startHPos; dolly.m_PathOffset.y = 0;
+        dolly.m_PathPosition = startHPos; dolly.m_PathOffset.y = startVPos;
         //sets the fov to the starting preset
         vcamComponent.m_Lens.FieldOfView = fov;
     }
@@ -129,15 +145,28 @@ public class CinemachineControl : MonoBehaviour
         if (minHPos <= dolly.m_PathPosition && dolly.m_PathPosition <= maxHPos)
         {
             dolly.m_PathPosition += (hMove * camHoriMoveSpeed * Time.deltaTime);
+            //moves the target dolly too.
+            if (targetDolly)
+            {
+                targetDolly.m_PathPosition += (hMove * camHoriMoveSpeed * Time.deltaTime);
+            }
         }
         //sets position to min/max if it goes out of bounds
         if (minHPos > dolly.m_PathPosition)
         {
             dolly.m_PathPosition = minHPos;
+            if (targetDolly)
+            { 
+                targetDolly.m_PathPosition = minHPos;
+            }
         }
         if (dolly.m_PathPosition > maxHPos)
         {
             dolly.m_PathPosition = maxHPos;
+            if (targetDolly)
+            {
+                targetDolly.m_PathPosition = maxHPos;
+            }
         }
     }
     void CamVertMovement()
@@ -146,14 +175,27 @@ public class CinemachineControl : MonoBehaviour
         if (minVPos <= dolly.m_PathOffset.y && dolly.m_PathOffset.y <= maxVPos)
         {
             dolly.m_PathOffset.y += (vMove * camVertMoveSpeed * Time.deltaTime);
+            //moves target cam on dolly appropriately
+            if (targetDolly)
+            {
+                targetDolly.m_PathOffset.y += (vMove * camVertMoveSpeed * Time.deltaTime);
+            }
         }
         //sets position to min/max if it goes out of bounds
         if (minVPos > dolly.m_PathOffset.y)
         {
+            if (targetDolly)
+            {
+                targetDolly.m_PathOffset.y = minVPos;
+            }
             dolly.m_PathOffset.y = minVPos;
         }
         if (dolly.m_PathOffset.y > maxVPos)
         {
+            if (targetDolly)
+            {
+                targetDolly.m_PathOffset.y = maxVPos;
+            }
             dolly.m_PathOffset.y = maxVPos;
         }
     }
