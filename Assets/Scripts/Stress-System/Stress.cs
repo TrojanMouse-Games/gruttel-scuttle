@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.RegionManagement;
-using System.Linq;
 
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.StressSystem
@@ -18,8 +15,7 @@ namespace TrojanMouse.StressSystem
         [Header("Settings")]
         [Tooltip("Time until this script will calculate stress again")] [SerializeField] float calculationCooldown; // TIME BETWEEN EACH CALCULATION FOR STRESS
 
-        public float maxLitter;
-        float stress;
+        public float maxLitter;        
         [HideInInspector] public float Cooldown{
             get{
                 return calculationCooldown;
@@ -28,48 +24,29 @@ namespace TrojanMouse.StressSystem
 
 
         private void Awake(){
-            current = this; // SINGLETON            
-            InvokeRepeating("UpdateStress", calculationCooldown, calculationCooldown);
-        }
-
-        /*
-        void UpdateStress()
-        {
-            if (gruttels.Count > 0 && GameLoop.current.curStage == 1) // UN-COMMENT THIS! JUST TO SUPPRESS THE ERROR!
-            {
-                timer += calculationCooldown;
-                if (timer > peacefulPeriod) {
-                    float stress = 0;
-                    foreach (StressLocal gruttel in gruttels)
-                    {
-                        stress += gruttel.GruttelStress;
-                    }
-
-                    average = stress / gruttels.Count;
-                    if (average >= 100)
-                    {
-                        SceneManager.LoadScene("LoseScreen");
-                    }
-                }
-            }
-        }
-        */
-
-        private void Update(){
-            if (litterRegions.Length > 0 || Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION) == null){
+            if (current){ // THIS ENSURES THAT ONLY ONE INSTANCE OF THIS SCRIPT EXISTS IN THE SCENE
+                Destroy(this);
                 return;
             }
-            litterRegions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION);
+
+            current = this; // SINGLETON            
+            InvokeRepeating("UpdateStress", calculationCooldown, calculationCooldown); // THIS WILL AUTOMATICALLY CALL THE 'UpdateStress' FUNCTION EVERY X SECONDS BASED ON THE 'calculationCooldown' VARIABLE
+        }        
+
+        private void Update(){
+            if (litterRegions.Length > 0 || Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION) == null){ // SAFETY MEASURE TO ENSURE THAT THERE ARE REGIONS TO ACCESS AND THAT IT ONLY IS CALLED ONCE
+                return;
+            }
+            litterRegions = Region_Handler.current.GetRegions(Region.RegionType.LITTER_REGION); // POPULATES THE 'litterRegions' ARRAY WITH ALL REGIONS
         }
 
         void UpdateStress(){
-            if (litterRegions.Length > 0){
-                stress = 0;
-                foreach (Region region in litterRegions){
-                    stress += region.transform.childCount;
-                }
-                //stress /= litterRegions.Length;
-                amountOfLitter = stress;
+            if (litterRegions.Length > 0){ // SAFETY MEASURE TO MAKE SURE THIS IS POPULATED
+                float stress = 0; // CREATE NEW VALUE TO CALCULATE WITH
+                foreach (Region region in litterRegions){ // ITERATE THROUGH ALL LITTERREGIONS
+                    stress += region.transform.childCount; // APPEND THE AMOUNT OF CHILDREN INSIDE A REGION TO THIS VALUE
+                }                
+                amountOfLitter = stress; // SET THE PUBLIC READABLE VALUE TO THE AMOUNT OF STRESS
             }
         }
 

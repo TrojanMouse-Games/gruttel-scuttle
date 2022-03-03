@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.AI;
 using FMODUnity;
+using TrojanMouse.StressSystem;
 
 public class DistractionModule : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class DistractionModule : MonoBehaviour
         //Debug.Log("I am running");
         int randomWait = UnityEngine.Random.Range(5, 20);
         yield return new WaitForSeconds(randomWait);
+
+
         distractionChance = UnityEngine.Random.Range(0, 5);
         if (distractionChance == 0)
         {
@@ -50,6 +53,17 @@ public class DistractionModule : MonoBehaviour
             aIController.data.Agent.SetDestination(transform.position);
             aIController.currentState = AIState.Nothing;
         }
+
+        /* DISTRACTION WEIGHT SYSTEM HERE
+         * 
+         * float dice = (float)UnityEngine.Random.Range(0,100) / 100; // GET A RANDOM VALUE BETWEEN (0-1)
+         * float weight = (float)Stress.current.amountOfLitter / (float)Stress.current.maxLitter; // GATHER A PERCENTAGE OF OVERALL STRESS BETWEEN (0-1)
+         * if(dice <= weight){ // IF DICE IS LESS THAN THE CURRENT WEIGHT, THEN TRIGGER THE DISTRACTION
+         *      //DO THINGS
+         * }
+         * 
+        */
+
         StartCoroutine(GenerateDistractionChance());
     }
 }

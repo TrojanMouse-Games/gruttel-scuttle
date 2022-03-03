@@ -65,8 +65,8 @@ namespace TrojanMouse.BallisticTrajectory{
 
             float bottom = g * x;
 
-            thetaA = Mathf.Atan2(top1, bottom) * Mathf.Rad2Deg;
-            thetaB = Mathf.Atan2(top2, bottom) * Mathf.Rad2Deg;
+            thetaA = Mathf.Atan2(top1, bottom) * Mathf.Rad2Deg; // Artillary Shot
+            thetaB = Mathf.Atan2(top2, bottom) * Mathf.Rad2Deg; // Sniper-ish Shot
         }
     }
 }
