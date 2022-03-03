@@ -1629,6 +1629,14 @@ GameObject:
   - component: {fileID: 416517348}
   - component: {fileID: 416517347}
   - component: {fileID: 416517346}
+  - component: {fileID: 416517349}
+  - component: {fileID: 416517351}
+  - component: {fileID: 416517350}
+  - component: {fileID: 416517352}
+  - component: {fileID: 416517353}
+  - component: {fileID: 416517356}
+  - component: {fileID: 416517355}
+  - component: {fileID: 416517354}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1683,7 +1691,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1.8510947
     y: 30.638287
-    width: 122.16498
+    width: 120
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -1694,11 +1702,13 @@ MonoBehaviour:
   commandList:
   - {fileID: 416517285}
   - {fileID: 416517284}
+  - {fileID: 416517352}
   - {fileID: 416517287}
   - {fileID: 416517331}
   - {fileID: 416517340}
   - {fileID: 416517282}
   - {fileID: 416517283}
+  - {fileID: 416517353}
   - {fileID: 416517286}
   - {fileID: 416517281}
   - {fileID: 416517277}
@@ -1726,11 +1736,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 490.4667, y: 243.75108}
+  scrollPos: {x: -53.04767, y: 356.7519}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
-  zoom: 0.96999955
+  blockViewHeight: 618
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -1738,7 +1748,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 416517271}
+  - {fileID: 416517326}
   selectedCommands: []
   variables: []
   description: Flowchart for the games tutorial
@@ -1806,7 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 37
   indentLevel: 0
-  storyText: Oh, look, some Trash has fallen near the Gruttel!
+  storyText: Oh, look! Some rubbish has fallen near the gruttel!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1899,7 +1909,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 169.25026
     y: 32.56671
-    width: 127.319626
+    width: 125
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -2040,10 +2050,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: In this tutorial, we'll get you familar with your goal and controls
-    for your official visit to the Gruttel Village. But first, let's wake up this
-    little guy over here and get you acquainted. I mean, you can't put on a show
-    without the stars!
+  storyText: In this tutorial, we'll get you familiar with your goal and controls
+    for your official visit to the Gruttel Village.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2070,8 +2078,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: 'Hi there and welcome to Gruttel Game! We here at Trojan Mouse are so
-    excited to finally be able to introduce you to the planet of Holmfens in our
+  storyText: 'Hi there and welcome to Gruttel Scuttle! We here at Trojan Mouse are
+    so excited to finally be able to introduce you to the planet of Holmfen in our
     official game demo! '
   description: 
   character: {fileID: 0}
@@ -2132,8 +2140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 39
   indentLevel: 0
-  storyText: Gruttels aren't wise creatures, but they are incredibly smart, and can
-    find a use for most anything they find, assuming they can recycle it!
+  storyText: Gruttels may be distractable, but they are also incredibly inventive,
+    and can find a use for most anything they find, assuming they can recycle it!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2178,9 +2186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 46
   indentLevel: 0
-  storyText: Gruttels like recycling their trash, but need a little help with it,
-    click the Gruttel and then click next to the Trash machine to guide the Gruttel
-    towards it
+  storyText: Gruttels like recycling their litter, but need a little help with it.
+    Click the gruttel, and then click next to the rubbish machine to guide the gruttel
+    towards it.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2223,7 +2231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 44
   indentLevel: 0
-  storyText: Luckily for us, we have a Trash machine nearby!
+  storyText: Luckily for us, we have a rubbish machine nearby!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2252,7 +2260,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 526.2873
     y: 30.625782
-    width: 109.79384
+    width: 108
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -2286,8 +2294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 42
   indentLevel: 0
-  storyText: Great! Gruttels will go to whereever you click but they won't go into
-    water as they don't like getting wet
+  storyText: Great! Gruttels will go to wherever you click, but they won't venture
+    into the irradiated waters of Holmfen.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2331,8 +2339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 40
   indentLevel: 0
-  storyText: Click on the Gruttel, they'll be highlighted, at which point you can
-    click near the trash to direct the little guy to grab it!
+  storyText: Click on the gruttel. They'll be highlighted, at which point you can
+    click near the rubbish to direct the little guy to grab it!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2359,7 +2367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 54
   indentLevel: 0
-  storyText: Great! Now we can move on to explaining the UI!
+  storyText: Great! Now we can move on to explaining the interface that will help
+    you to manage your gruttels!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2459,7 +2468,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 355.66498
     y: 30.905304
-    width: 123.19591
+    width: 121
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -2512,8 +2521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 48
   indentLevel: 0
-  storyText: Great! Now the Gruttels will start recycling what they've found to be
-    more useful then it was.
+  storyText: Great! Now the gruttels will start recycling what they've found to keep
+    Holmfen clean and make exciting inventions!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2540,8 +2549,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 57
   indentLevel: 0
-  storyText: The timer at the top of the screen will be used to tell you how long
-    you and your gruttels will have to clean up!
+  storyText: The timer at the top of the screen will tell you how long you and your
+    gruttels will have to clean up!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2683,7 +2692,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 654.7361
     y: -128.69034
-    width: 133.50519
+    width: 131
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -2712,7 +2721,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 656.7361
     y: 31.309662
-    width: 128.35056
+    width: 126
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -2724,6 +2733,7 @@ MonoBehaviour:
   - {fileID: 416517309}
   - {fileID: 416517308}
   - {fileID: 416517307}
+  - {fileID: 416517354}
   suppressAllAutoSelections: 0
 --- !u!114 &416517312
 MonoBehaviour:
@@ -2739,8 +2749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 65
   indentLevel: 0
-  storyText: Now that they've got the trash they'll need to bring it to somewhere
-    they can actually recycle it
+  storyText: Now that they've got the litter, they'll need to bring it to somewhere
+    they can recycle it.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2769,7 +2779,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 760.9947
     y: -81.00725
-    width: 88.14435
+    width: 87
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -2777,7 +2787,10 @@ MonoBehaviour:
   blockName: Strong
   description: 
   eventHandler: {fileID: 0}
-  commandList: []
+  commandList:
+  - {fileID: 416517351}
+  - {fileID: 416517350}
+  - {fileID: 416517355}
   suppressAllAutoSelections: 0
 --- !u!114 &416517314
 MonoBehaviour:
@@ -2795,7 +2808,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 595.0566
     y: -72.71865
-    width: 104.639206
+    width: 103
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -2806,6 +2819,8 @@ MonoBehaviour:
   commandList:
   - {fileID: 416517321}
   - {fileID: 416517320}
+  - {fileID: 416517349}
+  - {fileID: 416517356}
   suppressAllAutoSelections: 0
 --- !u!114 &416517315
 MonoBehaviour:
@@ -2858,8 +2873,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 60
   indentLevel: 0
-  storyText: The stress bar will help tell you how stressed your Gruttels are getting,
-    if it reaches full then it's game over!
+  storyText: The stress bar will tell you how stressed your gruttels are getting.
+    If it fills up completely, then it's game over!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2907,9 +2922,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 58
   indentLevel: 0
-  storyText: During a game you'll have to make sure your gruttels aren't getting
-    too stressed, they'll get more and more stressed as more litter piles up in each
-    level
+  storyText: During a game, you'll have to make sure your gruttels aren't getting
+    too stressed. They'll get more stressed as more litter piles up in each level.
+    Keep the litter levels low to keep your gruttels calm!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2936,8 +2951,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 77
   indentLevel: 0
-  storyText: 'They store themselves in Barrels to make sure they don''t slosh around
-    too much, the bright side of this is that it''s much '
+  storyText: They store themselves in barrels to make sure they don't slosh around
+    too much. The bright side of being radioactive is that it allows them to do tasks
+    that other gruttels can't!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2964,7 +2980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 76
   indentLevel: 0
-  storyText: 'The radioactive Gruttels are Gruttels who''ve eaten a slightly too
+  storyText: 'The radioactive gruttels are gruttels who''ve eaten a slightly too
     radioactive box of Nana Betsy''s. '
   description: 
   character: {fileID: 0}
@@ -3013,9 +3029,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 74
   indentLevel: 0
-  storyText: They won't go in water and are always hungry! Giving one of them one
-    of the Nana Betsy's you can find around the world can lead to them evolving into
-    either a strong gruttel or a Radioactive Gruttel
+  storyText: They won't go in water and are always hungry! Giving one of them a Nana
+    Betsy ready meal, found throughout Holmfen, can lead to them becoming either
+    a strong or radioactive gruttel for a level.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3042,7 +3058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 73
   indentLevel: 0
-  storyText: These are your normal, everyday Gruttels, they're a little slow but
+  storyText: These are your normal, everyday gruttels. They're a little slow, but
     they're passionate and work hard!
   description: 
   character: {fileID: 0}
@@ -3070,7 +3086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 72
   indentLevel: 0
-  storyText: 'Next up, we''re gonna learn about the '
+  storyText: Next up, we're gonna learn about the...
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3097,14 +3113,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 837.03723
-    y: 33.315765
-    width: 112.88663
+    x: 833.03723
+    y: 31.315765
+    width: 106
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 71
-  blockName: New Block
+  blockName: Obstacles
   description: 
   eventHandler: {fileID: 0}
   commandList: []
@@ -3793,6 +3809,206 @@ MonoBehaviour:
     floatRef: {fileID: 0}
     floatVal: 5
   durationOLD: 0
+--- !u!114 &416517349
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 103
+  indentLevel: 0
+  storyText: For example, they can carry radioactive waste and move through Holmfen's
+    irradiated waters.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &416517350
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 105
+  indentLevel: 0
+  storyText: This makes them far larger and stronger than their friends, allowing
+    them to easily lift heavy rubbish that the other gruttels struggle to shift!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &416517351
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 104
+  indentLevel: 0
+  storyText: Strong gruttels are gruttels that have eaten a particularly filling
+    Nana Betsy ready meal!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &416517352
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 106
+  indentLevel: 0
+  storyText: But first, let's wake up this little guy and get you acquainted. I mean,
+    you can't put on a show without the stars!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &416517353
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 107
+  indentLevel: 0
+  _targetGameObject:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 781124723}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  targetGameObjectOLD: {fileID: 0}
+--- !u!114 &416517354
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 110
+  indentLevel: 0
+  text: Move On
+  description: 
+  targetBlock: {fileID: 416517326}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+--- !u!114 &416517355
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 109
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 416517311}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
+--- !u!114 &416517356
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 108
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 416517311}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
 --- !u!1 &433493474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,6 +4245,80 @@ Transform:
   m_Father: {fileID: 433493475}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &585078368
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 831224134}
+    m_Modifications:
+    - target: {fileID: 6836273238622888084, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888086, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_Name
+      value: SleepingParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.832
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.089
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.967
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25603766d33c22742af437eda78819c9, type: 3}
 --- !u!1 &618605684
 GameObject:
   m_ObjectHideFlags: 3
@@ -4281,6 +4571,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688192554}
   m_CullTransparentMesh: 1
+--- !u!1 &781124723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6836273238622888086, guid: 25603766d33c22742af437eda78819c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 585078368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &781124724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6836273238622888107, guid: 25603766d33c22742af437eda78819c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 585078368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &788029086
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,7 +4664,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 781124724}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
