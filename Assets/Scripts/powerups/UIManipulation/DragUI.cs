@@ -73,7 +73,7 @@ namespace TrojanMouse.PowerUps
                 if (gruttel.Type != PowerupType.NORMAL && lockGruttelToOneType){
                     return false;
                 }
-                gruttel.UpdateType(selectedType);
+                gruttel.UpdateType(selectedType, true);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;

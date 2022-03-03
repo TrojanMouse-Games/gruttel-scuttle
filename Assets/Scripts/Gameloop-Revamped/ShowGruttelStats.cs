@@ -12,7 +12,7 @@ namespace TrojanMouse.GameplayLoop{
         Camera cam;
 
         void Start(){
-            cam = Camera.main;
+            cam = Camera.main; // ASSIGNS A VARIABLE
         }
         void Update(){
             if(!statsUI){ // SAFETY MEASURE TO ENSURE STATS UI VARIABLE IS ASSIGNED
@@ -23,8 +23,8 @@ namespace TrojanMouse.GameplayLoop{
             Ray ray = cam.ScreenPointToRay(Input.mousePosition); // SHOOT RAY FROM CAMERA (MOUSE POSITION) TO WORLD POINT 
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, maxDetectionDistance, whatIsGruttel)){ // CHECK TO SEE IF RAY HITS GRUTTEL
-                GruttelReference gruttel = hit.transform.GetComponent<GruttelReference>();
-                statsUI.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Name: {gruttel.data.nickname}";
+                GruttelReference gruttel = hit.transform.GetComponent<GruttelReference>(); // GETS THE DATA FROM THE GRUTTEL
+                statsUI.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Name: {gruttel.data.nickname}"; // GETS THE T
                 string traits = "";
                 foreach(string trait in gruttel.data.traits){
                     traits += $"* {trait}\n\n";
