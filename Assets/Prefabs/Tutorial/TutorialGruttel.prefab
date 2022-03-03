@@ -1752,7 +1752,7 @@ Animator:
   m_GameObject: {fileID: 9134461449078114019}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: dd88ecd7799cbe44a8b90f6155b9361f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 89e603b524ebc6f4b9a29acf79febdab, type: 2}
+  m_Controller: {fileID: 9100000, guid: bc2f0477a84595d4398e69045e57c9d7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1774,6 +1774,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 9134461449078113814}
+  litterLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  pickupRange: 0
+  holdingLitter: 0
+  animator: {fileID: 2553501623213131299}
 --- !u!136 &9134461449078113815
 CapsuleCollider:
   m_ObjectHideFlags: 0
