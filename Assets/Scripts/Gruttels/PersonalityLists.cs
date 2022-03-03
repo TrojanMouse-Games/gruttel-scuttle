@@ -18,6 +18,8 @@ namespace TrojanMouse.Gruttel
         public List<string> listOfSecondaryBios;
         public List<string> listOfTertiaryBios;
 
+        public Vector2Int traitsMinMax;
+
         private List<List<string>> lists;
 
         public void ImportList()
