@@ -14,9 +14,9 @@ namespace TrojanMouse.PowerUps
 
         /// <summary>THIS FUNCTION UPDATES THE VALUE OF THE POWERUP TYPE THIS SCRIPT IS ATTACHED TO</summary>
         /// <param name="newType">VALUE YOU WISH TO UPDATE THE OBJ TO</param>
-        public void UpdateType(PowerupType newType, bool changeColour = true){
+        public void UpdateType(PowerupType newType, Mesh mesh = null){
             type = newType;
-            if (!changeColour){
+            if (!mesh){
                 return;
             }
 
@@ -34,7 +34,9 @@ namespace TrojanMouse.PowerUps
                     transform.localScale = Vector3.one * .8f;
                     break;
             }            
-            GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", color);            
+            SkinnedMeshRenderer meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+            meshRenderer.sharedMesh = mesh;
+            //GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", color);            
         }
     }
     
