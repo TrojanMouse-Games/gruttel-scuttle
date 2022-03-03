@@ -15,7 +15,7 @@ public class TutorialAIController : MonoBehaviour
     [SerializeField] float pickupRange;
     public bool holdingLitter;
     public Animator animator;
-    private bool sleeping;
+    public bool sleeping;
 
     private Inventory inventory; // reference to the equipper script
     private Equipper equipper; // reference to the equipper script

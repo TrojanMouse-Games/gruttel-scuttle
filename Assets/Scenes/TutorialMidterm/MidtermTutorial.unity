@@ -5036,7 +5036,7 @@ MonoBehaviour:
     m_Bits: 63
   rayDistance: 250
   directing: 0
-  inTutorial: 1
+  inTutorial: 0
   SelectionSound:
     Guid:
       Data1: -1541613484
@@ -5054,6 +5054,12 @@ MonoBehaviour:
 --- !u!1 &1171715176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9134461449078114019, guid: abec81ad8f17f7b45a54629fa2a0d38f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8101697689170583324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1171715186 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2553501623213131299, guid: abec81ad8f17f7b45a54629fa2a0d38f,
     type: 3}
   m_PrefabInstance: {fileID: 8101697689170583324}
   m_PrefabAsset: {fileID: 0}
@@ -7831,6 +7837,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1781458027863604683, guid: abec81ad8f17f7b45a54629fa2a0d38f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1171715186}
     - target: {fileID: 8471254294815661145, guid: abec81ad8f17f7b45a54629fa2a0d38f,
         type: 3}
       propertyPath: m_RootOrder
