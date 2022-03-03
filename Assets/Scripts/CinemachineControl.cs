@@ -16,7 +16,7 @@ public class CinemachineControl : MonoBehaviour
     private float camZoomSpeed = 1;
     float hMove; float minHPos; float maxHPos; float startHPos;
     float vMove; float minVPos; float maxVPos; float startVPos;
-    float fov = 50; float scrollMove; float maxZoom = 30; float minZoom = 70;
+    float startZoom = 50; float scrollMove; float maxZoom = 30; float minZoom = 70;
     //drag the scene's main v cam here
     public GameObject virtualCam;
     public GameObject targetVirtualCam;
@@ -47,6 +47,7 @@ public class CinemachineControl : MonoBehaviour
             case "Area3_SemiCircle":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
                 minVPos = -5; maxVPos = 5; startVPos = 0;
+                maxZoom = 30; minZoom = 70;
                 break;
             case "Area3_SemiCircleWITHNEWLOOP":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
@@ -62,6 +63,7 @@ public class CinemachineControl : MonoBehaviour
                 targetDolly.m_PathPosition = startHPos; targetDolly.m_PathOffset.y = startVPos;
                 //sets for the rest of the script that we are using a second dolly to follow
                 rotatingTarget = true;
+                startZoom = 60;
                 break;
         }
         //fetches the virtual camera component
@@ -71,7 +73,7 @@ public class CinemachineControl : MonoBehaviour
         //sets to start position to 0
         dolly.m_PathPosition = startHPos; dolly.m_PathOffset.y = startVPos;
         //sets the fov to the starting preset
-        vcamComponent.m_Lens.FieldOfView = fov;
+        vcamComponent.m_Lens.FieldOfView = startZoom;
     }
 
     // Update is called once per frame
