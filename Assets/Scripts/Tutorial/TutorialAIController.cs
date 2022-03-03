@@ -15,6 +15,7 @@ public class TutorialAIController : MonoBehaviour
     [SerializeField] float pickupRange;
     public bool holdingLitter;
     public Animator animator;
+    private bool sleeping;
 
     private Inventory inventory; // reference to the equipper script
     private Equipper equipper; // reference to the equipper script
@@ -22,11 +23,21 @@ public class TutorialAIController : MonoBehaviour
     Vector3 lastPosition;
 
     /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        sleeping = true;
+    }
+
+    /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
         animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
+        animator.SetBool("isSleeping", sleeping);
     }
 
     /// <summary>
@@ -113,5 +124,10 @@ public class TutorialAIController : MonoBehaviour
     public void SetGameObject(GameObject obj)
     {
         obj.SetActive(!obj.activeInHierarchy);
+    }
+
+    public void ToggleSleep(bool sleep)
+    {
+        sleeping = sleep;
     }
 }
