@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TrojanMouse.Gruttel
 {
+    using Personalities;
     public class GruttelReference : MonoBehaviour
     {
         public GruttelData data;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TrojanMouse.Gruttel
 {
+    using Personalities;
 
     [System.Serializable]
     public class GruttelData

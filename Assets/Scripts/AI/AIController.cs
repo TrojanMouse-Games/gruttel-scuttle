@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
-using TrojanMouse.RegionManagement;
+using TrojanMouse.Litter.Region;
 using TrojanMouse.PowerUps;
 using TrojanMouse.AI.Behaviours;
 using TrojanMouse.GameplayLoop;
@@ -224,7 +224,7 @@ namespace TrojanMouse.AI
             {
                 if (!inventory.HasSlotsLeft())
                 {
-                    Region closestHomeRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.HOME, transform.position);
+                    LitterRegion closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);
                     if (!closestHomeRegion)
                     {
                         return AIState.Nothing;
@@ -234,7 +234,7 @@ namespace TrojanMouse.AI
 
                     if (Mathf.Abs((transform.position - new Vector3(homePos.x, transform.position.y, homePos.z)).magnitude) <= pickupRange)
                     {
-                        equipper.Drop(Region.RegionType.HOME);
+                        equipper.Drop(RegionType.HOME);
                     }
                 }
                 else
