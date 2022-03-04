@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; 
 
 namespace TrojanMouse.GameplayLoop{ 
     public class EnableAI : GLNode{
@@ -16,6 +16,9 @@ namespace TrojanMouse.GameplayLoop{
                 return NodeState.SUCCESS;
             }   
             GameLoopBT.instance.ChangeAIState(aiState); // INVOKES AN EVENT
+            if(aiState == AIState.Enabled){
+                Camera.main.GetComponent<TrojanMouse.AI.Movement.MoveWithMouseGrab>().ToggleAIComponents(true, "putDown");
+            }
             hasApplied = true;
             return NodeState.SUCCESS;
         }
