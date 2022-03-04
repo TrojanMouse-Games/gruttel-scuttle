@@ -93,7 +93,9 @@ namespace TrojanMouse.GameplayLoop{
                 });
             #endregion
             #region AFTERMATHSTAGE
-            GLSequence afterMainStage = new GLSequence(new List<GLNode>{win});
+            GLSequence afterMainStage = new GLSequence(new List<GLNode>{
+                win,
+            });
             #endregion
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage, afterMainStage});
         }
