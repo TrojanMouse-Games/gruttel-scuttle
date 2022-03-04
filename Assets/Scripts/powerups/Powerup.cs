@@ -16,6 +16,7 @@ namespace TrojanMouse.PowerUps
         /// <param name="newType">VALUE YOU WISH TO UPDATE THE OBJ TO</param>
         public void UpdateType(PowerupType newType, bool setModel = false, Mesh mesh = null, Material mat = null){
             type = newType;
+            Color color = Color.white;
             if (!setModel){
                 return;
             }
@@ -25,22 +26,30 @@ namespace TrojanMouse.PowerUps
 
             switch (type){                
                 case PowerupType.BUFF:                    
-                    meshRenderer.sharedMesh = mesh;
-                    meshRenderer.material = mat;
-                    //TEMPORARY CODE -- PELASE REMOVE WHEN RIGGED VERSION COMES OUT
-                    transform.GetComponent<Animator>().enabled = false;
-                    transform.GetChild(8).rotation = Quaternion.identity;
-                    transform.GetChild(8).localPosition = new Vector3(0,1.25f,0);         
+                    // meshRenderer.sharedMesh = mesh;
+                    // meshRenderer.material = mat;
+                    // //TEMPORARY CODE -- PELASE REMOVE WHEN RIGGED VERSION COMES OUT
+                    // transform.GetComponent<Animator>().enabled = false;
+                    // transform.GetChild(8).rotation = Quaternion.identity;
+                    // transform.GetChild(8).localPosition = new Vector3(0,1.25f,0);  
+
+                    color = Color.yellow;
+                    transform.localScale = Vector3.one * 1.5f;       
                     break;
                 case PowerupType.IRRADIATED:
-                    meshRenderer.sharedMesh = mesh;
-                    meshRenderer.material = mat;
-                    //TEMPORARY CODE -- PELASE REMOVE WHEN RIGGED VERSION COMES OUT
-                    transform.GetComponent<Animator>().enabled = false;
-                    transform.GetChild(8).rotation = Quaternion.identity;
-                    transform.GetChild(8).localPosition = new Vector3(0,1.25f,0);
+                    // meshRenderer.sharedMesh = mesh;
+                    // meshRenderer.material = mat;
+                    // //TEMPORARY CODE -- PELASE REMOVE WHEN RIGGED VERSION COMES OUT
+                    // transform.GetComponent<Animator>().enabled = false;
+                    // transform.GetChild(8).rotation = Quaternion.identity;
+                    // transform.GetChild(8).localPosition = new Vector3(0,1.25f,0);
+
+                    color = Color.green;
+                    transform.localScale = Vector3.one * .75f;
                     break;
-            }       
+            }
+
+            meshRenderer.materials[0].SetColor("_BaseColor", color);       
         }
     }
     
