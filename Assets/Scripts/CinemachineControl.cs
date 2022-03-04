@@ -148,7 +148,7 @@ public class CinemachineControl : MonoBehaviour
         {
             dolly.m_PathPosition += (hMove * camHoriMoveSpeed * Time.deltaTime);
             //moves the target dolly too.
-            if (targetDolly)
+            if (rotatingTarget)
             {
                 targetDolly.m_PathPosition += (hMove * camHoriMoveSpeed * Time.deltaTime);
             }
@@ -157,7 +157,7 @@ public class CinemachineControl : MonoBehaviour
         if (minHPos > dolly.m_PathPosition)
         {
             dolly.m_PathPosition = minHPos;
-            if (targetDolly)
+            if (rotatingTarget)
             { 
                 targetDolly.m_PathPosition = minHPos;
             }
@@ -165,7 +165,7 @@ public class CinemachineControl : MonoBehaviour
         if (dolly.m_PathPosition > maxHPos)
         {
             dolly.m_PathPosition = maxHPos;
-            if (targetDolly)
+            if (rotatingTarget)
             {
                 targetDolly.m_PathPosition = maxHPos;
             }
@@ -178,7 +178,7 @@ public class CinemachineControl : MonoBehaviour
         {
             dolly.m_PathOffset.y += (vMove * camVertMoveSpeed * Time.deltaTime);
             //moves target cam on dolly appropriately
-            if (targetDolly)
+            if (rotatingTarget)
             {
                 targetDolly.m_PathOffset.y += (vMove * camVertMoveSpeed * Time.deltaTime);
             }
@@ -186,7 +186,7 @@ public class CinemachineControl : MonoBehaviour
         //sets position to min/max if it goes out of bounds
         if (minVPos > dolly.m_PathOffset.y)
         {
-            if (targetDolly)
+            if (rotatingTarget)
             {
                 targetDolly.m_PathOffset.y = minVPos;
             }
@@ -194,7 +194,7 @@ public class CinemachineControl : MonoBehaviour
         }
         if (dolly.m_PathOffset.y > maxVPos)
         {
-            if (targetDolly)
+            if (rotatingTarget)
             {
                 targetDolly.m_PathOffset.y = maxVPos;
             }
