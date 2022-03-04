@@ -54,6 +54,7 @@ namespace TrojanMouse.GameplayLoop{
             EnableAI enableAI = new EnableAI(EnableAI.AIState.Enabled);
             #endregion
             #region AFTERMATH NODES
+            WinState win = new WinState();
             #endregion
             #endregion
 
@@ -87,12 +88,14 @@ namespace TrojanMouse.GameplayLoop{
                 mainCam,
                 enableStress,
                 litterHandler, 
-                isLitterCleared,
+                //isLitterCleared,
                 disableStress
                 });
             #endregion
-            
-            return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage});
+            #region AFTERMATHSTAGE
+            GLSequence afterMainStage = new GLSequence(new List<GLNode>{win});
+            #endregion
+            return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage, afterMainStage});
         }
 
         private void Awake() {
