@@ -47,7 +47,7 @@ namespace TrojanMouse.GameplayLoop{
             ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
             ChangeCamera mainCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras, false);
             EnableStress enableStress = new EnableStress(true);
-            LitterHandler litterHandler = new LitterHandler(level);
+            LitterHandler litterHandler = new LitterHandler(level, prerequisiteSettings.cycleText);
             IsLitterCleared isLitterCleared = new IsLitterCleared();
             EnableStress disableStress = new EnableStress(false);
 

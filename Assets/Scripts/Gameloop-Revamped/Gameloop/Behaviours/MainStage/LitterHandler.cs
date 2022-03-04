@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.RegionManagement;
 using TrojanMouse.BallisticTrajectory;
+using UnityEngine.UI;
 
 namespace TrojanMouse.GameplayLoop{   
     public class LitterHandler : GLNode{
         Level level;
         
         GLSequence spawnManager = new GLSequence(new List<GLNode>{}, true); // CREATE A NEW SEQUENCE FOR ITERATING THROUGH ALL THE WAVES
-        public LitterHandler(Level level){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+        public LitterHandler(Level level, Text label){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+            int count = 1;
             foreach (Waves wave in level.wavesInLevel){ // ITERATES THROUGH EVERY WAVE IN THE LEVEL AND SEARCHES FOR THE THE OBJECTS STATED AS STRINGS IN THE WAVE E.G. THE SHOOTERS, THEN POPULATES THE LISTS
                 List<Ballistics> shootersInWave = new List<Ballistics>(); 
                 List<Region> regionsInWave = new List<Region>();
@@ -27,11 +29,12 @@ namespace TrojanMouse.GameplayLoop{
                     }
                 }
                 #endregion
-
+                spawnManager.realTimeNodes.Add(new ChangeUIText(label, $"Wave: {count}"));
                 spawnManager.realTimeNodes.Add(
                     new SpawnLitter(shootersInWave.ToArray(), regionsInWave.ToArray(), wave.litterToSpawnForWave, wave.timeToSpawnAllLitter) // ADDS THE WAVE TO THE SEQUENCE, FILLING ALL PARAMETERS NEEDED
                 );
                 spawnManager.realTimeNodes.Add(new Intermission(wave.intermissionBeforeNextWave)); // ADDS AN INTERMISSION TO THE SEQUENCE, UNTIL THE NEXT WAVE STARTS
+                count++;
             }
         }
         public override NodeState Evaluate(){
