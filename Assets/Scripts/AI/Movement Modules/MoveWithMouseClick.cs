@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.AI;
+using TrojanMouse.Utils;
 
 namespace TrojanMouse.AI.Movement
 {
@@ -17,17 +17,22 @@ namespace TrojanMouse.AI.Movement
 
         public RaycastHit hit; // hit var.
         public bool directing; // this will be the check to tell the script whether the player has already clicked on an AI.
+        public bool inTutorial;
 
         // Internal variables
         Transform selected; // The currently selected obj.
         Ray worldPoint; // Internal global script wide variable used for the raycast.
 
         private bool awaitingLocationClick; // This is to tell the code that the script that we're waiting for the second user input, I.e telling the AI where to go.
+        NavMeshAgent agent;
+
+        // Other stuff, for the tutorial mainly.
+        DisplayPath displayPath;
+        Color baseColor;
 
         //Audio
         [SerializeField] private EventReference SelectionSound;
         [SerializeField] private EventReference DirectionSound;
-        public EventReference undistrcatedSound;
         #endregion
 
         #region UNITY FUNCTIONS
@@ -36,6 +41,7 @@ namespace TrojanMouse.AI.Movement
         {
             //Get the cam ref
             mainCam = Camera.main;
+            
         }
 
         // Update is called once per frame
@@ -50,22 +56,36 @@ namespace TrojanMouse.AI.Movement
             // Check to see if the mouse has been pressed, if yes, do logic
             if (Input.GetButtonDown("Fire1") && !directing && FireRay(whatToSelect, rayDistance))
             {
-                
-                // Check to see if the hit obj is an AI
-                if (CheckAIAndDistract())
+                RuntimeManager.PlayOneShot(SelectionSound);
+
+                // if in tutorial, do this, else:
+                if (inTutorial)
                 {
                     // if yes, save it to a local transform
                     selected = hit.transform;
-                    //Debug.Log(hit.transform.name);
-                    // Set the state to directing, this will make sure the user doesn't click on another AI.
+                    agent = hit.transform.gameObject.GetComponent<NavMeshAgent>();
+                    
+
+                    // Set the state to directing.
                     directing = true;
-                    if (directing) 
-                    {
-                        RuntimeManager.PlayOneShot(SelectionSound);
-                    }
-                    // if click on a gruttel, make it grey
+
                     StartCoroutine(ChangeColorSelect(hit.transform));
                 }
+                else
+                {
+                    // Check to see if the hit obj is an AI
+                    if (CheckAIAndDistract())
+                    {
+                        // if yes, save it to a local transform
+                        selected = hit.transform;
+                        //Debug.Log(hit.transform.name);
+                        // Set the state to directing, this will make sure the user doesn't click on another AI.
+                        directing = true;
+
+                        StartCoroutine(ChangeColorSelect(hit.transform));
+                    }
+                }
+
                 // Toggle anything that needs to be turned off
             }
             else if (Input.GetButtonDown("Fire1") && FireRay(whatToSelect, rayDistance))
@@ -76,7 +96,8 @@ namespace TrojanMouse.AI.Movement
                     // if yes, save it to a local transform
                     selected = hit.transform;
                     //Debug.Log(hit.transform.name);
-                    // Set the state to directing, this will make sure the user doesn't click on another AI.
+                    // Set the state to not directing, this will make sure the user doesn't click on another AI.
+                    directing = true;
                 }
                 // Toggle anything that needs to be turned off
             }
@@ -85,23 +106,44 @@ namespace TrojanMouse.AI.Movement
                 // Now that we've selected an AI to move, we watch for a second click
                 if (Input.GetButtonDown("Fire1") && FireRay(whatToIgnore, rayDistance))
                 {
+                    
+                    // if in tutorial, do this:
+                    if (inTutorial)
+                    {
+                        agent.SetDestination(hit.point);
+                        selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", Color.white);
+                    }
+                    else
+                    {
+                        // Move AI to location
+                        // Access the targets AI controller
+                        AIController aiController = selected.GetComponent<AIController>();
 
-                    // Move AI to location
-                    // Access the targets AI controller
-                    AIController aiController = selected.GetComponent<AIController>();
+                        // OTIS ADD AUDIO CODE HERE FOR SENDING THE GRUTTLES TO A NEW LOCATION.
+                        RuntimeManager.PlayOneShot(DirectionSound);
 
-                    // OTIS ADD AUDIO CODE HERE FOR SENDING THE GRUTTLES TO A NEW LOCATION.
-                    RuntimeManager.PlayOneShot(DirectionSound);
+                        // Call the movement function
+                        aiController.GotoPoint(hit.point, true);
+                        //aiController.CheckForLitter();
+                        directing = false;
+                        //aiController.currentState = aiController.GetLitter();a
 
-                    // Call the movement function
-                    aiController.GotoPoint(hit.point, true);
-                    //aiController.CheckForLitter();
-                    directing = false;
-                    //aiController.currentState = aiController.GetLitter();a
+                        aiController.beingDirected = true;
+                        Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
+                        selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
+                    }
+                }
+            }
 
-                    aiController.beingDirected = true;
-                    Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
-                    selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
+            if (inTutorial)
+            {
+                if (hit.transform != null)
+                {
+                    if (!displayPath)
+                    {
+                        displayPath = hit.transform.gameObject.GetComponent<DisplayPath>();
+                    }
+                    displayPath.DisplayLineRenderer(agent, agent.destination);
                 }
             }
             #endregion
@@ -145,11 +187,9 @@ namespace TrojanMouse.AI.Movement
 
             if (localAIc.distracted)
             {
-                RuntimeManager.PlayOneShot(undistrcatedSound);
                 localAIc.moduleManager.distractionModule.distracted = false;
                 localAIc.animator.SetBool("isDistracted", false);
                 return false;
-
             }
 
             return true;
@@ -164,6 +204,11 @@ namespace TrojanMouse.AI.Movement
         bool FireRay(LayerMask lMask, float rDistance)
         {
             return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Collide)) ? true : false;
+        }
+
+        public void ChangeScriptState(bool state)
+        {
+            this.enabled = state;
         }
         #endregion
     }
