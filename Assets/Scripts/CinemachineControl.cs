@@ -65,6 +65,11 @@ public class CinemachineControl : MonoBehaviour
                 rotatingTarget = true;
                 startZoom = 60;
                 break;
+            case "SEMICIRCLEBLOCKOUT":
+                minHPos = 0; maxHPos = 4; startHPos = 2;
+                minVPos = -5; maxVPos = 5; startVPos = 0;
+                maxZoom = 30; minZoom = 70;
+                break;
         }
         //fetches the virtual camera component
         vcamComponent = virtualCam.GetComponent<CinemachineVirtualCamera>();
