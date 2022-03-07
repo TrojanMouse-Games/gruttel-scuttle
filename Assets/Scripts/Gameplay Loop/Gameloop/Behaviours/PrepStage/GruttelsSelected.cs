@@ -10,17 +10,18 @@ namespace TrojanMouse.GameplayLoop{
         float maxDistance;
         LayerMask whatIsGruttel;
         Camera cam;
-
+        EventReference selectSound;
 
         Transform villageFolder, playFolder;
         bool hasApplied = false;
-        public GruttelsSelected(int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+        public GruttelsSelected(int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             this.gruttelsNeededToSelect = quantity;
             this.maxDistance = maxRayDistance;
             this.whatIsGruttel = whatIsGruttel;
             this.cam = cam;
             this.villageFolder = villageFolder;
             this.playFolder = playFolder;
+            this.selectSound = selectSound;
         } 
         public override NodeState Evaluate(){
             // IF NOT X AMT OF GRUTTELS ARE NOT SELECTED RETURN FAILURE OTHERWISE RETURN SUCCESS!
@@ -46,9 +47,9 @@ namespace TrojanMouse.GameplayLoop{
                     gruttelsSelected.Add(hit.collider.transform);
                     hit.collider.transform.localScale = Vector3.one * 1.15f;
                     hit.collider.transform.parent = playFolder; // MOVES IT TO THE PLAYER FOLDER
-                    
                     //AUDIO
-                   
+                    RuntimeManager.PlayOneShot(selectSound);
+
                 }
                 else{ // IF GRUTTEL IS ALREADY SELECTED, REMOVE IT FROM THE HASHSET 
                     gruttelsSelected.Remove(hit.collider.transform);
