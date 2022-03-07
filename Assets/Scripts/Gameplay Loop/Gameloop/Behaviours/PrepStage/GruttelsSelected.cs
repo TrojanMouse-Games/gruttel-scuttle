@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GruttelsSelected : GLNode{
@@ -9,6 +10,7 @@ namespace TrojanMouse.GameplayLoop{
         float maxDistance;
         LayerMask whatIsGruttel;
         Camera cam;
+
 
         Transform villageFolder, playFolder;
         bool hasApplied = false;
@@ -44,6 +46,9 @@ namespace TrojanMouse.GameplayLoop{
                     gruttelsSelected.Add(hit.collider.transform);
                     hit.collider.transform.localScale = Vector3.one * 1.15f;
                     hit.collider.transform.parent = playFolder; // MOVES IT TO THE PLAYER FOLDER
+                    
+                    //AUDIO
+                   
                 }
                 else{ // IF GRUTTEL IS ALREADY SELECTED, REMOVE IT FROM THE HASHSET 
                     gruttelsSelected.Remove(hit.collider.transform);
