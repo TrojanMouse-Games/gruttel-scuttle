@@ -1938,6 +1938,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  eatSoundBuff:
+    Guid:
+      Data1: -534630581
+      Data2: 1330123481
+      Data3: -1888501866
+      Data4: -30248144
+    Path: event:/Gruttel Sounds/general/Eating Sound Buff
+  eatSoundIrr:
+    Guid:
+      Data1: -1628462998
+      Data2: 1318856534
+      Data3: -1994824306
+      Data4: 151608
+    Path: event:/Gruttel Sounds/general/Eating Sound Irradiated
 --- !u!114 &9134461449078113823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2111,12 +2125,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    reference: {fileID: 0}
     meshList: {fileID: 0}
     nickname: 
     notableAchievement: 
     traits: []
     bios: []
+    traitsMinMax: {x: 0, y: 0}
     type: 0
     baseColor: {r: 0, g: 0, b: 0, a: 0}
     overallStress: 0

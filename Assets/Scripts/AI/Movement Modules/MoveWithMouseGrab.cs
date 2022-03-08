@@ -1,5 +1,5 @@
 using UnityEngine;
-//using FMODUnity;
+using FMODUnity;
 
 namespace TrojanMouse.AI.Movement
 {
@@ -25,8 +25,8 @@ namespace TrojanMouse.AI.Movement
         Ray worldPoint; // Internal global script wide variable used for the raycast.
 
         //Audio
-        //[SerializeField] private EventReference pickup;
-        //[SerializeField] private EventReference drop;
+        public EventReference pickup;
+        public EventReference drop;
 
 
         #endregion
@@ -75,6 +75,7 @@ namespace TrojanMouse.AI.Movement
                     target.transform.position = newPos;
 
                     // OTIS ADD AUDIO CODE HERE FOR PICKING UP THE GRUTTLES
+                    RuntimeManager.PlayOneShot(pickup);
 
 
                 }
@@ -84,7 +85,7 @@ namespace TrojanMouse.AI.Movement
                     // Re-enable the components after dropping the AI.
 
                     // OTIS ADD AUDIO CODE HERE FOR DROPPING THE GRUTTLES
-                    //RuntimeManager.PlayOneShot(drop);
+                    RuntimeManager.PlayOneShot(drop);
 
                     ToggleAIComponents(true, "putDown");
                 }

@@ -5,11 +5,11 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using TrojanMouse.StressSystem;
+using FMODUnity;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GameLoopBT : MonoBehaviour{        
         public static GameLoopBT instance;
-
         #region VARIABLES
         [SerializeField] Prerequisites prerequisiteSettings;
         
@@ -27,7 +27,7 @@ namespace TrojanMouse.GameplayLoop{
             #region NODES
             #region PREP NODES
             SpawnGruttels spawnGruttels = new SpawnGruttels(prerequisiteSettings.gruttelObj, prerequisiteSettings.gruttelVillageSpawnPoints, prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned, prerequisiteSettings.gruttelVillageFolder); // PASS IN BOTH FOLDERS, IF BOTH EMPTY, THEN SPAWN GRUTTELS
-            GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder);
+            GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.powerups, prerequisiteSettings.powerupSpawnFolder);
             PowerupsUsed arePowerupsUsed = new PowerupsUsed(prerequisiteSettings.powerupSpawnFolder);
             ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on {level.numOfGruttelsToSelect} Gruttels to proceed");
@@ -173,6 +173,9 @@ namespace TrojanMouse.GameplayLoop{
             public Image intermissionTimer;
             public TextMeshProUGUI timerLabel;
             public ShowGruttelStats statScript;
+
+            [Header("Audio Settings")]
+            public EventReference selectSound;
         }
     }
 }
