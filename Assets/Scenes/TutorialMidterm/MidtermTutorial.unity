@@ -6235,7 +6235,7 @@ MonoBehaviour:
     m_Bits: 63
   rayDistance: 250
   directing: 0
-  inTutorial: 0
+  inTutorial: 1
   SelectionSound:
     Guid:
       Data1: -1541613484
@@ -9942,6 +9942,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1171715186}
+    - target: {fileID: 1781458027863604683, guid: abec81ad8f17f7b45a54629fa2a0d38f,
+        type: 3}
+      propertyPath: litterLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8471254294815661145, guid: abec81ad8f17f7b45a54629fa2a0d38f,
         type: 3}
       propertyPath: m_RootOrder

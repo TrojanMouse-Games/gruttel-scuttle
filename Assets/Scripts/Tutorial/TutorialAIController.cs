@@ -29,6 +29,9 @@ public class TutorialAIController : MonoBehaviour
     void Start()
     {
         sleeping = true;
+        equipper = GetComponent<Equipper>();
+        powerUp = GetComponent<Powerup>();
+        inventory = GetComponent<Inventory>();
     }
 
     /// <summary>
@@ -36,8 +39,11 @@ public class TutorialAIController : MonoBehaviour
     /// </summary>
     void Update()
     {
+
         animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
         animator.SetBool("isSleeping", sleeping);
+
+        pickupLitter();
     }
 
     /// <summary>
@@ -81,9 +87,11 @@ public class TutorialAIController : MonoBehaviour
 
     void pickupLitter()
     {
-        // if the inventory has slots left
-        if (inventory.HasSlotsLeft())
+
+        // if the inventory doesn't have slots left
+        if (!inventory.HasSlotsLeft())
         {
+            Debug.Log("has no slots left");
             // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
             //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
             //if (!closestRegion)
@@ -98,6 +106,32 @@ public class TutorialAIController : MonoBehaviour
             {
                 LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
                 bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
+
+                if (!cantPickup)
+                {
+                    agent.SetDestination(obj.transform.position);
+                    litterType = type;
+                    litterObj = obj.transform;
+                    break;
+                }
+            }
+            if (litterType && Mathf.Abs((litterObj.position - transform.position).magnitude) <= pickupRange)
+            {
+                equipper.PickUp(litterObj, powerUp.Type, litterType);
+            }
+        }
+        else
+        {
+            
+            Collider[] litter = Physics.OverlapSphere(transform.position, 15, litterLayerMask);
+            LitterObject litterType = null;
+            Transform litterObj = null;
+
+            foreach (Collider obj in litter)
+            {
+                LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
+                bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
+                Debug.Log($"{cantPickup}");
 
                 if (!cantPickup)
                 {
