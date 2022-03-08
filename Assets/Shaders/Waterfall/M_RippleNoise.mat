@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Bubbles
-  m_Shader: {fileID: -6465566751694194690, guid: 0f3701dd5a890a746adac113bb535d78,
+  m_Name: M_RippleNoise
+  m_Shader: {fileID: -6465566751694194690, guid: 1ec32af67e5b13b44b44fd1e6a7e260a,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -77,6 +77,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_0febe9a23ee746f3b99b7ffce5fb174d: 5
+    - Vector1_58c9c210eaf14dd193a90c761d63668c: 3.34
+    - Vector1_7136982722ee42b9945ebb32982b469f: 0.13
+    - Vector1_ddc4898a156e468f875c0ca837482529: 2.67
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,13 +108,15 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_dba49fb09765401e954610169de0392e: {r: 0, g: 1, b: 0.7056353, a: 0}
+    - Color_79804f9a7c1c43b3b12c68be35dd2b20: {r: 1, g: 1, b: 1, a: 1}
+    - Color_ead37e94eb2c409ca19854e3e5b9b747: {r: 1, g: 1, b: 1, a: 1}
+    - Vector2_ad68a50e97ee4a1eb51352c1ee5864e8: {r: 0, g: 0.3, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &146005572394678496
+--- !u!114 &4285837936414766749
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
