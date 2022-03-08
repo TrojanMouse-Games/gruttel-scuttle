@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using FMODUnity;
 
 namespace TrojanMouse.GameplayLoop{ 
     public class Intermission : GLNode{
         public float maxDuration, remainingDuration;
         public Image imageUI;
         TextMeshProUGUI label;
-        public Intermission(float duration, Image imageUI = null, TextMeshProUGUI label = null){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+        public EventReference waveShift;
+        public Intermission(float duration, Image imageUI = null, TextMeshProUGUI label = null, EventReference waveShift){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             this.maxDuration = duration;
             this.remainingDuration = duration;
             
             this.imageUI = imageUI;
             this.label = label;
+            this.waveShift = waveShift;
         }
 
         public override NodeState Evaluate(){
@@ -28,7 +31,9 @@ namespace TrojanMouse.GameplayLoop{
             #endregion
             if (remainingDuration <= 0){
                 imageUI?.transform.parent.gameObject.SetActive(false); // DISABLES THE TIMER
+                //waveShift = RuntimeManager
                 return NodeState.SUCCESS;
+
             }
 
             imageUI?.transform.parent.gameObject.SetActive(true); // IF IMAGEUI EXISTS, WILL ENABLE IT

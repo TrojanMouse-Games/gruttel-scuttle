@@ -550,8 +550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ad33d6d8e06a947a730809421e845e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillbar: {fileID: 436856856}
+  fillbar: {fileID: 0}
   smoothingSpeed: 1
+  animator: {fileID: 0}
 --- !u!114 &436856858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,9 +565,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4925f70cb23e2740aa49c6771ebce9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  average: 0
-  peacefulPeriod: 20
+  isCountingDown: 0
+  amountOfLitter: 0
+  startStress: 0
   calculationCooldown: 1
+  maxStressCountdown: 0
+  maxLitter: 0
 --- !u!1 &469213688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7965452186460064525, guid: 1bb856cb011c41e4fbb8498a00cbd0b1,
@@ -5852,7 +5856,7 @@ MonoBehaviour:
       Data2: 1319066215
       Data3: -1239366465
       Data4: -1921043719
-    Path: event:/Music/Cycle 2
+    Path: event:/Music/Main Music (Adaptive)
   Event: 
   PlayEvent: 1
   StopEvent: 2
