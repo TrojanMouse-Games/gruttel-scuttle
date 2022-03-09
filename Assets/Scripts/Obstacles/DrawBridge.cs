@@ -1,14 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DrawBridge : MonoBehaviour
 {
+    // This is used to show the bridges state
     public bool isRaised = false;
 
     // Ray & hit to be used to for raycast
     public Ray ray;
     public RaycastHit hit;
+
+    // Navmesh References
+    NavMeshObstacle navMeshObstacle;
+    
+    // Other stuff
+    public Vector3 positionToMoveTo, positionToRotateTo;
+    Vector3 originalRotation, originalPosition;
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        navMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,7 +40,7 @@ public class DrawBridge : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.transform == this.transform)
             {
                 isRaised = !isRaised;
-                Debug.Log($"Hit the drawbridge! {isRaised}");
+                Debug.Log($"Hit the drawbridge, its name is {hit.transform.name}! {isRaised}");
 
                 MoveBridge();
             }
@@ -52,18 +70,35 @@ public class DrawBridge : MonoBehaviour
     {
         if (isRaised)
         {
-            // Store original pos
-            Vector3 originalPosition = transform.rotation.eulerAngles;
-            //Quaternion testPOs = Quaternion.Euler(originalPosition);
-
-            // Calculate new pos
+            // Save original postion
+            originalPosition = transform.position;
+            originalRotation = transform.rotation.eulerAngles;
 
             // Move to upwards pos
+            hit.transform.rotation = Quaternion.Euler(positionToRotateTo);
+            hit.transform.position = positionToMoveTo;
             
+            //Rebake the mesh
+            // Currently DONT do this, freezes the editor, crashes builds and ends the universe
+            ChangeNavMesh();
         }
         else
         {
-            // Return to original pos
+            // Move to original pos
+            hit.transform.rotation = Quaternion.Euler(originalRotation);
+            hit.transform.position = originalPosition;
+
+            //Rebake the mesh
+            // Currently DONT do this, freezes the editor, crashes builds and ends the universe
+            ChangeNavMesh();
         }
+    }
+
+    /// <summary>
+    /// Changes the navmesh
+    /// </summary>
+    void ChangeNavMesh()
+    {
+        navMeshObstacle.carving = !navMeshObstacle.carving;
     }
 }
