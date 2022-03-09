@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
-using TrojanMouse.PowerUps;
+using TrojanMouse.Gruttel;
 
 /// <summary>
 /// Class used for controlling the gruttels in the Tutorial scene, hardcoded for the sake of time

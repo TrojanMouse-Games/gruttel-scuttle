@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TrojanMouse.AI;
 
-namespace TrojanMouse.PowerUps
+namespace TrojanMouse.Gruttel
 {
     [RequireComponent(typeof(Powerup))]
     public class DragUI : MonoBehaviour

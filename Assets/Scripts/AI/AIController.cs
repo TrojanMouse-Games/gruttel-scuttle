@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
 using TrojanMouse.Litter.Region;
-using TrojanMouse.PowerUps;
+using TrojanMouse.Gruttel;
 using TrojanMouse.AI.Behaviours;
 using TrojanMouse.GameplayLoop;
 #endregion

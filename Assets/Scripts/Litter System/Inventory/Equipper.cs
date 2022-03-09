@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.Litter.Region;
-using TrojanMouse.PowerUps;
+using TrojanMouse.Gruttel;
+
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory
 {
