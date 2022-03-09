@@ -23,15 +23,27 @@ namespace TrojanMouse.GameplayLoop{
             Ray ray = cam.ScreenPointToRay(Input.mousePosition); // SHOOT RAY FROM CAMERA (MOUSE POSITION) TO WORLD POINT 
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, maxDetectionDistance, whatIsGruttel)){ // CHECK TO SEE IF RAY HITS GRUTTEL
-                GruttelReference gruttel = hit.transform.GetComponent<GruttelReference>(); // GETS THE DATA FROM THE GRUTTEL
-                statsUI.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Name: {gruttel.data.nickname}"; // GETS THE NAME OFF THE DATA SCRIPT 
-                string traits = "";
-                foreach(string trait in gruttel.data.traits){ // ITERATES THROUGH EVERY TRAIT OF THE GRUTTEL AND APPENDS THE STRING INTO THE 'traits' VARIABLE
-                    traits += $"* {trait}\n\n";
+                GruttelReference gruttel = hit.transform.GetComponent<GruttelReference>(); // GETS THE DATA FROM THE GRUTTEL                
+
+                for(int i = 0; i < statsUI.GetChild(0).childCount; i++){
+                    TextMeshProUGUI label = statsUI.GetChild(0).GetChild(i).GetComponent<TextMeshProUGUI>();                    
+                    switch(i){
+                        case 0:
+                            label.text = $"{gruttel.data.nickname}";
+                            break;
+                        case 1:
+                            label.text = $"{gruttel.data.bios[0]}";
+                            break;
+                        default:
+                            int curTraitVal = (gruttel.data.traits.Length - statsUI.GetChild(0).childCount) + i;                            
+                            if(curTraitVal < 0){
+                                continue;
+                            }
+                            
+                            label.text = gruttel.data.traits[curTraitVal];
+                            break;
+                    }
                 }
-                statsUI.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{traits}"; // GETS THE TRAITS DATA OFF THE DATA SCRIPT
-                
-                
                 EnableUI(true); // ENABLE THE STATS UI
             }   
             else{
