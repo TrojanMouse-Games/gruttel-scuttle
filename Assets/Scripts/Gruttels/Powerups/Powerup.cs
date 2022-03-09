@@ -6,29 +6,22 @@ namespace TrojanMouse.Gruttel
 {
     public class Powerup : MonoBehaviour
     {
-        [SerializeField] PowerupType type; // PRIVATE VALUE WHICH CAN ONLY BE SET IN THIS SCRIPT
-        public PowerupType Type
-        { // PUBLIC VALUE WHICH CAN ONLY BE READ FROM
-            get
-            {
-                return type;
-            }
-        }
+        [SerializeField] GruttelType powerupType; // PRIVATE VALUE WHICH CAN ONLY BE SET IN THIS SCRIPT
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="newType"></param>
-        public void UpdateType(PowerupType newType)
+        public void UpdateType(GruttelType newType)
         {
             UpdateType(newType, null, null);
         }
 
         /// <summary>THIS FUNCTION UPDATES THE VALUE OF THE POWERUP TYPE THIS SCRIPT IS ATTACHED TO</summary>
         /// <param name="newType">VALUE YOU WISH TO UPDATE THE OBJ TO</param>
-        public void UpdateType(PowerupType newType, Mesh mesh, Material mat)
+        public void UpdateType(GruttelType newType, Mesh mesh, Material mat)
         {
-            type = newType;
+            powerupType = newType;
             Color color = Color.white;
 
             if (mesh == null)

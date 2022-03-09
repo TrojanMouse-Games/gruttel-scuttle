@@ -28,6 +28,8 @@ namespace TrojanMouse.AI
         Processing,
         Patrolling,
         Fleeing,
-        Dead
+        Dead,
+        MovingToLitter,
+        MovingToMachine
     }
 }

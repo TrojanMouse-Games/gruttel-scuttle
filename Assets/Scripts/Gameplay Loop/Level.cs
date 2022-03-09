@@ -19,7 +19,7 @@ namespace TrojanMouse.GameplayLoop
         public class PowerupsToBeDispenced
         {
             public string name;
-            [Tooltip("Powerups to be dispenced to player")] public PowerupType powerup;
+            [Tooltip("Powerups to be dispenced to player")] public GruttelType powerupType;
             public Sprite image;
         }
     }

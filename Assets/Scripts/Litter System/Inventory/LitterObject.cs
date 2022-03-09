@@ -12,6 +12,6 @@ namespace TrojanMouse.Inventory
         public GameObject spawnableObject;
         public Vector3 heldOffset;
         public int maxOfItem = 1;
-        public PowerupType type;
+        public GruttelType typeOfLitter;
     }
 }

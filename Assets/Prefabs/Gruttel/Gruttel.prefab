@@ -1711,6 +1711,7 @@ GameObject:
   - component: {fileID: 9134461449078113818}
   - component: {fileID: 9134461449078113821}
   - component: {fileID: 7161643577560387700}
+  - component: {fileID: -6989045485108409391}
   - component: {fileID: 9134461449078113820}
   - component: {fileID: 9134461449078113823}
   - component: {fileID: 9134461449078113822}
@@ -1817,11 +1818,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiType: 0
   currentState: 0
+  data:
+    inventory: {fileID: 0}
+    agent: {fileID: 0}
+    litterLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    wanderCooldown: 0
+    distracted: 0
+    gruttel:
+      meshList: {fileID: 0}
+      nickname: 
+      notableAchievement: 
+      traits: []
+      bios: []
+      traitsMinMax: {x: 0, y: 0}
+      type: 0
+      baseColor: {r: 0, g: 0, b: 0, a: 0}
+      overallStress: 0
   currentTarget: {fileID: 0}
   globalLitterArray: []
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   beingDirected: 0
-  distracted: 0
   litterLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -1829,7 +1847,6 @@ MonoBehaviour:
   animator: {fileID: 2553501623213131299}
   currSpeed: 0
   moduleManager: {fileID: 0}
-  pickupRange: 2
 --- !u!114 &9134461449078113816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,6 +1863,7 @@ MonoBehaviour:
   patrol: {fileID: 9134461449078113818}
   fleeModule: {fileID: 9134461449078113821}
   distractionModule: {fileID: 7161643577560387700}
+  litterModule: {fileID: 0}
   moveWithMouseClick: {fileID: 0}
   moveWithMouseGrab: {fileID: 0}
 --- !u!114 &9134461449078113819
@@ -1925,6 +1943,20 @@ MonoBehaviour:
       Data3: -1447001678
       Data4: -690272761
     Path: event:/Gruttel Sounds/Undistracted
+--- !u!114 &-6989045485108409391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134461449078114019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b3beac41837cd47bbbc81c5b88c10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  holdingLitter: {fileID: 0}
 --- !u!114 &9134461449078113820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1937,7 +1969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf5a0029fc5eca40abe89d1c5fcc1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  powerupType: 0
 --- !u!114 &9134461449078113823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2111,12 +2143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    reference: {fileID: 0}
     meshList: {fileID: 0}
     nickname: 
     notableAchievement: 
     traits: []
     bios: []
+    traitsMinMax: {x: 0, y: 0}
     type: 0
     baseColor: {r: 0, g: 0, b: 0, a: 0}
     overallStress: 0

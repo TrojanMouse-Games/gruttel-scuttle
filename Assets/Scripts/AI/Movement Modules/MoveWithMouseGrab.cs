@@ -116,14 +116,14 @@ namespace TrojanMouse.AI.Movement
                 AIData data = controller.data;
                 if (type == "pickUp" && controller)
                 {
-                    data.Agent.enabled = state;
+                    data.agent.enabled = state;
                     controller.enabled = state;
                 }
                 else if (type == "putDown" && controller)
                 {
                     controller.enabled = state;
-                    data.Agent.enabled = state;
-                    controller.GetLitter();
+                    data.agent.enabled = state;
+                    controller.moduleManager.litterModule.GetLitter(data);
                 }
             }
         }

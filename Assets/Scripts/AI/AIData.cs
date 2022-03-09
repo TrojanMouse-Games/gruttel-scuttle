@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,23 +6,33 @@ using UnityEngine.AI;
 
 namespace TrojanMouse.AI
 {
+    using Gruttel;
+
+    [Serializable]
     public class AIData
     {
-        public NavMeshAgent Agent;
-        public LayerMask LitterLayer;
-        public float WanderRadius { get; } = 10;
-        public float DetectionRadius { get; } = 10;
-        public float WanderCooldown;
-        public Vector2 WanderCooldownRange { get; } = new Vector2(2, 10);
+        public Inventory.Inventory inventory;
+        public NavMeshAgent agent;
+        public LayerMask litterLayer;
+        public float wanderRadius { get; } = 10;
+        public float detectionRadius { get; } = 10;
+        public float pickupRadius { get; } = 2;
+        public float wanderCooldown;
+        public Vector2 wanderCooldownRange { get; } = new Vector2(2, 10);
 
-        public AIData(NavMeshAgent agent,
-            LayerMask litterLayer,
-            float wanderCooldown
-            )
+        public bool distracted = false;
+
+        public GruttelData gruttel;
+
+        public AIData(NavMeshAgent _agent,
+            LayerMask _litterLayer,
+            float _wanderCooldown,
+            GruttelData gruttelData)
         {
-            Agent = agent;
-            LitterLayer = litterLayer;
-            WanderCooldown = wanderCooldown;
+            agent = _agent;
+            litterLayer = _litterLayer;
+            wanderCooldown = _wanderCooldown;
+            gruttel = gruttelData;
         }
     }
 }

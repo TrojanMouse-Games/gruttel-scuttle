@@ -24,17 +24,12 @@ namespace TrojanMouse.Inventory
         }
 
 
-        public bool PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1)
+        public bool PickUp(LitterObjectHolder litter)
         {
-            if ((powerUp != type.type && type.type != PowerupType.NORMAL) || selectedObject)
-            { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
-                return false;
-            }
-
-            bool success = inventoryHandler.AddToInventory(type);
+            bool success = inventoryHandler.AddToInventory(litter.litterObject);
             if (success)
             {
-                selectedObject = inventoryHandler.Equip(obj, currentIndex);
+                selectedObject = inventoryHandler.Equip(litter.transform, currentIndex);
                 if (selectedObject)
                 {
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;
@@ -52,7 +47,7 @@ namespace TrojanMouse.Inventory
             //droppedItem.GetComponent<Collider>().enabled = true;          
 
             inventoryHandler.Dequip(selectedObject);
-            inventoryHandler.RemoveFromInventory(selectedObject.GetComponent<LitterObjectHolder>().type);
+            inventoryHandler.RemoveFromInventory(selectedObject.GetComponent<LitterObjectHolder>().litterObject);
         }
 
         private void OnDrawGizmosSelected()

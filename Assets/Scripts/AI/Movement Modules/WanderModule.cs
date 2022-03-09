@@ -67,15 +67,15 @@ namespace TrojanMouse.AI.Movement
         /// <param name="agent">The navmesh agent, passed in from controller.</param>
         public void Wander(AIData data, bool blocked, NavMeshHit hit)
         {
-            data.WanderCooldown = wanderCooldown;
+            data.wanderCooldown = wanderCooldown;
             if (timer >= wanderCooldown)
             {
-                newPos = RandomWanderPoint(transform.position, data.WanderRadius, -1);
+                newPos = RandomWanderPoint(transform.position, data.wanderRadius, -1);
                 blocked = NavMesh.Raycast(transform.position, newPos, out hit, NavMesh.AllAreas);
                 Debug.DrawLine(transform.position, newPos, blocked ? Color.red : Color.green);
                 if (!blocked)
                 {
-                    data.Agent.SetDestination(newPos);
+                    data.agent.SetDestination(newPos);
                     StartCoroutine(Cooldown(.1f));
                     timer = 0;
                 }

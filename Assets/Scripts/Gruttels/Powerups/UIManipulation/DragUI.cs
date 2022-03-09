@@ -6,7 +6,6 @@ using TrojanMouse.AI;
 
 namespace TrojanMouse.Gruttel
 {
-    [RequireComponent(typeof(Powerup))]
     public class DragUI : MonoBehaviour
     {
         public Canvas canvas;
@@ -15,7 +14,7 @@ namespace TrojanMouse.Gruttel
 
         Vector2 startingPos; // POSITION THIS ITEM WAS SPAWNED AT
         Transform parent; // USE THIS TO TELEPORT THE ELEMENT BACK INTO THE ORDER GROUP
-        PowerupType type;
+        public GruttelType powerupType;
 
 
         [System.Serializable]
@@ -33,7 +32,6 @@ namespace TrojanMouse.Gruttel
             parent = transform.parent;
             canvas = parent.parent.GetComponent<Canvas>();
             camera = Camera.main;
-            type = transform.GetComponent<Powerup>().Type;
             cam = camera.GetComponent<CinemachineControl>();
         }
 
@@ -65,7 +63,7 @@ namespace TrojanMouse.Gruttel
             {
                 cam.canDrag = true;
             }
-            if (!IsGruttel(type))
+            if (!IsGruttel(powerupType))
             {
                 transform.SetParent(parent);
                 return;
@@ -75,16 +73,16 @@ namespace TrojanMouse.Gruttel
 
 
         ///<summary>Checks if the mouse position is on a Gruttel using raycasts. It'll return true if it hits a Gruttel</summary>
-        bool IsGruttel(PowerupType selectedType)
+        bool IsGruttel(GruttelType selectedType)
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition, Camera.MonoOrStereoscopicEye.Mono);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100, whatIsGruttel))
             {
-                Powerup gruttel = hit.transform.GetComponent<Powerup>();
+                GruttelData gruttelData = hit.transform.GetComponent<GruttelReference>().data;
 
-                if (gruttel.Type != PowerupType.NORMAL && lockGruttelToOneType)
+                if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType)
                 {
                     return false;
                 }
@@ -93,11 +91,11 @@ namespace TrojanMouse.Gruttel
                 Material curMaterial = null;
                 switch (selectedType)
                 {
-                    case PowerupType.BUFF:
+                    case GruttelType.Buff:
                         curMesh = gruttelTypes[0].type;
                         curMaterial = gruttelTypes[0].texture;
                         break;
-                    case PowerupType.IRRADIATED:
+                    case GruttelType.Radioactive:
                         curMesh = gruttelTypes[1].type;
                         curMaterial = gruttelTypes[1].texture;
                         break;
@@ -105,7 +103,7 @@ namespace TrojanMouse.Gruttel
 
 
 
-                gruttel.UpdateType(selectedType, curMesh, curMaterial);
+                gruttelData.UpdateGruttelType(selectedType);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;

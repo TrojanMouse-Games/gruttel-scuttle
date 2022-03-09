@@ -28,7 +28,6 @@ namespace TrojanMouse.AI
         public Color baseColor;
         //bools for distraction
         public bool beingDirected;
-        public bool distracted = false;
         public LayerMask litterLayerMask;
         public float timer = 0f; // Internal timer used for state changes and tracking.
         public Animator animator;
@@ -39,6 +38,8 @@ namespace TrojanMouse.AI
         private bool blocked = false; // Internal true/false for checking whether the current AI path is blocked.
         private bool ignoreFSMTarget = false; // Ignores the currentTarget value for when the AI moves.
         private bool currentlyProcessing = true; // Check to see whether the AI is currently processing anything or not.
+
+        private LitterRegion closestHomeRegion;
         Vector3 lastPosition;
 
         [Header("Scripts")] // All internal & private for the most part.
@@ -49,10 +50,9 @@ namespace TrojanMouse.AI
         private Neutral neutral; // Refernce to the neutral behaviour.
         private Hostile hostile; // Refernce to the hostile behaviour.
         private Equipper equipper; // reference to the equipper script
-        private Powerup powerUp; // reference to the equipper script
+        private GruttelReference gruttelReference;
+
         private Inventory.Inventory inventory; // reference to the equipper script
-        [Header("Joshs temp vars")]
-        [SerializeField] float pickupRange;
         #endregion
 
         private void Start()
@@ -103,12 +103,8 @@ namespace TrojanMouse.AI
             {
                 DisplayLineRenderer();
             }
-            else if (!distracted)
+            else if (!data.distracted)
             {
-                // Detect and process the litter
-                #region JOSHS OVERRIDES - REMOVE LATER ON
-                currentState = GetLitter();
-                #endregion
                 switch (currentState)
                 {
                     case AIState.Nothing:
@@ -118,6 +114,8 @@ namespace TrojanMouse.AI
                             // Default to the wandering state.
                             currentState = AIState.Wandering;
                         }
+                        data.inventory = inventory;
+                        currentState = moduleManager.litterModule.GetLitter(data);
                         // Make sure this is false so more modules can be spawned.
                         break;
                     case AIState.Wandering:
@@ -176,6 +174,12 @@ namespace TrojanMouse.AI
                         Cleanup(3);
                         Cleanup(4);
                         break;
+                    case AIState.MovingToLitter:
+                        AttemptLitterPickup();
+                        break;
+                    case AIState.MovingToMachine:
+                        AttemptLitterDrop();
+                        break;
                     default:
                         // Fall back state
                         currentState = AIState.Wandering;
@@ -185,6 +189,41 @@ namespace TrojanMouse.AI
             else
             {
                 GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_Color", Color.red);
+            }
+        }
+
+        void AttemptLitterPickup()
+        {
+            LitterObjectHolder target = moduleManager.litterModule.target;
+            LitterObjectHolder holdingLitter = moduleManager.litterModule.target;
+            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.pickupRadius;
+
+            if (litterInRange)
+            {
+                target.isPickedUp = true;
+                GetComponent<Equipper>().PickUp(target);
+                holdingLitter = target;
+                currentState = AIState.MovingToMachine;
+
+                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);
+
+                if (closestHomeRegion == null)
+                {
+                    currentState = AIState.Nothing;
+                }
+
+                data.agent.SetDestination(closestHomeRegion.transform.position);
+            }
+        }
+
+        void AttemptLitterDrop()
+        {
+
+            bool machineInRange = Vector3.Distance(closestHomeRegion.transform.position, transform.position) < data.pickupRadius;
+
+            if (machineInRange)
+            {
+                equipper.Drop(RegionType.HOME);
             }
         }
 
@@ -205,72 +244,10 @@ namespace TrojanMouse.AI
 
             if (ignoreFSMTarget)
                 // Move to the position passed in
-                data.Agent.SetDestination(position);
+                data.agent.SetDestination(position);
             else
                 // Move to the current target.
-                data.Agent.SetDestination(currentTarget.transform.position);
-        }
-
-
-
-        //  TODO: PASS IN PREV STATE
-        /// <summary>
-        /// This function checks for litter and then starts processing it if any is found.
-        /// </summary>
-        /// <returns>If litter is found, it will call the process function, if not it will just return</returns>
-        public AIState GetLitter()
-        {
-            if (distracted == false)
-            {
-                if (!inventory.HasSlotsLeft())
-                {
-                    LitterRegion closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);
-                    if (!closestHomeRegion)
-                    {
-                        return AIState.Nothing;
-                    }
-                    Vector3 homePos = closestHomeRegion.transform.position;
-                    data.Agent.SetDestination(closestHomeRegion.transform.position);
-
-                    if (Mathf.Abs((transform.position - new Vector3(homePos.x, transform.position.y, homePos.z)).magnitude) <= pickupRange)
-                    {
-                        equipper.Drop(RegionType.HOME);
-                    }
-                }
-                else
-                {
-                    // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
-                    //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
-                    //if (!closestRegion)
-                    //{
-                    //    return AIState.Nothing;
-                    //}
-                    Collider[] litter = Physics.OverlapSphere(transform.position, data.DetectionRadius, litterLayerMask);
-                    LitterObject litterType = null;
-                    Transform litterObj = null;
-
-                    foreach (Collider obj in litter)
-                    {
-                        LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
-                        bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
-
-                        if (!cantPickup)
-                        {
-                            data.Agent.SetDestination(obj.transform.position);
-                            litterType = type;
-                            litterObj = obj.transform;
-                            break;
-                        }
-                    }
-                    if (litterType && Mathf.Abs((litterObj.position - transform.position).magnitude) <= pickupRange)
-                    {
-                        equipper.PickUp(litterObj, powerUp.Type, litterType);
-                    }
-                }
-
-                return currentState = AIState.Processing;
-            }
-            return currentState = AIState.Nothing;
+                data.agent.SetDestination(currentTarget.transform.position);
         }
         #endregion
 
@@ -278,25 +255,26 @@ namespace TrojanMouse.AI
         private void Initialization()
         {
             data = new AIData(
-                agent: gameObject.GetComponent<NavMeshAgent>(),
-                litterLayer: litterLayerMask,
-                wanderCooldown: 0
+                gameObject.GetComponent<NavMeshAgent>(),
+                litterLayerMask,
+                0,
+                GetComponent<GruttelReference>().data
             );
 
             moduleManager = gameObject.GetComponent<ModuleManager>();
             moduleManager.CheckScripts();
 
-            data.Agent = gameObject.GetComponent<NavMeshAgent>();
-            data.Agent.enabled = true;
-            timer = data.WanderCooldown;
+            data.agent = gameObject.GetComponent<NavMeshAgent>();
+            data.agent.enabled = true;
+            timer = data.wanderCooldown;
             baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
             equipper = GetComponent<Equipper>();
-            powerUp = GetComponent<Powerup>();
             inventory = GetComponent<Inventory.Inventory>();
+            gruttelReference = GetComponent<GruttelReference>();
             // Thing for setting up char stats, powerups etc
 
             // Simple check to make sure the agent is on a navmesh, if not destroy it
-            if (data.Agent.isOnNavMesh == false)
+            if (data.agent.isOnNavMesh == false)
             {
                 Destroy(this.gameObject);
             }
@@ -320,7 +298,7 @@ namespace TrojanMouse.AI
 
         private void CheckDistraction()
         {
-            distracted = moduleManager.distractionModule.distracted;
+            data.distracted = moduleManager.distractionModule.distracted;
         }
 
         public void Timer()
@@ -333,21 +311,21 @@ namespace TrojanMouse.AI
         {
             // JOSHS STUFF
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, pickupRange);
+            Gizmos.DrawWireSphere(transform.position, data.pickupRadius);
             // --
             if (data == null)
             {
                 return;
             }
             Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, data.DetectionRadius);
+            Gizmos.DrawWireSphere(transform.position, data.detectionRadius);
         }
 
         void DisplayLineRenderer()
         {
             LineRenderer lr = GetComponent<LineRenderer>();
 
-            float distance = Vector3.Distance(transform.position, data.Agent.destination);
+            float distance = Vector3.Distance(transform.position, data.agent.destination);
 
             if (distance == 0)
             {
@@ -357,7 +335,7 @@ namespace TrojanMouse.AI
             else
             {
                 lr.enabled = true;
-                Vector3[] path = data.Agent.path.corners;
+                Vector3[] path = data.agent.path.corners;
                 lr.positionCount = path.Length;
                 for (int i = 0; i < path.Length; i++)
                 {
@@ -399,9 +377,9 @@ namespace TrojanMouse.AI
 
                 // Cleanup the Components
                 case 2:
-                    if (data.Agent != null)
+                    if (data.agent != null)
                     {
-                        Destroy(data.Agent);
+                        Destroy(data.agent);
                     }
                     break;
 
