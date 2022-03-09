@@ -65,7 +65,6 @@ namespace TrojanMouse.AI.Movement
                     selected = hit.transform;
                     agent = hit.transform.gameObject.GetComponent<NavMeshAgent>();
                     
-
                     // Set the state to directing.
                     directing = true;
 
@@ -78,7 +77,6 @@ namespace TrojanMouse.AI.Movement
                     {
                         // if yes, save it to a local transform
                         selected = hit.transform;
-                        //Debug.Log(hit.transform.name);
                         // Set the state to directing, this will make sure the user doesn't click on another AI.
                         directing = true;
 
@@ -95,7 +93,6 @@ namespace TrojanMouse.AI.Movement
                 {
                     // if yes, save it to a local transform
                     selected = hit.transform;
-                    //Debug.Log(hit.transform.name);
                     // Set the state to not directing, this will make sure the user doesn't click on another AI.
                     directing = true;
                 }
@@ -168,6 +165,7 @@ namespace TrojanMouse.AI.Movement
             AIController localAIc = hit.transform.GetComponent<AIController>();
             if (localAIc == null)
             {
+                Debug.LogError("AI Controller couldn't be found!");
                 return false;
             }
             else
