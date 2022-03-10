@@ -15,7 +15,7 @@ namespace TrojanMouse.AI
         {
             Debug.Log("Trying to get litter");
             Inventory.Inventory inventory = data.inventory;
-            if ((target == null || target.isPickedUp) && holdingLitter != null)
+            if ((target == null || target.isPickedUp) && holdingLitter == null)
             {
                 target = GetNewTarget(data, inventory);
             }
@@ -39,7 +39,10 @@ namespace TrojanMouse.AI
                 {
                     LitterObjectHolder litter = c.GetComponent<LitterObjectHolder>();
 
-                    if (CanPickupLitter(litter.litterObject.typeOfLitter, gruttelType))
+                    bool canPickup = CanPickupLitter(litter.litterObject.typeOfLitter, gruttelType);
+                    Debug.Log($"can pickup: {canPickup}");
+
+                    if (canPickup)
                     {
                         data.agent.SetDestination(litter.transform.position);
                         return litter;
