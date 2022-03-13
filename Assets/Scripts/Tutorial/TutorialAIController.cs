@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
 using TrojanMouse.PowerUps;
+using Fungus;
 
 /// <summary>
 /// Class used for controlling the gruttels in the Tutorial scene, hardcoded for the sake of time
@@ -17,6 +18,8 @@ public class TutorialAIController : MonoBehaviour
     public Animator animator;
     public bool sleeping;
 
+    public Flowchart flowchart;
+
     private Inventory inventory; // reference to the equipper script
     private Equipper equipper; // reference to the equipper script
     private Powerup powerUp; // reference to the equipper script
@@ -29,6 +32,9 @@ public class TutorialAIController : MonoBehaviour
     void Start()
     {
         sleeping = true;
+        inventory = GetComponent<Inventory>();
+        equipper = GetComponent<Equipper>();
+        powerUp = GetComponent<Powerup>();
     }
 
     /// <summary>
@@ -79,7 +85,7 @@ public class TutorialAIController : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
     }
 
-    void pickupLitter()
+    public void PickupLitter()
     {
         // if the inventory has slots left
         if (inventory.HasSlotsLeft())
@@ -130,4 +136,16 @@ public class TutorialAIController : MonoBehaviour
     {
         sleeping = sleep;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "CommonLitter" && flowchart.GetBooleanVariable("directableToLitter"))
+        {
+            flowchart.ExecuteBlock("LitterCollecting");
+        }
+        else if (other.gameObject.name == "PrefabMachine" && flowchart.GetBooleanVariable("directableToMachine"))
+        {
+            flowchart.ExecuteBlock("MachineDepositing");
+        }
+    }
+
 }

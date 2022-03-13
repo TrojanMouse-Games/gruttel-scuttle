@@ -1789,17 +1789,9 @@ GameObject:
   - component: {fileID: 416517288}
   - component: {fileID: 416517296}
   - component: {fileID: 416517295}
-  - component: {fileID: 416517294}
   - component: {fileID: 416517293}
-  - component: {fileID: 416517292}
-  - component: {fileID: 416517291}
-  - component: {fileID: 416517290}
-  - component: {fileID: 416517289}
-  - component: {fileID: 416517303}
-  - component: {fileID: 416517302}
   - component: {fileID: 416517301}
   - component: {fileID: 416517300}
-  - component: {fileID: 416517299}
   - component: {fileID: 416517298}
   - component: {fileID: 416517297}
   - component: {fileID: 416517306}
@@ -1812,7 +1804,6 @@ GameObject:
   - component: {fileID: 416517315}
   - component: {fileID: 416517314}
   - component: {fileID: 416517313}
-  - component: {fileID: 416517312}
   - component: {fileID: 416517311}
   - component: {fileID: 416517310}
   - component: {fileID: 416517309}
@@ -1828,8 +1819,6 @@ GameObject:
   - component: {fileID: 416517331}
   - component: {fileID: 416517330}
   - component: {fileID: 416517329}
-  - component: {fileID: 416517328}
-  - component: {fileID: 416517327}
   - component: {fileID: 416517332}
   - component: {fileID: 416517337}
   - component: {fileID: 416517336}
@@ -1842,11 +1831,6 @@ GameObject:
   - component: {fileID: 416517341}
   - component: {fileID: 416517342}
   - component: {fileID: 416517343}
-  - component: {fileID: 416517344}
-  - component: {fileID: 416517345}
-  - component: {fileID: 416517348}
-  - component: {fileID: 416517347}
-  - component: {fileID: 416517346}
   - component: {fileID: 416517349}
   - component: {fileID: 416517351}
   - component: {fileID: 416517350}
@@ -1902,6 +1886,30 @@ GameObject:
   - component: {fileID: 416517378}
   - component: {fileID: 416517377}
   - component: {fileID: 416517376}
+  - component: {fileID: 416517407}
+  - component: {fileID: 416517406}
+  - component: {fileID: 416517405}
+  - component: {fileID: 416517404}
+  - component: {fileID: 416517348}
+  - component: {fileID: 416517347}
+  - component: {fileID: 416517346}
+  - component: {fileID: 416517345}
+  - component: {fileID: 416517344}
+  - component: {fileID: 416517328}
+  - component: {fileID: 416517327}
+  - component: {fileID: 416517312}
+  - component: {fileID: 416517303}
+  - component: {fileID: 416517302}
+  - component: {fileID: 416517299}
+  - component: {fileID: 416517294}
+  - component: {fileID: 416517292}
+  - component: {fileID: 416517291}
+  - component: {fileID: 416517290}
+  - component: {fileID: 416517410}
+  - component: {fileID: 416517409}
+  - component: {fileID: 416517408}
+  - component: {fileID: 416517289}
+  - component: {fileID: 416517411}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1956,7 +1964,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -110.1489
     y: 32.638287
-    width: 84.46808
+    width: 120
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -1972,9 +1980,9 @@ MonoBehaviour:
   - {fileID: 416517331}
   - {fileID: 416517340}
   - {fileID: 416517282}
+  - {fileID: 416517283}
   - {fileID: 416517373}
   - {fileID: 416517374}
-  - {fileID: 416517283}
   - {fileID: 416517353}
   - {fileID: 416517286}
   - {fileID: 416517281}
@@ -2003,20 +2011,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -274.29813, y: 346.2774}
+  scrollPos: {x: 382.4307, y: 256.89142}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 618
-  zoom: 0.94000006
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 416517303}
   selectedCommands: []
-  variables: []
+  variables:
+  - {fileID: 416517407}
+  - {fileID: 416517406}
   description: Flowchart for the games tutorial
   stepPause: 0
   colorCommands: 1
@@ -2173,9 +2184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 49.25026
-    y: 32.56671
-    width: 89.78723
+    x: 55.220905
+    y: 32.703075
+    width: 125
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -2184,6 +2195,7 @@ MonoBehaviour:
   description: Explain how the litter works
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 416517411}
   - {fileID: 416517276}
   - {fileID: 416517275}
   - {fileID: 416517269}
@@ -2196,22 +2208,7 @@ MonoBehaviour:
   - {fileID: 416517296}
   - {fileID: 416517295}
   - {fileID: 416517343}
-  - {fileID: 416517344}
-  - {fileID: 416517345}
-  - {fileID: 416517294}
-  - {fileID: 416517312}
-  - {fileID: 416517328}
-  - {fileID: 416517292}
-  - {fileID: 416517291}
-  - {fileID: 416517327}
   - {fileID: 416517290}
-  - {fileID: 416517347}
-  - {fileID: 416517348}
-  - {fileID: 416517289}
-  - {fileID: 416517346}
-  - {fileID: 416517303}
-  - {fileID: 416517302}
-  - {fileID: 416517299}
   suppressAllAutoSelections: 0
 --- !u!114 &416517280
 MonoBehaviour:
@@ -2429,15 +2426,149 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6e8f632db87477eb750446b28d73a3, type: 3}
+  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 47
+  itemId: 232
   indentLevel: 0
-  commenterName: Script
-  commentText: We'll need to test for when the player deposits their trash inside
-    of the machine here then continue, since we only have 1 piece and 1 Gruttel we
-    can use the same thing Otis calls to play the noise
+  anyVar:
+    variable: {fileID: 416517406}
+    data:
+      animatorData:
+        animatorRef: {fileID: 0}
+        animatorVal: {fileID: 0}
+      audioSourceData:
+        audioSourceRef: {fileID: 0}
+        audioSourceVal: {fileID: 0}
+      booleanData:
+        booleanRef: {fileID: 0}
+        booleanVal: 0
+      collectionData:
+        collectionRef: {fileID: 0}
+        collectionVal: {fileID: 0}
+      collider2DData:
+        collider2DRef: {fileID: 0}
+        collider2DVal: {fileID: 0}
+      colliderData:
+        colliderRef: {fileID: 0}
+        colliderVal: {fileID: 0}
+      colorData:
+        colorRef: {fileID: 0}
+        colorVal: {r: 0, g: 0, b: 0, a: 0}
+      floatData:
+        floatRef: {fileID: 0}
+        floatVal: 0
+      gameObjectData:
+        gameObjectRef: {fileID: 0}
+        gameObjectVal: {fileID: 0}
+      integerData:
+        integerRef: {fileID: 0}
+        integerVal: 0
+      materialData:
+        materialRef: {fileID: 0}
+        materialVal: {fileID: 0}
+      matrix4x4Data:
+        matrix4x4Ref: {fileID: 0}
+        matrix4x4Val:
+          e00: 0
+          e01: 0
+          e02: 0
+          e03: 0
+          e10: 0
+          e11: 0
+          e12: 0
+          e13: 0
+          e20: 0
+          e21: 0
+          e22: 0
+          e23: 0
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 0
+      objectData:
+        objectRef: {fileID: 0}
+        objectVal: {fileID: 0}
+      quaternionData:
+        quaternionRef: {fileID: 0}
+        quaternionVal: {x: 0, y: 0, z: 0, w: 0}
+      rigidbody2DData:
+        rigidbody2DRef: {fileID: 0}
+        rigidbody2DVal: {fileID: 0}
+      rigidbodyData:
+        rigidbodyRef: {fileID: 0}
+        rigidbodyVal: {fileID: 0}
+      spriteData:
+        spriteRef: {fileID: 0}
+        spriteVal: {fileID: 0}
+      stringData:
+        stringRef: {fileID: 0}
+        stringVal: 
+      textureData:
+        textureRef: {fileID: 0}
+        textureVal: {fileID: 0}
+      transformData:
+        transformRef: {fileID: 0}
+        transformVal: {fileID: 0}
+      vector2Data:
+        vector2Ref: {fileID: 0}
+        vector2Val: {x: 0, y: 0}
+      vector3Data:
+        vector3Ref: {fileID: 0}
+        vector3Val: {x: 0, y: 0, z: 0}
+      vector4Data:
+        vector4Ref: {fileID: 0}
+        vector4Val: {x: 0, y: 0, z: 0, w: 0}
+  setOperator: 0
+  variable: {fileID: 0}
+  booleanData:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  integerData:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  floatData:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  stringData:
+    stringRef: {fileID: 0}
+    stringVal: 
+  animatorData:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  audioSourceData:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 0}
+  colorData:
+    colorRef: {fileID: 0}
+    colorVal: {r: 0, g: 0, b: 0, a: 0}
+  gameObjectData:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 0}
+  materialData:
+    materialRef: {fileID: 0}
+    materialVal: {fileID: 0}
+  objectData:
+    objectRef: {fileID: 0}
+    objectVal: {fileID: 0}
+  rigidbody2DData:
+    rigidbody2DRef: {fileID: 0}
+    rigidbody2DVal: {fileID: 0}
+  spriteData:
+    spriteRef: {fileID: 0}
+    spriteVal: {fileID: 0}
+  textureData:
+    textureRef: {fileID: 0}
+    textureVal: {fileID: 0}
+  transformData:
+    transformRef: {fileID: 0}
+    transformVal: {fileID: 0}
+  vector2Data:
+    vector2Ref: {fileID: 0}
+    vector2Val: {x: 0, y: 0}
+  vector3Data:
+    vector3Ref: {fileID: 0}
+    vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &416517290
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2447,26 +2578,149 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 46
+  itemId: 226
   indentLevel: 0
-  storyText: Gruttels like recycling their litter, but need a little help with it.
-    Click the gruttel, and then click next to the rubbish machine to guide the gruttel
-    towards it.
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  anyVar:
+    variable: {fileID: 416517407}
+    data:
+      animatorData:
+        animatorRef: {fileID: 0}
+        animatorVal: {fileID: 0}
+      audioSourceData:
+        audioSourceRef: {fileID: 0}
+        audioSourceVal: {fileID: 0}
+      booleanData:
+        booleanRef: {fileID: 0}
+        booleanVal: 1
+      collectionData:
+        collectionRef: {fileID: 0}
+        collectionVal: {fileID: 0}
+      collider2DData:
+        collider2DRef: {fileID: 0}
+        collider2DVal: {fileID: 0}
+      colliderData:
+        colliderRef: {fileID: 0}
+        colliderVal: {fileID: 0}
+      colorData:
+        colorRef: {fileID: 0}
+        colorVal: {r: 0, g: 0, b: 0, a: 0}
+      floatData:
+        floatRef: {fileID: 0}
+        floatVal: 0
+      gameObjectData:
+        gameObjectRef: {fileID: 0}
+        gameObjectVal: {fileID: 0}
+      integerData:
+        integerRef: {fileID: 0}
+        integerVal: 0
+      materialData:
+        materialRef: {fileID: 0}
+        materialVal: {fileID: 0}
+      matrix4x4Data:
+        matrix4x4Ref: {fileID: 0}
+        matrix4x4Val:
+          e00: 0
+          e01: 0
+          e02: 0
+          e03: 0
+          e10: 0
+          e11: 0
+          e12: 0
+          e13: 0
+          e20: 0
+          e21: 0
+          e22: 0
+          e23: 0
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 0
+      objectData:
+        objectRef: {fileID: 0}
+        objectVal: {fileID: 0}
+      quaternionData:
+        quaternionRef: {fileID: 0}
+        quaternionVal: {x: 0, y: 0, z: 0, w: 0}
+      rigidbody2DData:
+        rigidbody2DRef: {fileID: 0}
+        rigidbody2DVal: {fileID: 0}
+      rigidbodyData:
+        rigidbodyRef: {fileID: 0}
+        rigidbodyVal: {fileID: 0}
+      spriteData:
+        spriteRef: {fileID: 0}
+        spriteVal: {fileID: 0}
+      stringData:
+        stringRef: {fileID: 0}
+        stringVal: 
+      textureData:
+        textureRef: {fileID: 0}
+        textureVal: {fileID: 0}
+      transformData:
+        transformRef: {fileID: 0}
+        transformVal: {fileID: 0}
+      vector2Data:
+        vector2Ref: {fileID: 0}
+        vector2Val: {x: 0, y: 0}
+      vector3Data:
+        vector3Ref: {fileID: 0}
+        vector3Val: {x: 0, y: 0, z: 0}
+      vector4Data:
+        vector4Ref: {fileID: 0}
+        vector4Val: {x: 0, y: 0, z: 0, w: 0}
+  setOperator: 0
+  variable: {fileID: 0}
+  booleanData:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  integerData:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  floatData:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  stringData:
+    stringRef: {fileID: 0}
+    stringVal: 
+  animatorData:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  audioSourceData:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 0}
+  colorData:
+    colorRef: {fileID: 0}
+    colorVal: {r: 0, g: 0, b: 0, a: 0}
+  gameObjectData:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 0}
+  materialData:
+    materialRef: {fileID: 0}
+    materialVal: {fileID: 0}
+  objectData:
+    objectRef: {fileID: 0}
+    objectVal: {fileID: 0}
+  rigidbody2DData:
+    rigidbody2DRef: {fileID: 0}
+    rigidbody2DVal: {fileID: 0}
+  spriteData:
+    spriteRef: {fileID: 0}
+    spriteVal: {fileID: 0}
+  textureData:
+    textureRef: {fileID: 0}
+    textureVal: {fileID: 0}
+  transformData:
+    transformRef: {fileID: 0}
+    transformVal: {fileID: 0}
+  vector2Data:
+    vector2Ref: {fileID: 0}
+    vector2Val: {x: 0, y: 0}
+  vector3Data:
+    vector3Ref: {fileID: 0}
+    vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &416517291
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2476,13 +2730,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6e8f632db87477eb750446b28d73a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 45
+  itemId: 225
   indentLevel: 0
-  commenterName: Canera
-  commentText: Zoom into the Trash machine
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 416517301}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
 --- !u!114 &416517292
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2495,9 +2754,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 44
+  itemId: 224
   indentLevel: 0
-  storyText: Luckily for us, we have a rubbish machine nearby!
+  storyText: Did you understand all of that?
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2526,7 +2785,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 519.2873
     y: 34.625782
-    width: 70.63829
+    width: 108
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -2574,10 +2833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 42
+  itemId: 223
   indentLevel: 0
-  storyText: Great! Gruttels will go to wherever you click, but they won't venture
-    into the irradiated waters of Holmfen.
+  storyText: Great! Now the gruttels will start recycling what they've found to keep
+    Holmfen clean and make exciting inventions!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2697,17 +2956,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 52
+  itemId: 222
   indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 416517301}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
+  description: Toggles Move With Mouse Click
+  targetObject: {fileID: 1171231412}
+  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: MoveWithMouseClick
+  targetMethod: ChangeScriptState
+  targetMethodText: 'ChangeScriptState (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
   callMode: 0
 --- !u!114 &416517300
 MonoBehaviour:
@@ -2750,7 +3033,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 226.66498
     y: 32.905304
-    width: 84.46808
+    width: 121
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -2771,24 +3054,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6e8f632db87477eb750446b28d73a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 49
+  itemId: 221
   indentLevel: 0
-  storyText: Did you understand all of that?
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  commenterName: Script
+  commentText: We'll need to test for when the player deposits their trash inside
+    of the machine here then continue, since we only have 1 piece and 1 Gruttel we
+    can use the same thing Otis calls to play the noise
 --- !u!114 &416517303
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2798,25 +3072,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 48
-  indentLevel: 0
-  storyText: Great! Now the gruttels will start recycling what they've found to keep
-    Holmfen clean and make exciting inventions!
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  nodeRect:
+    serializedVersion: 2
+    x: 36.10389
+    y: 180.56113
+    width: 159
+    height: 40
+  tint: {r: 1, g: 0.6443301, b: 0, a: 1}
+  useCustomTint: 1
+  itemId: 229
+  blockName: MachineDepositing
+  description: Explain how the litter works
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 416517302}
+  - {fileID: 416517289}
+  - {fileID: 416517299}
+  - {fileID: 416517294}
+  - {fileID: 416517292}
+  - {fileID: 416517291}
+  suppressAllAutoSelections: 0
 --- !u!114 &416517304
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2974,7 +3252,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 654.7361
     y: -128.69034
-    width: 92.97872
+    width: 131
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -3005,7 +3283,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 656.7361
     y: 32.30966
-    width: 89.78723
+    width: 126
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -3028,25 +3306,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 65
+  itemId: 190
   indentLevel: 0
-  storyText: Now that they've got the litter, they'll need to bring it to somewhere
-    they can recycle it.
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  description: Toggles Move With Mouse Click
+  targetObject: {fileID: 1171231412}
+  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: MoveWithMouseClick
+  targetMethod: ChangeScriptState
+  targetMethodText: 'ChangeScriptState (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 1
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!114 &416517313
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3063,7 +3358,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 757.9947
     y: -69.00725
-    width: 60
+    width: 87
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -3094,7 +3389,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 596.0875
     y: -72.68772
-    width: 66.38298
+    width: 103
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -3403,7 +3698,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 829.97534
     y: 32.346695
-    width: 68.510635
+    width: 106
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -3436,18 +3731,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 85
+  itemId: 189
   indentLevel: 0
-  _targetGameObject:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 1301820911}
-  activeState:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  targetGameObjectOLD: {fileID: 0}
+  storyText: Gruttels like recycling their litter, but need a little help with it.
+    Click the gruttel, and then click next to the rubbish machine to guide the gruttel
+    towards it.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &416517328
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3460,14 +3763,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 84
+  itemId: 188
   indentLevel: 0
   _targetGameObject:
     gameObjectRef: {fileID: 0}
     gameObjectVal: {fileID: 1301820911}
   activeState:
     booleanRef: {fileID: 0}
-    booleanVal: 1
+    booleanVal: 0
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &416517329
 MonoBehaviour:
@@ -3949,15 +4252,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6e8f632db87477eb750446b28d73a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 98
+  itemId: 187
   indentLevel: 0
-  _duration:
-    floatRef: {fileID: 0}
-    floatVal: 5
-  durationOLD: 0
+  commenterName: Canera
+  commentText: Zoom into the Trash machine
 --- !u!114 &416517345
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3967,42 +4268,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 99
+  itemId: 186
   indentLevel: 0
-  description: Toggles Move With Mouse Click
-  targetObject: {fileID: 1171231412}
-  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
-    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: MoveWithMouseClick
-  targetMethod: ChangeScriptState
-  targetMethodText: 'ChangeScriptState (Boolean): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
-      intValue: 0
-      boolValue: 0
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0
+  storyText: Luckily for us, we have a rubbish machine nearby!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &416517346
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4012,42 +4295,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 102
+  itemId: 185
   indentLevel: 0
-  description: Toggles Move With Mouse Click
-  targetObject: {fileID: 1171231412}
-  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
-    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: MoveWithMouseClick
-  targetMethod: ChangeScriptState
-  targetMethodText: 'ChangeScriptState (Boolean): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
-      intValue: 0
-      boolValue: 0
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0
+  _targetGameObject:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 1301820911}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  targetGameObjectOLD: {fileID: 0}
 --- !u!114 &416517347
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4057,42 +4316,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 101
+  itemId: 184
   indentLevel: 0
-  description: Toggles Move With Mouse Click
-  targetObject: {fileID: 1171231412}
-  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
-    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: MoveWithMouseClick
-  targetMethod: ChangeScriptState
-  targetMethodText: 'ChangeScriptState (Boolean): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
-      intValue: 0
-      boolValue: 1
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0
+  storyText: Now that they've got the litter, they'll need to bring it to somewhere
+    they can recycle it.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &416517348
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4102,15 +4344,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 416517268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 100
+  itemId: 183
   indentLevel: 0
-  _duration:
-    floatRef: {fileID: 0}
-    floatVal: 5
-  durationOLD: 0
+  storyText: Great! Gruttels will go to wherever you click, but they won't venture
+    into the irradiated waters of Holmfen.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &416517349
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4798,7 +5050,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1016.0885
     y: 32.625824
-    width: 60
+    width: 88
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -5221,7 +5473,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 378.66498
     y: 33.405304
-    width: 81.27659
+    width: 117
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -5371,6 +5623,472 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &416517404
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 182
+  indentLevel: 0
+  description: Toggles Move With Mouse Click
+  targetObject: {fileID: 1171231412}
+  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: MoveWithMouseClick
+  targetMethod: ChangeScriptState
+  targetMethodText: 'ChangeScriptState (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &416517405
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 49.86003
+    y: 109.68857
+    width: 136
+    height: 40
+  tint: {r: 1, g: 0.6443301, b: 0, a: 1}
+  useCustomTint: 1
+  itemId: 228
+  blockName: LitterCollecting
+  description: Explain how the litter works
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 416517404}
+  - {fileID: 416517409}
+  - {fileID: 416517410}
+  - {fileID: 416517348}
+  - {fileID: 416517347}
+  - {fileID: 416517346}
+  - {fileID: 416517345}
+  - {fileID: 416517344}
+  - {fileID: 416517328}
+  - {fileID: 416517327}
+  - {fileID: 416517312}
+  - {fileID: 416517408}
+  suppressAllAutoSelections: 0
+--- !u!114 &416517406
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d02d9822eec54c98afe95bb497211b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 2
+  key: directableToMachine
+  value: 0
+--- !u!114 &416517407
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d02d9822eec54c98afe95bb497211b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 2
+  key: directableToLitter
+  value: 0
+--- !u!114 &416517408
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 231
+  indentLevel: 0
+  anyVar:
+    variable: {fileID: 416517406}
+    data:
+      animatorData:
+        animatorRef: {fileID: 0}
+        animatorVal: {fileID: 0}
+      audioSourceData:
+        audioSourceRef: {fileID: 0}
+        audioSourceVal: {fileID: 0}
+      booleanData:
+        booleanRef: {fileID: 0}
+        booleanVal: 1
+      collectionData:
+        collectionRef: {fileID: 0}
+        collectionVal: {fileID: 0}
+      collider2DData:
+        collider2DRef: {fileID: 0}
+        collider2DVal: {fileID: 0}
+      colliderData:
+        colliderRef: {fileID: 0}
+        colliderVal: {fileID: 0}
+      colorData:
+        colorRef: {fileID: 0}
+        colorVal: {r: 0, g: 0, b: 0, a: 0}
+      floatData:
+        floatRef: {fileID: 0}
+        floatVal: 0
+      gameObjectData:
+        gameObjectRef: {fileID: 0}
+        gameObjectVal: {fileID: 0}
+      integerData:
+        integerRef: {fileID: 0}
+        integerVal: 0
+      materialData:
+        materialRef: {fileID: 0}
+        materialVal: {fileID: 0}
+      matrix4x4Data:
+        matrix4x4Ref: {fileID: 0}
+        matrix4x4Val:
+          e00: 0
+          e01: 0
+          e02: 0
+          e03: 0
+          e10: 0
+          e11: 0
+          e12: 0
+          e13: 0
+          e20: 0
+          e21: 0
+          e22: 0
+          e23: 0
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 0
+      objectData:
+        objectRef: {fileID: 0}
+        objectVal: {fileID: 0}
+      quaternionData:
+        quaternionRef: {fileID: 0}
+        quaternionVal: {x: 0, y: 0, z: 0, w: 0}
+      rigidbody2DData:
+        rigidbody2DRef: {fileID: 0}
+        rigidbody2DVal: {fileID: 0}
+      rigidbodyData:
+        rigidbodyRef: {fileID: 0}
+        rigidbodyVal: {fileID: 0}
+      spriteData:
+        spriteRef: {fileID: 0}
+        spriteVal: {fileID: 0}
+      stringData:
+        stringRef: {fileID: 0}
+        stringVal: 
+      textureData:
+        textureRef: {fileID: 0}
+        textureVal: {fileID: 0}
+      transformData:
+        transformRef: {fileID: 0}
+        transformVal: {fileID: 0}
+      vector2Data:
+        vector2Ref: {fileID: 0}
+        vector2Val: {x: 0, y: 0}
+      vector3Data:
+        vector3Ref: {fileID: 0}
+        vector3Val: {x: 0, y: 0, z: 0}
+      vector4Data:
+        vector4Ref: {fileID: 0}
+        vector4Val: {x: 0, y: 0, z: 0, w: 0}
+  setOperator: 0
+  variable: {fileID: 0}
+  booleanData:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  integerData:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  floatData:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  stringData:
+    stringRef: {fileID: 0}
+    stringVal: 
+  animatorData:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  audioSourceData:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 0}
+  colorData:
+    colorRef: {fileID: 0}
+    colorVal: {r: 0, g: 0, b: 0, a: 0}
+  gameObjectData:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 0}
+  materialData:
+    materialRef: {fileID: 0}
+    materialVal: {fileID: 0}
+  objectData:
+    objectRef: {fileID: 0}
+    objectVal: {fileID: 0}
+  rigidbody2DData:
+    rigidbody2DRef: {fileID: 0}
+    rigidbody2DVal: {fileID: 0}
+  spriteData:
+    spriteRef: {fileID: 0}
+    spriteVal: {fileID: 0}
+  textureData:
+    textureRef: {fileID: 0}
+    textureVal: {fileID: 0}
+  transformData:
+    transformRef: {fileID: 0}
+    transformVal: {fileID: 0}
+  vector2Data:
+    vector2Ref: {fileID: 0}
+    vector2Val: {x: 0, y: 0}
+  vector3Data:
+    vector3Ref: {fileID: 0}
+    vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &416517409
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 230
+  indentLevel: 0
+  anyVar:
+    variable: {fileID: 416517407}
+    data:
+      animatorData:
+        animatorRef: {fileID: 0}
+        animatorVal: {fileID: 0}
+      audioSourceData:
+        audioSourceRef: {fileID: 0}
+        audioSourceVal: {fileID: 0}
+      booleanData:
+        booleanRef: {fileID: 0}
+        booleanVal: 0
+      collectionData:
+        collectionRef: {fileID: 0}
+        collectionVal: {fileID: 0}
+      collider2DData:
+        collider2DRef: {fileID: 0}
+        collider2DVal: {fileID: 0}
+      colliderData:
+        colliderRef: {fileID: 0}
+        colliderVal: {fileID: 0}
+      colorData:
+        colorRef: {fileID: 0}
+        colorVal: {r: 0, g: 0, b: 0, a: 0}
+      floatData:
+        floatRef: {fileID: 0}
+        floatVal: 0
+      gameObjectData:
+        gameObjectRef: {fileID: 0}
+        gameObjectVal: {fileID: 0}
+      integerData:
+        integerRef: {fileID: 0}
+        integerVal: 0
+      materialData:
+        materialRef: {fileID: 0}
+        materialVal: {fileID: 0}
+      matrix4x4Data:
+        matrix4x4Ref: {fileID: 0}
+        matrix4x4Val:
+          e00: 0
+          e01: 0
+          e02: 0
+          e03: 0
+          e10: 0
+          e11: 0
+          e12: 0
+          e13: 0
+          e20: 0
+          e21: 0
+          e22: 0
+          e23: 0
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 0
+      objectData:
+        objectRef: {fileID: 0}
+        objectVal: {fileID: 0}
+      quaternionData:
+        quaternionRef: {fileID: 0}
+        quaternionVal: {x: 0, y: 0, z: 0, w: 0}
+      rigidbody2DData:
+        rigidbody2DRef: {fileID: 0}
+        rigidbody2DVal: {fileID: 0}
+      rigidbodyData:
+        rigidbodyRef: {fileID: 0}
+        rigidbodyVal: {fileID: 0}
+      spriteData:
+        spriteRef: {fileID: 0}
+        spriteVal: {fileID: 0}
+      stringData:
+        stringRef: {fileID: 0}
+        stringVal: 
+      textureData:
+        textureRef: {fileID: 0}
+        textureVal: {fileID: 0}
+      transformData:
+        transformRef: {fileID: 0}
+        transformVal: {fileID: 0}
+      vector2Data:
+        vector2Ref: {fileID: 0}
+        vector2Val: {x: 0, y: 0}
+      vector3Data:
+        vector3Ref: {fileID: 0}
+        vector3Val: {x: 0, y: 0, z: 0}
+      vector4Data:
+        vector4Ref: {fileID: 0}
+        vector4Val: {x: 0, y: 0, z: 0, w: 0}
+  setOperator: 0
+  variable: {fileID: 0}
+  booleanData:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  integerData:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  floatData:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  stringData:
+    stringRef: {fileID: 0}
+    stringVal: 
+  animatorData:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  audioSourceData:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 0}
+  colorData:
+    colorRef: {fileID: 0}
+    colorVal: {r: 0, g: 0, b: 0, a: 0}
+  gameObjectData:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 0}
+  materialData:
+    materialRef: {fileID: 0}
+    materialVal: {fileID: 0}
+  objectData:
+    objectRef: {fileID: 0}
+    objectVal: {fileID: 0}
+  rigidbody2DData:
+    rigidbody2DRef: {fileID: 0}
+    rigidbody2DVal: {fileID: 0}
+  spriteData:
+    spriteRef: {fileID: 0}
+    spriteVal: {fileID: 0}
+  textureData:
+    textureRef: {fileID: 0}
+    textureVal: {fileID: 0}
+  transformData:
+    transformRef: {fileID: 0}
+    transformVal: {fileID: 0}
+  vector2Data:
+    vector2Ref: {fileID: 0}
+    vector2Val: {x: 0, y: 0}
+  vector3Data:
+    vector3Ref: {fileID: 0}
+    vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &416517410
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 227
+  indentLevel: 0
+  description: 
+  targetObject: {fileID: 1171715176}
+  targetComponentAssemblyName: TutorialAIController, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: TutorialAIController
+  targetMethod: PickupLitter
+  targetMethodText: 'PickupLitter (): Void'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &416517411
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 233
+  indentLevel: 0
+  _targetGameObject:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 1101948166}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  targetGameObjectOLD: {fileID: 0}
 --- !u!1 &433493474
 GameObject:
   m_ObjectHideFlags: 0
@@ -6590,6 +7308,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 874346149}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &874346151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8858061358567526514, guid: 853f32248b85fbb4288394732c76f642,
+    type: 3}
+  m_PrefabInstance: {fileID: 874346149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &874346152
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874346151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 108.32
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &874346153
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874346151}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &882955596
 GameObject:
   m_ObjectHideFlags: 0
@@ -6810,6 +7563,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1543103402}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1101948167
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101948166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.32
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1121954140
 GameObject:
   m_ObjectHideFlags: 0
@@ -6856,6 +7622,7 @@ GameObject:
   - component: {fileID: 1171231416}
   - component: {fileID: 1171231417}
   - component: {fileID: 1171231418}
+  - component: {fileID: 1171231419}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7015,7 +7782,7 @@ MonoBehaviour:
     m_Bits: 63
   rayDistance: 250
   directing: 0
-  inTutorial: 0
+  inTutorial: 1
   SelectionSound:
     Guid:
       Data1: -1541613484
@@ -7030,6 +7797,20 @@ MonoBehaviour:
       Data3: 1411811254
       Data4: -1588378278
     Path: event:/Gruttel Sounds/Directed
+--- !u!114 &1171231419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171231412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!1 &1171715176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9134461449078114019, guid: abec81ad8f17f7b45a54629fa2a0d38f,
@@ -10520,6 +11301,21 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1171715186}
+    - target: {fileID: 1781458027863604683, guid: abec81ad8f17f7b45a54629fa2a0d38f,
+        type: 3}
+      propertyPath: flowchart
+      value: 
+      objectReference: {fileID: 416517272}
+    - target: {fileID: 1781458027863604683, guid: abec81ad8f17f7b45a54629fa2a0d38f,
+        type: 3}
+      propertyPath: pickupRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781458027863604683, guid: abec81ad8f17f7b45a54629fa2a0d38f,
+        type: 3}
+      propertyPath: litterLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8471254294815661145, guid: abec81ad8f17f7b45a54629fa2a0d38f,
         type: 3}
       propertyPath: m_RootOrder
