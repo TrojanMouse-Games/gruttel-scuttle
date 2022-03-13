@@ -131,6 +131,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 667975771}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &56395684
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 56395686}
+  - component: {fileID: 56395685}
+  m_Layer: 0
+  m_Name: _FungusState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &56395685
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56395684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedFlowchart: {fileID: 0}
+--- !u!4 &56395686
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56395684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &59655903
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +255,12 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &163340117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5001844626557727377, guid: d15792c1fb21d8840912329a11707592,
+    type: 3}
+  m_PrefabInstance: {fileID: 691508407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &178745053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,27 +1363,27 @@ PrefabInstance:
     - target: {fileID: 1001742702087833495, guid: d15792c1fb21d8840912329a11707592,
         type: 3}
       propertyPath: positionToMoveTo.x
-      value: -21.43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1001742702087833495, guid: d15792c1fb21d8840912329a11707592,
         type: 3}
       propertyPath: positionToMoveTo.y
-      value: 14.32
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 1001742702087833495, guid: d15792c1fb21d8840912329a11707592,
         type: 3}
       propertyPath: positionToMoveTo.z
-      value: 14.74
+      value: 226
       objectReference: {fileID: 0}
     - target: {fileID: 1001742702087833495, guid: d15792c1fb21d8840912329a11707592,
         type: 3}
       propertyPath: positionToRotateTo.x
-      value: 75
+      value: 68.978
       objectReference: {fileID: 0}
     - target: {fileID: 1001742702087833495, guid: d15792c1fb21d8840912329a11707592,
         type: 3}
       propertyPath: positionToRotateTo.y
-      value: -98.93
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 1372794498791371085, guid: d15792c1fb21d8840912329a11707592,
         type: 3}
@@ -1415,7 +1465,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1001742702087833495, guid: d15792c1fb21d8840912329a11707592, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d15792c1fb21d8840912329a11707592, type: 3}
 --- !u!1 &721738688
 GameObject:
@@ -2618,6 +2669,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301810248}
   m_CullTransparentMesh: 1
+--- !u!1 &1361445550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4946286037867398105, guid: d15792c1fb21d8840912329a11707592,
+    type: 3}
+  m_PrefabInstance: {fileID: 691508407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1361445555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361445550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c08550034c667c44b35d5db1a34fd22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaised: 0
+  positionToMoveTo: {x: 0, y: -17, z: 226}
+  positionToRotateTo: {x: 68.978, y: 0.001, z: 0}
+  pivot: {fileID: 163340117}
 --- !u!1 &1415662129
 GameObject:
   m_ObjectHideFlags: 0
