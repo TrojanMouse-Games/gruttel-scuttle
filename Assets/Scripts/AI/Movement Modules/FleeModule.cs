@@ -4,8 +4,9 @@ namespace TrojanMouse.AI.Movement
 {
     public class FleeModule : MonoBehaviour
     {
-        private void Start() {
-            
+        private void Start()
+        {
+
         }
 
         // TODO:- Make the transition back out of this state using a check to see if the AI has gotten far enough away from the target.
@@ -23,15 +24,15 @@ namespace TrojanMouse.AI.Movement
             // Get the direction, then invert it
             Vector3 dir = -(currentTarget.transform.position - transform.position);
 
-            if (distance <= data.WanderRadius)
+            if (distance <= data.wanderRadius)
             {
                 // Increase speed
-                data.Agent.speed *= 1.5f;
+                data.agent.speed *= 1.5f;
                 // Run away from target
-                data.Agent.SetDestination(transform.position + dir.normalized);
+                data.agent.SetDestination(transform.position + dir.normalized);
             }
             else
-                data.Agent.speed = 3.5f;
+                data.agent.speed = 3.5f;
         }
     }
 }

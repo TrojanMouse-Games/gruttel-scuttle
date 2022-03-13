@@ -27,42 +27,49 @@ public class DistractionModule : MonoBehaviour
         StartCoroutine(GenerateDistractionChance());
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (!distracted)
         {
             distractionMarker.SetActive(false);
         }
     }
 
-    private void OnDisable() {
-        
+    private void OnDisable()
+    {
+
     }
 
-    public IEnumerator GenerateDistractionChance(){
+    void SetDistraction()
+    {
+        RuntimeManager.PlayOneShot(distractedSound);
+        distracted = true;
+        animator.SetBool("isDistracted", true);
+        distractionMarker.SetActive(true);
+        aIController.data.agent.SetDestination(transform.position);
+        aIController.currentState = AIState.Nothing;
+    }
+
+    public IEnumerator GenerateDistractionChance()
+    {
         int randomWait = UnityEngine.Random.Range(5, 20);
         yield return new WaitForSeconds(randomWait);
 
-        if (useWeightedStressbar){
+        if (useWeightedStressbar)
+        {
             float dice = (float)UnityEngine.Random.Range(0, 100) / 100; // GET A RANDOM VALUE BETWEEN (0-1)
             float weight = (float)Stress.current.amountOfLitter / (float)Stress.current.maxLitter; // GATHER A PERCENTAGE OF OVERALL STRESS BETWEEN (0-1)
-            if (dice <= weight) { // IF DICE IS LESS THAN THE CURRENT WEIGHT, THEN TRIGGER THE DISTRACTION
-                RuntimeManager.PlayOneShot(distractedSound);
-                distracted = true;
-                animator.SetBool("isDistracted", true);
-                distractionMarker.SetActive(true);
-                aIController.data.Agent.SetDestination(transform.position);
-                aIController.currentState = AIState.Nothing;
+            if (dice <= weight)
+            { // IF DICE IS LESS THAN THE CURRENT WEIGHT, THEN TRIGGER THE DISTRACTION
+                SetDistraction();
             }
         }
-        else{
+        else
+        {
             distractionChance = UnityEngine.Random.Range(0, 5);
-            if (distractionChance == 0){
-                RuntimeManager.PlayOneShot(distractedSound);
-                distracted = true;
-                animator.SetBool("isDistracted", true);
-                distractionMarker.SetActive(true);
-                aIController.data.Agent.SetDestination(transform.position);
-                aIController.currentState = AIState.Nothing;
+            if (distractionChance == 0)
+            {
+                SetDistraction();
             }
         }
 

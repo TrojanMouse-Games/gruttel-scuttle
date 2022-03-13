@@ -108,12 +108,11 @@ namespace TrojanMouse.Litter.Region
         private void OnDrawGizmosSelected()
         {
             if (!Application.isEditor) { return; }
-            foreach (Transform child in transform)
+            foreach (LitterRegion region in transform.GetComponentsInChildren<LitterRegion>())
             {
-                LitterRegion region = child.GetComponent<LitterRegion>();
                 Gizmos.color = region.DebugColour;
 
-                Gizmos.DrawWireSphere(child.position, .1f);
+                Gizmos.DrawWireSphere(region.transform.position, .1f);
             }
         }
     }
