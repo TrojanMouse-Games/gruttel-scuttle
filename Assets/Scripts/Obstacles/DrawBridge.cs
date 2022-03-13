@@ -10,9 +10,6 @@ namespace TrojanMouse.Game.Obstacles
         // This is used to show the bridges state
         public bool isRaised = false;
 
-        // Navmesh References
-        NavMeshObstacle navMeshObstacle;
-
         // Other stuff
         public Vector3 positionToMoveTo, positionToRotateTo;
         public GameObject pivot;
@@ -24,7 +21,7 @@ namespace TrojanMouse.Game.Obstacles
         /// </summary>
         void Start()
         {
-            navMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
+
         }
 
         /// <summary>
@@ -52,27 +49,13 @@ namespace TrojanMouse.Game.Obstacles
                 // Move to upwards pos
                 pivot.transform.localRotation = Quaternion.Euler(positionToRotateTo);
                 pivot.transform.localPosition = positionToMoveTo;
-
-                // Change the mesh
-                ChangeNavMesh();
             }
             else
             {
                 // Move to original pos
                 pivot.transform.localRotation = Quaternion.Euler(originalRotation);
                 pivot.transform.localPosition = originalPosition;
-
-                // Change the mesh
-                ChangeNavMesh();
             }
-        }
-
-        /// <summary>
-        /// Changes the navmesh
-        /// </summary>
-        void ChangeNavMesh()
-        {
-            navMeshObstacle.carving = !navMeshObstacle.carving;
         }
     }
 }
