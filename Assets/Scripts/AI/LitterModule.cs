@@ -13,7 +13,6 @@ namespace TrojanMouse.AI
 
         public AIState GetLitter(AIData data)
         {
-            Debug.Log("Trying to get litter");
             Inventory.Inventory inventory = data.inventory;
             if ((target == null || target.isPickedUp) && holdingLitter == null)
             {
@@ -25,6 +24,11 @@ namespace TrojanMouse.AI
                 return AIState.Nothing;
             }
 
+            if (holdingLitter != null)
+            {
+                return AIState.MovingToMachine;
+            }
+
             return AIState.MovingToLitter;
         }
 
@@ -33,7 +37,7 @@ namespace TrojanMouse.AI
             if (inventory.HasSlotsLeft())
             {
                 Collider[] litterInRange = Physics.OverlapSphere(transform.position, data.detectionRadius, data.litterLayer);
-                GruttelType gruttelType = data.gruttel.type;
+                GruttelType gruttelType = data.gruttel.data.type;
 
                 foreach (Collider c in litterInRange)
                 {

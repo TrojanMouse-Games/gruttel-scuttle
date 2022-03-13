@@ -22,12 +22,12 @@ namespace TrojanMouse.AI
 
         public bool distracted = false;
 
-        public GruttelData gruttel;
+        public GruttelReference gruttel;
 
         public AIData(NavMeshAgent _agent,
             LayerMask _litterLayer,
             float _wanderCooldown,
-            GruttelData gruttelData)
+            GruttelReference gruttelData)
         {
             agent = _agent;
             litterLayer = _litterLayer;

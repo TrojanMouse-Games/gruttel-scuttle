@@ -63,6 +63,8 @@ namespace TrojanMouse.Gruttel
             {
                 cam.canDrag = true;
             }
+
+            powerupType = GetComponent<Powerup>().powerupType;
             if (!IsGruttel(powerupType))
             {
                 transform.SetParent(parent);
@@ -73,7 +75,7 @@ namespace TrojanMouse.Gruttel
 
 
         ///<summary>Checks if the mouse position is on a Gruttel using raycasts. It'll return true if it hits a Gruttel</summary>
-        bool IsGruttel(GruttelType selectedType)
+        bool IsGruttel(GruttelType powerupType)
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition, Camera.MonoOrStereoscopicEye.Mono);
             RaycastHit hit;
@@ -89,7 +91,7 @@ namespace TrojanMouse.Gruttel
 
                 Mesh curMesh = null;
                 Material curMaterial = null;
-                switch (selectedType)
+                switch (powerupType)
                 {
                     case GruttelType.Buff:
                         curMesh = gruttelTypes[0].type;
@@ -101,9 +103,7 @@ namespace TrojanMouse.Gruttel
                         break;
                 }
 
-
-
-                gruttelData.UpdateGruttelType(selectedType);
+                gruttelData.UpdateGruttelType(powerupType);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;

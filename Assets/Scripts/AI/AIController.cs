@@ -116,6 +116,7 @@ namespace TrojanMouse.AI
                         }
                         data.inventory = inventory;
                         currentState = moduleManager.litterModule.GetLitter(data);
+                        inventory = data.inventory;
                         // Make sure this is false so more modules can be spawned.
                         break;
                     case AIState.Wandering:
@@ -218,6 +219,7 @@ namespace TrojanMouse.AI
 
         void AttemptLitterDrop()
         {
+            data.agent.SetDestination(closestHomeRegion.transform.position);
 
             bool machineInRange = Vector3.Distance(closestHomeRegion.transform.position, transform.position) < data.pickupRadius;
 
@@ -258,7 +260,7 @@ namespace TrojanMouse.AI
                 gameObject.GetComponent<NavMeshAgent>(),
                 litterLayerMask,
                 0,
-                GetComponent<GruttelReference>().data
+                GetComponent<GruttelReference>()
             );
 
             moduleManager = gameObject.GetComponent<ModuleManager>();

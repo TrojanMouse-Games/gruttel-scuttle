@@ -6,7 +6,7 @@ namespace TrojanMouse.Gruttel
 {
     public class Powerup : MonoBehaviour
     {
-        [SerializeField] GruttelType powerupType; // PRIVATE VALUE WHICH CAN ONLY BE SET IN THIS SCRIPT
+        [SerializeField] public GruttelType powerupType; // PRIVATE VALUE WHICH CAN ONLY BE SET IN THIS SCRIPT
 
         /// <summary>
         /// 
