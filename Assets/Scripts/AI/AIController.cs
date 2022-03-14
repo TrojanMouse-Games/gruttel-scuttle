@@ -19,6 +19,7 @@ namespace TrojanMouse.AI
         [Header("AI State & Type")]
         public AIType aiType; // The type of AI. Friendly, Nuetral or Hostile.
         public AIState currentState; // The current state of the AI. Wandering, Fleeing etc.
+        public int avoidancePriority = 15; // The level of avoidance priority for the agent. lower = more important. Might be worth setting this based on the type of gruttel
         private AIState previousState; // The state that was last set, used for returning when litter is found.
 
         [Header("Public Variables")]
@@ -43,16 +44,17 @@ namespace TrojanMouse.AI
         Vector3 lastPosition;
 
         [Header("Scripts")] // All internal & private for the most part.
-        // Movement Modules, in order of most used.
+        // Module manager ref
         public ModuleManager moduleManager; // The script that manages all the modules on the AI.
         // Behaviour Modules
         private Friendly friendly; // Refernce to the friendly behaviour.
         private Neutral neutral; // Refernce to the neutral behaviour.
         private Hostile hostile; // Refernce to the hostile behaviour.
+        // Other scripts
         private Equipper equipper; // reference to the equipper script
         private GruttelReference gruttelReference;
 
-        private Inventory.Inventory inventory; // reference to the equipper script
+        private Inventory.Inventory inventory; // reference to the inventory script
         #endregion
 
         private void Start()
@@ -268,6 +270,7 @@ namespace TrojanMouse.AI
 
             data.agent = gameObject.GetComponent<NavMeshAgent>();
             data.agent.enabled = true;
+            data.agent.avoidancePriority = avoidancePriority;
             timer = data.wanderCooldown;
             baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
             equipper = GetComponent<Equipper>();
