@@ -13,6 +13,7 @@ namespace TrojanMouse.GameplayLoop
         bool hasSpawned;
         public SpawnPowerups(GameObject powerupObj, Level.PowerupsToBeDispenced[] powerups, Transform powerupStorage)
         {
+            GruttelData.staticsInitialized = false;
             this.powerupObj = powerupObj;
             this.nanaBetsys = powerups;
             this.storage = powerupStorage;
