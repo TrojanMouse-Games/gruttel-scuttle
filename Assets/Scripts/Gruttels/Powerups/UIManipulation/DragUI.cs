@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TrojanMouse.AI;
+using FMODUnity;
 
 namespace TrojanMouse.Gruttel
 {
@@ -15,6 +16,10 @@ namespace TrojanMouse.Gruttel
         Vector2 startingPos; // POSITION THIS ITEM WAS SPAWNED AT
         Transform parent; // USE THIS TO TELEPORT THE ELEMENT BACK INTO THE ORDER GROUP
         public GruttelType powerupType;
+
+        // Audio stuff
+        public EventReference eatSoundBuff;
+        public EventReference eatSoundIrr;
 
 
         [System.Serializable]
@@ -96,10 +101,12 @@ namespace TrojanMouse.Gruttel
                     case GruttelType.Buff:
                         curMesh = gruttelTypes[0].type;
                         curMaterial = gruttelTypes[0].texture;
+                        RuntimeManager.PlayOneShot(eatSoundBuff);
                         break;
                     case GruttelType.Radioactive:
                         curMesh = gruttelTypes[1].type;
                         curMaterial = gruttelTypes[1].texture;
+                        RuntimeManager.PlayOneShot(eatSoundIrr);
                         break;
                 }
 
