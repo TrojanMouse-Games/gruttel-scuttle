@@ -16,7 +16,7 @@ public class ModuleManager : MonoBehaviour
     public MoveWithMouseGrab moveWithMouseGrab;
 
     private AIController aiController;
-
+    GameLoopBT gameloop;
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class ModuleManager : MonoBehaviour
     private void Awake()
     {
         aiController = GetComponent<AIController>();
-        GameLoopBT.SetAIState += SetState;
+        GameObject.FindObjectOfType<GameLoopBT>().SetAIState += SetState;        
     }
 
     void SetState(EnableAI.AIState state)

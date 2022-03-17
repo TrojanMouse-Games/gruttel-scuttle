@@ -5,6 +5,7 @@ using FMODUnity;
 
 namespace TrojanMouse.GameplayLoop{   
     public class GruttelsSelected : GLNode{
+        GameLoopBT gameloop;
         HashSet<Transform> gruttelsSelected = new HashSet<Transform>();
         int gruttelsNeededToSelect;
         float maxDistance;
@@ -14,7 +15,8 @@ namespace TrojanMouse.GameplayLoop{
 
         Transform villageFolder, playFolder;
         bool hasApplied = false;
-        public GruttelsSelected(int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+        public GruttelsSelected(GameLoopBT gameloop, int quantity, float maxRayDistance, LayerMask whatIsGruttel, Camera cam, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+            this.gameloop = gameloop;
             this.gruttelsNeededToSelect = quantity;
             this.maxDistance = maxRayDistance;
             this.whatIsGruttel = whatIsGruttel;
@@ -42,7 +44,7 @@ namespace TrojanMouse.GameplayLoop{
                 return NodeState.SUCCESS;                
             }            
             RaycastHit hit;
-            if(Physics.Raycast(GameLoopBT.instance.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){ // FIRES A RAYCAST FROM WHEN THE USER CLICKS
+            if(Physics.Raycast(gameloop.GetMouse(cam), out hit, maxDistance, whatIsGruttel)){ // FIRES A RAYCAST FROM WHEN THE USER CLICKS
                 if(!gruttelsSelected.Contains(hit.collider.transform)){ // IF GRUTTEL IS NOT ALREADY CLICKED, ADD IT TO THE SELECTED HASHSET FOR COMPARISON
                     gruttelsSelected.Add(hit.collider.transform);
                     hit.collider.transform.localScale = Vector3.one * 1.15f;
