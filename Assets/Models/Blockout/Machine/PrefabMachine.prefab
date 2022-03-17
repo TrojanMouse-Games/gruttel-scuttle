@@ -1937,6 +1937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8189223571788679880}
   - component: {fileID: 6371225576919011838}
+  - component: {fileID: 8066862028260396989}
   m_Layer: 0
   m_Name: PrefabMachine
   m_TagString: Untagged
@@ -1990,7 +1991,7 @@ Animator:
   m_GameObject: {fileID: 8858061358567526514}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bf70edd1b1b24774a931988a074b036d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1999,6 +2000,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8066862028260396989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858061358567526514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967d671d91e6c844850be155c6a6217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9199323009931489144
 GameObject:
   m_ObjectHideFlags: 0
