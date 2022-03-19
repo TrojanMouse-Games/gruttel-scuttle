@@ -34,10 +34,10 @@ public class MachineFill : MonoBehaviour
     }
     public void IncreaseFill()
     {
+        //MOSTLY WORKING
         currentFillLevel++;
         domeFillLevel += 1 / maxFillLevel;
-        //
+        //NOT WORKING
         domeMat.SetFloat("FillAmount", domeFillLevel);
-        //domeMat.FillAmount == currentFillLevel;
     }
 }
