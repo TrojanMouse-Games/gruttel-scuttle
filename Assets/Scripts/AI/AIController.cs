@@ -228,6 +228,8 @@ namespace TrojanMouse.AI
             if (machineInRange)
             {
                 equipper.Drop(RegionType.HOME);
+                //add to that region's litter meter
+                closestHomeRegion.GetComponentInParent<MachineFill>().IncreaseFill();
             }
         }
 
