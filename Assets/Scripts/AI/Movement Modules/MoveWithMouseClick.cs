@@ -41,7 +41,7 @@ namespace TrojanMouse.AI.Movement
         {
             //Get the cam ref
             mainCam = Camera.main;
-            
+
         }
 
         // Update is called once per frame
@@ -64,7 +64,7 @@ namespace TrojanMouse.AI.Movement
                     // if yes, save it to a local transform
                     selected = hit.transform;
                     agent = hit.transform.gameObject.GetComponent<NavMeshAgent>();
-                    
+
 
                     // Set the state to directing.
                     directing = true;
@@ -106,7 +106,7 @@ namespace TrojanMouse.AI.Movement
                 // Now that we've selected an AI to move, we watch for a second click
                 if (Input.GetButtonDown("Fire1") && FireRay(whatToIgnore, rayDistance))
                 {
-                    
+
                     // if in tutorial, do this:
                     if (inTutorial)
                     {
@@ -185,7 +185,7 @@ namespace TrojanMouse.AI.Movement
 
             //Debug.Log($"{hit.transform.name} is distracted: {localAIc.distracted}");
 
-            if (localAIc.distracted)
+            if (localAIc.data.distracted)
             {
                 localAIc.moduleManager.distractionModule.distracted = false;
                 localAIc.animator.SetBool("isDistracted", false);

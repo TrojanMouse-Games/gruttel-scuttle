@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
-using TrojanMouse.PowerUps;
+using TrojanMouse.Gruttel;
 
 /// <summary>
 /// Class used for controlling the gruttels in the Tutorial scene, hardcoded for the sake of time
@@ -19,7 +19,7 @@ public class TutorialAIController : MonoBehaviour
 
     private Inventory inventory; // reference to the equipper script
     private Equipper equipper; // reference to the equipper script
-    private Powerup powerUp; // reference to the equipper script
+    private GruttelType gruttelType; // reference to the equipper script
     Vector3 lastPosition;
 
     /// <summary>
@@ -82,36 +82,36 @@ public class TutorialAIController : MonoBehaviour
     void pickupLitter()
     {
         // if the inventory has slots left
-        if (inventory.HasSlotsLeft())
-        {
-            // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
-            //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
-            //if (!closestRegion)
-            //{
-            //    return AIState.Nothing;
-            //}
-            Collider[] litter = Physics.OverlapSphere(transform.position, 15, litterLayerMask);
-            LitterObject litterType = null;
-            Transform litterObj = null;
+        // if (inventory.HasSlotsLeft())
+        // {
+        //     // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
+        //     //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
+        //     //if (!closestRegion)
+        //     //{
+        //     //    return AIState.Nothing;
+        //     //}
+        //     Collider[] litter = Physics.OverlapSphere(transform.position, 15, litterLayerMask);
+        //     LitterObject litterType = null;
+        //     Transform litterObj = null;
 
-            foreach (Collider obj in litter)
-            {
-                LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
-                bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
+        //     foreach (Collider obj in litter)
+        //     {
+        //         LitterObject type = obj.GetComponent<LitterObjectHolder>().type;
+        //         bool cantPickup = powerUp.Type != type.type && type.type != PowerupType.NORMAL;
 
-                if (!cantPickup)
-                {
-                    agent.SetDestination(obj.transform.position);
-                    litterType = type;
-                    litterObj = obj.transform;
-                    break;
-                }
-            }
-            if (litterType && Mathf.Abs((litterObj.position - transform.position).magnitude) <= pickupRange)
-            {
-                equipper.PickUp(litterObj, powerUp.Type, litterType);
-            }
-        }
+        //         if (!cantPickup)
+        //         {
+        //             agent.SetDestination(obj.transform.position);
+        //             litterType = type;
+        //             litterObj = obj.transform;
+        //             break;
+        //         }
+        //     }
+        //     if (litterType && Mathf.Abs((litterObj.position - transform.position).magnitude) <= pickupRange)
+        //     {
+        //         equipper.PickUp(litterObj, powerUp.Type, litterType);
+        //     }
+        // }
     }
 
     private void OnDrawGizmosSelected()

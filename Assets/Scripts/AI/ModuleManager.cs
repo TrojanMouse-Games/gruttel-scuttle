@@ -10,6 +10,7 @@ public class ModuleManager : MonoBehaviour
     public Patrol patrol;
     public FleeModule fleeModule;
     public DistractionModule distractionModule;
+    public LitterModule litterModule;
 
     public MoveWithMouseClick moveWithMouseClick;
     public MoveWithMouseGrab moveWithMouseGrab;
@@ -117,6 +118,18 @@ public class ModuleManager : MonoBehaviour
 
         try
         {
+            litterModule = gameObject.GetComponent<LitterModule>();
+        }
+        catch (NullReferenceException err)
+        {
+            Debug.LogError($"No LitterModule module found on this {this.gameObject.name}, adding one..");
+            Debug.LogWarning($"{err.Message}, should be fixed now. Disabling module to avoid errors");
+            litterModule = gameObject.AddComponent<LitterModule>();
+            litterModule.enabled = false;
+        }
+
+        try
+        {
             moveWithMouseClick = Camera.main.GetComponent<MoveWithMouseClick>();
         }
         catch (NullReferenceException err)
@@ -199,7 +212,7 @@ public class ModuleManager : MonoBehaviour
 
             // Mouse related stuff
             case 2:
-                DisableAllMouseModules:
+            DisableAllMouseModules:
                 try
                 {
                     moveWithMouseGrab.enabled = state;

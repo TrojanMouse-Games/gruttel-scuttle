@@ -3,22 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TrojanMouse.AI;
+using FMODUnity;
 
-namespace TrojanMouse.PowerUps
+namespace TrojanMouse.Gruttel
 {
-    [RequireComponent(typeof(Powerup))]
     public class DragUI : MonoBehaviour
     {
         public Canvas canvas;
         [SerializeField] LayerMask whatIsGruttel;
         [SerializeField] bool lockGruttelToOneType;
-        
+
         Vector2 startingPos; // POSITION THIS ITEM WAS SPAWNED AT
         Transform parent; // USE THIS TO TELEPORT THE ELEMENT BACK INTO THE ORDER GROUP
-        PowerupType type;
+        public GruttelType powerupType;
 
-       
-        [System.Serializable] public class gruttelSettings{
+        // Audio stuff
+        public EventReference eatSoundBuff;
+        public EventReference eatSoundIrr;
+
+
+        [System.Serializable]
+        public class gruttelSettings
+        {
             public Mesh type;
             public Material texture;
         }
@@ -31,14 +37,14 @@ namespace TrojanMouse.PowerUps
             parent = transform.parent;
             canvas = parent.parent.GetComponent<Canvas>();
             camera = Camera.main;
-            type = transform.GetComponent<Powerup>().Type;
             cam = camera.GetComponent<CinemachineControl>();
         }
 
         ///<summary>Drags the UI element to the position of the mouse when clicked on</summary>
         public void Drag(BaseEventData _data)
         {
-            if(cam){
+            if (cam)
+            {
                 cam.canDrag = false;
             }
             PointerEventData pointData = (PointerEventData)_data;
@@ -58,10 +64,13 @@ namespace TrojanMouse.PowerUps
         ///<summary>Checks to see if what this element is on is a Gruttel or not, if it is then it'll delete the object and powerup the Gruttel otherwise teleport the element back into place</summary>
         public void Drop(BaseEventData _data)
         {
-            if(cam){
+            if (cam)
+            {
                 cam.canDrag = true;
             }
-            if (!IsGruttel(type))
+
+            powerupType = GetComponent<Powerup>().powerupType;
+            if (!IsGruttel(powerupType))
             {
                 transform.SetParent(parent);
                 return;
@@ -71,33 +80,37 @@ namespace TrojanMouse.PowerUps
 
 
         ///<summary>Checks if the mouse position is on a Gruttel using raycasts. It'll return true if it hits a Gruttel</summary>
-        bool IsGruttel(PowerupType selectedType){
+        bool IsGruttel(GruttelType powerupType)
+        {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition, Camera.MonoOrStereoscopicEye.Mono);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100, whatIsGruttel)){
-                Powerup gruttel = hit.transform.GetComponent<Powerup>();
+            if (Physics.Raycast(ray, out hit, 100, whatIsGruttel))
+            {
+                GruttelData gruttelData = hit.transform.GetComponent<GruttelReference>().data;
 
-                if (gruttel.Type != PowerupType.NORMAL && lockGruttelToOneType){
+                if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType)
+                {
                     return false;
                 }
 
                 Mesh curMesh = null;
                 Material curMaterial = null;
-                switch(selectedType){
-                    case PowerupType.BUFF:
+                switch (powerupType)
+                {
+                    case GruttelType.Buff:
                         curMesh = gruttelTypes[0].type;
                         curMaterial = gruttelTypes[0].texture;
+                        RuntimeManager.PlayOneShot(eatSoundBuff);
                         break;
-                    case PowerupType.IRRADIATED:
+                    case GruttelType.Radioactive:
                         curMesh = gruttelTypes[1].type;
                         curMaterial = gruttelTypes[1].texture;
+                        RuntimeManager.PlayOneShot(eatSoundIrr);
                         break;
                 }
 
-
-
-                gruttel.UpdateType(selectedType, true, curMesh, curMaterial);
+                gruttelData.UpdateGruttelType(powerupType);
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;

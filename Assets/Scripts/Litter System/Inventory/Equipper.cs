@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.Litter.Region;
-using TrojanMouse.PowerUps;
+using TrojanMouse.Gruttel;
+
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory
 {
@@ -23,17 +24,12 @@ namespace TrojanMouse.Inventory
         }
 
 
-        public bool PickUp(Transform obj, PowerupType powerUp, LitterObject type, int previousIndex = -1)
+        public bool PickUp(LitterObjectHolder litter)
         {
-            if ((powerUp != type.type && type.type != PowerupType.NORMAL) || selectedObject)
-            { // BREAKS OUT THE CODE IF THE TYPE IS NOT NORMAL AND IS NOT OF X TYPE
-                return false;
-            }
-
-            bool success = inventoryHandler.AddToInventory(type);
+            bool success = inventoryHandler.AddToInventory(litter.litterObject);
             if (success)
             {
-                selectedObject = inventoryHandler.Equip(obj, currentIndex);
+                selectedObject = inventoryHandler.Equip(litter.transform, currentIndex);
                 if (selectedObject)
                 {
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;
@@ -48,10 +44,18 @@ namespace TrojanMouse.Inventory
         {
             //GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform.position).transform); // SPAWN LITTER
             //droppedItem.GetComponent<Rigidbody>().isKinematic = false;
-            //droppedItem.GetComponent<Collider>().enabled = true;          
+            //droppedItem.GetComponent<Collider>().enabled = true;
 
-            inventoryHandler.Dequip(selectedObject);
-            inventoryHandler.RemoveFromInventory(selectedObject.GetComponent<LitterObjectHolder>().type);
+            if (selectedObject)
+            {
+                LitterObjectHolder holder = selectedObject.GetComponent<LitterObjectHolder>();
+                if (holder != null)
+                {
+                    inventoryHandler.RemoveFromInventory(holder.litterObject);
+                }
+
+                inventoryHandler.Dequip(selectedObject);
+            }
         }
 
         private void OnDrawGizmosSelected()
