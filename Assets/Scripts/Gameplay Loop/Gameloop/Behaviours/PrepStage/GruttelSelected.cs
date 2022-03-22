@@ -77,6 +77,12 @@ namespace TrojanMouse.GameplayLoop
             #endregion
             
             if (powerupStorage.parent.GetComponentsInChildren<Powerup>().Length <= 0 && gruttelsSelected.Count >= gruttelsToSelect){ // THIS COULD BE SET TO || IF THE USER SHOULDNT BE FORCED TO USE ALL POWERUPS
+                foreach(Transform g in gruttelsSelected){
+                    g.parent = playFolder;
+                }
+                foreach(Transform g in villageFolder){
+                    g.gameObject.SetActive(false);
+                }
                 return NodeState.SUCCESS;
             }
 
