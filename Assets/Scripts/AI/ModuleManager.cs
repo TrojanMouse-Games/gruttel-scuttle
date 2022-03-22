@@ -31,8 +31,6 @@ public class ModuleManager : MonoBehaviour
 
     void SetState(EnableAI.AIState state)
     {
-
-
         if (!moveWithMouseClick || !moveWithMouseGrab || !distractionModule)
         {
             CheckScripts();

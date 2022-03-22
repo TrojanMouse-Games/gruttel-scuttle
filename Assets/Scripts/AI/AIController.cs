@@ -1,14 +1,9 @@
 #region USING CALLS
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
 using TrojanMouse.Litter.Region;
 using TrojanMouse.Gruttel;
-using TrojanMouse.AI.Behaviours;
-using TrojanMouse.GameplayLoop;
 #endregion
 
 namespace TrojanMouse.AI
@@ -17,11 +12,11 @@ namespace TrojanMouse.AI
     {
         #region VARIABLES
         [Header("AI State & Type")]
-        public AIType aiType; // The type of AI. Friendly, Nuetral or Hostile.
         public AIState currentState; // The current state of the AI. Wandering, Fleeing etc.
         public int avoidancePriority = 15; // The level of avoidance priority for the agent. lower = more important. Might be worth setting this based on the type of gruttel
         private AIState previousState; // The state that was last set, used for returning when litter is found.
 
+        [Space]
         [Header("Public Variables")]
         public AIData data;
         public Transform currentTarget; // The current AI target.
@@ -39,24 +34,19 @@ namespace TrojanMouse.AI
         private bool blocked = false; // Internal true/false for checking whether the current AI path is blocked.
         private bool ignoreFSMTarget = false; // Ignores the currentTarget value for when the AI moves.
         private bool currentlyProcessing = true; // Check to see whether the AI is currently processing anything or not.
-
         private LitterRegion closestHomeRegion;
         Vector3 lastPosition;
 
         [Header("Scripts")] // All internal & private for the most part.
         // Module manager ref
         public ModuleManager moduleManager; // The script that manages all the modules on the AI.
-        // Behaviour Modules
-        private Friendly friendly; // Refernce to the friendly behaviour.
-        private Neutral neutral; // Refernce to the neutral behaviour.
-        private Hostile hostile; // Refernce to the hostile behaviour.
         // Other scripts
         private Equipper equipper; // reference to the equipper script
         private GruttelReference gruttelReference;
-
         private Inventory.Inventory inventory; // reference to the inventory script
         #endregion
 
+        #region BUILT-IN
         private void Start()
         {
             // Run the controller initialization process
@@ -70,35 +60,25 @@ namespace TrojanMouse.AI
 
         private void Update()
         {
-            // update anim float
+            // update anim float, might wanna move this to an AnimationUpdate func.
             animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
-            //print((transform.position - lastPosition).magnitude);
             // Start the Timer function
             CheckDistraction();
             Timer();
             HFSM();
         }
+        #endregion
 
         #region STATE FUNCTIONS
-        /// <summary>
-        /// 
-        /// </summary>
         private void HFSM()
         {
             // Main AI logic. Incorporates AI FSM(Finite State Machine) flow.
             /* State Explanations:
                     - Nothing: AI does nothing, will be static and not process anything. Currently will switch out of this state
                                 after 10 seconds.
-                    - Wandering: AI will wander around the navmesh.
-                    - Moving: AI will move to set point on the navmesh. Can also be called externally.
-                    - Processing: AI is processing a task, like collecting litter for example.
-                    - Patrolling: AI will drop gameobject patrol points and move between them. Self cleaning script.
-                    - (UNUSED)Following: AI will follow a point, object and stop within a distance of it.
-                    - (UNUSED)Attacking: AI Will attack its target, if it can.
-                    - (UNUSED)Defending: AI will attempt to stop enemy from causing damage to structures
-                    - (UNUSED)Healing: AI will heal, either in place or on the move.
-                    - Fleeing: AI will flee from all targets and enemies. Basically it moves away.
-                    - Dead: AI has been killed, or destroyed. This triggers script cleanup.
+                    - Moving: Doesn't do anything inherently.
+                    - AttemptLitterPickup: Will get the AI to attempt to pick up a piece of litter
+                    - MovingToMachine: Will attempt to move to a recylcer and then drop any held litter.
             */
             // If we're telling the AI to move, update the line renderer
             if (beingDirected)
@@ -112,25 +92,12 @@ namespace TrojanMouse.AI
                     case AIState.Nothing:
                         if (timer > 10)
                         {
-                            //currentState = (AIState)UnityEngine.Random.Range(0, 8);
-                            // Default to the wandering state.
-                            currentState = AIState.Wandering;
+                            // Stop the AI
+                            data.agent.SetDestination(gameObject.transform.position);
                         }
                         data.inventory = inventory;
                         currentState = moduleManager.litterModule.GetLitter(data);
                         inventory = data.inventory;
-                        // Make sure this is false so more modules can be spawned.
-                        break;
-                    case AIState.Wandering:
-                        // Enable the wandering module.
-                        if (moduleManager.wander != null)
-                        {
-                            moduleManager.wander.enabled = true;
-                            moduleManager.wander.Wander(data, blocked, hit);
-                            //Debug.Log($"Enabled wandering on {this.gameObject.name}");
-                        }
-
-                        //I also need to add some logic for detecting enemies or other AI.
                         break;
                     case AIState.Moving:
                         if (ignoreFSMTarget)
@@ -142,40 +109,6 @@ namespace TrojanMouse.AI
                             currentState = AIState.Nothing;
                         break;
                     case AIState.Processing:
-                        //Debug.Log($"Currently processing litter on {data.Agent.name}");
-                        //GetLitter();
-                        break;
-                    case AIState.Patrolling:
-                        if (moduleManager.patrol != null)
-                        {
-                            moduleManager.patrol.enabled = true;
-                            Debug.Log($"Enabled patrolling on {this.gameObject.name}");
-                        }
-
-                        if (moduleManager.patrol.enabled == false)
-                        {
-                            //First we reset the timer, and then set the state back to nothing.
-                            timer = 0;
-                            currentState = AIState.Nothing;
-                        }
-                        break;
-                    case AIState.Fleeing:
-                        if (moduleManager.fleeModule != null)
-                        {
-                            moduleManager.fleeModule.enabled = true;
-                            moduleManager.fleeModule.Flee(data, currentTarget.gameObject);
-                        }
-                        break;
-                    case AIState.Dead:
-                        Rigidbody rb = gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-
-                        // Clean up the script sequentially, delete anything that could throw errors.
-                        Cleanup(1);
-                        // Add a force to make the NPC fall over
-
-                        Cleanup(2);
-                        Cleanup(3);
-                        Cleanup(4);
                         break;
                     case AIState.MovingToLitter:
                         AttemptLitterPickup();
@@ -185,7 +118,7 @@ namespace TrojanMouse.AI
                         break;
                     default:
                         // Fall back state
-                        currentState = AIState.Wandering;
+                        currentState = AIState.Nothing;
                         break;
                 }
             }
@@ -284,20 +217,6 @@ namespace TrojanMouse.AI
                 Destroy(this.gameObject);
             }
 
-            // Add the correct type of AI to the script. Allows for added behaviour
-            switch (aiType)
-            {
-                case AIType.Neutral:
-                    neutral = gameObject.AddComponent<Neutral>();
-                    break;
-                case AIType.Friendly:
-                    friendly = gameObject.AddComponent<Friendly>();
-                    break;
-                case AIType.Hostile:
-                    hostile = gameObject.AddComponent<Hostile>();
-                    break;
-            }
-
             //StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
         }
 
@@ -358,30 +277,14 @@ namespace TrojanMouse.AI
         /// Small function to clean up the script and associated components to avoid errors.
         /// </summary>
         /// <param name="thingsToClean">This number specifies what needs to be cleaned. 
-        /// 1) AI type scripts 2) Components (e.g navmesh agent) 3) Any other modules 4) This script itself</param>
+        /// 1) Components (e.g navmesh agent) 2) Any other modules 3) This script itself</param>
         public void Cleanup(int thingsToClean)
         {
             switch (thingsToClean)
             {
-                // Clean up AI Type scripts
-                case 1:
-                    // Small function to cleanup the script upon a deletion call
-                    if (friendly != null)
-                    {
-                        Destroy(friendly);
-                    }
-                    if (neutral != null)
-                    {
-                        Destroy(neutral);
-                    }
-                    if (hostile != null)
-                    {
-                        Destroy(hostile);
-                    }
-                    break;
 
                 // Cleanup the Components
-                case 2:
+                case 1:
                     if (data.agent != null)
                     {
                         Destroy(data.agent);
@@ -389,14 +292,14 @@ namespace TrojanMouse.AI
                     break;
 
                 // Clean up other modules
-                case 3:
+                case 2:
                     // Movement module check
-                    moduleManager.wander.enabled = false;
-                    moduleManager.patrol.StopPatrol();
+                    moduleManager.ChangeAllModuleStates(1, false);
+                    moduleManager.ChangeAllModuleStates(2, false);
                     break;
 
                 // Clean up self script
-                case 4:
+                case 3:
                     Destroy(this);
                     break;
             }
