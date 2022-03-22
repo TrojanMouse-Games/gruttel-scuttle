@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TrojanMouse.Inventory;
-using TrojanMouse.Gruttel;
+using Fungus;
 
 /// <summary>
 /// Class used for controlling the gruttels in the Tutorial scene, hardcoded for the sake of time
@@ -17,9 +17,10 @@ public class TutorialAIController : MonoBehaviour
     public Animator animator;
     public bool sleeping;
 
+    public Flowchart flowchart;
+
     private Inventory inventory; // reference to the equipper script
     private Equipper equipper; // reference to the equipper script
-    private GruttelType gruttelType; // reference to the equipper script
     Vector3 lastPosition;
 
     /// <summary>
@@ -29,6 +30,8 @@ public class TutorialAIController : MonoBehaviour
     void Start()
     {
         sleeping = true;
+        inventory = GetComponent<Inventory>();
+        equipper = GetComponent<Equipper>();
     }
 
     /// <summary>
@@ -79,17 +82,11 @@ public class TutorialAIController : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
     }
 
-    void pickupLitter()
+    public void PickupLitter()
     {
-        // if the inventory has slots left
+        // // if the inventory has slots left
         // if (inventory.HasSlotsLeft())
         // {
-        //     // Pass in the last arg, this is the place we're telling the gruttle to go to, moveToClick.hit.point
-        //     //Region closestRegion = Region_Handler.current.GetClosestRegion(Region.RegionType.LITTER_REGION, transform.position); // FROM ORIGINAL POINT
-        //     //if (!closestRegion)
-        //     //{
-        //     //    return AIState.Nothing;
-        //     //}
         //     Collider[] litter = Physics.OverlapSphere(transform.position, 15, litterLayerMask);
         //     LitterObject litterType = null;
         //     Transform litterObj = null;
@@ -130,4 +127,16 @@ public class TutorialAIController : MonoBehaviour
     {
         sleeping = sleep;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "CommonLitter" && flowchart.GetBooleanVariable("directableToLitter"))
+        {
+            flowchart.ExecuteBlock("LitterCollecting");
+        }
+        else if (other.gameObject.name == "PrefabMachine" && flowchart.GetBooleanVariable("directableToMachine"))
+        {
+            flowchart.ExecuteBlock("MachineDepositing");
+        }
+    }
+
 }

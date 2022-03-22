@@ -176,6 +176,9 @@ namespace TrojanMouse.GameplayLoop{
 
             [Header("Audio Settings")]
             public EventReference selectSound;
+            public EventReference waveShift;
+            [Range(0f, 5f)] public float waveShiftControl;
+            
         }
     }
 }
