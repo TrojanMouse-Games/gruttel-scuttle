@@ -25,11 +25,6 @@ public class MachineFill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentFillLevel == maxFillLevel)
-        {
-            reward.RewardFunction();
-        }
-
         //shaking animation and audio strength based on fill level, and fill of machine visual
     }
     public void IncreaseFill()
@@ -37,7 +32,13 @@ public class MachineFill : MonoBehaviour
         //MOSTLY WORKING
         currentFillLevel++;
         domeFillLevel += 1 / maxFillLevel;
-        //NOT WORKING
+        //NOT WORKING, object and material are the correct ones, no matching parameters show with debugs
+        Debug.Log(domeMat.GetFloat("FillAmount"));
         domeMat.SetFloat("FillAmount", domeFillLevel);
+        Debug.Log(domeMat.GetFloat("FillAmount"));
+        if (currentFillLevel == maxFillLevel)
+        {
+            reward.RewardFunction();
+        }
     }
 }
