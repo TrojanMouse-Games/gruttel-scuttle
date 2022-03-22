@@ -71,8 +71,7 @@ namespace TrojanMouse.Gruttel
 
 
         ///<summary>Checks if the mouse position is on a Gruttel using raycasts. It'll return true if it hits a Gruttel</summary>
-        bool IsGruttel(GruttelType powerupType)
-        {
+        bool IsGruttel(GruttelType powerupType){            
             Ray ray = camera.ScreenPointToRay(Input.mousePosition, Camera.MonoOrStereoscopicEye.Mono);
             RaycastHit hit;
 
@@ -83,14 +82,14 @@ namespace TrojanMouse.Gruttel
                 if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType){
                     return false;
                 }
-                if(hit.collider.transform.GetInstanceID() != GruttelsSelected.instance.villageFolder.GetChild(GruttelsSelected.instance.gruttelSelectedIndex).transform.GetInstanceID()){ // MAKES SURE POWERUP IS APPLIED TO SELECTED GRUTTEL
+
+                if(hit.collider.transform.GetInstanceID() != GruttelsSelected.instance.villageFolder.GetChild(GruttelsSelected.instance.gruttelSelectedIndex).transform.GetInstanceID()){ // MAKES SURE POWERUP IS APPLIED TO SELECTED 
                     return false;
                 }
 
                 Mesh curMesh = null;
                 Material curMaterial = null;
-                switch (powerupType)
-                {
+                switch (powerupType){
                     case GruttelType.Buff:
                         curMesh = gruttelTypes[0].type;
                         curMaterial = gruttelTypes[0].texture;
