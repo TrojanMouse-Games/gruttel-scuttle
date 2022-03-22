@@ -1777,6 +1777,7 @@ GameObject:
   - component: {fileID: 416517365}
   - component: {fileID: 416517374}
   - component: {fileID: 416517373}
+  - component: {fileID: 416517375}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1840,6 +1841,7 @@ MonoBehaviour:
   description: Start of the tutorial
   eventHandler: {fileID: 416517270}
   commandList:
+  - {fileID: 416517375}
   - {fileID: 416517285}
   - {fileID: 416517284}
   - {fileID: 416517352}
@@ -1878,7 +1880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -7.792679, y: 339.67502}
+  scrollPos: {x: 221.20734, y: 297.67502}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 618
@@ -1890,9 +1892,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 416517279}
+  - {fileID: 416517271}
   selectedCommands:
-  - {fileID: 416517346}
+  - {fileID: 416517375}
   variables: []
   description: Flowchart for the games tutorial
   stepPause: 0
@@ -4543,6 +4545,23 @@ MonoBehaviour:
   returnValueType: System.Void
   showInherited: 0
   callMode: 0
+--- !u!114 &416517375
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2f6be51b3d7490ba5633ee095d0391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 129
+  indentLevel: 0
+  soundClip: {fileID: 8300000, guid: 774486030b696474e8b3cf7f178123da, type: 3}
+  volume: 1
+  waitUntilFinished: 0
 --- !u!1 &433493474
 GameObject:
   m_ObjectHideFlags: 0
@@ -8359,7 +8378,6 @@ GameObject:
   - component: {fileID: 1731310371}
   - component: {fileID: 1731310370}
   - component: {fileID: 1731310369}
-  - component: {fileID: 1731310368}
   m_Layer: 5
   m_Name: SayDialog
   m_TagString: Untagged
@@ -8367,102 +8385,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &1731310368
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731310367}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &1731310369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8496,10 +8418,32 @@ MonoBehaviour:
   targetAudioSource: {fileID: 0}
   audioMode: 0
   beepSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  soundEffect: {fileID: 0}
+  - {fileID: 8300000, guid: 605fcc3c74753ec4b900c709a4d46091, type: 3}
+  - {fileID: 8300000, guid: b14c6cbd36f134c47af07d857d7d9000, type: 3}
+  - {fileID: 8300000, guid: fc81f1681610e51418b7a3e0809efb50, type: 3}
+  - {fileID: 8300000, guid: ddd02dd32ef33cf4fa27e69e47fa5a95, type: 3}
+  - {fileID: 8300000, guid: af2156eb1035556458f23904d90c36a9, type: 3}
+  - {fileID: 8300000, guid: 38ca6dbfd556df348a2d974b05b2ce77, type: 3}
+  - {fileID: 8300000, guid: 00d4a2aece6e0744cbb2e3010a885eae, type: 3}
+  - {fileID: 8300000, guid: d48743c517640f844bb305aff9868712, type: 3}
+  - {fileID: 8300000, guid: 47b87ac41250ffe439c53806001901c7, type: 3}
+  - {fileID: 8300000, guid: 79ab87b0c2d928b439e1b13b097882a6, type: 3}
+  - {fileID: 8300000, guid: 3e2cfc58761cafe40a2a51bd54e42eba, type: 3}
+  - {fileID: 8300000, guid: 84b7af8398459804e8e57042f7b95303, type: 3}
+  - {fileID: 8300000, guid: 090d85f4298f456419bf9acad613a551, type: 3}
+  - {fileID: 8300000, guid: 641910a845451774f856b6c2d829c6c4, type: 3}
+  - {fileID: 8300000, guid: 68018f43706526847b763e353253f211, type: 3}
+  - {fileID: 8300000, guid: 69829006cb877e74ba23652b11c4dce2, type: 3}
+  - {fileID: 8300000, guid: 2159b2222b0bb2f4fbadb6aa0e99da23, type: 3}
+  - {fileID: 8300000, guid: 925ccdfabbf4b24439ec78bb18aa7840, type: 3}
+  - {fileID: 8300000, guid: 1b9423a9681ffdc4fb7cead0d5c55f5d, type: 3}
+  - {fileID: 8300000, guid: 693e92d0d9385674dac50226cae736c6, type: 3}
+  - {fileID: 8300000, guid: 3cea0e09b87318e4aa757bea3b9fd906, type: 3}
+  - {fileID: 8300000, guid: 242a29fdc1a50b8458c9c1fff8fbd768, type: 3}
+  - {fileID: 8300000, guid: 745dd6a1224190344b2792aaf5c50636, type: 3}
+  - {fileID: 8300000, guid: e494056eb8558a044aab7f8b10549d23, type: 3}
+  - {fileID: 8300000, guid: 50d6337409f33204ab7be0044e2d0d3c, type: 3}
+  soundEffect: {fileID: 8300000, guid: 774486030b696474e8b3cf7f178123da, type: 3}
   inputSound: {fileID: 0}
 --- !u!114 &1731310371
 MonoBehaviour:
