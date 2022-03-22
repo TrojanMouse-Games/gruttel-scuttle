@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TrojanMouse.AI;
-
+using TrojanMouse.GameplayLoop;
 namespace TrojanMouse.Gruttel
 {
     public class DragUI : MonoBehaviour
@@ -18,8 +18,7 @@ namespace TrojanMouse.Gruttel
 
 
         [System.Serializable]
-        public class gruttelSettings
-        {
+        public class gruttelSettings{
             public Mesh type;
             public Material texture;
         }
@@ -38,8 +37,7 @@ namespace TrojanMouse.Gruttel
         ///<summary>Drags the UI element to the position of the mouse when clicked on</summary>
         public void Drag(BaseEventData _data)
         {
-            if (cam)
-            {
+            if (cam){
                 cam.canDrag = false;
             }
             PointerEventData pointData = (PointerEventData)_data;
@@ -59,12 +57,10 @@ namespace TrojanMouse.Gruttel
         ///<summary>Checks to see if what this element is on is a Gruttel or not, if it is then it'll delete the object and powerup the Gruttel otherwise teleport the element back into place</summary>
         public void Drop(BaseEventData _data)
         {
-            if (cam)
-            {
+            if (cam){
                 cam.canDrag = true;
             }
-
-            powerupType = GetComponent<Powerup>().powerupType;
+            
             if (!IsGruttel(powerupType))
             {
                 transform.SetParent(parent);
@@ -84,8 +80,10 @@ namespace TrojanMouse.Gruttel
             {
                 GruttelData gruttelData = hit.transform.GetComponent<GruttelReference>().data;
 
-                if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType)
-                {
+                if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType){
+                    return false;
+                }
+                if(hit.collider.transform.GetInstanceID() != GruttelsSelected.instance.villageFolder.GetChild(GruttelsSelected.instance.gruttelSelectedIndex).transform.GetInstanceID()){ // MAKES SURE POWERUP IS APPLIED TO SELECTED GRUTTEL
                     return false;
                 }
 
@@ -104,6 +102,10 @@ namespace TrojanMouse.Gruttel
                 }
 
                 gruttelData.UpdateGruttelType(powerupType);
+                if (!GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform)){
+                    GruttelsSelected.instance.gruttelsSelected.Add(hit.collider.transform);
+                }
+                
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;
