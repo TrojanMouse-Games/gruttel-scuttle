@@ -27,7 +27,7 @@ namespace TrojanMouse.AI.Movement
         {
             timeLeftTillScriptCleanup = maxWanderDuration;
             aiController = gameObject.GetComponent<AIController>();
-            aiController.currentState = AIState.Wandering;
+            //aiController.currentState = AIState.Wandering;
             disableScript = StartCoroutine(WaitForDelete(maxWanderDuration));
         }
 
