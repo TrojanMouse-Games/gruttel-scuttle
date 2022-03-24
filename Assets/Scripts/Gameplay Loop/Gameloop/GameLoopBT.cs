@@ -29,8 +29,7 @@ namespace TrojanMouse.GameplayLoop{
             SpawnGruttels spawnGruttels = new SpawnGruttels(prerequisiteSettings.gruttelObj, prerequisiteSettings.gruttelVillageSpawnPoints, prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned, prerequisiteSettings.gruttelVillageFolder); // PASS IN BOTH FOLDERS, IF BOTH EMPTY, THEN SPAWN GRUTTELS
             //GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.powerups, prerequisiteSettings.powerupSpawnFolder);
-            GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, cam, 100, prerequisiteSettings.whatIsGruttel, prerequisiteSettings.statScript, prerequisiteSettings.powerupSpawnFolder, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
-            PowerupsUsed arePowerupsUsed = new PowerupsUsed(prerequisiteSettings.powerupSpawnFolder);
+            GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, cam, prerequisiteSettings.prepCamera.transform, 100, prerequisiteSettings.whatIsGruttel, prerequisiteSettings.statScript, prerequisiteSettings.powerupSpawnFolder, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on {level.numOfGruttelsToSelect} Gruttels to proceed");
             EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);            
@@ -54,6 +53,7 @@ namespace TrojanMouse.GameplayLoop{
             #region AFTERMATH NODES
             WinState win = new WinState();
             #endregion
+            
             #endregion
 
             // EACH ACTION LABELLED IN THESE SEQUENCES ARE ACTED OUT AS A CHECKLIST SYSTEM, ONCE ONE IS COMPLETED, IT WILL ENTER THE NEXT PHASE.

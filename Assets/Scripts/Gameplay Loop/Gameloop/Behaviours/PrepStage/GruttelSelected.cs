@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using TrojanMouse.Gruttel;
+using TrojanMouse.AI;
 
 namespace TrojanMouse.GameplayLoop
 {
     public class GruttelsSelected : GLNode{
         public static GruttelsSelected instance;
-        public HashSet<Transform> gruttelsSelected = new HashSet<Transform>();
-
+        public HashSet<Transform> gruttelsSelected = new HashSet<Transform>();        
+        
         int gruttelsToSelect;
         Camera cam;
         float maxDistance;
@@ -19,8 +20,11 @@ namespace TrojanMouse.GameplayLoop
         Transform powerupStorage;
         public Transform villageFolder;
         Transform playFolder;
+        public Transform lineupCam;
         EventReference selectSound;
-        public GruttelsSelected(int gruttelsToSelect, Camera cam, float maxRayDistance, LayerMask whatIsGruttel, ShowGruttelStats statScript,Transform powerupStorage, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+        public GruttelsSelected(int gruttelsToSelect, Camera cam, Transform lineupCam, float maxRayDistance, LayerMask whatIsGruttel, ShowGruttelStats statScript,Transform powerupStorage, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+            instance = this;
+
             this.gruttelsToSelect = gruttelsToSelect;
             this.cam = cam;
             this.maxDistance = maxRayDistance;
@@ -29,26 +33,38 @@ namespace TrojanMouse.GameplayLoop
             this.powerupStorage = powerupStorage;
             this.villageFolder = villageFolder;
             this.playFolder = playFolder;
-            this.selectSound = selectSound;
-
-            instance = this;
+            this.lineupCam = lineupCam;
+            this.selectSound = selectSound;                
         }
 
         public int gruttelSelectedIndex = 0;
-        public override NodeState Evaluate(){
+        Vector3 smoothVel;
+        bool hasInitiated;
+        Vector3 targetPos;
+        public override NodeState Evaluate(){                        
+
             #region GRUTTEL CYCLING
-            gruttelSelectedIndex += (
+            int newIndex = gruttelSelectedIndex + (
                 (Input.GetKeyDown(KeyCode.A))? -1: // IF 'A' KEY IS PRESSED (-1 off index)
                 (Input.GetKeyDown(KeyCode.D))? 1: // IF 'D' KEY IS PRESSED (+1 onto index)
                 0 // ELSE DONT ADD ANYTHING
             );
+            
+            if(newIndex < 0){
+                newIndex = villageFolder.childCount-1;
+            }
+            else if(newIndex > villageFolder.childCount-1){
+                newIndex = 0;
+            }
 
-            if(gruttelSelectedIndex < 0){
-                gruttelSelectedIndex = villageFolder.childCount-1;
+
+            if(newIndex != gruttelSelectedIndex || !hasInitiated){ // IF CHANGED VALUE
+                hasInitiated = true;
+                gruttelSelectedIndex = newIndex;
+                // FIND NEW POSITION
+                targetPos = new Vector3(villageFolder.GetChild(gruttelSelectedIndex).position.x, lineupCam.position.y, lineupCam.position.z);
             }
-            else if(gruttelSelectedIndex > villageFolder.childCount-1){
-                gruttelSelectedIndex = 0;
-            }
+            lineupCam.position = Vector3.SmoothDamp(lineupCam.position, targetPos, ref smoothVel, .1f);
 
             GruttelReference gruttel = villageFolder.GetChild(gruttelSelectedIndex).GetComponent<GruttelReference>();
             // MOVE CAMERA
@@ -80,9 +96,10 @@ namespace TrojanMouse.GameplayLoop
                 foreach(Transform g in gruttelsSelected){
                     g.parent = playFolder;
                 }
-                foreach(Transform g in villageFolder){
+                foreach (Transform g in villageFolder){
                     g.gameObject.SetActive(false);
                 }
+                statScript.EnableUI(false);
                 return NodeState.SUCCESS;
             }
 
