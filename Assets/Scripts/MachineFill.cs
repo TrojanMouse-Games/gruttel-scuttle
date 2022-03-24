@@ -5,17 +5,15 @@ using UnityEngine;
 public class MachineFill : MonoBehaviour
 {
     //maximum amount of litter in the machine before dispensing reward
-    public int maxFillLevel = 50;
+    public float maxFillLevel = 50;
     //current amount of litter in machine
-    public int currentFillLevel;
+    public float currentFillLevel;
     //current fill level of recycling machine dome
     private float domeFillLevel;
-
     //scriptable object of reward attached to this machine
     public RewardManager reward;
     //material for the filling dome
-    private Material domeMat;
-
+    private MeshRenderer domeRenderer;
     //village and currency UI objects (for accessing components and vars)
     private Currencies currencies;
     private GameObject currencyUI;
@@ -25,35 +23,42 @@ public class MachineFill : MonoBehaviour
     {
         //current fill level of this machine
         currentFillLevel = 0;
-        //the material on the machine's clear dome and the fill level of it
-        domeMat = transform.GetChild(0).GetComponent<MeshRenderer>().material;
+        //fill level of machine
         domeFillLevel = 0;
         //getting the currencies script and object holding pop up UI
         currencies = GameObject.Find("VILLAGE").GetComponent<Currencies>();
         currencyUI = currencies.currencyUI;
+        //getting the dome renderer
+        domeRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();  
     }
     //handles filling the machine, and any side effects like animation or sound changes
     public void IncreaseFill()
     {
         //increases fill level by 1
         currentFillLevel++;
-        //filling a little sound
-        domeFillLevel += 1 / maxFillLevel;
-        //NOT WORKING, object and material are the correct ones, no matching parameters show with debugs
-        Debug.Log("current fill level of " + this.gameObject + " = " + currentFillLevel);
-        domeMat.SetFloat("FillAmount", domeFillLevel);
+        //OTIS - filling a little sound
+        domeFillLevel += (1 / maxFillLevel);
+        //Dome material
+        Material[] domeMat = domeRenderer.materials;
+        //Setting fill amount on dome material
+        domeMat[0].SetFloat("FillAmount", domeFillLevel);
         //called if the machine fills
         if (currentFillLevel == maxFillLevel)
         {
-            //any sounds for a full machine
-            //make machine full, pop out right reward
+            //OTIS - Any sounds for a full machine
+            //Make machine full, pop out right reward
             reward.RewardFunction(currencies, currencyUI);
         }
     }
     //Empties the machine and handles animations and sounds
     public void EmptyFill()
     {
-        //emptying sounds
+        //OTIS - Emptying sounds
         currentFillLevel = 0;
+        //cooldown period
+        //set time for cooldown e.g. 10s publicly
+        //gradually empty
+        //make sure can't dispense rubbish there? disable home region component?
+        //need josh to add a accessible "variable" and matt to sort
     }
 }
