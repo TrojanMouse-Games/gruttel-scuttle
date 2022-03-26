@@ -41,6 +41,7 @@ namespace Fungus
 
         [Tooltip("Long playing sound effect to play when writing text")]
         [SerializeField] protected AudioClip soundEffect;
+        
 
         [Tooltip("Sound effect to play on user input (e.g. a click)")]
         [SerializeField] protected AudioClip inputSound;

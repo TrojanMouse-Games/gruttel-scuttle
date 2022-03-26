@@ -1054,6 +1054,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225448309}
   m_CullTransparentMesh: 1
+--- !u!1 &263041140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 263041142}
+  - component: {fileID: 263041141}
+  m_Layer: 0
+  m_Name: AudioTag
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &263041141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263041140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335e04fbdd5260043abb299a991dcbe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagStartSymbol: '{customName}'
+  tagEndSymbol: '{/customName}'
+  replaceTagStartWith: '{audio=AudioTag}'
+  replaceTagEndWith: '{/audio}'
+--- !u!4 &263041142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263041140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &335466877
 GameObject:
   m_ObjectHideFlags: 0
@@ -9471,11 +9518,9 @@ MonoBehaviour:
   volume: 1
   loop: 1
   targetAudioSource: {fileID: 0}
-  audioMode: 0
+  audioMode: 1
   beepSounds:
-  - {fileID: 8300000, guid: bc1b7d6944d20094cb905089b4659840, type: 3}
-  - {fileID: 8300000, guid: d244b0fc58a296b4995f03f5de13200a, type: 3}
-  - {fileID: 8300000, guid: d719a928179100d4697611d446321979, type: 3}
+  - {fileID: 0}
   soundEffect: {fileID: 0}
   inputSound: {fileID: 0}
 --- !u!114 &1731310371
