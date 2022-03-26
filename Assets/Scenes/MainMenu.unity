@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -722,11 +722,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1156131567
+      Data2: 1102233826
+      Data3: 1201918117
+      Data4: 837201087
+    Path: event:/UI/General Clicks v2 out
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -1729,11 +1729,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1156131567
+      Data2: 1102233826
+      Data3: 1201918117
+      Data4: 837201087
+    Path: event:/UI/General Clicks v2 out
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -2484,11 +2484,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -2735,11 +2735,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -3196,11 +3196,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -3830,11 +3830,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -4106,7 +4106,8 @@ MonoBehaviour:
   menuCanvases:
   - {fileID: 1364654163}
   - {fileID: 223063178}
-  optionsCanvas: {fileID: 223063178}
+  optionsCanvas:
+  - {fileID: 0}
 --- !u!1 &1324585097
 GameObject:
   m_ObjectHideFlags: 0
@@ -4438,6 +4439,7 @@ GameObject:
   - component: {fileID: 1443500358}
   - component: {fileID: 1443500357}
   - component: {fileID: 1443500356}
+  - component: {fileID: 1443500359}
   m_Layer: 5
   m_Name: Discord
   m_TagString: Untagged
@@ -4520,6 +4522,18 @@ MonoBehaviour:
           m_StringArgument: https://discord.gg/KfS3VMdKHc
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1443500359}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1443500357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4558,6 +4572,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443500354}
   m_CullTransparentMesh: 1
+--- !u!114 &1443500359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443500354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1462417666
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,11 +5265,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -5594,6 +5638,7 @@ GameObject:
   - component: {fileID: 1776096256}
   - component: {fileID: 1776096255}
   - component: {fileID: 1776096254}
+  - component: {fileID: 1776096257}
   m_Layer: 5
   m_Name: Website
   m_TagString: Untagged
@@ -5676,6 +5721,18 @@ MonoBehaviour:
           m_StringArgument: https://trojanmouse.games
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1776096257}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1776096255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5714,6 +5771,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776096252}
   m_CullTransparentMesh: 1
+--- !u!114 &1776096257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776096252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1784708335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6156,11 +6243,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
@@ -7011,11 +7098,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1193713480
-      Data2: 1076465615
-      Data3: 1355983490
-      Data4: -273247337
-    Path: event:/UI/General Clicks
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
   Event: 
   PlayEvent: 0
   StopEvent: 2
