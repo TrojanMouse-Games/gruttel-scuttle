@@ -10628,6 +10628,42 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &354736182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2280067188622042579, guid: e139ed5feb6062c4c8ad10627564c829,
+    type: 3}
+  m_PrefabInstance: {fileID: 430423066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &354736187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354736182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1156131567
+      Data2: 1102233826
+      Data3: 1201918117
+      Data4: 837201087
+    Path: event:/UI/General Clicks v2 out
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &363425396
 Mesh:
   m_ObjectHideFlags: 0
@@ -15367,11 +15403,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -50315018
-      Data2: 1319066215
-      Data3: -1239366465
-      Data4: -1921043719
-    Path: event:/Music/Main Music (Adaptive)
+      Data1: 243356469
+      Data2: 1317461036
+      Data3: 1640985017
+      Data4: 1562237038
+    Path: event:/Music/Start menu
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -29189,6 +29225,42 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1080043568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1899074202256661943, guid: 6c81e323ee62bf24bbf518abe613df44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1390531470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1080043570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080043568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &1083773299
 Mesh:
   m_ObjectHideFlags: 0
@@ -37922,13 +37994,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1766531545}
     - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1080043570}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FMODUnity.StudioEventEmitter, FMODUnity
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899074202256661941, guid: 6c81e323ee62bf24bbf518abe613df44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c81e323ee62bf24bbf518abe613df44, type: 3}
@@ -49310,6 +49422,7 @@ GameObject:
   - component: {fileID: 1795642151}
   - component: {fileID: 1795642150}
   - component: {fileID: 1795642149}
+  - component: {fileID: 1795642153}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -49393,6 +49506,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1795642153}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1795642153}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1795642150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49431,6 +49568,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795642147}
   m_CullTransparentMesh: 1
+--- !u!114 &1795642153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795642147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1382334239
+      Data2: 1222779239
+      Data3: 21025438
+      Data4: -1457246647
+    Path: event:/UI/General Clicks v2 in
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &1801162275
 Mesh:
   m_ObjectHideFlags: 0
@@ -55777,7 +55944,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035830807}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -55797,7 +55964,7 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
 --- !u!43 &2040721901
