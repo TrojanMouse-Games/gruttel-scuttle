@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "", menuName = "ScriptableObjects/MachineRewards/Create Reward", order = 1)]
 public class RewardManager : ScriptableObject
@@ -72,8 +73,11 @@ public class RewardManager : ScriptableObject
         //Increase clothing coin number
         currencies.clothingCoinAmount++;
         //Set image and text to clothing coin icon and number
-        currencyUI.GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = rewardImage;
-        currencyUI.GetComponentInChildren<UnityEngine.UI.Text>().text = currencies.clothingCoinAmount.ToString();
+        currencies.currencySprite.sprite = rewardImage;
+        currencies.currencyText.text = currencies.clothingCoinAmount.ToString();
+        //Enable relevant UI
+        currencies.currencySprite.gameObject.SetActive(true);
+        currencies.currencyText.gameObject.SetActive(true);
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
@@ -85,7 +89,9 @@ public class RewardManager : ScriptableObject
         //Add object to the currently owned NPC objects list
         currencies.NPCObjects.Add(NPCObjectType.ToString());
         //Set image to NPC object icon
-        currencyUI.GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = rewardImage;
+        currencies.currencySprite.sprite = rewardImage;
+        //Enable relevant UI
+        currencies.currencySprite.gameObject.SetActive(true);
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
@@ -96,7 +102,9 @@ public class RewardManager : ScriptableObject
         Debug.Log("Nana Betsy voucher function called");
         currencies.numOfVouchers++;
         //Set image to Nana Betsy voucher icon
-        currencyUI.GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = rewardImage;
+        currencies.currencySprite.sprite = rewardImage;
+        //Enable relevant UI
+        currencies.currencySprite.gameObject.SetActive(true);
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
