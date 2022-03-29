@@ -199,20 +199,19 @@ namespace TrojanMouse.AI
         {
             LitterObjectHolder target = moduleManager.litterModule.target;
             LitterObjectHolder holdingLitter = moduleManager.litterModule.target;
-            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.pickupRadius;
+            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;
 
-            if (litterInRange)
-            {
+            if (litterInRange){
                 target.isPickedUp = true;
                 GetComponent<Equipper>().PickUp(target);
                 holdingLitter = target;
                 currentState = AIState.MovingToMachine;
 
-                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);
-
+                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.pickupRadius);                
                 if (closestHomeRegion == null)
                 {
-                    currentState = AIState.Nothing;
+                    //currentState = AIState.Nothing;
+                    return;
                 }
 
                 data.agent.SetDestination(closestHomeRegion.transform.position);
@@ -221,6 +220,10 @@ namespace TrojanMouse.AI
 
         void AttemptLitterDrop()
         {
+            closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);
+            if (!closestHomeRegion) { 
+                return; 
+            }
             data.agent.SetDestination(closestHomeRegion.transform.position);
 
             bool machineInRange = Vector3.Distance(closestHomeRegion.transform.position, transform.position) < data.pickupRadius;
