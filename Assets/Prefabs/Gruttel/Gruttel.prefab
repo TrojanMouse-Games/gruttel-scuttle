@@ -1818,6 +1818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiType: 0
   currentState: 0
+  avoidancePriority: 15
   data:
     inventory: {fileID: 0}
     agent: {fileID: 0}
@@ -1826,16 +1827,7 @@ MonoBehaviour:
       m_Bits: 0
     wanderCooldown: 0
     distracted: 0
-    gruttel:
-      meshList: {fileID: 0}
-      nickname: 
-      notableAchievement: 
-      traits: []
-      bios: []
-      traitsMinMax: {x: 0, y: 0}
-      type: 0
-      baseColor: {r: 0, g: 0, b: 0, a: 0}
-      overallStress: 0
+    gruttel: {fileID: 0}
   currentTarget: {fileID: 0}
   globalLitterArray: []
   baseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2144,6 +2136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     meshList: {fileID: 0}
+    gruttelReference: {fileID: 0}
     nickname: 
     notableAchievement: 
     traits: []
@@ -2153,6 +2146,9 @@ MonoBehaviour:
     baseColor: {r: 0, g: 0, b: 0, a: 0}
     overallStress: 0
   personalityList: {fileID: 11400000, guid: b48eaa81c388aa24091c07f6015d489d, type: 2}
+  meshList: {fileID: 11400000, guid: 99f7752ca6bf9054089c68e0b359e4d7, type: 2}
+  meshRenderer: {fileID: 3453021362976960727}
+  model: {fileID: 9017613002790396856}
 --- !u!95 &402454146568936681
 Animator:
   serializedVersion: 3

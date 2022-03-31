@@ -57,25 +57,22 @@ namespace TrojanMouse.Litter.Region
         /// <param name="_type">The litter type you request to find</param>
         /// <param name="position">the origin position from the closest region will be found upon</param>
         /// <returns>THE CLOSEST REGION TO A GIVEN POSITION</returns>
-        public LitterRegion GetClosestRegion(RegionType _type, Vector3 position)
-        {
+        public LitterRegion GetClosestRegion(RegionType _type, Vector3 position, float distance = -1f){
             LitterRegion[] regionsOfType = regions[_type].ToArray();
             LitterRegion closestRegion = null;
 
-            float closestNumber = Mathf.Infinity;
-            foreach (LitterRegion region in regionsOfType)
-            {
-                float curDist = (region.transform.position - position).magnitude;
-                if (curDist < closestNumber)
-                {
-                    if (_type == RegionType.LITTER_REGION && region.transform.childCount <= 0)
-                    {
+            float closestNumber = (distance >=0)? distance : Mathf.Infinity;
+            foreach (LitterRegion region in regionsOfType){
+                float curDist = (region.transform.position - position).magnitude;                
+                if (curDist < closestNumber){                    
+                    if (_type == RegionType.LITTER_REGION && region.transform.childCount <= 0){
                         continue;
                     }
                     closestNumber = curDist;
-                    closestRegion = region;
+                    closestRegion = region;                    
                 }
             }
+            Debug.Log(position);
             return closestRegion;
         }
         #endregion

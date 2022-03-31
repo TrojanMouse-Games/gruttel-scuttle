@@ -21,7 +21,7 @@ namespace TrojanMouse.AI
         public AIData data;
         public Transform currentTarget; // The current AI target.
         public Collider[] globalLitterArray;
-        public Color baseColor;
+        public Color? baseColor;
         //bools for distraction
         public bool beingDirected;
         public LayerMask litterLayerMask;
@@ -124,7 +124,9 @@ namespace TrojanMouse.AI
             }
             else
             {
-                GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_Color", Color.red);
+
+                GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].SetColor("_Color", Color.red);
+                GetComponentInChildren<MeshRenderer>()?.materials[0].SetColor("_Color", Color.red);
             }
         }
 
@@ -132,20 +134,19 @@ namespace TrojanMouse.AI
         {
             LitterObjectHolder target = moduleManager.litterModule.target;
             LitterObjectHolder holdingLitter = moduleManager.litterModule.target;
-            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.pickupRadius;
+            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;
 
-            if (litterInRange)
-            {
+            if (litterInRange){
                 target.isPickedUp = true;
                 GetComponent<Equipper>().PickUp(target);
                 holdingLitter = target;
                 currentState = AIState.MovingToMachine;
 
-                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);
-
-                if (closestHomeRegion == null)
-                {
-                    currentState = AIState.Nothing;
+                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);                
+                Debug.Log(closestHomeRegion);
+                if (closestHomeRegion == null){
+                    //currentState = AIState.Nothing;
+                    return;
                 }
 
                 data.agent.SetDestination(closestHomeRegion.transform.position);
@@ -154,6 +155,10 @@ namespace TrojanMouse.AI
 
         void AttemptLitterDrop()
         {
+            closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);
+            if (!closestHomeRegion) { 
+                return; 
+            }
             data.agent.SetDestination(closestHomeRegion.transform.position);
 
             bool machineInRange = Vector3.Distance(closestHomeRegion.transform.position, transform.position) < data.pickupRadius;
@@ -205,7 +210,11 @@ namespace TrojanMouse.AI
             data.agent.enabled = true;
             data.agent.avoidancePriority = avoidancePriority;
             timer = data.wanderCooldown;
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            if(baseColor == null)
+            {
+                baseColor = GetComponentInChildren<MeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            }
             equipper = GetComponent<Equipper>();
             inventory = GetComponent<Inventory.Inventory>();
             gruttelReference = GetComponent<GruttelReference>();
@@ -270,7 +279,11 @@ namespace TrojanMouse.AI
 
         public void UpdateColor()
         {
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            if (baseColor == null)
+            {
+                baseColor = GetComponentInChildren<MeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            }
         }
 
         /// <summary>

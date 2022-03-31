@@ -5,21 +5,20 @@ using UnityEngine;
 
 namespace TrojanMouse.Gruttel
 {
-    [CreateAssetMenu(fileName = "GruttelMeshList", menuName = "ScriptableObjects/Gruttel/MeshList")]
-    public class GruttelMeshList : ScriptableObject
+    [CreateAssetMenu(fileName = "Gruttel Mesh List", menuName = "ScriptableObjects/Gruttel/GruttelMeshList")]
+    public class GruttelMeshes : ScriptableObject
     {
         [Serializable]
         public struct GruttelMesh
         {
             public GruttelType type;
-            public Mesh mesh;
+            public GameObject mesh;
         }
 
-        public readonly GruttelMesh[] meshes;
-        private static Dictionary<GruttelType, Mesh> meshList;
+        public GruttelMesh[] meshes;
+        private static Dictionary<GruttelType, GameObject> meshList;
 
-
-        public Mesh GetMesh(GruttelType type)
+        public GameObject GetMesh(GruttelType type)
         {
             if (meshList == null || meshList.Count < meshes.Length)
             {
@@ -31,7 +30,7 @@ namespace TrojanMouse.Gruttel
 
         private void GenerateMeshList()
         {
-            meshList = new Dictionary<GruttelType, Mesh>();
+            meshList = new Dictionary<GruttelType, GameObject>();
             foreach (GruttelMesh m in meshes)
             {
                 meshList.Add(m.type, m.mesh);

@@ -20,7 +20,8 @@ namespace TrojanMouse.Gruttel
         public static bool staticsInitialized = false;
 
         [Header("References")]
-        public GruttelMeshList meshList;
+        public GruttelMeshes meshList;
+        public GruttelReference gruttelReference;
 
         [Header("Personality")]
         public string nickname;
@@ -40,7 +41,8 @@ namespace TrojanMouse.Gruttel
 
         public GruttelData(GruttelReference reference)
         {
-            PersonalityLists lists = reference.personalityList;
+            gruttelReference = reference;
+            PersonalityLists lists = gruttelReference.personalityList;
 
             traitsMinMax = lists.traitsMinMax;
 
@@ -63,6 +65,7 @@ namespace TrojanMouse.Gruttel
         public void UpdateGruttelType(GruttelType _type)
         {
             type = _type;
+            gruttelReference.UpdateMesh(meshList.GetMesh(type));
         }
 
         public void GenerateRandomGruttel()
