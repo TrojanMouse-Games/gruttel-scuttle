@@ -130,7 +130,7 @@ namespace TrojanMouse.AI.Movement
 
                         aiController.beingDirected = true;
                         Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
-                        selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", aiController.baseColor);
+                        selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", (Color) aiController.baseColor);
                     }
                 }
             }

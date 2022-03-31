@@ -26,7 +26,7 @@ namespace TrojanMouse.AI
         public AIData data;
         public Transform currentTarget; // The current AI target.
         public Collider[] globalLitterArray;
-        public Color baseColor;
+        public Color? baseColor;
         //bools for distraction
         public bool beingDirected;
         public LayerMask litterLayerMask;
@@ -191,7 +191,9 @@ namespace TrojanMouse.AI
             }
             else
             {
-                GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_Color", Color.red);
+
+                GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].SetColor("_Color", Color.red);
+                GetComponentInChildren<MeshRenderer>()?.materials[0].SetColor("_Color", Color.red);
             }
         }
 
@@ -207,9 +209,9 @@ namespace TrojanMouse.AI
                 holdingLitter = target;
                 currentState = AIState.MovingToMachine;
 
-                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.pickupRadius);                
-                if (closestHomeRegion == null)
-                {
+                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);                
+                Debug.Log(closestHomeRegion);
+                if (closestHomeRegion == null){
                     //currentState = AIState.Nothing;
                     return;
                 }
@@ -275,7 +277,11 @@ namespace TrojanMouse.AI
             data.agent.enabled = true;
             data.agent.avoidancePriority = avoidancePriority;
             timer = data.wanderCooldown;
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            if(baseColor == null)
+            {
+                baseColor = GetComponentInChildren<MeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            }
             equipper = GetComponent<Equipper>();
             inventory = GetComponent<Inventory.Inventory>();
             gruttelReference = GetComponent<GruttelReference>();
@@ -354,7 +360,11 @@ namespace TrojanMouse.AI
 
         public void UpdateColor()
         {
-            baseColor = GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_BaseColor");
+            baseColor = GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            if (baseColor == null)
+            {
+                baseColor = GetComponentInChildren<MeshRenderer>()?.materials[0].GetColor("_BaseColor");
+            }
         }
 
         /// <summary>
