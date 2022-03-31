@@ -30,7 +30,7 @@ namespace TrojanMouse.GameplayLoop{
             //GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.powerups, prerequisiteSettings.powerupSpawnFolder);
             GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, cam, prerequisiteSettings.prepCamera.transform, 100, prerequisiteSettings.whatIsGruttel, prerequisiteSettings.statScript, prerequisiteSettings.powerupSpawnFolder, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
-            ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on {level.numOfGruttelsToSelect} Gruttels to proceed");
+            ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on, and add Nana Betsys to a total of {level.numOfGruttelsToSelect} Gruttels to proceed");
             EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);            
             #endregion

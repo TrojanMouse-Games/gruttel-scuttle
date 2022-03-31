@@ -47,7 +47,8 @@ public class CinemachineControl : MonoBehaviour
             case "Area3_SemiCircle":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
                 minVPos = -5; maxVPos = 5; startVPos = 0;
-                maxZoom = 30; minZoom = 70;
+                maxZoom = 30; minZoom = 60;
+                startZoom = 50;
                 break;
             case "Area3_SemiCircleWITHNEWLOOP":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
