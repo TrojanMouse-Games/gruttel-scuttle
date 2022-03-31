@@ -63,8 +63,7 @@ namespace TrojanMouse.Litter.Region
 
             float closestNumber = (distance >=0)? distance : Mathf.Infinity;
             foreach (LitterRegion region in regionsOfType){
-                float curDist = (region.transform.position - position).magnitude;
-                Debug.Log(closestRegion);
+                float curDist = (region.transform.position - position).magnitude;                
                 if (curDist < closestNumber){                    
                     if (_type == RegionType.LITTER_REGION && region.transform.childCount <= 0){
                         continue;
@@ -73,6 +72,7 @@ namespace TrojanMouse.Litter.Region
                     closestRegion = region;                    
                 }
             }
+            Debug.Log(position);
             return closestRegion;
         }
         #endregion
