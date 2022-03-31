@@ -130,7 +130,8 @@ namespace TrojanMouse.AI.Movement
 
                         aiController.beingDirected = true;
                         Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
-                        selected.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", (Color) aiController.baseColor);
+                        selected.GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].SetColor("_Color", (Color)aiController.baseColor);
+                        selected.GetComponentInChildren<MeshRenderer>()?.materials[0].SetColor("_Color", (Color)aiController.baseColor);
                     }
                 }
             }
@@ -152,7 +153,8 @@ namespace TrojanMouse.AI.Movement
         IEnumerator ChangeColorSelect(Transform transform)
         {
             yield return new WaitForSeconds(0.25f);
-            transform.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_BaseColor", Color.gray);
+            transform.GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].SetColor("_Color", Color.red);
+            transform.GetComponentInChildren<MeshRenderer>()?.materials[0].SetColor("_Color", Color.red);
         }
         #endregion
 
