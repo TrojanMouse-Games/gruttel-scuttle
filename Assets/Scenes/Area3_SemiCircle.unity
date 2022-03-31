@@ -12205,7 +12205,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934385099641861315}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -13016,6 +13016,7 @@ GameObject:
   - component: {fileID: 488864069685088009}
   - component: {fileID: 541331715131862932}
   - component: {fileID: 4860495074807703432}
+  - component: {fileID: 463055877510217090}
   m_Layer: 0
   m_Name: InvisibleWall1 (4)
   m_TagString: Untagged
@@ -13023,6 +13024,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &463055877510217090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463055877510217089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!23 &466295884083623364
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13445,7 +13462,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463055877510217089}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -15377,7 +15394,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5564984031999680817}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -16177,6 +16194,7 @@ GameObject:
   - component: {fileID: 8134672797958542608}
   - component: {fileID: 326236657223030276}
   - component: {fileID: 1923353994455252667}
+  - component: {fileID: 934385099641861316}
   m_Layer: 0
   m_Name: InvisibleWall1 (6)
   m_TagString: Untagged
@@ -16184,6 +16202,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &934385099641861316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934385099641861315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!65 &934862926870382140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19749,6 +19783,7 @@ GameObject:
   - component: {fileID: 7579976731458968590}
   - component: {fileID: 1364078875813671034}
   - component: {fileID: 6949409053817849181}
+  - component: {fileID: 1526622973776248032}
   m_Layer: 0
   m_Name: PrefabBridge (5)
   m_TagString: Untagged
@@ -19756,6 +19791,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1526622973776248032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526622973776248031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 2.25
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!33 &1528990965106820389
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21713,7 +21768,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788027137180637682}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -22282,7 +22337,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383890499328104331}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -23390,6 +23445,7 @@ GameObject:
   - component: {fileID: 7009532523653244603}
   - component: {fileID: 1916719929232214735}
   - component: {fileID: 7495927855851962344}
+  - component: {fileID: 2114448399906539115}
   m_Layer: 0
   m_Name: PrefabBridge (3)
   m_TagString: Untagged
@@ -23397,6 +23453,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2114448399906539115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114448399906539114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 2.52
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!33 &2115561194538162658
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -25242,6 +25318,7 @@ GameObject:
   - component: {fileID: 6769288991549367468}
   - component: {fileID: 2751147791574714584}
   - component: {fileID: 6102771544321687039}
+  - component: {fileID: 2445317520139715710}
   m_Layer: 0
   m_Name: PrefabBridge (2)
   m_TagString: Untagged
@@ -25249,6 +25326,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2445317520139715710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445317520139715709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 2.55
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!23 &2449421540975576164
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26815,6 +26912,7 @@ GameObject:
   - component: {fileID: 6207904526835190940}
   - component: {fileID: 8958231488668910262}
   - component: {fileID: 5289055013621881331}
+  - component: {fileID: 2765303452462345391}
   m_Layer: 0
   m_Name: InvisibleWall1 (5)
   m_TagString: Untagged
@@ -26822,6 +26920,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2765303452462345391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765303452462345390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &2769882682390490802
 Transform:
   m_ObjectHideFlags: 0
@@ -39219,6 +39333,7 @@ GameObject:
   - component: {fileID: 2567719072429569495}
   - component: {fileID: 7463310988301421142}
   - component: {fileID: 2966313468015182577}
+  - component: {fileID: 4771808620342307585}
   m_Layer: 0
   m_Name: InvisibleWall1 (2)
   m_TagString: Untagged
@@ -39226,6 +39341,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4771808620342307585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771808620342307584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &4776844102682275751
 Transform:
   m_ObjectHideFlags: 0
@@ -41372,6 +41503,7 @@ GameObject:
   - component: {fileID: 4291543136149847827}
   - component: {fileID: 4634711515441681255}
   - component: {fileID: 3661041276865668672}
+  - component: {fileID: 5156696969171607491}
   m_Layer: 0
   m_Name: PrefabBridge
   m_TagString: Untagged
@@ -41379,6 +41511,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5156696969171607491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5156696969171607490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 2.14
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!23 &5157029158499793067
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42974,6 +43126,7 @@ GameObject:
   - component: {fileID: 4539229854549608183}
   - component: {fileID: 1936377807458749925}
   - component: {fileID: 2821527094937969521}
+  - component: {fileID: 5383890499328104332}
   m_Layer: 0
   m_Name: InvisibleWall1 (3)
   m_TagString: Untagged
@@ -42981,6 +43134,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5383890499328104332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383890499328104331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5386616005778995786
 GameObject:
   m_ObjectHideFlags: 0
@@ -43942,6 +44111,7 @@ GameObject:
   - component: {fileID: 1103567145612209382}
   - component: {fileID: 819427661612067657}
   - component: {fileID: 4767867213378438571}
+  - component: {fileID: 5564984031999680818}
   m_Layer: 0
   m_Name: InvisibleWall1 (1)
   m_TagString: Untagged
@@ -43949,6 +44119,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5564984031999680818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564984031999680817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!33 &5575975102254380281
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44913,6 +45099,7 @@ GameObject:
   - component: {fileID: 3713394812573420871}
   - component: {fileID: 5212902033306018099}
   - component: {fileID: 4235810212261614612}
+  - component: {fileID: 5734907259520232855}
   m_Layer: 0
   m_Name: PrefabBridge (4)
   m_TagString: Untagged
@@ -44920,6 +45107,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5734907259520232855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5734907259520232854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!23 &5738337634097913862
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50437,6 +50644,7 @@ GameObject:
   - component: {fileID: 1636046695873860684}
   - component: {fileID: 1883983942613369417}
   - component: {fileID: 7064610539095112399}
+  - component: {fileID: 6788027137180637683}
   m_Layer: 0
   m_Name: InvisibleWall1 (7)
   m_TagString: Untagged
@@ -50444,6 +50652,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6788027137180637683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788027137180637682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!33 &6788806473292156662
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53167,6 +53391,7 @@ GameObject:
   - component: {fileID: 864444264256103535}
   - component: {fileID: 2865632847792555632}
   - component: {fileID: 4007519770637830611}
+  - component: {fileID: 7181009025060106375}
   m_Layer: 0
   m_Name: WaterPlane
   m_TagString: Untagged
@@ -53174,6 +53399,22 @@ GameObject:
   m_NavMeshLayer: 3
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &7181009025060106375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181009025060106374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!23 &7187837170054749536
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54777,7 +55018,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4771808620342307584}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -55481,6 +55722,7 @@ GameObject:
   - component: {fileID: 8388269855716315770}
   - component: {fileID: 8587748004239991021}
   - component: {fileID: 5214766902449628865}
+  - component: {fileID: 7577615776751345984}
   m_Layer: 0
   m_Name: InvisibleWall1
   m_TagString: Untagged
@@ -55488,6 +55730,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7577615776751345984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7577615776751345983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &7579077101235755031
 Transform:
   m_ObjectHideFlags: 0
@@ -61200,7 +61458,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577615776751345983}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -63015,7 +63273,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2765303452462345390}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -64152,6 +64410,7 @@ GameObject:
   - component: {fileID: 219642428052301170}
   - component: {fileID: 8706304360189200646}
   - component: {fileID: 742088459330370593}
+  - component: {fileID: 9156531295719638436}
   m_Layer: 0
   m_Name: PrefabBridge (1)
   m_TagString: Untagged
@@ -64159,6 +64418,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9156531295719638436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156531295719638435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 2.51
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!4 &9157983584495957153
 Transform:
   m_ObjectHideFlags: 0
