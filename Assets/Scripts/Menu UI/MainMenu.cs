@@ -96,10 +96,10 @@ namespace TrojanMouse.Menu
         {
             foreach(Canvas c in menuCanvases)
             {
-                c.enabled = false;
+                c.gameObject.SetActive(false);
             }
 
-            canvasToEnable.enabled = true;
+            canvasToEnable.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -111,10 +111,10 @@ namespace TrojanMouse.Menu
 
             foreach (Canvas c in optionsCanvas)
             {
-                c.enabled = false;
+                c.gameObject.SetActive(false);
             }
 
-            canvasToEnable.enabled = true;
+            canvasToEnable.gameObject.SetActive(true);
         }
 
         /// <summary>
