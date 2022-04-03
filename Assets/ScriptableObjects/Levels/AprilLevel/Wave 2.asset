@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1709209fdb348d34bad15eebe24e729f, type: 3}
-  m_Name: Wave 1
+  m_Name: Wave 2
   m_EditorClassIdentifier: 
-  litterToSpawnForWave: 10
+  litterToSpawnForWave: 40
   timeToSpawnAllLitter: 40
   intermissionBeforeNextWave: 0
   shootersInThisWave:
-  - LitterThrower
+  - LitterThrower-Left
+  - LitterThrower-Right
   regionsToLandAtInThisWave:
-  - Litter Region - SW
   - Litter Region - SE
   - Litter Region - CNE
