@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TrojanMouse.Litter.Region;
 
 public class MachineFill : MonoBehaviour
 {
@@ -10,17 +11,35 @@ public class MachineFill : MonoBehaviour
     public float currentFillLevel;
     //current fill level of recycling machine dome
     private float domeFillLevel;
+    //temp holder of fill level before changing
+    private float _domeFillLevel;
     //scriptable object of reward attached to this machine
     public RewardManager reward;
     //material for the filling dome
     private MeshRenderer domeRenderer;
-    //village and currency UI objects (for accessing components and vars)
+    //village, machine fill and currency UI objects (for accessing components and vars)
     private CurrenciesAndValues currencies;
+    private MachineFill machineFill;
     private GameObject currencyUI;
+    //gets the home region child object
+    public GameObject homeRegionObj;
+    //gets home region component on the child object
+    private LitterRegion homeRegion;
+
+    private float timeElapsed;
+    //time to fill a little rubbish
+    [Tooltip("Seconds to fill once piece of litter")]
+    private float fillLerpDuration = .5f;
+    //cooldown time
+    [Tooltip("Seconds for machine to be on cooldown")]
+    private float emptyLerpDuration = 10f;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        //saves this component as variable to pass in
+        machineFill = this;
         //current fill level of this machine
         currentFillLevel = 0;
         //fill level of machine
@@ -29,7 +48,9 @@ public class MachineFill : MonoBehaviour
         currencies = GameObject.Find("VILLAGE").GetComponent<CurrenciesAndValues>();
         currencyUI = currencies.currencyUI;
         //getting the dome renderer
-        domeRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();  
+        domeRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+        //gets home region attached to this object
+        homeRegion = homeRegionObj.GetComponent<LitterRegion>();
     }
     //handles filling the machine, and any side effects like animation or sound changes
     public void IncreaseFill()
@@ -37,28 +58,49 @@ public class MachineFill : MonoBehaviour
         //increases fill level by 1
         currentFillLevel++;
         //OTIS - filling a little sound
+        //temp value before fill level changes
+        _domeFillLevel = domeFillLevel;
+        //updated fill level
         domeFillLevel += (1 / maxFillLevel);
-        //Dome material
-        Material[] domeMat = domeRenderer.materials;
-        //Setting fill amount on dome material
-        domeMat[0].SetFloat("FillAmount", domeFillLevel);
-        //called if the machine fills
+        //calling coroutine to gradually increase fill
+        StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, fillLerpDuration));
+        //called if the machine is full
         if (currentFillLevel == maxFillLevel)
         {
             //OTIS - Any sounds for a full machine
             //Make machine full, pop out right reward
-            reward.RewardFunction(currencies, currencyUI);
+            reward.RewardFunction(currencies, currencyUI, machineFill);
         }
     }
-    //Empties the machine and handles animations and sounds
+    //Lerp used to gradually fill and empty machine
+    IEnumerator Lerp(float startValue, float endValue, float lerpDuration)
+    {
+        //Dome material
+        Material[] domeMat = domeRenderer.materials;
+        timeElapsed = 0;
+        //runs until set time ends
+        while (timeElapsed < lerpDuration)
+        {
+            //Setting fill amount on dome material to gradually change
+            domeMat[0].SetFloat("FillAmount", Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        //set the final level
+        domeMat[0].SetFloat("FillAmount", domeFillLevel);
+    }
+
+    //Empties the machine and handles animations and sounds, called from reward function completing
     public void EmptyFill()
     {
+        //disable machine from use
+        homeRegion.enabled = false;
         //OTIS - Emptying sounds
+        _domeFillLevel = domeFillLevel;
+        domeFillLevel = 0;
         currentFillLevel = 0;
-        //cooldown period
-        //set time for cooldown e.g. 10s publicly
-        //gradually empty
-        //make sure can't dispense rubbish there? disable home region component?
-        //need josh to add a accessible "variable" and matt to sort
+        StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, emptyLerpDuration));
+
+        homeRegion.enabled = true;
     }
 }

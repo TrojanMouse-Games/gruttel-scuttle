@@ -48,27 +48,27 @@ public class RewardManager : ScriptableObject
     }
     //The function triggered by MachineFill.cs when a machine has filled up and needs to dispense a reward, taking in the village object
     //that the Currencies.cs script is attached to, and the currency UI object
-    public void RewardFunction(CurrenciesAndValues currencies, GameObject currencyUI)
+    public void RewardFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
         //Runs the corresponding function for the selected reward type
         switch (rewardType)
         {
             case RewardType.ClothingCoins:
-                ClothingCoinFunction(currencies, currencyUI);
+                ClothingCoinFunction(currencies, currencyUI, machineFill);
                 break;
             case RewardType.NPCSpecial:
-                NPCSpecialFunction(currencies, currencyUI);
+                NPCSpecialFunction(currencies, currencyUI, machineFill);
                 break;
             case RewardType.NanaBetsyVoucher:
-                NanaBetsyFunction(currencies, currencyUI);
+                NanaBetsyFunction(currencies, currencyUI, machineFill);
                 break;
             case RewardType.StressLimitIncrease:
-                StressLimitIncFunction(currencies, currencyUI);
+                StressLimitIncFunction(currencies, currencyUI, machineFill);
                 break;
         }
     }
     //Function to dispense a clothing coin reward
-    void ClothingCoinFunction(CurrenciesAndValues currencies, GameObject currencyUI)
+    void ClothingCoinFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
         Debug.Log("Clothing coin function called");
         //Increase clothing coin number
@@ -82,9 +82,10 @@ public class RewardManager : ScriptableObject
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
+        machineFill.EmptyFill();
     }
     //Function to dispense an NPC special object reward
-    void NPCSpecialFunction(CurrenciesAndValues currencies, GameObject currencyUI)
+    void NPCSpecialFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
         Debug.Log("NPC object function called");
         //Add object to the currently owned NPC objects list
@@ -96,9 +97,10 @@ public class RewardManager : ScriptableObject
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
+        machineFill.EmptyFill();
     }
     //Function to dispense a Nana Betsy reward object
-    void NanaBetsyFunction(CurrenciesAndValues currencies, GameObject currencyUI)
+    void NanaBetsyFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
         Debug.Log("Nana Betsy voucher function called");
         currencies.numOfVouchers++;
@@ -109,9 +111,10 @@ public class RewardManager : ScriptableObject
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
+        machineFill.EmptyFill();
     }
     //Function to dispense a stress reduction
-    void StressLimitIncFunction(CurrenciesAndValues currencies, GameObject currencyUI)
+    void StressLimitIncFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
         Debug.Log("stress limit increase declared");
         //REDUCE STRESS BY AMOUNT IN STRESS REDUCTION, 
@@ -130,5 +133,6 @@ public class RewardManager : ScriptableObject
         //Flash UI
         coroutine = currencies.UIFlash();
         currencies.StartCoroutine(coroutine);
+        machineFill.EmptyFill();
     }
 }
