@@ -15,7 +15,7 @@ public class MachineFill : MonoBehaviour
     //material for the filling dome
     private MeshRenderer domeRenderer;
     //village and currency UI objects (for accessing components and vars)
-    private Currencies currencies;
+    private CurrenciesAndValues currencies;
     private GameObject currencyUI;
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class MachineFill : MonoBehaviour
         //fill level of machine
         domeFillLevel = 0;
         //getting the currencies script and object holding pop up UI
-        currencies = GameObject.Find("VILLAGE").GetComponent<Currencies>();
+        currencies = GameObject.Find("VILLAGE").GetComponent<CurrenciesAndValues>();
         currencyUI = currencies.currencyUI;
         //getting the dome renderer
         domeRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();  

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Currencies : MonoBehaviour
+public class CurrenciesAndValues : MonoBehaviour
 {
     //NPC items - Can be used to unlock special NPCs - gets added to when reward gained.
     public List<string> NPCObjects;
