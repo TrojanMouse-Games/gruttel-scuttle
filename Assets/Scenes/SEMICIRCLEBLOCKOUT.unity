@@ -225,7 +225,7 @@ MonoBehaviour:
       Data2: 1319066215
       Data3: -1239366465
       Data4: -1921043719
-    Path: event:/Music/Main Music (Adaptive)
+    Path: event:/Music/Cycle 2
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -914,7 +914,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1238,13 +1238,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740418196}
-  m_LocalRotation: {x: -0.24521562, y: -0.33108476, z: 0.08953414, w: -0.9067722}
+  m_LocalRotation: {x: -0.64380085, y: -0.2497535, z: 0.2350674, w: -0.68402267}
   m_LocalPosition: {x: 78.1, y: 19.48, z: 112.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 30.265, y: -1039.883, z: 0}
+  m_LocalEulerAnglesHint: {x: 86.53, y: -1039.883, z: 0}
 --- !u!1001 &1784243866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,7 +1447,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2017797665
 GameObject:
@@ -1657,35 +1657,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2018752734897622407, guid: fb0d785f7daad08468842af37e34ba5f,
+    - target: {fileID: 806205668978815736, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_EnableTreeColliders
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129556635089537149, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8327254
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129556635089537149, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.83272505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129556635089537149, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8327253
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129556635089537149, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.69
+      value: 0.0901
       objectReference: {fileID: 0}
-    - target: {fileID: 2018752734897622407, guid: fb0d785f7daad08468842af37e34ba5f,
+    - target: {fileID: 1129556635089537149, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129556635089537149, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.87
+      value: -0.0121
       objectReference: {fileID: 0}
     - target: {fileID: 2860922955518898769, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_Name
       value: SemicircleTerrainPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 2960686455639566334, guid: fb0d785f7daad08468842af37e34ba5f,
+    - target: {fileID: 3744420038678691361, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.18
+      value: 28.985
       objectReference: {fileID: 0}
-    - target: {fileID: 2960686455639566334, guid: fb0d785f7daad08468842af37e34ba5f,
+    - target: {fileID: 3744420038678691361, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -51.28
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118651597480985453, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118651597480985453, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.07
       objectReference: {fileID: 0}
     - target: {fileID: 6483802506065948653, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6483802506065948653, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
