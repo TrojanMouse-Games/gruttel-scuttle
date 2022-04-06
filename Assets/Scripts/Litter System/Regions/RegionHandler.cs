@@ -71,8 +71,7 @@ namespace TrojanMouse.Litter.Region
                     closestNumber = curDist;
                     closestRegion = region;                    
                 }
-            }
-            Debug.Log(position);
+            }            
             return closestRegion;
         }
         #endregion
