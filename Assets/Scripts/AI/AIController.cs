@@ -138,8 +138,9 @@ namespace TrojanMouse.AI
                         else
                             if (currentTarget != null)
                             GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
-                        else
+                        else                            
                             currentState = AIState.Nothing;
+                            AttemptLitterDrop();
                         break;
                     case AIState.Processing:
                         //Debug.Log($"Currently processing litter on {data.Agent.name}");
@@ -207,27 +208,18 @@ namespace TrojanMouse.AI
                 target.isPickedUp = true;
                 GetComponent<Equipper>().PickUp(target);
                 holdingLitter = target;
-                currentState = AIState.MovingToMachine;
-
-                closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position);                
-                Debug.Log(closestHomeRegion);
-                if (closestHomeRegion == null){
-                    //currentState = AIState.Nothing;
-                    return;
-                }
-
-                data.agent.SetDestination(closestHomeRegion.transform.position);
+                currentState = AIState.MovingToMachine;                
             }
         }
 
         void AttemptLitterDrop()
-        {
-            closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);
-            if (!closestHomeRegion) { 
+        {            
+            closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);    
+            if (!closestHomeRegion) {                 
                 return; 
             }
             data.agent.SetDestination(closestHomeRegion.transform.position);
-
+            currentState = AIState.MovingToMachine;
             bool machineInRange = Vector3.Distance(closestHomeRegion.transform.position, transform.position) < data.pickupRadius;
 
             if (machineInRange)
