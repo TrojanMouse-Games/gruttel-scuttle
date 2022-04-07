@@ -55,6 +55,7 @@ namespace TrojanMouse.Inventory
                 }
 
                 inventoryHandler.Dequip(selectedObject);
+                selectedObject = null;
             }
         }
 
