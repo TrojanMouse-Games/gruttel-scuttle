@@ -135,19 +135,23 @@ namespace TrojanMouse.AI
         void AttemptLitterPickup()
         {
             LitterObjectHolder target = moduleManager.litterModule.target;
-            LitterObjectHolder holdingLitter = moduleManager.litterModule.target;
-            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;
+           
+            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;            
 
             if (litterInRange){
-                target.isPickedUp = true;
-                GetComponent<Equipper>().PickUp(target);
-                holdingLitter = target;
+                target.isPickedUp = true;                
+                bool hasPickedUpLitter = equipper.PickUp(target);
+                
+                if (hasPickedUpLitter) { // IF NOT HOLDING ANYTHING...
+                    return;
+                }
                 currentState = AIState.MovingToMachine;                
             }
         }
 
-        void AttemptLitterDrop()
-        {            
+        void AttemptLitterDrop(){            
+            if (!equipper.HeldObject) { return; }
+
             closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);    
             if (!closestHomeRegion) {                 
                 return; 
