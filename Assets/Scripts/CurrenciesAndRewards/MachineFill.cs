@@ -64,7 +64,10 @@ public class MachineFill : MonoBehaviour
         domeFillLevel += (1 / maxFillLevel);
         //calling coroutine to gradually increase fill
         StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, fillLerpDuration));
-        //called if the machine is full
+    }
+    //called if the machine is full
+    private void OnMouseDown()
+    {
         if (currentFillLevel == maxFillLevel)
         {
             //OTIS - Any sounds for a full machine
