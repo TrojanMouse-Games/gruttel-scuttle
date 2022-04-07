@@ -37,11 +37,12 @@ namespace TrojanMouse.AI
         private LitterRegion closestHomeRegion;
         Vector3 lastPosition;
 
+        [Space]
         [Header("Scripts")] // All internal & private for the most part.
         // Module manager ref
         public ModuleManager moduleManager; // The script that manages all the modules on the AI.
         // Other scripts
-        private Equipper equipper; // reference to the equipper script
+        [HideInInspector]public Equipper equipper; // reference to the equipper script
         private GruttelReference gruttelReference;
         private Inventory.Inventory inventory; // reference to the inventory script
         #endregion

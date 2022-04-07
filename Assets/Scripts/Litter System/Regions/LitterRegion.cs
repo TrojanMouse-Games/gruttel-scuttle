@@ -32,7 +32,8 @@ namespace TrojanMouse.Litter.Region
     {
         NONE,
         LITTER_REGION,
-        HOME
+        HOME,
+        WORLD
     }
 
     [RequireComponent(typeof(Collider))]

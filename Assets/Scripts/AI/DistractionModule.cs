@@ -4,6 +4,8 @@ using UnityEngine;
 using TrojanMouse.AI;
 using FMODUnity;
 using TrojanMouse.StressSystem;
+using TrojanMouse.Inventory;
+using TrojanMouse.Litter.Region;
 
 public class DistractionModule : MonoBehaviour
 {
@@ -18,7 +20,9 @@ public class DistractionModule : MonoBehaviour
     public EventReference distractedSound;
     public EventReference undistrcatedSound;
 
-    bool useWeightedStressbar = false; // ENABLE THIS TO HAVE THE WEIGHTED STRESS SYSTEM
+    [Space]
+    [Header("Options")]
+    public bool useWeightedStressbar = false; // ENABLE THIS TO HAVE THE WEIGHTED STRESS SYSTEM
 
     private void Start()
     {
@@ -32,12 +36,15 @@ public class DistractionModule : MonoBehaviour
         if (!distracted)
         {
             distractionMarker.SetActive(false);
+        }else
+        {
+            // Drop any held litter
+            Equipper eq = aIController.equipper;
+            Debug.Log("Dropped litter!");
+            eq.Drop(RegionType.WORLD);
+
+            // Stop the distraction animation
         }
-    }
-
-    private void OnDisable()
-    {
-
     }
 
     void SetDistraction()
