@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace TrojanMouse.Gruttel
 {
     using Personalities;
 
-    [System.Serializable]
+    [Serializable]
     public class GruttelData
     {
         [Header("Static Variables")]
@@ -92,7 +93,7 @@ namespace TrojanMouse.Gruttel
 
         public string[] GetRandomTraits()
         {
-            int randomTraitAmount = Random.Range(traitsMinMax.x, traitsMinMax.y + 1);
+            int randomTraitAmount = UnityEngine.Random.Range(traitsMinMax.x, traitsMinMax.y + 1);
 
             List<string> traitValues = new List<string>();
 
@@ -133,7 +134,7 @@ namespace TrojanMouse.Gruttel
                 return default(T);
             }
 
-            int index = Random.Range(0, list.Count);
+            int index = UnityEngine.Random.Range(0, list.Count);
 
             T value = list[index];
 

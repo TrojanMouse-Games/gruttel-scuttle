@@ -5,6 +5,7 @@ using UnityEngine;
 namespace TrojanMouse.Gruttel
 {
     using Personalities;
+    using SaveSystem;
     public class GruttelReference : MonoBehaviour
     {
         public GruttelData data;
@@ -12,6 +13,7 @@ namespace TrojanMouse.Gruttel
         public GruttelMeshes meshList;
         public SkinnedMeshRenderer meshRenderer;
         public GameObject model;
+        public int index;
 
         private void Start()
         {
