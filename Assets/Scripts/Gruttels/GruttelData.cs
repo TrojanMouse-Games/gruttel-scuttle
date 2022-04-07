@@ -30,6 +30,7 @@ namespace TrojanMouse.Gruttel
         public string[] traits;
         public string[] bios;
         public Vector2Int traitsMinMax;
+        public int index;
 
 
         [Header("Gruttel Visual Information")]
@@ -40,8 +41,9 @@ namespace TrojanMouse.Gruttel
         public int overallStress;
 
 
-        public GruttelData(GruttelReference reference)
+        public GruttelData(GruttelReference reference, int i)
         {
+            index = i;
             gruttelReference = reference;
             PersonalityLists lists = gruttelReference.personalityList;
 

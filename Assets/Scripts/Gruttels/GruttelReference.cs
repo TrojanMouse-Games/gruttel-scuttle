@@ -17,8 +17,14 @@ namespace TrojanMouse.Gruttel
 
         private void Start()
         {
-            data = new GruttelData(this);
+            data = new GruttelData(this, index);
             data.meshList = meshList;
+            UserData.GetSingleton().AddGruttelData(data);
+
+            if (index == 7)
+            {
+                UserData.GetSingleton().Save();
+            }
         }
 
         public void UpdateMesh(GameObject mesh)
