@@ -37,11 +37,12 @@ namespace TrojanMouse.AI
         private LitterRegion closestHomeRegion;
         Vector3 lastPosition;
 
+        [Space]
         [Header("Scripts")] // All internal & private for the most part.
         // Module manager ref
         public ModuleManager moduleManager; // The script that manages all the modules on the AI.
         // Other scripts
-        private Equipper equipper; // reference to the equipper script
+        [HideInInspector]public Equipper equipper; // reference to the equipper script
         private GruttelReference gruttelReference;
         private Inventory.Inventory inventory; // reference to the inventory script
         #endregion
@@ -134,19 +135,23 @@ namespace TrojanMouse.AI
         void AttemptLitterPickup()
         {
             LitterObjectHolder target = moduleManager.litterModule.target;
-            LitterObjectHolder holdingLitter = moduleManager.litterModule.target;
-            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;
+           
+            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;            
 
             if (litterInRange){
-                target.isPickedUp = true;
-                GetComponent<Equipper>().PickUp(target);
-                holdingLitter = target;
+                target.isPickedUp = true;                
+                bool hasPickedUpLitter = equipper.PickUp(target);
+                
+                if (hasPickedUpLitter) { // IF NOT HOLDING ANYTHING...
+                    return;
+                }
                 currentState = AIState.MovingToMachine;                
             }
         }
 
-        void AttemptLitterDrop()
-        {            
+        void AttemptLitterDrop(){            
+            if (!equipper.HeldObject) { return; }
+
             closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);    
             if (!closestHomeRegion) {                 
                 return; 
@@ -158,6 +163,8 @@ namespace TrojanMouse.AI
             if (machineInRange)
             {
                 equipper.Drop(RegionType.HOME);
+                //add to that region's litter meter
+                closestHomeRegion.GetComponentInParent<MachineFill>().IncreaseFill();
             }
         }
 

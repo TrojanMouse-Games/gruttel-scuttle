@@ -16,16 +16,7 @@ namespace TrojanMouse.Game.Obstacles
         Vector3 originalRotation, originalPosition;
 
         /// <summary>
-        /// Start is called on the frame when a script is enabled just before
-        /// any of the Update methods is called the first time.
-        /// </summary>
-        void Start()
-        {
-
-        }
-
-        /// <summary>
-        /// 
+        /// Checks to see if you've clicked on the bridge collider.
         /// </summary>
         private void OnMouseDown()
         {
