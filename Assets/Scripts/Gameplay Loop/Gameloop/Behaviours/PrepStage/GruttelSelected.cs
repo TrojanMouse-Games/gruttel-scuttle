@@ -22,7 +22,8 @@ namespace TrojanMouse.GameplayLoop
         Transform playFolder;
         public Transform lineupCam;
         EventReference selectSound;
-        public GruttelsSelected(int gruttelsToSelect, Camera cam, Transform lineupCam, float maxRayDistance, LayerMask whatIsGruttel, ShowGruttelStats statScript,Transform powerupStorage, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+        Vector3 moveAxis;
+        public GruttelsSelected(int gruttelsToSelect, Camera cam, Transform lineupCam, Vector3 moveAxis, float maxRayDistance, LayerMask whatIsGruttel, ShowGruttelStats statScript,Transform powerupStorage, Transform villageFolder, Transform playFolder, EventReference selectSound){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             instance = this;
 
             this.gruttelsToSelect = gruttelsToSelect;
@@ -34,7 +35,8 @@ namespace TrojanMouse.GameplayLoop
             this.villageFolder = villageFolder;
             this.playFolder = playFolder;
             this.lineupCam = lineupCam;
-            this.selectSound = selectSound;                
+            this.selectSound = selectSound;      
+            this.moveAxis = moveAxis;          
         }
 
         public int gruttelSelectedIndex = 0;
@@ -62,7 +64,11 @@ namespace TrojanMouse.GameplayLoop
                 hasInitiated = true;
                 gruttelSelectedIndex = newIndex;
                 // FIND NEW POSITION
-                targetPos = new Vector3(villageFolder.GetChild(gruttelSelectedIndex).position.x, lineupCam.position.y, lineupCam.position.z);
+                targetPos = new Vector3(
+                    (moveAxis.x >0)? villageFolder.GetChild(gruttelSelectedIndex).position.x : lineupCam.position.x, 
+                    (moveAxis.y >0)? villageFolder.GetChild(gruttelSelectedIndex).position.y : lineupCam.position.y, 
+                    (moveAxis.z >0)? villageFolder.GetChild(gruttelSelectedIndex).position.z : lineupCam.position.z
+                );
             }
             lineupCam.position = Vector3.SmoothDamp(lineupCam.position, targetPos, ref smoothVel, .1f);
 
