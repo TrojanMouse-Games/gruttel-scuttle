@@ -36,8 +36,10 @@ namespace TrojanMouse.GameplayLoop{
         }
 
         public void UpdateStats(GruttelReference gruttel){
+            bool updateTraits = false;
             for (int i = 0; i < statsUI.GetChild(0).childCount; i++){ // ITERATES THROUGH EACH LABEL OBJECT
                 TextMeshProUGUI label = statsUI.GetChild(0).GetChild(i).GetComponent<TextMeshProUGUI>();
+                
                 switch (i){ // SWITCH/CASE TO SET CORROSPONDING LABEL TO THE TEXT
                     case 0:
                         label.text = $"{gruttel.data.nickname}";
@@ -47,14 +49,18 @@ namespace TrojanMouse.GameplayLoop{
                         label.text = $"{gruttel.data.bios[0]}";
                         break;
                     default:
-                        int curTraitVal = (gruttel.data.traits.Length - statsUI.GetChild(0).childCount) + i; // POSSIBLY VERY TEMPERMENTAL -- I WAS TRYING TO FIGURE OUT THE MATHS FOR THIS IN MY HEAD. WHAT ITS SUPPOSE TO DO AND KINDA DOES, IS RESET 'i's ANCHOR POINT AND MAP IT TO THE LENGTH OF TRAITS                            
-                        if (curTraitVal < 0){ // SOMETIMES THE ABOVE VALUE RETURNS A VALUE <0 WHICH WOULD OBVIOUSLY CAUSE AN ERROR, SO WE SANITISE CHECK THAT VALUE
-                            continue;
-                        }
-
-                        label.text = gruttel.data.traits[curTraitVal];
+                        updateTraits = true;                        
                         break;
                 }
+            }
+            // ITERATE THROUGH ALL TRAITS
+            if (!updateTraits){
+                return;
+            }
+
+            for (int x = 0; x < 3; x++){
+                TextMeshProUGUI label = statsUI.GetChild(0).GetChild(2 + x).GetComponent<TextMeshProUGUI>();
+                label.text = (x < gruttel.data.traits.Length)? gruttel.data.traits[x] : "";
             }
         }
     }

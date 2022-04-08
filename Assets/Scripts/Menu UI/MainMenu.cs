@@ -160,10 +160,19 @@ namespace TrojanMouse.Menu
             loadingBar.value = asyncLoad.progress;
         }
 
+        public void GetLoadingBar()
+        {
+            loadingBar = GameObject.FindGameObjectWithTag("LoadingBar").GetComponent<Slider>();
+        }
+
+
         IEnumerator Loaded()
         {
             yield return new WaitForSeconds(1);
             asyncLoad.allowSceneActivation = true;
+
+            // Make sure the loading bar has been gotten for other transitions.
+            GetLoadingBar();
         }
 
         IEnumerator Delay(float delay)
