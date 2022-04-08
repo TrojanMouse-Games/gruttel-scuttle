@@ -14,6 +14,9 @@ namespace TrojanMouse.GameplayLoop
         [Tooltip("Time (seconds) until the main round starts")] public float readyStageIntermission;
 
         [Header("Main-Stage Settings")]
+        [Tooltip("The percentage thresholds of stress that lower the star rating.")] 
+        public Vector2 stressThresholds;
+        
         public Waves[] wavesInLevel;
         [Serializable]
         public class PowerupsToBeDispenced
