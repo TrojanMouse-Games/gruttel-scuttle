@@ -716,6 +716,24 @@ Transform:
   m_Father: {fileID: 659718828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &779598884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5061748752158459196, guid: 638074bc87e7eea4294d486a5ff4f753,
+    type: 3}
+  m_PrefabInstance: {fileID: 3532450799493773989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &779598885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779598884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe90103308f90604191969f2c837046e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &799075952 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 290619928578728267, guid: 37c25709a9c0e0b42971c300c3b75c9e,
@@ -5685,6 +5703,16 @@ PrefabInstance:
       propertyPath: prerequisiteSettings.powerupSpawnFolder
       value: 
       objectReference: {fileID: 296265384}
+    - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
+        type: 3}
+      propertyPath: prerequisiteSettings.axisToMoveCameraOn.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
+        type: 3}
+      propertyPath: prerequisiteSettings.axisToMoveCameraOn.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
         type: 3}
       propertyPath: prerequisiteSettings.gruttelVillageFolder
