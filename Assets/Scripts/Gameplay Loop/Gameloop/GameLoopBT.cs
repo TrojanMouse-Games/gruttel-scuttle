@@ -17,7 +17,7 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
-        public static event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
+        public event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
         float spawnDelay;
         #endregion
         
@@ -94,12 +94,8 @@ namespace TrojanMouse.GameplayLoop{
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage, afterMainStage});
         }
 
-        private void Awake() {
-            #region SINGLETON CREATION
-            if (instance){
-                Destroy(this);
-                return;
-            }
+        public void Awake() {
+            #region SINGLETON CREATION            
             instance = this;
             #endregion            
             cam = Camera.main; // ASSIGN THE CAMERA VARIABLE
