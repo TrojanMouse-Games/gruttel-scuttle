@@ -913,8 +913,8 @@ namespace Lilium.ToonGraph.Editor
 #region Includes
         static class ToonIncludes
         {
-            const string kForwardPass = "Packages/jp.lilium.toongraph/Editor/ShaderGraph/ToonForwardPass.hlsl";
-            const string kOutlinePass = "Packages/jp.lilium.toongraph/Editor/ShaderGraph/ToonOutlinePass.hlsl";
+            const string kForwardPass = "Assets/jp.lilium.toongraph/Editor/ShaderGraph/ToonForwardPass.hlsl";
+            const string kOutlinePass = "Assets/jp.lilium.toongraph/Editor/ShaderGraph/ToonOutlinePass.hlsl";
             
             public static IncludeCollection Forward = new IncludeCollection
             {
