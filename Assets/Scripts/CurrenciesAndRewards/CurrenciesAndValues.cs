@@ -21,13 +21,16 @@ public class CurrenciesAndValues : MonoBehaviour
     public Text currencyText;
     //region handler object to access stress and levels
     public GameObject regionHandler;
+    //the gameloop component of the region handler
+    private GameLoopBT gameLoop;
     public float averageStressAmount;
 
-    public float maxStress;
-    public float stressPercent;
-    public float firstStressThreshold;
-    public float secondStressThreshold;
+    private float maxStress;
+    private float stressPercent;
+    private float lvl1Stress;
+    private float lvl2Stress;
 
+    private int starRating = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,8 @@ public class CurrenciesAndValues : MonoBehaviour
         currencySprite.gameObject.SetActive(false);
         currencyText.gameObject.SetActive(false);
         currencyText.text = "";
+
+        gameLoop = regionHandler.GetComponent<GameLoopBT>();
     }
     //called on victory but before victory screen
     public void StarRating()
@@ -69,36 +74,43 @@ public class CurrenciesAndValues : MonoBehaviour
         {
             Debug.Log(i.ToString());
         }
+        //Calculate average stress value of the list, accumulated across the level
         averageStressAmount = levelStressValues.Average();
         Debug.Log("average stress amount" + averageStressAmount);
-        float curLevel = regionHandler.GetComponent<GameLoopBT>().curLevel;
-        Debug.Log("current level object name " + regionHandler.GetComponent<GameLoopBT>().levels[(int)curLevel].name);
-        Vector2 stressThresholds = regionHandler.GetComponent<GameLoopBT>().levels[(int)curLevel].stressThresholds;
+        //Retrieve the current level object and the stress thresholds % attaches to it
+        float curLevel = gameLoop.curLevel;
+        Debug.Log("current level object name " + gameLoop.levels[(int)curLevel].name);
+        Vector2 stressThresholds = gameLoop.levels[(int)curLevel].stressThresholds;
+        //Defines max stress at the max amount of litter
         maxStress = Stress.current.maxLitter;
         Debug.Log("max stress" + maxStress);
+        //Uses the max stress to calculate the average stress as a %
         stressPercent = (averageStressAmount / maxStress)*100;
         Debug.Log("stress percent " + stressPercent);
-        firstStressThreshold = stressThresholds.x;
-        secondStressThreshold = stressThresholds.y;
-        Debug.Log("stress thresholds are " + firstStressThreshold + " and " + secondStressThreshold);
-        if (0 < stressPercent && stressPercent <= firstStressThreshold)
+        //saving the stress thresholds locally
+        lvl1Stress = stressThresholds.x;
+        lvl2Stress = stressThresholds.y;
+        Debug.Log("stress thresholds are " + lvl1Stress + " and " + lvl2Stress);
+        //if the player stress percent average is between 0 and the first threshold
+        if (0 < stressPercent && stressPercent <= lvl1Stress)
         {
-            //3 stars
+            starRating = 3;
             Debug.Log("you get 3 stars!");
         }
-        else if (firstStressThreshold < stressPercent && stressPercent <= secondStressThreshold)
+        else if (lvl1Stress < stressPercent && stressPercent <= lvl2Stress)
         {
-            //2 stars
+            starRating = 2;
             Debug.Log("you get 2 stars!");
         }
-        else if (secondStressThreshold < stressPercent && stressPercent < maxStress)
+        else if (lvl2Stress < stressPercent && stressPercent < maxStress)
         {
-            //1 stars
+            starRating = 1;
             Debug.Log("you get 1 stars!");
         }
         else
         {
             Debug.LogError("Cassy has fucked up with the star rating.");
         }
+        //- HAYLEY - SAVE STAR RATING ASSIGNED TO THE LEVEL
     }
 }

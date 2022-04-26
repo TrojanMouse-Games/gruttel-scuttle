@@ -16,7 +16,7 @@ namespace TrojanMouse.StressSystem
         [HideInInspector] public float amountOfLitter;
 
         [HideInInspector] public bool startStress;
-        //by Cassy - queue of values to average for stress over level
+        //by Cassy - List of values to average for stress over level
         [HideInInspector] public List<float> levelStressValues;
 
         [Header("Settings")] 
