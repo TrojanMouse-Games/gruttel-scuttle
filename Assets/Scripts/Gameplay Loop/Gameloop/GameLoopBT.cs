@@ -17,7 +17,7 @@ namespace TrojanMouse.GameplayLoop{
         [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
-        public static event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
+        public event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
         float spawnDelay;
         #endregion
         
@@ -29,7 +29,7 @@ namespace TrojanMouse.GameplayLoop{
             SpawnGruttels spawnGruttels = new SpawnGruttels(prerequisiteSettings.gruttelObj, prerequisiteSettings.gruttelVillageSpawnPoints, prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned, prerequisiteSettings.gruttelVillageFolder); // PASS IN BOTH FOLDERS, IF BOTH EMPTY, THEN SPAWN GRUTTELS
             //GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.powerups, prerequisiteSettings.powerupSpawnFolder);
-            GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, cam, prerequisiteSettings.prepCamera.transform, 100, prerequisiteSettings.whatIsGruttel, prerequisiteSettings.statScript, prerequisiteSettings.powerupSpawnFolder, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
+            GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, cam, prerequisiteSettings.prepCamera.transform, prerequisiteSettings.axisToMoveCameraOn, 100, prerequisiteSettings.whatIsGruttel, prerequisiteSettings.statScript, prerequisiteSettings.powerupSpawnFolder, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on, and add Nana Betsys to a total of {level.numOfGruttelsToSelect} Gruttels to proceed");
             EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);            
@@ -94,12 +94,8 @@ namespace TrojanMouse.GameplayLoop{
             return new GLSequence(new List<GLNode>{prepStage, readyStage, mainStage, afterMainStage});
         }
 
-        private void Awake() {
-            #region SINGLETON CREATION
-            if (instance){
-                Destroy(this);
-                return;
-            }
+        public void Awake() {
+            #region SINGLETON CREATION            
             instance = this;
             #endregion            
             cam = Camera.main; // ASSIGN THE CAMERA VARIABLE
@@ -160,6 +156,7 @@ namespace TrojanMouse.GameplayLoop{
             public GameObject prepCamera;
             public GameObject readyStageCamera;
             public GameObject mainCamera;
+            public Vector3 axisToMoveCameraOn;
 
             [Header("UI Settings")]
             public Text cycleText;
