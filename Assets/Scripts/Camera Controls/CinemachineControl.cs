@@ -68,8 +68,8 @@ public class CinemachineControl : MonoBehaviour
                 break;
             case "SEMICIRCLEBLOCKOUT":
                 minHPos = 0; maxHPos = 4; startHPos = 2;
-                minVPos = -10; maxVPos = 5; startVPos = 0;
-                maxZoom = 20; minZoom = 70;
+                minVPos = -5; maxVPos = 5; startVPos = 0;
+                maxZoom = 30; minZoom = 70;
                 break;
         }
         //fetches the virtual camera component
