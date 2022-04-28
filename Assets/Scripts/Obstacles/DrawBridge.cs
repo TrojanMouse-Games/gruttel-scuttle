@@ -15,6 +15,10 @@ namespace TrojanMouse.Game.Obstacles
         public GameObject pivot;
         Vector3 originalRotation, originalPosition;
 
+        private void Update() {
+            //MoveBridge(); // shouldn't run in update but forces it to be updated using the variable in the
+        }
+
         /// <summary>
         /// Checks to see if you've clicked on the bridge collider.
         /// </summary>
@@ -41,7 +45,7 @@ namespace TrojanMouse.Game.Obstacles
                 pivot.transform.localRotation = Quaternion.Euler(positionToRotateTo);
                 pivot.transform.localPosition = positionToMoveTo;
             }
-            else
+            else if (!isRaised)
             {
                 // Move to original pos
                 pivot.transform.localRotation = Quaternion.Euler(originalRotation);
