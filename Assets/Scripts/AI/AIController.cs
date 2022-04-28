@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using TrojanMouse.Inventory;
 using TrojanMouse.Litter.Region;
 using TrojanMouse.Gruttel;
+using Fungus;
 #endregion
 
 namespace TrojanMouse.AI
@@ -18,6 +19,7 @@ namespace TrojanMouse.AI
 
         [Space]
         [Header("Public Variables")]
+        public string FungusMessage = "LitterDeposited";
         public AIData data;
         public Transform currentTarget; // The current AI target.
         public Collider[] globalLitterArray;
@@ -165,6 +167,7 @@ namespace TrojanMouse.AI
                 equipper.Drop(RegionType.HOME);
                 //add to that region's litter meter
                 closestHomeRegion.GetComponentInParent<MachineFill>().IncreaseFill();
+                Flowchart.BroadcastFungusMessage(FungusMessage);
             }
         }
 
