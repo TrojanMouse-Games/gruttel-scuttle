@@ -2034,7 +2034,7 @@ GameObject:
   - component: {fileID: 6371225576919011838}
   - component: {fileID: 8126066340088793199}
   - component: {fileID: 1118944424205545801}
-  - component: {fileID: 2221371487480901995}
+  - component: {fileID: 7499484561538833496}
   m_Layer: 0
   m_Name: PrefabMachine
   m_TagString: Untagged
@@ -2129,19 +2129,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 98.82, y: 99.19, z: 106}
   m_Center: {x: 6.74, y: 32.63, z: 2.02}
---- !u!65 &2221371487480901995
-BoxCollider:
+--- !u!208 &7499484561538833496
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8858061358567526514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 73.1, y: 82.93, z: 82.62}
-  m_Center: {x: 1.9, y: 32.63, z: 2.7}
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 49.2, y: 72.8, z: 49.2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 7, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9199323009931489144
 GameObject:
   m_ObjectHideFlags: 0
