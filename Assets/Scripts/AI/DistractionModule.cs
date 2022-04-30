@@ -43,7 +43,8 @@ public class DistractionModule : MonoBehaviour
             Debug.Log("Dropped litter!");
             eq.Drop(RegionType.WORLD);
 
-            // Stop the distraction animation
+            // Stop holding animation
+            animator.SetBool("isHolding", false);
         }
     }
 
