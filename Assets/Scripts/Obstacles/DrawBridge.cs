@@ -13,10 +13,16 @@ namespace TrojanMouse.Game.Obstacles
         // Other stuff
         public Vector3 positionToMoveTo, positionToRotateTo;
         public GameObject pivot;
+        public float timeUntilBridgeRaise;
         Vector3 originalRotation, originalPosition;
 
-        private void Update() {
-            //MoveBridge(); // shouldn't run in update but forces it to be updated using the variable in the
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
+        void Start()
+        {
+            RaiseBridge(timeUntilBridgeRaise);
         }
 
         /// <summary>
@@ -51,6 +57,28 @@ namespace TrojanMouse.Game.Obstacles
                 pivot.transform.localRotation = Quaternion.Euler(originalRotation);
                 pivot.transform.localPosition = originalPosition;
             }
+        }
+
+        /// <summary>
+        /// Raises the bridge, starts a coroutine to pick when based on the passed in float
+        /// </summary>
+        /// <param name="timeUntilRaise">How long to wait before raising the bridge</param>
+        void RaiseBridge(float timeUntilRaise)
+        {
+            isRaised = true;
+            StartCoroutine(RaiseBridgeAfterTime(timeUntilRaise));
+        }
+        
+        /// <summary>
+        /// This will raise the bridge after the passed in about of time
+        /// </summary>
+        /// <param name="time">the amount of time that needs to be passed before it raises</param>
+        /// <returns></returns>
+        IEnumerator RaiseBridgeAfterTime(float time)
+        {
+            float randomTime = Random.Range(0, time);
+            yield return new WaitForSeconds(randomTime);
+            MoveBridge();
         }
     }
 }
