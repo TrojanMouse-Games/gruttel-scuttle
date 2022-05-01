@@ -12,13 +12,16 @@ namespace TrojanMouse.GameplayLoop
         LitterRegion[] regionObjs;
         int litterToSpawn;
         float spawnDelayHolder, spawnDelay;
+        int currentWave, totalNumWaves;
 
-        public SpawnLitter(Ballistics[] shooterObjs, LitterRegion[] regionObjs, int litterToSpawn, float waveDuration)
+        public SpawnLitter(Ballistics[] shooterObjs, LitterRegion[] regionObjs, int litterToSpawn, float waveDuration, int currentWave, int totalNumWaves)
         { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES           
             this.shooterObjs = shooterObjs;
             this.regionObjs = regionObjs;
             this.litterToSpawn = litterToSpawn;
             this.spawnDelayHolder = waveDuration / litterToSpawn;
+            this.currentWave = currentWave;
+            this.totalNumWaves = totalNumWaves;
         }
 
 
@@ -43,6 +46,7 @@ namespace TrojanMouse.GameplayLoop
             }
             if (CanSpawn())
             {
+                Debug.Log($"Wave {currentWave} of {totalNumWaves}");
                 LitterRegion region = regionObjs[Random.Range(0, regionObjs.Length)]; // SELECTS A RANDOM REGION TO SPAWN THE LITTER WITHIN
                 Ballistics shooter = shooterObjs[Random.Range(0, shooterObjs.Length)]; // SELECTS A RANDOM SHOOTER TO SPAWN THE LITTER AT
                 litterToSpawn -= (region.litterManager.SpawnLitter(region.GetComponent<Collider>(), shooter, 1) < 0) ? 1 : 0; // DEDUCTS LITTER TO SPAWN IF THE FUNCTION IN LITTER MANAGER RETURNS A VALUE LESS THAN 0
