@@ -12,10 +12,11 @@ namespace TrojanMouse.Gruttel
         public GruttelMeshes meshList;
         public SkinnedMeshRenderer meshRenderer;
         public GameObject model;
+        public GruttelType gruttelType;
 
         private void Start()
         {
-            data = new GruttelData(this);
+            data = new GruttelData(this, gruttelType);
             data.meshList = meshList;
         }
 

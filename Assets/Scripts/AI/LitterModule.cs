@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.Inventory;
 using TrojanMouse.Gruttel;
+using Fungus;
 
 namespace TrojanMouse.AI
 {
@@ -10,6 +11,8 @@ namespace TrojanMouse.AI
     {
         public LitterObjectHolder target;
         public LitterObjectHolder holdingLitter;
+        public string Message;
+        public Flowchart flowchart;
 
         public AIState GetLitter(AIData data)
         {
@@ -34,6 +37,7 @@ namespace TrojanMouse.AI
 
         public LitterObjectHolder GetNewTarget(AIData data, Inventory.Inventory inventory)
         {
+
             LitterObjectHolder potentialTarget = null;
             if (inventory.HasSlotsLeft())
             {
@@ -49,6 +53,7 @@ namespace TrojanMouse.AI
                     if (canPickup){
                         data.agent.SetDestination(litter.transform.position);
                         if(litter.litterObject.typeOfLitter == gruttelType){ // SHOULD MEAN IF THE LITTER IS THE SAME TYPE OF THE BUFFED GRUTTEL THEN THE GRUTTEL WILL PRIORITISE THE SAME TYPE OF LITTER
+                            Fungus.Flowchart.BroadcastFungusMessage(Message);
                             return litter;
                         }
                         potentialTarget = litter;
