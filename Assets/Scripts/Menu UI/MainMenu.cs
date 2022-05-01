@@ -38,10 +38,12 @@ namespace TrojanMouse.Menu
             if (alternateLevel == "")
             {
                 //SceneManager.LoadScene(sceneToPlay);
+                Time.timeScale = 1;
                 StartCoroutine(LoadSceneAsync(sceneToPlay));
             }
             else
             {
+                Time.timeScale = 1;
                 //SceneManager.LoadScene(alternateLevel);
                 StartCoroutine(LoadSceneAsync(alternateLevel));
             }
@@ -108,7 +110,6 @@ namespace TrojanMouse.Menu
         /// <param name="canvasToEnable">the options menu to enable</param>
         public void EnableOptionsMenu(Canvas canvasToEnable)
         {
-
             foreach (Canvas c in optionsCanvas)
             {
                 c.gameObject.SetActive(false);
