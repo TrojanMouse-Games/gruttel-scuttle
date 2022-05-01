@@ -123,7 +123,7 @@ namespace TrojanMouse.Menu
         /// </summary>
         public void ApplySettings()
         {
-
+            
         }
         
         /// <summary>
