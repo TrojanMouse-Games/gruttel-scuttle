@@ -13,7 +13,7 @@ namespace TrojanMouse.Inventory
         public int MaxSlots { get { return maxSlots; } }
 
         public Animator animator;
-        [SerializeField] private Transform holdPosition;
+        public Transform holdPosition;
 
         Dictionary<LitterObject, int> inventory = new Dictionary<LitterObject, int>();
 

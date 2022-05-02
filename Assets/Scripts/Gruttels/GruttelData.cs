@@ -68,7 +68,7 @@ namespace TrojanMouse.Gruttel
             Debug.Log(type);
             Debug.Log(meshList);
             type = _type;
-            gruttelReference.UpdateMesh(meshList.GetMesh(type));
+            gruttelReference.UpdateMesh(meshList.GetMeshInfo(type));
         }
 
         public void GenerateRandomGruttel()
