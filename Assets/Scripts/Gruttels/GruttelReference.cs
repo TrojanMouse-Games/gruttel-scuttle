@@ -6,6 +6,7 @@ namespace TrojanMouse.Gruttel
 {
     using Personalities;
     using Inventory;
+    using AI;
     public class GruttelReference : MonoBehaviour
     {
         public GruttelData data;
@@ -34,6 +35,8 @@ namespace TrojanMouse.Gruttel
 
             inv.holdPosition = model.GetComponentInChildren<TrashHoldPosition>().transform;
             inv.animator = anim;
+
+            GetComponent<AIController>().animator = anim;
         }
     }
 }

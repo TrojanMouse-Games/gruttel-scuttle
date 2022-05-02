@@ -15,7 +15,6 @@ namespace TrojanMouse.Gruttel
 
         private void Start()
         {
-            GetComponent<AIController>().animator = anim;
         }
 
         void Update()
