@@ -37,6 +37,7 @@ namespace TrojanMouse.Gruttel
             inv.animator = anim;
 
             GetComponent<AIController>().animator = anim;
+            GetComponent<DistractionModule>().animator = anim;
         }
     }
 }
