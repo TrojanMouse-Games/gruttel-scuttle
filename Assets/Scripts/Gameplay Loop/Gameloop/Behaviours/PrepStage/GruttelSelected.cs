@@ -11,7 +11,7 @@ namespace TrojanMouse.GameplayLoop
         public static GruttelsSelected instance;
         public HashSet<Transform> gruttelsSelected = new HashSet<Transform>();        
         
-        int gruttelsToSelect;
+        public int gruttelsToSelect;
         Camera cam;
         float maxDistance;
         LayerMask whatIsGruttel;

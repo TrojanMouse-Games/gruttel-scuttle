@@ -99,6 +99,9 @@ namespace TrojanMouse.Gruttel
                         curMaterial = gruttelTypes[1].texture;
                         break;
                 }
+                if(GruttelsSelected.instance.gruttelsSelected.Count >= GruttelsSelected.instance.gruttelsToSelect && !GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform)){
+                    return false;
+                }
 
                 gruttelData.UpdateGruttelType(powerupType);
                 if (!GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform)){
