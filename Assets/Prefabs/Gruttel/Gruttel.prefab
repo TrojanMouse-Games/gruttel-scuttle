@@ -333,7 +333,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2296754690562420785}
-  m_LocalRotation: {x: 0.4835462, y: -0.51592934, z: -0.4835462, w: 0.51592934}
+  m_LocalRotation: {x: 0.48354623, y: -0.51592934, z: -0.48354626, w: 0.51592934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -341,8 +341,8 @@ Transform:
   - {fileID: 3135816936897653492}
   - {fileID: 402912839107252302}
   - {fileID: 7690894485432693547}
-  m_Father: {fileID: 8471254294815661145}
-  m_RootOrder: 8
+  m_Father: {fileID: 8298214413678611809}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2406557483451807277
 GameObject:
@@ -1421,7 +1421,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5327959116887753521}
   m_Father: {fileID: 653844201266180726}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1702,7 +1703,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8471254294815661145}
-  - component: {fileID: 2553501623213131299}
   - component: {fileID: 9134461449078113815}
   - component: {fileID: 9134461449078113814}
   - component: {fileID: 9134461449078113817}
@@ -1745,29 +1745,9 @@ Transform:
   - {fileID: 8216054026510020412}
   - {fileID: 8471254296143305177}
   - {fileID: 653844201266180726}
-  - {fileID: 5327959116887753521}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2553501623213131299
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9134461449078114019}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: dd88ecd7799cbe44a8b90f6155b9361f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 89e603b524ebc6f4b9a29acf79febdab, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &9134461449078113815
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1816,9 +1796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a864e2f083ba5e498b3bb1ffc07b918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiType: 0
   currentState: 0
   avoidancePriority: 15
+  FungusMessage: LitterDeposited
   data:
     inventory: {fileID: 0}
     agent: {fileID: 0}
@@ -1830,15 +1810,15 @@ MonoBehaviour:
     gruttel: {fileID: 0}
   currentTarget: {fileID: 0}
   globalLitterArray: []
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
   beingDirected: 0
   litterLayerMask:
     serializedVersion: 2
     m_Bits: 8
   timer: 0
-  animator: {fileID: 2553501623213131299}
+  animator: {fileID: 0}
   currSpeed: 0
   moduleManager: {fileID: 0}
+  equipper: {fileID: 0}
 --- !u!114 &9134461449078113816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,7 +1900,7 @@ MonoBehaviour:
     m_Bits: 0
   distractionMarker: {fileID: 9134461449789227875}
   distractionChance: 0
-  animator: {fileID: 2553501623213131299}
+  animator: {fileID: 0}
   distractedSound:
     Guid:
       Data1: -910085517
@@ -1935,6 +1915,7 @@ MonoBehaviour:
       Data3: -1447001678
       Data4: -690272761
     Path: event:/Gruttel Sounds/Undistracted
+  useWeightedStressbar: 0
 --- !u!114 &-6989045485108409391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1949,6 +1930,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   holdingLitter: {fileID: 0}
+  Message: 
+  flowchart: {fileID: 0}
 --- !u!114 &9134461449078113820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,7 +1973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSlots: 1
-  animator: {fileID: 2553501623213131299}
+  animator: {fileID: 0}
   holdPosition: {fileID: 3605150080927004328}
 --- !u!120 &9134461449078114017
 LineRenderer:
@@ -2102,7 +2085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918a6fc52b3b2fe44be7073d1f669f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 2553501623213131299}
+  anim: {fileID: 0}
   smoothingSpeed: 0.2
 --- !u!114 &-6900343593846015828
 MonoBehaviour:
@@ -2149,6 +2132,7 @@ MonoBehaviour:
   meshList: {fileID: 11400000, guid: 99f7752ca6bf9054089c68e0b359e4d7, type: 2}
   meshRenderer: {fileID: 3453021362976960727}
   model: {fileID: 9017613002790396856}
+  gruttelType: 0
 --- !u!95 &402454146568936681
 Animator:
   serializedVersion: 3

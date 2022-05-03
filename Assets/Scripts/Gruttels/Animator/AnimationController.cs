@@ -5,12 +5,18 @@ using UnityEngine;
 
 namespace TrojanMouse.Gruttel
 {
+    using AI;
     public class AnimationController : MonoBehaviour
     {
-        [SerializeField] Animator anim;
+        public Animator anim;
         Vector3 previousPos;
         [SerializeField] float smoothingSpeed;
         float velocity, curSpeed;
+
+        private void Start()
+        {
+        }
+
         void Update()
         {
             Vector3 dir = (transform.position - previousPos).normalized;
