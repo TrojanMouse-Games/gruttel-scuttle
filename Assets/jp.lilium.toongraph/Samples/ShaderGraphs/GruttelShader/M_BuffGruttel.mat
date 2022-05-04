@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Gruttel
+  m_Name: M_BuffGruttel
   m_Shader: {fileID: 4800000, guid: 638ea63e3b6fb1245bcf1c505cfe6cba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 6
@@ -57,11 +57,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 23b08fef1033af847abe563b24d77b98, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: bc57df3983a7c464c93fe38bb364f14b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -97,7 +97,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 253d5f2c841eb4742ac335e57e5f1632, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineMap:
@@ -117,7 +117,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadeMap:
-        m_Texture: {fileID: 2800000, guid: 23b08fef1033af847abe563b24d77b98, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadeRamp:
@@ -175,10 +175,10 @@ Material:
     - Color_AEA6BBA8: {r: 0, g: 0, b: 0, a: 0}
     - Color_D9108BC9: {r: 1, g: 0.9529412, b: 0.8745098, a: 1}
     - Color_E8797B55: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.7075472, g: 0.69535667, b: 0.31706125, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.6792453, g: 0.453704, b: 0.31078678, a: 1}
-    - _OutlineColor: {r: 0.36418653, g: 0.8301887, b: 0.4700961, a: 1}
+    - _OutlineColor: {r: 1, g: 0.9039163, b: 0.5235849, a: 1}
     - _ShadeColor: {r: 0.8207547, g: 0.48947147, b: 0.3987629, a: 0.5176471}
     - _ShadeEnvironmentalColor: {r: 1, g: 0.6431373, b: 0, a: 1}
     - _ShdeEnvironmentalColor: {r: 1, g: 1, b: 1, a: 1}
