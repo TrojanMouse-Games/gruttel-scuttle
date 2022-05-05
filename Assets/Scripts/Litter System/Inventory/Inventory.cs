@@ -60,7 +60,10 @@ namespace TrojanMouse.Inventory
         // VISUALISERS
         public GameObject Equip(Transform litter, int index, int previousIndex = -1)
         {
-            animator?.SetBool("hasTrash", true);
+            if (animator != null)
+            {
+                animator.SetBool("hasTrash", true);
+            }
 
             if (inventory.Count - 1 > index || (previousIndex > -1 && inventory.Count - 1 > previousIndex))
             {
@@ -80,7 +83,10 @@ namespace TrojanMouse.Inventory
 
         public void Dequip(Transform parent, GameObject obj)
         {
-            animator?.SetBool("hasTrash", false);
+            if (animator != null)
+            {
+                animator.SetBool("hasTrash", false);
+            }
             foreach (Transform child in parent)
             {
                 if (child.name == obj.name)
@@ -93,7 +99,10 @@ namespace TrojanMouse.Inventory
 
         public void Dequip(GameObject obj)
         {
-            animator?.SetBool("hasTrash", false);
+            if (animator != null)
+            {
+                animator.SetBool("hasTrash", false);
+            }
             Destroy(obj);
         }
     }

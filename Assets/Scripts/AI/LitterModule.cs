@@ -14,6 +14,8 @@ namespace TrojanMouse.AI
         public string Message;
         public Flowchart flowchart;
 
+        public Collider[] litterInRange;
+
         public AIState GetLitter(AIData data)
         {
             Inventory.Inventory inventory = data.inventory;
@@ -37,11 +39,10 @@ namespace TrojanMouse.AI
 
         public LitterObjectHolder GetNewTarget(AIData data, Inventory.Inventory inventory)
         {
-
             LitterObjectHolder potentialTarget = null;
             if (inventory.HasSlotsLeft())
             {
-                Collider[] litterInRange = Physics.OverlapSphere(transform.position, data.detectionRadius, data.litterLayer);
+                litterInRange = Physics.OverlapSphere(transform.position, data.detectionRadius, data.litterLayer);
                 GruttelType gruttelType = data.gruttel.data.type;
 
                 foreach (Collider c in litterInRange)

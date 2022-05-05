@@ -45,7 +45,10 @@ public class DistractionModule : MonoBehaviour
             eq.Drop(RegionType.WORLD);
 
             // if the animator exists, stop the holding animation
-            animator?.SetBool("isHolding", false);
+            if (animator != null)
+            {
+                animator.SetBool("isHolding", false);
+            }
         }
     }
 
@@ -57,7 +60,10 @@ public class DistractionModule : MonoBehaviour
         aIController.data.agent.SetDestination(transform.position);
         aIController.currentState = AIState.Nothing;
 
-        animator?.SetBool("isDistracted", true);
+        if (animator != null)
+        {
+            animator.SetBool("isDistracted", true);
+        }
     }
 
     public IEnumerator GenerateDistractionChance()
