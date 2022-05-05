@@ -10925,6 +10925,67 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1594239330}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &756184438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756184440}
+  - component: {fileID: 756184439}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &756184439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756184438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -695699998
+      Data2: 1209273172
+      Data3: -787191647
+      Data4: -1871782916
+    Path: event:/Music/Tutorial Music
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &756184440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756184438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46.87535, y: -187.482, z: -495.95218}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &781124723 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6836273238622888086, guid: 25603766d33c22742af437eda78819c9,
@@ -16030,9 +16091,11 @@ MonoBehaviour:
   targetAudioSource: {fileID: 0}
   audioMode: 0
   beepSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 889b4077d1a207c4b9e4b084badfcd19, type: 3}
+  - {fileID: 8300000, guid: 3d5e1f4b76908cc45a28541ab632e4da, type: 3}
+  - {fileID: 8300000, guid: 504661aa8b739cc438691091d4d9044a, type: 3}
+  - {fileID: 8300000, guid: 8848ae083faec1849b83cae8123a0955, type: 3}
+  - {fileID: 8300000, guid: 35165ece2eba2494dba2823a6ee02f90, type: 3}
   soundEffect: {fileID: 0}
   inputSound: {fileID: 0}
 --- !u!114 &1731310371
