@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1709209fdb348d34bad15eebe24e729f, type: 3}
-  m_Name: Scuttle
+  m_Name: East
   m_EditorClassIdentifier: 
-  litterToSpawnForWave: 100
-  timeToSpawnAllLitter: 60
-  intermissionBeforeNextWave: 30
+  litterToSpawnForWave: 25
+  timeToSpawnAllLitter: 30
+  intermissionBeforeNextWave: 10
   shootersInThisWave:
   - LitterThrower
   - LitterThrower-Left
   - LitterThrower-Right
   regionsToLandAtInThisWave:
-  - Litter Region - All
+  - Litter Region - East Region
+  - Litter Region - East Island
