@@ -12,9 +12,9 @@ namespace TrojanMouse.GameplayLoop{
         public static GameLoopBT instance;
         #region VARIABLES
         [SerializeField] Prerequisites prerequisiteSettings;
-        
-        [SerializeField] Level[] levels;
-        [SerializeField] int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
+
+        [SerializeField] public Level[] levels;
+        [SerializeField] [HideInInspector] public int curLevel; // THIS IS THE LEVEL THAT'LL BE ACCESSED FROM THE BEGINNING
         GLNode topNode;
         Camera cam;
         public event Action<EnableAI.AIState> SetAIState;  // CHANGES THE BEHAVIOUR OF ALL AI
@@ -23,7 +23,6 @@ namespace TrojanMouse.GameplayLoop{
         
         GLNode CreateBehaviourTree(Level level){            
             GameObject[] cameras = new GameObject[]{ prerequisiteSettings.prepCamera, prerequisiteSettings.readyStageCamera, prerequisiteSettings.mainCamera}; // STORES ALL THE CAMERAS INTO AN ARRAY
-
             #region NODES
             #region PREP NODES
             SpawnGruttels spawnGruttels = new SpawnGruttels(prerequisiteSettings.gruttelObj, prerequisiteSettings.gruttelVillageSpawnPoints, prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned, prerequisiteSettings.gruttelVillageFolder); // PASS IN BOTH FOLDERS, IF BOTH EMPTY, THEN SPAWN GRUTTELS
@@ -51,7 +50,7 @@ namespace TrojanMouse.GameplayLoop{
             EnableAI enableAI = new EnableAI(EnableAI.AIState.Enabled);
             #endregion
             #region AFTERMATH NODES
-            WinState win = new WinState();
+            WinState win = new WinState(prerequisiteSettings.village);
             #endregion
             
             #endregion
@@ -147,6 +146,9 @@ namespace TrojanMouse.GameplayLoop{
             [Tooltip("This is needed for Gruttel selection, please choose the layermask the gameobject uses!")] public LayerMask whatIsGruttel;
             [Tooltip("For every Gruttel, this will be the stress the game will be able to handle")] public float maxLitterStressPerGruttel;
             public Transform objectForGruttelsToLookAtWhenSpawned;
+
+            [Header("Progression Settings")]
+            [Tooltip("Currencies and Values script here...")] public GameObject village;
 
             [Header("Powerup Settings")]
             [Tooltip("Powerup Prefab here...")] public GameObject powerupPrefab;

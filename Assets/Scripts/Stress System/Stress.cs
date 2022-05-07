@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using TrojanMouse.Litter.Region;
 using UnityEngine.SceneManagement;
 using TrojanMouse.GameplayLoop;
@@ -16,9 +16,10 @@ namespace TrojanMouse.StressSystem
         [HideInInspector] public float amountOfLitter;
 
         [HideInInspector] public bool startStress;
+        //by Cassy - List of values to average for stress over level
+        [HideInInspector] public List<float> levelStressValues;
 
-
-        [Header("Settings")]
+        [Header("Settings")] 
         [Tooltip("Time until this script will calculate stress again")] [SerializeField] float calculationCooldown; // TIME BETWEEN EACH CALCULATION FOR STRESS
         [SerializeField] float maxStressCountdown;
         float curCountdown;
@@ -31,8 +32,6 @@ namespace TrojanMouse.StressSystem
                 return calculationCooldown;
             }
         }
-
-
         private void Awake()
         {
             if (current)
@@ -44,7 +43,6 @@ namespace TrojanMouse.StressSystem
             current = this; // SINGLETON            
             InvokeRepeating("UpdateStress", calculationCooldown, calculationCooldown); // THIS WILL AUTOMATICALLY CALL THE 'UpdateStress' FUNCTION EVERY X SECONDS BASED ON THE 'calculationCooldown' VARIABLE
         }
-
         private void Update()
         {
             #region STRESS COUNTDOWN
@@ -69,9 +67,6 @@ namespace TrojanMouse.StressSystem
             }
             litterRegions = RegionHandler.current.GetRegions(RegionType.LITTER_REGION); // POPULATES THE 'litterRegions' ARRAY WITH ALL REGIONS
         }
-
-
-
         void UpdateStress()
         {
             if (litterRegions.Length > 0)
@@ -82,6 +77,8 @@ namespace TrojanMouse.StressSystem
                     stress += region.transform.childCount; // APPEND THE AMOUNT OF CHILDREN INSIDE A REGION TO THIS VALUE
                 }
                 amountOfLitter = stress; // SET THE PUBLIC READABLE VALUE TO THE AMOUNT OF STRESS
+                //by Cassy to calculate average stress throughout level
+                levelStressValues.Add(amountOfLitter);
             }
         }
     }
