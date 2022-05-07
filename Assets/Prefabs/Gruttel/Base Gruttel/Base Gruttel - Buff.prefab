@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958310923838791574}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pSphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8456002855869968351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: transform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155436836755292117}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: transform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5976035052531860177}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 918126628389628321}
   - component: {fileID: 8958294386702054284}
   - component: {fileID: 8788870143199770310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3335193153868255158}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7368843669222790962}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GruttleMainBodTopo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,9 +275,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5004730145714324390}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base Gruttel - Buff
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 6891112531728677240}
   - component: {fileID: 5033366168242583866}
   - component: {fileID: 8993523152463837872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3693484244953771194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2640231567737928996}
   - component: {fileID: 6856617289334038631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TrashHoldPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6729879754371005599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4455569743647794964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pSphere2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,11 +596,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7032215272059917292, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -6652725513331149018, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a316a7be9b2446947ac13d35ead21a5e, type: 2}
+    - target: {fileID: -2875159814730224465, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1493039295487929009, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -1320705769044965080, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -616,10 +631,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a316a7be9b2446947ac13d35ead21a5e, type: 2}
+    - target: {fileID: 635547659545568360, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
       propertyPath: m_Name
       value: Large
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535775860052851933, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8140859796470492572, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
@@ -711,11 +741,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7032215272059917292, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -6652725513331149018, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7a1d61e759f6edd4eb96e68898ff0960, type: 2}
+    - target: {fileID: -2875159814730224465, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1493039295487929009, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -1320705769044965080, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -731,10 +776,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7a1d61e759f6edd4eb96e68898ff0960, type: 2}
+    - target: {fileID: 635547659545568360, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
       propertyPath: m_Name
       value: Large-xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535775860052851933, guid: aee9c3b517cd2034296d245b2ec99a47,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8140859796470492572, guid: aee9c3b517cd2034296d245b2ec99a47,
         type: 3}
