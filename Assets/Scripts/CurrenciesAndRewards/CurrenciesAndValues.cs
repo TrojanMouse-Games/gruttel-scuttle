@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TrojanMouse.StressSystem;
 using TrojanMouse.GameplayLoop;
 using System.Linq;
+using UnityEngine.SceneManagement;
 public class CurrenciesAndValues : MonoBehaviour
 {
     //NPC items - Can be used to unlock special NPCs - gets added to when reward gained.
@@ -101,6 +102,7 @@ public class CurrenciesAndValues : MonoBehaviour
                 starRating = i + 1;
                 Debug.Log($"You get {starRating} stars!");
                 valueFound = true;
+                SaveData();
                 break;
             }
         }
@@ -109,5 +111,10 @@ public class CurrenciesAndValues : MonoBehaviour
             Debug.LogError("Cassy fucked up with the star rating system, please let her (or someone competent) know");
         }
         //- HAYLEY - SAVE STAR RATING ASSIGNED TO THE LEVEL
+    }
+    void SaveData()
+    {
+        //saves current star rating for victory scene
+        PlayerPrefs.SetInt($"{SceneManager.GetActiveScene().name}starRating", starRating);
     }
 }
