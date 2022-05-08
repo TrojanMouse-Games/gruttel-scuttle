@@ -118,11 +118,13 @@ namespace TrojanMouse.AI.Movement
                 if (type == "pickUp" && controller)
                 {
                     data.agent.enabled = state;
+                    controller.animator.SetBool("isPickedUp", true);
                     controller.enabled = state;
                 }
                 else if (type == "putDown" && controller)
                 {
                     controller.enabled = state;
+                    controller.animator.SetBool("isPickedUp", false);
                     data.agent.enabled = state;
                     controller.moduleManager.litterModule.GetLitter(data);
                 }
