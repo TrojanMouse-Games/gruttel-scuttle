@@ -37,8 +37,8 @@ namespace TrojanMouse.GameplayLoop{
 
         public void UpdateStats(GruttelReference gruttel){
             bool updateTraits = false;
-            for (int i = 0; i < statsUI.GetChild(0).childCount; i++){ // ITERATES THROUGH EACH LABEL OBJECT
-                TextMeshProUGUI label = statsUI.GetChild(0).GetChild(i).GetComponent<TextMeshProUGUI>();
+            for (int i = 0; i < statsUI.GetChild(0).GetChild(1).childCount; i++){ // ITERATES THROUGH EACH LABEL OBJECT
+                TextMeshProUGUI label = statsUI.GetChild(0).GetChild(1).GetChild(i).GetComponent<TextMeshProUGUI>();
                 
                 switch (i){ // SWITCH/CASE TO SET CORROSPONDING LABEL TO THE TEXT
                     case 0:
@@ -48,7 +48,7 @@ namespace TrojanMouse.GameplayLoop{
                         if(gruttel.data.bios.Length <= 0) { return; }
                         label.text = $"{gruttel.data.bios[0]}";
                         break;
-                    default:
+                    default:                        
                         updateTraits = true;                        
                         break;
                 }
@@ -59,7 +59,7 @@ namespace TrojanMouse.GameplayLoop{
             }
 
             for (int x = 0; x < 3; x++){
-                TextMeshProUGUI label = statsUI.GetChild(0).GetChild(2 + x).GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI label = statsUI.GetChild(0).GetChild(1).GetChild(2 + x).GetComponent<TextMeshProUGUI>();
                 label.text = (x < gruttel.data.traits.Length)? gruttel.data.traits[x] : "";
             }
         }
