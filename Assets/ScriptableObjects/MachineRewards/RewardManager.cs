@@ -89,7 +89,8 @@ public class RewardManager : ScriptableObject
     {
         Debug.Log("NPC object function called");
         //Add object to the currently owned NPC objects list
-        currencies.NPCObjects.Add(NPCObjectType.ToString());
+        //currencies.NPCObjects.Add(this);
+        currencies.NPCObjects.Add(this);
         //Set image to NPC object icon
         currencies.currencySprite.sprite = rewardImage;
         //Enable relevant UI
