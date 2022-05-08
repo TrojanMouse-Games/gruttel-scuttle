@@ -359,7 +359,7 @@ PrefabInstance:
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.74
+      value: 5.61
       objectReference: {fileID: 0}
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
@@ -369,7 +369,7 @@ PrefabInstance:
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.71
+      value: 36.73
       objectReference: {fileID: 0}
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
@@ -2474,7 +2474,7 @@ PrefabInstance:
     - target: {fileID: 5726791552448642465, guid: 236da47dd94745b46a790f106956e131,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5726791552448642465, guid: 236da47dd94745b46a790f106956e131,
         type: 3}
@@ -3393,6 +3393,7 @@ GameObject:
   - component: {fileID: 416517383}
   - component: {fileID: 416517391}
   - component: {fileID: 416517390}
+  - component: {fileID: 416517393}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -3447,7 +3448,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -308.28036
     y: 37.027946
-    width: 78.96547
+    width: 80
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -3494,11 +3495,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 681.14343, y: 596.37823}
+  scrollPos: {x: -318.80457, y: 346.43323}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 539
-  zoom: 0.5800004
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -3668,7 +3669,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -160.90941
     y: 36.216652
-    width: 84.13788
+    width: 85
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -4350,7 +4351,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 526.2873
     y: 31.625782
-    width: 68.62065
+    width: 68
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -4580,7 +4581,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 391.19147
     y: 33.284924
-    width: 77.24133
+    width: 81
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -4805,7 +4806,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 655.7361
     y: -144.69034
-    width: 89.31029
+    width: 91
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -4836,7 +4837,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 656.7361
     y: 32.30966
-    width: 84.13788
+    width: 86
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -4925,7 +4926,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 587.0566
     y: -84.71865
-    width: 63.44824
+    width: 63
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -5231,9 +5232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 793.7686
+    x: 795.8963
     y: 31.253906
-    width: 63.44824
+    width: 66
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -5246,6 +5247,7 @@ MonoBehaviour:
   - {fileID: 416517400}
   - {fileID: 416517399}
   - {fileID: 416517386}
+  - {fileID: 416517393}
   - {fileID: 416517403}
   - {fileID: 416517407}
   - {fileID: 416517406}
@@ -5269,7 +5271,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 376.24988
     y: -66.8154
-    width: 106.55166
+    width: 109
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -6965,7 +6967,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 237.75328
     y: 32.209652
-    width: 80.689606
+    width: 81
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7259,6 +7261,34 @@ MonoBehaviour:
     booleanRef: {fileID: 0}
     booleanVal: 0
   targetGameObjectOLD: {fileID: 0}
+--- !u!114 &416517393
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 324
+  indentLevel: 0
+  storyText: You can reset the springs on the bridge by clicking it when it's flipped
+    upwards!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &416517396
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -7399,7 +7429,7 @@ MonoBehaviour:
   itemId: 180
   indentLevel: 0
   storyText: Don't worry too much about stress for now, just get out there and clean
-    up some!
+    up some litter!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -7925,7 +7955,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 991.282
     y: 29.966724
-    width: 104.82752
+    width: 106
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7955,9 +7985,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 987.4054
-    y: -41.842453
-    width: 91.034424
+    x: 1000.4054
+    y: -67.84245
+    width: 93
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7986,7 +8016,7 @@ MonoBehaviour:
   _sceneName:
     stringRef: {fileID: 0}
     stringVal: Village
-  loadingImage: {fileID: 0}
+  loadingImage: {fileID: 2800000, guid: f5a52190faa31df41a1fe961649aff8c, type: 3}
   sceneNameOLD: 
 --- !u!114 &416517421
 MonoBehaviour:
@@ -8216,7 +8246,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -36.07187
     y: 34.46218
-    width: 92.75856
+    width: 94
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -9010,7 +9040,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 106.90941
     y: 32.498566
-    width: 101.37925
+    width: 101
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11461,7 +11491,7 @@ PrefabInstance:
     - target: {fileID: 7000658050550888978, guid: 5c17d2aa4c19e544182c0d30be4aa072,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.64
+      value: -15.75
       objectReference: {fileID: 0}
     - target: {fileID: 7000658050550888978, guid: 5c17d2aa4c19e544182c0d30be4aa072,
         type: 3}
@@ -11471,7 +11501,7 @@ PrefabInstance:
     - target: {fileID: 7000658050550888978, guid: 5c17d2aa4c19e544182c0d30be4aa072,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 39.913
+      value: 38.7
       objectReference: {fileID: 0}
     - target: {fileID: 7000658050550888978, guid: 5c17d2aa4c19e544182c0d30be4aa072,
         type: 3}
@@ -13612,7 +13642,7 @@ PrefabInstance:
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.6
+      value: -5.25
       objectReference: {fileID: 0}
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
@@ -13622,7 +13652,7 @@ PrefabInstance:
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.97
+      value: 34.62
       objectReference: {fileID: 0}
     - target: {fileID: 8471254294815661145, guid: 641b55c9b38b9264c8d2d9e974f5b3a1,
         type: 3}
