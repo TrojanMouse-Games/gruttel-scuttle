@@ -10,33 +10,27 @@ public class ApplyRating : MonoBehaviour
     // Start is called before the first frame update
     public int starRating;
     public GameObject star1, star2, star3;
-    //public static List<GameObject> stars;
-    //public GameObject[] stars;
     List<GameObject> stars = new List<GameObject>();
 
     void Start()
     {
         stars.Add(star1); stars.Add(star2); stars.Add(star3);
-
-        //retrieve saved star rating from last scene
+        //retrieve saved star rating from last scene - HAYLEY
         foreach (GameObject star in stars)
         {
             star.SetActive(false);
         }
-        RevealStar();        
+        StartCoroutine(RevealStar());        
     }
-
-    void RevealStar()
+   IEnumerator RevealStar()
     { 
         for (int i = 0; i < starRating ; i++)
-        { 
-            StartCoroutine(starCoroutine());
-            IEnumerator starCoroutine()
-            {
-                Debug.Log("Star rating is " + starRating + " and current star to display is " + i);
-                yield return new WaitForSeconds(1);
-                stars[i].SetActive(true);
-            }
+        {
+            yield return new WaitForSeconds(1);
+            Debug.Log("i =" + i);
+            //StartCoroutine(starCoroutine(i));
+            stars[i].SetActive(true);
+            //any sound for each star in here Otis
         }
     }
 }
