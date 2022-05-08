@@ -13,7 +13,7 @@ namespace TrojanMouse.Game.Obstacles
         // Other stuff
         public Vector3 positionToMoveTo, positionToRotateTo;
         public GameObject pivot;
-        public float timeUntilBridgeRaise;
+        public float timeUntilFirstBridgeRaise, timeUntillBridgeRaise;
         Vector3 originalRotation, originalPosition;
 
         /// <summary>
@@ -22,7 +22,18 @@ namespace TrojanMouse.Game.Obstacles
         /// </summary>
         void Start()
         {
-            RaiseBridge(timeUntilBridgeRaise);
+            RaiseBridge(timeUntilFirstBridgeRaise);
+        }
+
+        /// <summary>
+        /// Update is called every frame, if the MonoBehaviour is enabled.
+        /// </summary>
+        void Update()
+        {
+            if (!isRaised)
+            {
+                RaiseBridge(timeUntillBridgeRaise);
+            }
         }
 
         /// <summary>
@@ -41,6 +52,7 @@ namespace TrojanMouse.Game.Obstacles
         /// </summary>
         void MoveBridge()
         {
+            //StopCoroutine(RaiseBridgeAfterTime(0f));
             if (isRaised)
             {
                 // Save original postion
@@ -56,6 +68,7 @@ namespace TrojanMouse.Game.Obstacles
                 // Move to original pos
                 pivot.transform.localRotation = Quaternion.Euler(originalRotation);
                 pivot.transform.localPosition = originalPosition;
+
             }
         }
 
@@ -68,7 +81,7 @@ namespace TrojanMouse.Game.Obstacles
             isRaised = true;
             StartCoroutine(RaiseBridgeAfterTime(timeUntilRaise));
         }
-        
+
         /// <summary>
         /// This will raise the bridge after the passed in about of time
         /// </summary>
