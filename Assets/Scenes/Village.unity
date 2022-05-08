@@ -15684,6 +15684,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 474409353}
+  - component: {fileID: 474409355}
+  - component: {fileID: 474409354}
   m_Layer: 0
   m_Name: VILLAGE
   m_TagString: Untagged
@@ -15710,6 +15712,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &474409354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474409352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298290af3edf7334d8a31439dbb7d70b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencies: {fileID: 0}
+  inventoryNPC: {fileID: 0}
+  inventoryCoins: {fileID: 0}
+  coinText: {fileID: 0}
+  inventoryVouchers: {fileID: 0}
+  voucherText: {fileID: 0}
+  numOfClothingCoins: 0
+  numOfVouchers: 0
+  NPCObjects: []
+--- !u!114 &474409355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474409352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a157760277caef4793ae9febe413edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCObjects: []
+  clothingCoinAmount: 0
+  numOfVouchers: 0
+  currencyUI: {fileID: 0}
+  currencySprite: {fileID: 0}
+  currencyText: {fileID: 0}
+  regionHandler: {fileID: 0}
+  averageStressAmount: 0
+  wrench: {fileID: 0}
 --- !u!43 &476104845
 Mesh:
   m_ObjectHideFlags: 0
