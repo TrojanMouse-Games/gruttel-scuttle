@@ -220,7 +220,6 @@ GameObject:
   - component: {fileID: 1561096684362389932}
   - component: {fileID: 900606809921007315}
   - component: {fileID: 7945592116790598887}
-  - component: {fileID: 5023831608457323357}
   m_Layer: 7
   m_Name: PrefabBridge
   m_TagString: Untagged
@@ -276,23 +275,6 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 1
   m_AffectedAgents: ffffffff
---- !u!114 &5023831608457323357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2225325245668360982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c08550034c667c44b35d5db1a34fd22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRaised: 0
-  positionToMoveTo: {x: 0, y: 0, z: 0}
-  positionToRotateTo: {x: 0, y: 0, z: 0}
-  pivot: {fileID: 1449478955783047334}
-  timeUntilBridgeRaise: 0
 --- !u!1 &4791047623426999126
 GameObject:
   m_ObjectHideFlags: 0
