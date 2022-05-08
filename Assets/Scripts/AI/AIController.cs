@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using TrojanMouse.Inventory;
 using TrojanMouse.Litter.Region;
 using TrojanMouse.Gruttel;
+using Fungus;
 #endregion
 
 namespace TrojanMouse.AI
@@ -18,6 +19,7 @@ namespace TrojanMouse.AI
 
         [Space]
         [Header("Public Variables")]
+        public string FungusMessage = "LitterDeposited";
         public AIData data;
         public Transform currentTarget; // The current AI target.
         public Collider[] globalLitterArray;
@@ -42,7 +44,7 @@ namespace TrojanMouse.AI
         // Module manager ref
         public ModuleManager moduleManager; // The script that manages all the modules on the AI.
         // Other scripts
-        [HideInInspector]public Equipper equipper; // reference to the equipper script
+        [HideInInspector] public Equipper equipper; // reference to the equipper script
         private GruttelReference gruttelReference;
         private Inventory.Inventory inventory; // reference to the inventory script
         #endregion
@@ -62,7 +64,10 @@ namespace TrojanMouse.AI
         private void Update()
         {
             // update anim float, might wanna move this to an AnimationUpdate func.
-            animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
+            if (animator != null)
+            {
+                animator.SetBool("isMoving", ((transform.position - lastPosition).magnitude > 0) ? true : false);
+            }
             // Start the Timer function
             CheckDistraction();
             Timer();
@@ -106,9 +111,9 @@ namespace TrojanMouse.AI
                         else
                             if (currentTarget != null)
                             GotoPoint(currentTarget.transform.position, ignoreFSMTarget);
-                        else                            
+                        else
                             currentState = AIState.Nothing;
-                            AttemptLitterDrop();
+                        AttemptLitterDrop();
                         break;
                     case AIState.Processing:
                         break;
@@ -135,26 +140,30 @@ namespace TrojanMouse.AI
         void AttemptLitterPickup()
         {
             LitterObjectHolder target = moduleManager.litterModule.target;
-           
-            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;            
 
-            if (litterInRange){
-                target.isPickedUp = true;                
+            bool litterInRange = Vector3.Distance(target.transform.position, transform.position) < data.detectionRadius;
+
+            if (litterInRange)
+            {
+                target.isPickedUp = true;
                 bool hasPickedUpLitter = equipper.PickUp(target);
-                
-                if (hasPickedUpLitter) { // IF NOT HOLDING ANYTHING...
+
+                if (hasPickedUpLitter)
+                { // IF NOT HOLDING ANYTHING...
                     return;
                 }
-                currentState = AIState.MovingToMachine;                
+                currentState = AIState.MovingToMachine;
             }
         }
 
-        void AttemptLitterDrop(){            
+        void AttemptLitterDrop()
+        {
             if (!equipper.HeldObject) { return; }
 
-            closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);    
-            if (!closestHomeRegion) {                 
-                return; 
+            closestHomeRegion = RegionHandler.current.GetClosestRegion(RegionType.HOME, transform.position, data.detectionRadius);
+            if (!closestHomeRegion)
+            {
+                return;
             }
             data.agent.SetDestination(closestHomeRegion.transform.position);
             currentState = AIState.MovingToMachine;
@@ -165,6 +174,7 @@ namespace TrojanMouse.AI
                 equipper.Drop(RegionType.HOME);
                 //add to that region's litter meter
                 closestHomeRegion.GetComponentInParent<MachineFill>().IncreaseFill();
+                Flowchart.BroadcastFungusMessage(FungusMessage);
             }
         }
 
@@ -210,7 +220,7 @@ namespace TrojanMouse.AI
             data.agent.avoidancePriority = avoidancePriority;
             timer = data.wanderCooldown;
             baseColor = GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].GetColor("_BaseColor");
-            if(baseColor == null)
+            if (baseColor == null)
             {
                 baseColor = GetComponentInChildren<MeshRenderer>()?.materials[0].GetColor("_BaseColor");
             }

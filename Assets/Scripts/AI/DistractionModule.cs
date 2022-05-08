@@ -36,14 +36,19 @@ public class DistractionModule : MonoBehaviour
         if (!distracted)
         {
             distractionMarker.SetActive(false);
-        }else
+        }
+        else
         {
             // Drop any held litter
             Equipper eq = aIController.equipper;
             Debug.Log("Dropped litter!");
             eq.Drop(RegionType.WORLD);
 
-            // Stop the distraction animation
+            // if the animator exists, stop the holding animation
+            if (animator != null)
+            {
+                animator.SetBool("isHolding", false);
+            }
         }
     }
 
@@ -51,10 +56,14 @@ public class DistractionModule : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(distractedSound);
         distracted = true;
-        animator.SetBool("isDistracted", true);
         distractionMarker.SetActive(true);
         aIController.data.agent.SetDestination(transform.position);
         aIController.currentState = AIState.Nothing;
+
+        if (animator != null)
+        {
+            animator.SetBool("isDistracted", true);
+        }
     }
 
     public IEnumerator GenerateDistractionChance()

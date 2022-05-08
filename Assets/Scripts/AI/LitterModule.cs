@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TrojanMouse.Inventory;
 using TrojanMouse.Gruttel;
+using Fungus;
 
 namespace TrojanMouse.AI
 {
@@ -10,6 +11,10 @@ namespace TrojanMouse.AI
     {
         public LitterObjectHolder target;
         public LitterObjectHolder holdingLitter;
+        public string Message;
+        public Flowchart flowchart;
+
+        public Collider[] litterInRange;
 
         public AIState GetLitter(AIData data)
         {
@@ -37,18 +42,25 @@ namespace TrojanMouse.AI
             LitterObjectHolder potentialTarget = null;
             if (inventory.HasSlotsLeft())
             {
-                Collider[] litterInRange = Physics.OverlapSphere(transform.position, data.detectionRadius, data.litterLayer);
+                litterInRange = Physics.OverlapSphere(transform.position, data.detectionRadius, data.litterLayer);
                 GruttelType gruttelType = data.gruttel.data.type;
 
                 foreach (Collider c in litterInRange)
                 {
                     LitterObjectHolder litter = c.GetComponent<LitterObjectHolder>();
+                    if (litter == null)
+                    {
+                        return null;
+                    }
                     bool canPickup = CanPickupLitter(litter.litterObject.typeOfLitter, gruttelType);
                     Debug.Log($"can pickup: {canPickup}");
 
-                    if (canPickup){
+                    if (canPickup)
+                    {
                         data.agent.SetDestination(litter.transform.position);
-                        if(litter.litterObject.typeOfLitter == gruttelType){ // SHOULD MEAN IF THE LITTER IS THE SAME TYPE OF THE BUFFED GRUTTEL THEN THE GRUTTEL WILL PRIORITISE THE SAME TYPE OF LITTER
+                        if (litter.litterObject.typeOfLitter == gruttelType)
+                        { // SHOULD MEAN IF THE LITTER IS THE SAME TYPE OF THE BUFFED GRUTTEL THEN THE GRUTTEL WILL PRIORITISE THE SAME TYPE OF LITTER
+                            Fungus.Flowchart.BroadcastFungusMessage(Message);
                             return litter;
                         }
                         potentialTarget = litter;

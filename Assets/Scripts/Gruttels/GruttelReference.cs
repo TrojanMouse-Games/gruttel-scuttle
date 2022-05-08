@@ -5,6 +5,8 @@ using UnityEngine;
 namespace TrojanMouse.Gruttel
 {
     using Personalities;
+    using Inventory;
+    using AI;
     public class GruttelReference : MonoBehaviour
     {
         public GruttelData data;
@@ -12,17 +14,30 @@ namespace TrojanMouse.Gruttel
         public GruttelMeshes meshList;
         public SkinnedMeshRenderer meshRenderer;
         public GameObject model;
+        public GruttelType gruttelType;
 
         private void Start()
         {
-            data = new GruttelData(this);
+            data = new GruttelData(this, gruttelType);
             data.meshList = meshList;
         }
 
-        public void UpdateMesh(GameObject mesh)
+        public void UpdateMesh(GruttelMeshInfo meshInfo)
         {
             Destroy(model);
-            model = Instantiate(mesh, this.transform);
+            model = Instantiate(meshInfo.mesh, this.transform);
+
+            Animator anim = model.GetComponent<Animator>();
+
+            GetComponent<AnimationController>().anim = anim;
+
+            Inventory inv = GetComponent<Inventory>();
+
+            inv.holdPosition = model.GetComponentInChildren<TrashHoldPosition>().transform;
+            inv.animator = anim;
+
+            GetComponent<AIController>().animator = anim;
+            GetComponent<DistractionModule>().animator = anim;
         }
     }
 }

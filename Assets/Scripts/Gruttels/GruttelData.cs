@@ -39,9 +39,10 @@ namespace TrojanMouse.Gruttel
         public int overallStress;
 
 
-        public GruttelData(GruttelReference reference)
+        public GruttelData(GruttelReference reference, GruttelType gruttelType)
         {
             gruttelReference = reference;
+            meshList = gruttelReference.meshList;
             PersonalityLists lists = gruttelReference.personalityList;
 
             traitsMinMax = lists.traitsMinMax;
@@ -59,13 +60,15 @@ namespace TrojanMouse.Gruttel
             }
 
             GenerateRandomGruttel();
-            type = GruttelType.Normal;
+            UpdateGruttelType(gruttelType);
         }
 
         public void UpdateGruttelType(GruttelType _type)
         {
+            Debug.Log(type);
+            Debug.Log(meshList);
             type = _type;
-            gruttelReference.UpdateMesh(meshList.GetMesh(type));
+            gruttelReference.UpdateMesh(meshList.GetMeshInfo(type));
         }
 
         public void GenerateRandomGruttel()

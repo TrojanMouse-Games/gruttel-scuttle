@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject pauseMenu;
+    [SerializeField]
+    private GameObject optionsMenu;
     public bool paused;
     [SerializeField]CursorLockMode cursor;
 
@@ -22,6 +24,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            // Make sure that the options menu isn't being shown
+            optionsMenu.SetActive(false);
             Pause();
         }
     }
