@@ -275,6 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5004730145714324390}
+  - component: {fileID: 8749532987199956402}
   m_Layer: 6
   m_Name: Base Gruttel - Buff
   m_TagString: NPC
@@ -302,6 +303,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8749532987199956402
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638382633496713500}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 43a04e47bbb84f54da4c3082d6ff3aad, type: 3}
+  m_Controller: {fileID: 9100000, guid: f704402d7194afe4495c778ef15e380d, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7308229088744345227
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,11 +9,12 @@ using UnityEngine.SceneManagement;
 public class CurrenciesAndValues : MonoBehaviour
 {
     //NPC items - Can be used to unlock special NPCs - gets added to when reward gained.
-    public List<string> NPCObjects;
+    //public List<string> NPCObjects;
+    public List<RewardManager> NPCObjects;
     //Clothing currency - Can be used to buy skins
-    public float clothingCoinAmount;
+    public int clothingCoinAmount = 0;
     //Nana Betsy Vouchers  - Josh help - can be redeemed at Nana Betseries
-    public float numOfVouchers;
+    public int numOfVouchers = 0;
     //the UI object holding the currency update pop up
     public GameObject currencyUI;
     //UI sprite to change
@@ -32,9 +33,12 @@ public class CurrenciesAndValues : MonoBehaviour
     List<float> stressThresholds = new List<float>();
     private int starRating = 0;
 
+    //holding spot for npc rewards for loading purposes
+    public RewardManager wrench;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        LoadData();
         //Ensure currency ui is inactive and blank at start
         currencyUI.SetActive(false);
         currencySprite.gameObject.SetActive(false);
@@ -102,7 +106,8 @@ public class CurrenciesAndValues : MonoBehaviour
                 starRating = i + 1;
                 Debug.Log($"You get {starRating} stars!");
                 valueFound = true;
-                SaveData();
+                SaveLevelData();
+                SaveCurrencyData();
                 break;
             }
         }
@@ -110,11 +115,37 @@ public class CurrenciesAndValues : MonoBehaviour
         {
             Debug.LogError("Cassy fucked up with the star rating system, please let her (or someone competent) know");
         }
-        //- HAYLEY - SAVE STAR RATING ASSIGNED TO THE LEVEL
     }
-    void SaveData()
+    void LoadData()
+    {
+        if (PlayerPrefs.HasKey("NPCObjectName0"))
+        {
+            if ("NPCObjectName0" == wrench.name)
+            {
+                NPCObjects.Add(wrench);
+            }
+        }
+        //saves number of clothing coins
+        clothingCoinAmount = PlayerPrefs.GetInt("clothingCoins");
+        //saves number of nana betsy vouchers
+        numOfVouchers = PlayerPrefs.GetInt("nanaBetsyVouchers");
+    }
+    void SaveLevelData()
     {
         //saves current star rating for victory scene
         PlayerPrefs.SetInt($"{SceneManager.GetActiveScene().name}starRating", starRating);
+    }
+    void SaveCurrencyData()
+    { 
+        //saves names of owned inventory items like npc objects, clothing coins and nana betsy vouchers
+        for (int i = 0; i < NPCObjects.Count; i++)
+        { 
+            PlayerPrefs.SetString("NPCObjectName"+i, NPCObjects[i].name);
+        }
+        //saves number of clothing coins
+        PlayerPrefs.SetInt("clothingCoins", clothingCoinAmount);
+        //saves number of nana betsy vouchers
+        PlayerPrefs.SetInt("nanaBetsyVouchers", numOfVouchers);
+
     }
 }

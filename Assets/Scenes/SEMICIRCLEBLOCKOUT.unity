@@ -98,7 +98,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 77cf657917c77d74488fdaca3f687e34,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: d5b199da5e19f484cb3001d3a287e501,
     type: 2}
 --- !u!196 &4
@@ -6766,6 +6767,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
         type: 3}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 729604f1b42400e4a8a562f670d0bf5c,
+        type: 2}
+    - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
+        type: 3}
       propertyPath: prerequisiteSettings.tipText
       value: 
       objectReference: {fileID: 1294431648}
@@ -6918,6 +6925,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892463536048791272, guid: 88323b5c76558bf4d8a002badf339575,
+        type: 3}
+      propertyPath: maxLitter
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 892463536048791272, guid: 88323b5c76558bf4d8a002badf339575,
+        type: 3}
+      propertyPath: maxStressCountdown
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88323b5c76558bf4d8a002badf339575, type: 3}
