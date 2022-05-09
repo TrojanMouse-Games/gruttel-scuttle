@@ -14,6 +14,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: hasTrash
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: trashType
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 137056759830894744}
   m_Solo: 0
@@ -93,8 +96,11 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isMoving
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: trashType
+    m_EventTreshold: 1
   - m_ConditionMode: 1
-    m_ConditionEvent: hasSkip
+    m_ConditionEvent: hasTrash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2867957565448538751}
@@ -152,6 +158,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: hasTrash
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: trashType
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 137056759830894744}
   m_Solo: 0
@@ -193,8 +202,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: hasSkip
-    m_Type: 4
+  - m_Name: trashType
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -375,9 +384,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: hasSkip
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7207057408981498822}
   m_Solo: 0
@@ -450,9 +456,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: hasSkip
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: trashType
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3324863057269591705}
   m_Solo: 0
@@ -477,9 +483,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: hasSkip
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7207057408981498822}
@@ -506,8 +509,11 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: trashType
+    m_EventTreshold: 1
   - m_ConditionMode: 1
-    m_ConditionEvent: hasSkip
+    m_ConditionEvent: hasTrash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3324863057269591705}
@@ -536,6 +542,9 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: hasTrash
+    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: trashType
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6975311544548102724}

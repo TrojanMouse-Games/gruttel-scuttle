@@ -32,7 +32,7 @@ public class VillageCurrency : MonoBehaviour
         DisplayInventory();
     }
     void DisplayInventory()
-    { 
+    {
         if (numOfClothingCoins != 0)
         {
             coinText.text = numOfClothingCoins.ToString();

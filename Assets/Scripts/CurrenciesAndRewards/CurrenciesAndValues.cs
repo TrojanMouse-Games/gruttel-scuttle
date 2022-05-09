@@ -93,7 +93,7 @@ public class CurrenciesAndValues : MonoBehaviour
         maxStress = Stress.current.maxLitter;
         Debug.Log("max stress" + maxStress);
         //Uses the max stress to calculate the average stress as a %
-        stressPercent = (averageStressAmount / maxStress)*100;
+        stressPercent = (averageStressAmount / maxStress) * 100;
         Debug.Log("stress percent " + stressPercent);
 
         bool valueFound = false;
@@ -102,7 +102,7 @@ public class CurrenciesAndValues : MonoBehaviour
         for (int i = 0; i < stressThresholds.Count; i++)
         {
             if (stressPercent >= stressThresholds[i])
-            { 
+            {
                 starRating = i + 1;
                 Debug.Log($"You get {starRating} stars!");
                 valueFound = true;
@@ -136,11 +136,11 @@ public class CurrenciesAndValues : MonoBehaviour
         PlayerPrefs.SetInt($"{SceneManager.GetActiveScene().name}starRating", starRating);
     }
     void SaveCurrencyData()
-    { 
+    {
         //saves names of owned inventory items like npc objects, clothing coins and nana betsy vouchers
         for (int i = 0; i < NPCObjects.Count; i++)
-        { 
-            PlayerPrefs.SetString("NPCObjectName"+i, NPCObjects[i].name);
+        {
+            PlayerPrefs.SetString("NPCObjectName" + i, NPCObjects[i].name);
         }
         //saves number of clothing coins
         PlayerPrefs.SetInt("clothingCoins", clothingCoinAmount);
