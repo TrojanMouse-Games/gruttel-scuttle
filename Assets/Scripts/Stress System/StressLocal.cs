@@ -25,7 +25,10 @@ namespace TrojanMouse.StressSystem
         void Start()
         {
             //Stress.current.AddGruttel(this); // ADDS THIS SCRIPT TO A LIST THAT THE PARENT SCRIPT WILL READ FROM
-            InvokeRepeating("CalculateStress", Stress.current.Cooldown, Stress.current.Cooldown);
+            if (Stress.current != null)
+            {
+                InvokeRepeating("CalculateStress", Stress.current.Cooldown, Stress.current.Cooldown);
+            }
         }
 
         void CalculateStress()

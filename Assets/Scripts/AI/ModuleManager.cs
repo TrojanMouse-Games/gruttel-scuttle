@@ -26,7 +26,10 @@ public class ModuleManager : MonoBehaviour
     private void Awake()
     {
         aiController = GetComponent<AIController>();
-        GameLoopBT.instance.SetAIState += SetState;
+        if (GameLoopBT.instance != null)
+        {
+            GameLoopBT.instance.SetAIState += SetState;
+        }
     }
 
     void SetState(EnableAI.AIState state)
