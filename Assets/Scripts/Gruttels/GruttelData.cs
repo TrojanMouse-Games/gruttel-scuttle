@@ -69,6 +69,11 @@ namespace TrojanMouse.Gruttel
             Debug.Log(meshList);
             type = _type;
             gruttelReference.UpdateMesh(meshList.GetMeshInfo(type));
+
+            if (type == GruttelType.Buff) {
+                gruttelReference.GetComponent<CapsuleCollider>().height *= 2;
+                gruttelReference.GetComponent<CapsuleCollider>().radius *= 2;
+            }
         }
 
         public void GenerateRandomGruttel()
