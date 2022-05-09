@@ -23,6 +23,9 @@ namespace TrojanMouse.Game.Obstacles
         void Start()
         {
             RaiseBridge(timeUntilFirstBridgeRaise);
+            // Save original postion
+            originalPosition = pivot.transform.localPosition;
+            originalRotation = pivot.transform.localRotation.eulerAngles;
         }
 
         /// <summary>
@@ -55,10 +58,6 @@ namespace TrojanMouse.Game.Obstacles
             //StopCoroutine(RaiseBridgeAfterTime(0f));
             if (isRaised)
             {
-                // Save original postion
-                originalPosition = pivot.transform.localPosition;
-                originalRotation = pivot.transform.localRotation.eulerAngles;
-
                 // Move to upwards pos
                 pivot.transform.localRotation = Quaternion.Euler(positionToRotateTo);
                 pivot.transform.localPosition = positionToMoveTo;
