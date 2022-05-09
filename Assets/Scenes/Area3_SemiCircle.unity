@@ -125,6 +125,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: a3d9b85d68a621a4cb4df69d59d2c2de, type: 2}
+--- !u!1 &32992969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 822648885206032572, guid: 4cd271fd9287c1b41a44ffe423eb381b,
+    type: 3}
+  m_PrefabInstance: {fileID: 822648885143226676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &55945955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 355120003780553916, guid: 1087a2d88f3bab4438e0cb2011a53b8c,
@@ -2383,7 +2389,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 822648885143226676}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 32992969}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a157760277caef4793ae9febe413edc, type: 3}
@@ -2925,6 +2931,11 @@ PrefabInstance:
       propertyPath: prerequisiteSettings.tipText
       value: 
       objectReference: {fileID: 1645455057}
+    - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
+        type: 3}
+      propertyPath: prerequisiteSettings.village
+      value: 
+      objectReference: {fileID: 32992969}
     - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
         type: 3}
       propertyPath: prerequisiteSettings.cycleText
