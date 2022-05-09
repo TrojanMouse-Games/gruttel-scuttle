@@ -134,6 +134,7 @@ public class CurrenciesAndValues : MonoBehaviour
     {
         //saves current star rating for victory scene
         PlayerPrefs.SetInt($"{SceneManager.GetActiveScene().name}starRating", starRating);
+        PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
     }
     void SaveCurrencyData()
     {

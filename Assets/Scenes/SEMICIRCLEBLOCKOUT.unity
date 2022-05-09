@@ -684,6 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 246741865}
     - target: {fileID: 822648885206032574, guid: 4cd271fd9287c1b41a44ffe423eb381b,
         type: 3}
+      propertyPath: regionHandler
+      value: 
+      objectReference: {fileID: 546727889}
+    - target: {fileID: 822648885206032574, guid: 4cd271fd9287c1b41a44ffe423eb381b,
+        type: 3}
       propertyPath: currencySprite
       value: 
       objectReference: {fileID: 158298529}
@@ -694,6 +699,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822648885206032573, guid: 4cd271fd9287c1b41a44ffe423eb381b,
     type: 3}
   m_PrefabInstance: {fileID: 530340155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &546727889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 892463536048791268, guid: 88323b5c76558bf4d8a002badf339575,
+    type: 3}
+  m_PrefabInstance: {fileID: 8888296113671315837}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &631622464 stripped
 MonoBehaviour:
@@ -6944,7 +6955,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levels.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 729604f1b42400e4a8a562f670d0bf5c,
+      objectReference: {fileID: 11400000, guid: 6602a4adf858a6946a3187915e922076,
         type: 2}
     - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
         type: 3}

@@ -53,23 +53,23 @@ namespace TrojanMouse.Game.Obstacles
         /// <summary>
         /// Moves the drawbridge upwards.
         /// </summary>
-        void MoveBridge()
-        {
-            //StopCoroutine(RaiseBridgeAfterTime(0f));
-            if (isRaised)
-            {
-                // Move to upwards pos
-                pivot.transform.localRotation = Quaternion.Euler(positionToRotateTo);
-                pivot.transform.localPosition = positionToMoveTo;
-            }
-            else if (!isRaised)
-            {
-                // Move to original pos
-                pivot.transform.localRotation = Quaternion.Euler(originalRotation);
-                pivot.transform.localPosition = originalPosition;
+void MoveBridge()
+{
+    //StopCoroutine(RaiseBridgeAfterTime(0f));
+    if (isRaised)
+    {
+        // Move to upwards pos
+        pivot.transform.localRotation = Quaternion.Euler(positionToRotateTo);
+        pivot.transform.localPosition = positionToMoveTo;
+    }
+    else if (!isRaised)
+    {
+        // Move to original pos
+        pivot.transform.localRotation = Quaternion.Euler(originalRotation);
+        pivot.transform.localPosition = originalPosition;
 
-            }
-        }
+    }
+}
 
         /// <summary>
         /// Raises the bridge, starts a coroutine to pick when based on the passed in float

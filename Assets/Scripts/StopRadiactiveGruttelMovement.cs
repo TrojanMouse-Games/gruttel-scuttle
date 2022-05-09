@@ -11,8 +11,8 @@ public class StopRadiactiveGruttelMovement : MonoBehaviour
     private void Awake()
     {
         aiData = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponent<AIController>().data;
-        aiData.agent.speed *= 1.24316312101f;
-        aiData.agent.acceleration *= 1.24316312101f;
+        aiData.agent.speed *= 1.6f;
+        aiData.agent.acceleration *= 1.6f;
     }
 
     public void OnCollisionEnter(Collision other)
