@@ -29,7 +29,7 @@ namespace TrojanMouse.Inventory
             bool success = inventoryHandler.AddToInventory(litter.litterObject);
             if (success)
             {
-                selectedObject = inventoryHandler.Equip(litter.transform, currentIndex);
+                selectedObject = inventoryHandler.Equip(litter, currentIndex);
                 if (selectedObject)
                 {
                     selectedObject.GetComponent<LitterObjectHolder>().parent = itemParent;

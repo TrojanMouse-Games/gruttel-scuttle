@@ -29,7 +29,6 @@ namespace TrojanMouse.AI
         public LayerMask litterLayerMask;
         public float timer = 0f; // Internal timer used for state changes and tracking.
         public Animator animator;
-        public float currSpeed;
 
         // Internal Variables
         private NavMeshHit hit; // Used for determining where the AI moves to.
@@ -234,7 +233,6 @@ namespace TrojanMouse.AI
             {
                 Destroy(this.gameObject);
             }
-
             //StartCoroutine(moduleManager.GetComponent<DistractionModule>().GenerateDistractionChance());
         }
 

@@ -98,7 +98,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 77cf657917c77d74488fdaca3f687e34,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: d5b199da5e19f484cb3001d3a287e501,
     type: 2}
 --- !u!196 &4
@@ -313,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72.660965
+      value: 75.77604
       objectReference: {fileID: 0}
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
@@ -323,12 +324,12 @@ PrefabInstance:
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 103.66021
+      value: 108.01899
       objectReference: {fileID: 0}
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.56470966
+      value: -0.120314576
       objectReference: {fileID: 0}
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
@@ -338,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8252896
+      value: -0.99273586
       objectReference: {fileID: 0}
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
@@ -353,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -111.236
+      value: -193.821
       objectReference: {fileID: 0}
     - target: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
         type: 3}
@@ -683,6 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 246741865}
     - target: {fileID: 822648885206032574, guid: 4cd271fd9287c1b41a44ffe423eb381b,
         type: 3}
+      propertyPath: regionHandler
+      value: 
+      objectReference: {fileID: 546727889}
+    - target: {fileID: 822648885206032574, guid: 4cd271fd9287c1b41a44ffe423eb381b,
+        type: 3}
       propertyPath: currencySprite
       value: 
       objectReference: {fileID: 158298529}
@@ -693,6 +699,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 822648885206032573, guid: 4cd271fd9287c1b41a44ffe423eb381b,
     type: 3}
   m_PrefabInstance: {fileID: 530340155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &546727889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 892463536048791268, guid: 88323b5c76558bf4d8a002badf339575,
+    type: 3}
+  m_PrefabInstance: {fileID: 8888296113671315837}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &631622464 stripped
 MonoBehaviour:
@@ -1848,6 +1860,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 553575279631598946, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553575279631598946, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -2115,6 +2132,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083546502816561610, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 144
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083546502816561610, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 1098329252284724374, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -2656,6 +2683,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2344990221419130996, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344990221419130996, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 2354404013777881982, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2735,6 +2772,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491041969229203599, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491041969229203599, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2497613605399832158, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -3191,6 +3238,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3480231201295446011, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3480231201295446011, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3498570094442437460, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3221,10 +3278,30 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3552605677931227419, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 148
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552605677931227419, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 43
+      objectReference: {fileID: 0}
     - target: {fileID: 3559239223479848605, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573173624506330554, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573173624506330554, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 3584578497039600399, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -3380,6 +3457,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789874439708853862, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789874439708853862, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 3800701180362446881, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -3551,6 +3638,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 4181658867065666149, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181658867065666149, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4187437423615638128, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3661,6 +3758,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 4461743364642074013, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461743364642074013, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4471357035306717317, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3670,6 +3777,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479464820531228183, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479464820531228183, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 4488878982036013353, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -4231,6 +4348,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 5670074971766962610, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670074971766962610, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5690155567244556010, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4395,6 +4522,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099888602369994525, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099888602369994525, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 6108753706105925665, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -4731,6 +4868,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6844277825931538594, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844277825931538594, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 44
+      objectReference: {fileID: 0}
     - target: {fileID: 6845203429095804031, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4811,6 +4958,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6984424906234771682, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984424906234771682, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 6994475133465742025, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4840,6 +4997,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074086572338786631, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 178
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074086572338786631, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7076999519818556765, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -4920,6 +5087,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273384484241414171, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273384484241414171, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 7285625474982387905, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -5635,6 +5812,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694058114748122663, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntillBridgeRaise
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694058114748122663, guid: fb0d785f7daad08468842af37e34ba5f,
+        type: 3}
+      propertyPath: timeUntilFirstBridgeRaise
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 8698651885191889013, guid: fb0d785f7daad08468842af37e34ba5f,
         type: 3}
@@ -6768,7 +6955,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levels.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 729604f1b42400e4a8a562f670d0bf5c,
+      objectReference: {fileID: 11400000, guid: 6602a4adf858a6946a3187915e922076,
         type: 2}
     - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
         type: 3}
