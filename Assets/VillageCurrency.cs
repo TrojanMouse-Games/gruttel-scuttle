@@ -10,9 +10,9 @@ public class VillageCurrency : MonoBehaviour
     //access the inventory for ui
     public GameObject inventoryNPC;
     public GameObject inventoryCoins;
-    public TextMeshPro coinText;
+    public GameObject coinText;
     public GameObject inventoryVouchers;
-    public TextMeshPro voucherText;
+    public GameObject voucherText;
     //inventory possible items
     public int numOfClothingCoins;
     public int numOfVouchers;
@@ -35,12 +35,12 @@ public class VillageCurrency : MonoBehaviour
     {
         if (numOfClothingCoins != 0)
         {
-            coinText.text = numOfClothingCoins.ToString();
+            coinText.GetComponent<TextMeshPro>().text = numOfClothingCoins.ToString();
             inventoryCoins.SetActive(true);
         }
         if (numOfVouchers != 0)
         {
-            voucherText.text = numOfVouchers.ToString();
+            voucherText.GetComponent<TextMeshPro>().text = numOfVouchers.ToString();
             inventoryVouchers.SetActive(true);
         }
         if (NPCObjects.Count != 0)
