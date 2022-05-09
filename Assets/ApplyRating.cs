@@ -40,10 +40,10 @@ public class ApplyRating : MonoBehaviour
             //any sound for each star in here Otis
         }
 
-        if (starRating == 3 && PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name) == "SEMICIRCLEBLOCKOUT")
-        {
+        // if (starRating == 3 && PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name) == "SEMICIRCLEBLOCKOUT")
+        // {
             ShowComicEnd();
-        }
+        // }
     }
     void SaveData()
     {
