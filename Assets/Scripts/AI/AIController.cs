@@ -136,7 +136,7 @@ namespace TrojanMouse.AI
             }
         }
 
-        void AttemptLitterPickup()
+        public void AttemptLitterPickup()
         {
             LitterObjectHolder target = moduleManager.litterModule.target;
 
