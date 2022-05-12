@@ -123,9 +123,11 @@ namespace TrojanMouse.AI.Movement
 
                         // Call the movement function
                         aiController.GotoPoint(hit.point, true);
-                        //aiController.CheckForLitter();
+
+                        // Check for seeing if litter is close
+                        //aiController.AttemptLitterPickup();
+
                         directing = false;
-                        //aiController.currentState = aiController.GetLitter();
 
                         aiController.beingDirected = true;
                         Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
