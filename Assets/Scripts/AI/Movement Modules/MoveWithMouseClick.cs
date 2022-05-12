@@ -41,7 +41,6 @@ namespace TrojanMouse.AI.Movement
         {
             //Get the cam ref
             mainCam = Camera.main;
-
         }
 
         // Update is called once per frame
@@ -126,7 +125,7 @@ namespace TrojanMouse.AI.Movement
                         aiController.GotoPoint(hit.point, true);
                         //aiController.CheckForLitter();
                         directing = false;
-                        //aiController.currentState = aiController.GetLitter();a
+                        //aiController.currentState = aiController.GetLitter();
 
                         aiController.beingDirected = true;
                         Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");

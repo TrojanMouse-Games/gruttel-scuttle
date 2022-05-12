@@ -170,6 +170,8 @@ namespace TrojanMouse.AI
 
             if (machineInRange)
             {
+                // Set state to cancel out any movement, this should make them drop it as soon as they can.
+                currentState = AIState.MovingToMachine;
                 equipper.Drop(RegionType.HOME);
                 //add to that region's litter meter
                 closestHomeRegion.GetComponentInParent<MachineFill>().IncreaseFill();
@@ -322,8 +324,8 @@ namespace TrojanMouse.AI
                 case 3:
                     Destroy(this);
                     break;
-            }
-            #endregion
+            }   
         }
+        #endregion
     }
 }
