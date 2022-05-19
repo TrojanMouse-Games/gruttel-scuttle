@@ -29,6 +29,7 @@ namespace TrojanMouse.AI.Movement
         // Other stuff, for the tutorial mainly.
         DisplayPath displayPath;
         Color baseColor;
+        GameObject selectedMarker;
 
         //Audio
         [SerializeField] private EventReference SelectionSound;
@@ -41,6 +42,7 @@ namespace TrojanMouse.AI.Movement
         {
             //Get the cam ref
             mainCam = Camera.main;
+            
         }
 
         // Update is called once per frame
@@ -69,6 +71,8 @@ namespace TrojanMouse.AI.Movement
                     directing = true;
 
                     StartCoroutine(ChangeColorSelect(hit.transform));
+
+
                 }
                 else
                 {
@@ -82,6 +86,10 @@ namespace TrojanMouse.AI.Movement
                         directing = true;
 
                         StartCoroutine(ChangeColorSelect(hit.transform));
+
+                        // rough code for setting and activating selected marker
+                        selectedMarker = selected.Find("SelectedMarker").gameObject;
+                        selectedMarker.SetActive(directing);
                     }
                 }
 
@@ -129,6 +137,8 @@ namespace TrojanMouse.AI.Movement
 
                         directing = false;
 
+
+                        selectedMarker.SetActive(directing);
                         aiController.beingDirected = true;
                         Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
                         selected.GetComponentInChildren<SkinnedMeshRenderer>()?.materials[0].SetColor("_Color", (Color)aiController.baseColor);
