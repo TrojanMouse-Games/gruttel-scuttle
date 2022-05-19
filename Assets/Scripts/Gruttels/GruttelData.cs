@@ -60,15 +60,21 @@ namespace TrojanMouse.Gruttel
             }
 
             GenerateRandomGruttel();
-            UpdateGruttelType(gruttelType);
+            UpdateGruttelType(gruttelType, true);
         }
 
-        public void UpdateGruttelType(GruttelType _type)
+        public void UpdateGruttelType(GruttelType _type, bool isInit = false)
         {
             Debug.Log(type);
             Debug.Log(meshList);
             type = _type;
-            gruttelReference.UpdateMesh(meshList.GetMeshInfo(type));
+            gruttelReference.UpdateMesh(meshList.GetMeshInfo(type), isInit);
+
+            if (type == GruttelType.Buff)
+            {
+                gruttelReference.GetComponent<CapsuleCollider>().height *= 2;
+                gruttelReference.GetComponent<CapsuleCollider>().radius *= 2;
+            }
         }
 
         public void GenerateRandomGruttel()

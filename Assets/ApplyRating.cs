@@ -18,7 +18,6 @@ public class ApplyRating : MonoBehaviour
         FindStars();
     }
 
-
     [ContextMenu("Find Stars")]
     public void FindStars()
     {
@@ -40,11 +39,13 @@ public class ApplyRating : MonoBehaviour
             //any sound for each star in here Otis
         }
 
-        if (starRating == 3 && PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name) == "SEMICIRCLEBLOCKOUT")
+        if (PlayerPrefs.GetInt("SEMICIRCLEBLOCKOUTHighScore", 0) > 0 &&
+        PlayerPrefs.GetInt("Area3_SemiCircleHighScore", 0) > 0)
         {
             ShowComicEnd();
         }
     }
+
     void SaveData()
     {
         string lastScene = PlayerPrefs.GetString("LastScene", SceneManager.GetActiveScene().name);

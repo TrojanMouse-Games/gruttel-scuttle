@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Fungus;
 
 public class VillageCurrency : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class VillageCurrency : MonoBehaviour
     public int numOfClothingCoins;
     public int numOfVouchers;
     public List<RewardManager> NPCObjects;
+
+    public Flowchart wrenchFlowchart;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,7 @@ public class VillageCurrency : MonoBehaviour
         if (NPCObjects.Count != 0)
         {
             inventoryNPC.SetActive(true);
+            wrenchFlowchart.SetBooleanVariable("Spanner", true);
         }
     }
 

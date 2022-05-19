@@ -41,7 +41,6 @@ namespace TrojanMouse.AI.Movement
         {
             //Get the cam ref
             mainCam = Camera.main;
-
         }
 
         // Update is called once per frame
@@ -124,9 +123,11 @@ namespace TrojanMouse.AI.Movement
 
                         // Call the movement function
                         aiController.GotoPoint(hit.point, true);
-                        //aiController.CheckForLitter();
+
+                        // Check for seeing if litter is close
+                        //aiController.AttemptLitterPickup();
+
                         directing = false;
-                        //aiController.currentState = aiController.GetLitter();a
 
                         aiController.beingDirected = true;
                         Debug.Log($"{aiController.gameObject.name} is being directed: {aiController.beingDirected}");
@@ -208,7 +209,7 @@ namespace TrojanMouse.AI.Movement
         /// <returns></returns>
         bool FireRay(LayerMask lMask, float rDistance)
         {
-            return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Collide)) ? true : false;
+            return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Ignore)) ? true : false;
         }
 
         public void ChangeScriptState(bool state)

@@ -8,6 +8,9 @@ public class RewardManager : ScriptableObject
 {
     //coroutine for flashing ui
     private IEnumerator coroutine;
+    //bool for if a reward should be disabled (replaced with minor stress) after use
+    [HideInInspector]
+    public bool oneTimeUse;
     
     [Header("Reward and Type")]
     [Tooltip("Add the prefab that you want to be shown and obtained by the player.")]
@@ -70,6 +73,7 @@ public class RewardManager : ScriptableObject
     //Function to dispense a clothing coin reward
     void ClothingCoinFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
+        oneTimeUse = false;
         Debug.Log("Clothing coin function called");
         //Increase clothing coin number
         currencies.clothingCoinAmount++;
@@ -87,6 +91,7 @@ public class RewardManager : ScriptableObject
     //Function to dispense an NPC special object reward
     void NPCSpecialFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
+        oneTimeUse = true;
         Debug.Log("NPC object function called");
         //Add object to the currently owned NPC objects list
         //currencies.NPCObjects.Add(this);
@@ -103,6 +108,7 @@ public class RewardManager : ScriptableObject
     //Function to dispense a Nana Betsy reward object
     void NanaBetsyFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
+        oneTimeUse = true;
         Debug.Log("Nana Betsy voucher function called");
         currencies.numOfVouchers++;
         //Set image to Nana Betsy voucher icon
@@ -117,6 +123,7 @@ public class RewardManager : ScriptableObject
     //Function to dispense a stress reduction
     void StressLimitIncFunction(CurrenciesAndValues currencies, GameObject currencyUI, MachineFill machineFill)
     {
+        oneTimeUse = false;
         Debug.Log("stress limit increase declared");
         //REDUCE STRESS BY AMOUNT IN STRESS REDUCTION, 
         Debug.Log("you have chosen " + stressLimitInc + "size stress limit increase, with a value of " + (int)stressLimitInc + "%.");
@@ -127,7 +134,7 @@ public class RewardManager : ScriptableObject
         //Set image to stress icon
         currencies.currencySprite.sprite = rewardImage;
         //Set UI text to stress amount change
-        currencies.currencyText.text = "+"+((int)stressLimitInc).ToString()+"%";
+        currencies.currencyText.text = ((int)stressLimitInc).ToString()+"%";
         //Enable relevant UI
         currencies.currencySprite.gameObject.SetActive(true);
         currencies.currencyText.gameObject.SetActive(true);
