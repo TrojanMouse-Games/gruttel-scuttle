@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TrojanMouse.Litter.Region;
 
@@ -25,7 +26,8 @@ public class MachineFill : MonoBehaviour
     public GameObject homeRegionObj;
     //gets home region component on the child object
     private LitterRegion homeRegion;
-
+    //small stress limit inc reward to replace limited ones
+    public RewardManager smallStress;
     private float timeElapsed;
     //time to fill a little rubbish
     [Tooltip("Seconds to fill once piece of litter")]
@@ -51,6 +53,10 @@ public class MachineFill : MonoBehaviour
         domeRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
         //gets home region attached to this object
         homeRegion = homeRegionObj.GetComponent<LitterRegion>();
+        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + this.gameObject.name))
+        {
+            reward = smallStress;
+        }
     }
     //handles filling the machine, and any side effects like animation or sound changes
     public void IncreaseFill()
@@ -68,7 +74,7 @@ public class MachineFill : MonoBehaviour
     //called if the machine is full
     private void OnMouseDown()
     {
-        if (currentFillLevel == maxFillLevel)
+        if (currentFillLevel >= maxFillLevel)
         {
             //OTIS - Any sounds for a full machine
             //Make machine full, pop out right reward
@@ -103,7 +109,11 @@ public class MachineFill : MonoBehaviour
         domeFillLevel = 0;
         currentFillLevel = 0;
         StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, emptyLerpDuration));
-
+        if (reward.oneTimeUse)
+        {
+            reward = smallStress;
+        }
         homeRegion.enabled = true;
+        PlayerPrefs.SetString(SceneManager.GetActiveScene().name + this.gameObject.name, reward.name);
     }
 }
