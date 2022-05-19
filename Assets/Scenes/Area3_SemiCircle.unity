@@ -175,6 +175,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &235543074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5054020638133600286, guid: 37c25709a9c0e0b42971c300c3b75c9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5054020637267295753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &285175193 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6727708101794933758, guid: 9922fff28e2b6ce42a3867c13e8997ef,
@@ -2137,6 +2143,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4110e0e1082c2ff458585e326eafa509, type: 3}
+--- !u!1 &1985464373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2512927921408083498, guid: 37c25709a9c0e0b42971c300c3b75c9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5054020637267295753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1985464376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985464373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59359d6acd7b2f4db43dc070f4ae1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipBar: {fileID: 235543074}
+  label: {fileID: 1645455057}
+--- !u!114 &1985464377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985464373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59359d6acd7b2f4db43dc070f4ae1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipBar: {fileID: 2057064869}
+  label: {fileID: 2009489997}
 --- !u!114 &2009489997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5054020639150120004, guid: 37c25709a9c0e0b42971c300c3b75c9e,
@@ -2276,6 +2316,12 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!1 &2057064869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5054020639332621553, guid: 37c25709a9c0e0b42971c300c3b75c9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5054020637267295753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2103298048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 822648883577913652, guid: 4cd271fd9287c1b41a44ffe423eb381b,
@@ -3422,7 +3468,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prerequisiteSettings.tipText
       value: 
-      objectReference: {fileID: 1645455057}
+      objectReference: {fileID: 1985464376}
     - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
         type: 3}
       propertyPath: prerequisiteSettings.village
@@ -3432,7 +3478,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prerequisiteSettings.cycleText
       value: 
-      objectReference: {fileID: 2009489997}
+      objectReference: {fileID: 1985464377}
     - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
         type: 3}
       propertyPath: prerequisiteSettings.prepCamera
