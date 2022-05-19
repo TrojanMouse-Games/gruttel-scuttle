@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace TrojanMouse.GameplayLoop
-{
-    public class ChangeUIText : GLNode
-    {
-        Text textUI;
+
+namespace TrojanMouse.GameplayLoop{
+    public class ChangeUIText : GLNode{
         string text;
-        public ChangeUIText(Text textUI, string text)
-        { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
-            this.textUI = textUI;
+        float duration;
+        UIText uitextscript;
+
+        bool hasCalled;
+        public ChangeUIText(UIText uitextscript, string text, float duration){ // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES            
             this.text = text;
+            this.duration = duration;
+            this.uitextscript = uitextscript;
         }
-        public override NodeState Evaluate()
-        {
-            textUI.text = text; // SETS THE TEXT
+        public override NodeState Evaluate(){
+            if(hasCalled){ 
+                return NodeState.SUCCESS; 
+            }
+            hasCalled = true;
+            
+            uitextscript.textQueue.Enqueue(new UIText.tooltips(text, duration));            
             return NodeState.SUCCESS;
         }
     }
