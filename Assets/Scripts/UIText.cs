@@ -28,7 +28,6 @@ public class UIText : MonoBehaviour{
         if(Time.time > timeTillFade && textQueue.Count >0){
             tipBar.SetActive(true);
             tooltips tip = textQueue.Dequeue();
-            
             timeTillFade = Time.time + tip.duration;
             duration = tip.duration;
             label.text = tip.tip;

@@ -20,7 +20,6 @@ namespace TrojanMouse.GameplayLoop{
                 return NodeState.SUCCESS; 
             }
             hasCalled = true;
-            
             uitextscript.textQueue.Enqueue(new UIText.tooltips(text, duration));            
             return NodeState.SUCCESS;
         }
