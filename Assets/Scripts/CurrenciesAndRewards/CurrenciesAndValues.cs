@@ -35,6 +35,7 @@ public class CurrenciesAndValues : MonoBehaviour
 
     //holding spot for npc rewards for loading purposes
     public RewardManager wrench;
+    public RewardManager rollingPin;
     // Start is called before the first frame update
     void Awake()
     {
