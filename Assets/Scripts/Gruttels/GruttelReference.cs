@@ -16,14 +16,20 @@ namespace TrojanMouse.Gruttel
         public GameObject model;
         public GruttelType gruttelType;
 
+        public ParticleSystem smokeParticles;
+
         private void Start()
         {
             data = new GruttelData(this, gruttelType);
             data.meshList = meshList;
         }
 
-        public void UpdateMesh(GruttelMeshInfo meshInfo)
+        public void UpdateMesh(GruttelMeshInfo meshInfo, bool isInit)
         {
+            if (!isInit)
+            {
+                smokeParticles.Play();
+            }
             Destroy(model);
             model = Instantiate(meshInfo.mesh, this.transform);
 

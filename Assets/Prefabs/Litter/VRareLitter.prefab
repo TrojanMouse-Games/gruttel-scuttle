@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4254694617791948257}
   - component: {fileID: 8010693286976144049}
   - component: {fileID: 6668722123672882612}
+  - component: {fileID: 5592858793412988121}
   m_Layer: 3
   m_Name: VRareLitter
   m_TagString: Untagged
@@ -149,6 +150,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &5592858793412988121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000658050550888982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbc5dcd147637c4984114153efb0418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowdownPercentage: 0.8
 --- !u!1001 &4494701198606989044
 PrefabInstance:
   m_ObjectHideFlags: 0
