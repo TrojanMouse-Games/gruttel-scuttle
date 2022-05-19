@@ -29,18 +29,20 @@ namespace TrojanMouse.GameplayLoop{
             //GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, 100, prerequisiteSettings.whatIsGruttel, cam, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
             SpawnPowerups spawnPowerups = new SpawnPowerups(prerequisiteSettings.powerupPrefab, level.powerups, prerequisiteSettings.powerupSpawnFolder);
             GruttelsSelected areGruttelsSelected = new GruttelsSelected(level.numOfGruttelsToSelect, cam, prerequisiteSettings.prepCamera.transform, prerequisiteSettings.axisToMoveCameraOn, 100, prerequisiteSettings.whatIsGruttel, prerequisiteSettings.statScript, prerequisiteSettings.powerupSpawnFolder, prerequisiteSettings.gruttelVillageFolder, prerequisiteSettings.gruttelPlayFolder, prerequisiteSettings.selectSound);
-            ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on, and add Nana Betsys to a total of {level.numOfGruttelsToSelect} Gruttels to proceed");
+            ChangeUIText selectGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Click on, and add Nana Betsys to a total of {level.numOfGruttelsToSelect} Gruttels to proceed", 10);
             EnableAI disableAI = new EnableAI(EnableAI.AIState.Disabled);
             ChangeCamera prepCam = new ChangeCamera(prerequisiteSettings.prepCamera, cameras);            
             #endregion
             #region READY NODES
-            ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!");
+            ChangeUIText dragGruttelsText = new ChangeUIText(prerequisiteSettings.tipText, $"Drag and drop Gruttels into position before the game starts!", 10);
             ChangeCamera readyCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras);
             Intermission timeToDragGruttels = new Intermission(level.readyStageIntermission, prerequisiteSettings.intermissionTimer, prerequisiteSettings.timerLabel);
             EnableAI dragAI = new EnableAI(EnableAI.AIState.Dragable);            
             #endregion
             #region MAIN NODES
-            ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!");
+            ChangeUIText mainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"Round started, Click on the Gruttels and guide them to litter!", 10);
+            ChangeUIText secondMainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"As machines fill, you'll see them begin to overflow, click them to get rewards!", 10);
+            ChangeUIText thirdMainRoundText = new ChangeUIText(prerequisiteSettings.tipText, $"If a Gruttel has a ! above their head, they're distracted! Click to wake them up", 10);
             ChangeCamera mainCam = new ChangeCamera(prerequisiteSettings.readyStageCamera, cameras, false);
             EnableStress enableStress = new EnableStress(true);
             LitterHandler litterHandler = new LitterHandler(level, prerequisiteSettings.cycleText);
@@ -77,6 +79,8 @@ namespace TrojanMouse.GameplayLoop{
             #region MAINSTAGE
             GLSequence mainStage = new GLSequence(new List<GLNode>{
                 mainRoundText, 
+                secondMainRoundText, 
+                thirdMainRoundText, 
                 enableAI,
                 mainCam,
                 enableStress,
@@ -161,9 +165,8 @@ namespace TrojanMouse.GameplayLoop{
             public Vector3 axisToMoveCameraOn;
 
             [Header("UI Settings")]
-            public Text cycleText;
-            public Text stageText;
-            public Text tipText;
+            public UIText cycleText;            
+            public UIText tipText;
             public Image intermissionTimer;
             public TextMeshProUGUI timerLabel;
             public ShowGruttelStats statScript;

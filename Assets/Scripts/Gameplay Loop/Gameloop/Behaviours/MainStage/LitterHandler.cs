@@ -12,7 +12,7 @@ namespace TrojanMouse.GameplayLoop
         Level level;
 
         GLSequence spawnManager = new GLSequence(new List<GLNode> { }, true); // CREATE A NEW SEQUENCE FOR ITERATING THROUGH ALL THE WAVES
-        public LitterHandler(Level level, Text label)
+        public LitterHandler(Level level, UIText uiText)
         { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             int count = 1;
             foreach (Waves wave in level.wavesInLevel)
@@ -37,7 +37,7 @@ namespace TrojanMouse.GameplayLoop
                     }
                 }
                 #endregion
-                spawnManager.realTimeNodes.Add(new ChangeUIText(label, $"Wave: {count}/{level.wavesInLevel.Length}"));
+                spawnManager.realTimeNodes.Add(new ChangeUIText(uiText, $"Wave: {count}/{level.wavesInLevel.Length}", -1f));
                 spawnManager.realTimeNodes.Add(
                     new SpawnLitter(shootersInWave.ToArray(), regionsInWave.ToArray(), wave.litterToSpawnForWave, wave.timeToSpawnAllLitter, count, level.wavesInLevel.Length) // ADDS THE WAVE TO THE SEQUENCE, FILLING ALL PARAMETERS NEEDED
                 );
