@@ -523,12 +523,12 @@ PrefabInstance:
     - target: {fileID: 822648884268630790, guid: 4cd271fd9287c1b41a44ffe423eb381b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 115.6
+      value: 115.50869
       objectReference: {fileID: 0}
     - target: {fileID: 822648884268630790, guid: 4cd271fd9287c1b41a44ffe423eb381b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 123.82
+      value: 127.818954
       objectReference: {fileID: 0}
     - target: {fileID: 822648884268630790, guid: 4cd271fd9287c1b41a44ffe423eb381b,
         type: 3}
@@ -697,6 +697,12 @@ PrefabInstance:
 --- !u!4 &530340156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 822648885206032573, guid: 4cd271fd9287c1b41a44ffe423eb381b,
+    type: 3}
+  m_PrefabInstance: {fileID: 530340155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &530340157 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 822648884268630790, guid: 4cd271fd9287c1b41a44ffe423eb381b,
     type: 3}
   m_PrefabInstance: {fileID: 530340155}
   m_PrefabAsset: {fileID: 0}
@@ -1012,6 +1018,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1115616206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115616207}
+  m_Layer: 0
+  m_Name: SPAWN (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115616207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115616206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 530340157}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165705873 stripped
 GameObject:
@@ -7222,6 +7258,11 @@ PrefabInstance:
       objectReference: {fileID: 1651777127}
     - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
         type: 3}
+      propertyPath: prerequisiteSettings.gruttelVillageSpawnPoints.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
+        type: 3}
       propertyPath: prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned
       value: 
       objectReference: {fileID: 1805622855}
@@ -7265,6 +7306,11 @@ PrefabInstance:
       propertyPath: prerequisiteSettings.gruttelVillageSpawnPoints.Array.data[7]
       value: 
       objectReference: {fileID: 2109465641}
+    - target: {fileID: 892463536048791269, guid: 88323b5c76558bf4d8a002badf339575,
+        type: 3}
+      propertyPath: prerequisiteSettings.gruttelVillageSpawnPoints.Array.data[8]
+      value: 
+      objectReference: {fileID: 1115616207}
     - target: {fileID: 892463536048791271, guid: 88323b5c76558bf4d8a002badf339575,
         type: 3}
       propertyPath: m_RootOrder

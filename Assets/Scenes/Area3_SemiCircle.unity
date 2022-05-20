@@ -175,6 +175,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &101376784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101376785}
+  m_Layer: 0
+  m_Name: SPAWN (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &101376785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101376784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 820268373}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235543074 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5054020638133600286, guid: 37c25709a9c0e0b42971c300c3b75c9e,
@@ -1080,6 +1110,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8189223571788679880, guid: 853f32248b85fbb4288394732c76f642,
     type: 3}
   m_PrefabInstance: {fileID: 1499285470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &820268373 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 822648884268630790, guid: 4cd271fd9287c1b41a44ffe423eb381b,
+    type: 3}
+  m_PrefabInstance: {fileID: 822648885143226676}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &868248721 stripped
 RectTransform:
@@ -2347,6 +2383,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 822648884268630790, guid: 4cd271fd9287c1b41a44ffe423eb381b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 822648885206032572, guid: 4cd271fd9287c1b41a44ffe423eb381b,
         type: 3}
       propertyPath: m_Name
@@ -3536,6 +3577,11 @@ PrefabInstance:
       objectReference: {fileID: 1927153302}
     - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
         type: 3}
+      propertyPath: prerequisiteSettings.gruttelVillageSpawnPoints.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
+        type: 3}
       propertyPath: prerequisiteSettings.objectForGruttelsToLookAtWhenSpawned
       value: 
       objectReference: {fileID: 2147344149}
@@ -3579,6 +3625,11 @@ PrefabInstance:
       propertyPath: prerequisiteSettings.gruttelVillageSpawnPoints.Array.data[7]
       value: 
       objectReference: {fileID: 1536363854}
+    - target: {fileID: 5061748752158459197, guid: 638074bc87e7eea4294d486a5ff4f753,
+        type: 3}
+      propertyPath: prerequisiteSettings.gruttelVillageSpawnPoints.Array.data[8]
+      value: 
+      objectReference: {fileID: 101376785}
     - target: {fileID: 5061748752158459199, guid: 638074bc87e7eea4294d486a5ff4f753,
         type: 3}
       propertyPath: m_RootOrder
