@@ -17,6 +17,7 @@ namespace TrojanMouse.Gruttel
         public GruttelType gruttelType;
 
         public ParticleSystem smokeParticles;
+        private Transform distractionMarker;
 
         private void Start()
         {
@@ -43,7 +44,10 @@ namespace TrojanMouse.Gruttel
             inv.animator = anim;
 
             GetComponent<AIController>().animator = anim;
-            GetComponent<DistractionModule>().animator = anim;
+
+            DistractionModule dm = GetComponent<DistractionModule>();
+            dm.animator = anim;
+            dm.distractionMarker = model.GetComponentInChildren<DistractionMaterialAnimation>().gameObject;
         }
     }
 }
