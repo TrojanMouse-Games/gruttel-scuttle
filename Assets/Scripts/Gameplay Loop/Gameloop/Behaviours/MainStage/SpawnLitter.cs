@@ -46,7 +46,9 @@ namespace TrojanMouse.GameplayLoop
             }
             if (CanSpawn())
             {
-                Debug.Log($"Wave {currentWave} of {totalNumWaves}");
+                string waveInfo = $"Wave {currentWave - 1} of {totalNumWaves}";
+                Debug.Log(waveInfo);
+                PlayerPrefs.SetString("FailedWaveCount", waveInfo);
                 LitterRegion region = regionObjs[Random.Range(0, regionObjs.Length)]; // SELECTS A RANDOM REGION TO SPAWN THE LITTER WITHIN
                 Ballistics shooter = shooterObjs[Random.Range(0, shooterObjs.Length)]; // SELECTS A RANDOM SHOOTER TO SPAWN THE LITTER AT
                 litterToSpawn -= (region.litterManager.SpawnLitter(region.GetComponent<Collider>(), shooter, 1) < 0) ? 1 : 0; // DEDUCTS LITTER TO SPAWN IF THE FUNCTION IN LITTER MANAGER RETURNS A VALUE LESS THAN 0
