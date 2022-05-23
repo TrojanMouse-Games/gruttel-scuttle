@@ -65,6 +65,14 @@ public class MachineFill : MonoBehaviour
         {
             reward = smallStress;
         }
+        //getting the currencies script and object holding pop up UI
+        GameObject c = GameObject.Find("VILLAGE");
+        if (c == null)
+        {
+            return;
+        }
+        currencies = c.GetComponent<CurrenciesAndValues>();
+        currencyUI = currencies.currencyUI;
     }
     //handles filling the machine, and any side effects like animation or sound changes
     public void IncreaseFill()

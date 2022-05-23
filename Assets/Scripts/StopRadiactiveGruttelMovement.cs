@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,17 @@ public class StopRadiactiveGruttelMovement : MonoBehaviour
 
     private void Awake()
     {
-        aiData = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponent<AIController>().data;
-        aiData.agent.speed *= 1.6f;
-        aiData.agent.acceleration *= 1.6f;
+        try
+        {
+            aiData = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponent<AIController>().data;
+            aiData.agent.speed *= 1.6f;
+            aiData.agent.acceleration *= 1.6f;
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.LogWarning($"{e.Message} | AIController isn't on this gruttel's parent object. Ignore this message if this was an intentional action.");
+            Destroy(this);
+        }
     }
 
     public void OnCollisionEnter(Collision other)
