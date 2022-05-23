@@ -54,9 +54,6 @@ public class MachineFill : MonoBehaviour
         domeFillLevel = 0;
         //makes sure cog particles are disabled
         cogs.SetActive(false);
-        //getting the currencies script and object holding pop up UI
-        currencies = GameObject.Find("VILLAGE").GetComponent<CurrenciesAndValues>();
-        currencyUI = currencies.currencyUI;
         //getting the dome renderer
         domeRenderer = transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>();
         //gets home region attached to this object
@@ -78,7 +75,7 @@ public class MachineFill : MonoBehaviour
     public void IncreaseFill()
     {
         if (!isEmptying)
-        { 
+        {
             //increases fill level by 1
             currentFillLevel++;
             //OTIS - filling a little sound
