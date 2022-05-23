@@ -42,11 +42,6 @@ namespace TrojanMouse.GameplayLoop
             this.moveAxis = moveAxis;
         }
 
-        public GruttelsSelected()
-        { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
-
-        }
-
         public int gruttelSelectedIndex = 0;
         Vector3 smoothVel;
         bool hasInitiated;
