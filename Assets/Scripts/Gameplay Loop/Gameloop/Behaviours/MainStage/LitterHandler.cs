@@ -38,6 +38,7 @@ namespace TrojanMouse.GameplayLoop
                 }
                 #endregion
                 spawnManager.realTimeNodes.Add(new ChangeUIText(uiText, $"Wave: {count}/{level.wavesInLevel.Length}", -1f));
+                PlayerPrefs.SetString("FailedWaveCount", $"{count-1}/{level.wavesInLevel.Length}");
                 spawnManager.realTimeNodes.Add(
                     new SpawnLitter(shootersInWave.ToArray(), regionsInWave.ToArray(), wave.litterToSpawnForWave, wave.timeToSpawnAllLitter, count, level.wavesInLevel.Length) // ADDS THE WAVE TO THE SEQUENCE, FILLING ALL PARAMETERS NEEDED
                 );
