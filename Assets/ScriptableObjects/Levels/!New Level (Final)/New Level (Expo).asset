@@ -12,8 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c442887f4c576f547bded34b8bcf9a2c, type: 3}
   m_Name: New Level (Expo)
   m_EditorClassIdentifier: 
-  numOfGruttelsToSelect: 1
-  powerups: []
+  numOfGruttelsToSelect: 7
+  powerups:
+  - name: IRRADIATED
+    powerupType: 2
+    image: {fileID: 21300000, guid: e3bf892b7160fa646a1719ad566aa765, type: 3}
+  - name: IRRADIATED
+    powerupType: 2
+    image: {fileID: 21300000, guid: e3bf892b7160fa646a1719ad566aa765, type: 3}
+  - name: BUFF
+    powerupType: 1
+    image: {fileID: 21300000, guid: cde4d4bbdd3e62847ab997b8c00c0db2, type: 3}
+  - name: BUFF
+    powerupType: 1
+    image: {fileID: 21300000, guid: cde4d4bbdd3e62847ab997b8c00c0db2, type: 3}
   readyStageIntermission: 30
   stressThresholds: []
   wavesInLevel:
