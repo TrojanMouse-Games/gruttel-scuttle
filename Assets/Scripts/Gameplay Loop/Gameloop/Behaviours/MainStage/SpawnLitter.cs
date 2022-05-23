@@ -46,7 +46,7 @@ namespace TrojanMouse.GameplayLoop
             }
             if (CanSpawn())
             {
-                string waveInfo = $"Wave {currentWave - 1} of {totalNumWaves}";
+                string waveInfo = $"{currentWave - 1}/{totalNumWaves}";
                 Debug.Log(waveInfo);
                 PlayerPrefs.SetString("FailedWaveCount", waveInfo);
                 LitterRegion region = regionObjs[Random.Range(0, regionObjs.Length)]; // SELECTS A RANDOM REGION TO SPAWN THE LITTER WITHIN
