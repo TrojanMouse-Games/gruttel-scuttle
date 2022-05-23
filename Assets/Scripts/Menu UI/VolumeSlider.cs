@@ -3,28 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FMODUnity;
+using FMOD.Studio;
 
 public class VolumeSlider : MonoBehaviour
 {
-    private FMOD.Studio.VCA vcaController;
+    private FMOD.Studio.Bus busController;
     public string vcaName;
-
     private Slider slider;
+    public StudioEventEmitter emitter;
 
+    public List<string> vcaNameList;
 
     // Start is called before the first frame update
     void Start()
     {
-        vcaController = RuntimeManager.GetVCA("vca:/" + vcaName);
+        if (vcaName == "Master")
+        {
+            vcaName = "";
+        }
+        busController = RuntimeManager.GetBus("bus:/" + vcaName);
+
         slider = GetComponent<Slider>();
     }
 
     public void SetVolume(float volume)
     {
-        vcaController.setVolume(volume);
+        busController.setVolume(volume);
+
+        if (emitter != null)
+        {
+            emitter.EventInstance.setVolume(volume);
+        }
     }
-
-
-
- 
 }
