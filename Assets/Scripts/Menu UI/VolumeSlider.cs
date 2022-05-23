@@ -12,8 +12,6 @@ public class VolumeSlider : MonoBehaviour
     private Slider slider;
     public StudioEventEmitter emitter;
 
-    public List<string> vcaNameList;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +19,14 @@ public class VolumeSlider : MonoBehaviour
         {
             vcaName = "";
         }
-        busController = RuntimeManager.GetBus("bus:/" + vcaName);
 
         slider = GetComponent<Slider>();
+
+        slider.value = PlayerPrefs.GetFloat($"VOLUME: {vcaName}", 1f);
+
+        busController = RuntimeManager.GetBus("bus:/" + vcaName);
+
+        SetVolume(slider.value);
     }
 
     public void SetVolume(float volume)
@@ -34,5 +37,7 @@ public class VolumeSlider : MonoBehaviour
         {
             emitter.EventInstance.setVolume(volume);
         }
+
+        PlayerPrefs.SetFloat($"VOLUME: {vcaName}", volume);
     }
 }
