@@ -19,6 +19,12 @@ public class VillageCurrency : MonoBehaviour
     public int numOfVouchers;
     public List<RewardManager> NPCObjects;
 
+    public GameObject[] level1Duckies;
+    public GameObject[] level2Duckies;
+
+    public int level1StarRating;
+    public int level2StarRating;
+
     public Flowchart wrenchFlowchart;
 
     // Start is called before the first frame update
@@ -33,6 +39,7 @@ public class VillageCurrency : MonoBehaviour
         NPCObjects = currencies.NPCObjects;
 
         DisplayInventory();
+        EnableStarsLevelSelect();
     }
     void DisplayInventory()
     {
@@ -50,6 +57,30 @@ public class VillageCurrency : MonoBehaviour
         {
             inventoryNPC.SetActive(true);
             wrenchFlowchart.SetBooleanVariable("Spanner", true);
+        }
+    }
+    void EnableStarsLevelSelect()
+    {
+        //level 1
+        if (PlayerPrefs.HasKey("Area3_SemiCirclestarRating"))
+        {
+            level1StarRating = PlayerPrefs.GetInt("Area3_SemiCircleHighScore");
+            Debug.Log(level1StarRating);
+        }
+        for (int i = 0; i < level1StarRating; i++)
+        {
+            level1Duckies[i].SetActive(true);
+        }
+
+        //level 2
+        if (PlayerPrefs.HasKey("SEMICIRCLEBLOCKOUTstarRating"))
+        {
+            level2StarRating = PlayerPrefs.GetInt("SEMICIRCLEBLOCKOUTHighScore");
+            Debug.Log(level2StarRating);
+        }
+        for (int i = 0; i < level2StarRating; i++)
+        {
+            level2Duckies[i].SetActive(true);
         }
     }
 
