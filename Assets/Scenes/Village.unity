@@ -9520,18 +9520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &213687044 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5916806968606310662, guid: 4eca8c7ea5b45eb42ac200ba874fafa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 213687006}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414829359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &213687045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16002,7 +15990,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -615.81885
     y: -413.24152
-    width: 117
+    width: 77
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -25507,7 +25495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 213687044}
+  selectedFlowchart: {fileID: 866691713}
 --- !u!4 &775709449
 Transform:
   m_ObjectHideFlags: 1
@@ -27919,7 +27907,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 388.93817
     y: 120.566986
-    width: 86
+    width: 86.13635
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -27951,7 +27939,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 391.0309
     y: 166.75256
-    width: 70
+    width: 70.227264
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -27981,9 +27969,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 391
-    y: 6
-    width: 109
+    x: 393
+    y: 9
+    width: 108.863625
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -28035,9 +28023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 183.55673
+    x: 185.55673
     y: 64.93815
-    width: 85
+    width: 84.99999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -28068,7 +28056,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 25.12371
     y: 63.90721
-    width: 83
+    width: 86.13635
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -28097,11 +28085,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 181.7091, y: 189.81763}
+  scrollPos: {x: 310.0074, y: 242.21822}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.8800001
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -28270,9 +28258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: The rocket workshop is where the gruttels will bring all of their recycled
-    rubbish. Expert gruttel engineer, Smudge, will turn it into useful scrap parts
-    for the gruttel's latest project - a rocket!
+  storyText: The rocket workshop is where the gruttels bring their recycled rubbish.
+    Expert gruttel engineer, Smudge, will turn it into useful parts for the gruttel's
+    latest project - a rocket!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -28863,9 +28851,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 497.2909
+    x: 498.2909
     y: 68.18237
-    width: 61
+    width: 61.136356
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -29433,7 +29421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 50
   indentLevel: 0
-  storyText: Now that all iof that is sorted, take a look around, and remember that
+  storyText: Now that all of that is sorted, take a look around, and remember that
     commander can get you to the different levels!
   description: 
   character: {fileID: 0}
@@ -67361,6 +67349,7 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 3c85ca674b4582149b3f1c979f60e90a, type: 2}
   curLevel: 0
+  endIntermission: {fileID: 0}
 --- !u!4 &2116046647
 Transform:
   m_ObjectHideFlags: 0
