@@ -145,7 +145,7 @@ namespace TrojanMouse.AI.Movement
         /// <returns></returns>
         bool FireRay(LayerMask lMask, float rDistance)
         {
-            return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Collide)) ? true : false;
+            return (Physics.Raycast(worldPoint.origin, worldPoint.direction, out hit, rDistance, lMask, QueryTriggerInteraction.Ignore)) ? true : false;
         }
         #endregion
     }

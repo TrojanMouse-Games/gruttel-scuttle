@@ -77,6 +77,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
     gruttelVillageFolder: {fileID: 0}
     gruttelPlayFolder: {fileID: 0}
     whatIsGruttel:
@@ -93,7 +94,6 @@ MonoBehaviour:
     mainCamera: {fileID: 0}
     axisToMoveCameraOn: {x: 0, y: 0, z: 1}
     cycleText: {fileID: 0}
-    stageText: {fileID: 0}
     tipText: {fileID: 0}
     intermissionTimer: {fileID: 0}
     timerLabel: {fileID: 0}
@@ -114,8 +114,9 @@ MonoBehaviour:
       Path: 
     waveShiftControl: 0
   levels:
-  - {fileID: 11400000, guid: f448b5b390724a2418229b002f85917d, type: 2}
+  - {fileID: 11400000, guid: 729604f1b42400e4a8a562f670d0bf5c, type: 2}
   curLevel: 0
+  endIntermission: {fileID: 0}
 --- !u!114 &892463536048791272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,8 +134,8 @@ MonoBehaviour:
   startStress: 0
   levelStressValues: []
   calculationCooldown: 1
-  maxStressCountdown: 5
-  maxLitter: 0
+  maxStressCountdown: 15
+  maxLitter: 50
 --- !u!114 &8888296113366015320
 MonoBehaviour:
   m_ObjectHideFlags: 0

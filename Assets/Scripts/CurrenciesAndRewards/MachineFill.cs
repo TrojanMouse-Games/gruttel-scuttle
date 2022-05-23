@@ -29,49 +29,76 @@ public class MachineFill : MonoBehaviour
     //small stress limit inc reward to replace limited ones
     public RewardManager smallStress;
     private float timeElapsed;
+    //the object holding the cog particles
+    public GameObject cogs;
+    //animator
+    public Animator animator;
     //time to fill a little rubbish
     [Tooltip("Seconds to fill once piece of litter")]
     private float fillLerpDuration = .5f;
     //cooldown time
     [Tooltip("Seconds for machine to be on cooldown")]
     private float emptyLerpDuration = 10f;
-
+    //checks if the machine is still emptying or not, can't increase fill in this time
+    private bool isEmptying;
 
     // Start is called before the first frame update
     void Start()
     {
+        isEmptying = false;
         //saves this component as variable to pass in
         machineFill = this;
         //current fill level of this machine
         currentFillLevel = 0;
         //fill level of machine
         domeFillLevel = 0;
+        //makes sure cog particles are disabled
+        cogs.SetActive(false);
         //getting the currencies script and object holding pop up UI
         currencies = GameObject.Find("VILLAGE").GetComponent<CurrenciesAndValues>();
         currencyUI = currencies.currencyUI;
         //getting the dome renderer
-        domeRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+        domeRenderer = transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>();
         //gets home region attached to this object
         homeRegion = homeRegionObj.GetComponent<LitterRegion>();
         if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + this.gameObject.name))
         {
             reward = smallStress;
         }
+        //getting the currencies script and object holding pop up UI
+        GameObject c = GameObject.Find("VILLAGE");
+        if (c == null)
+        {
+            return;
+        }
+        currencies = c.GetComponent<CurrenciesAndValues>();
+        currencyUI = currencies.currencyUI;
     }
     //handles filling the machine, and any side effects like animation or sound changes
     public void IncreaseFill()
     {
-        //increases fill level by 1
-        currentFillLevel++;
-        //OTIS - filling a little sound
-        //temp value before fill level changes
-        _domeFillLevel = domeFillLevel;
-        //updated fill level
-        domeFillLevel += (1 / maxFillLevel);
-        //calling coroutine to gradually increase fill
-        StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, fillLerpDuration));
+        if (!isEmptying)
+        { 
+            //increases fill level by 1
+            currentFillLevel++;
+            //OTIS - filling a little sound
+            //temp value before fill level changes
+            _domeFillLevel = domeFillLevel;
+            //updated fill level
+            domeFillLevel += (1 / maxFillLevel);
+            //calling coroutine to gradually increase fill
+            StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, fillLerpDuration));
+        }
     }
-    //called if the machine is full
+    public void FullMachine()
+    {
+        cogs.SetActive(true);
+        //shaking animation?
+        animator.SetBool("machineFull", true);
+        //pulsing outline?
+    }
+
+    //called if the machine is full and clicked on
     private void OnMouseDown()
     {
         if (currentFillLevel >= maxFillLevel)
@@ -84,6 +111,7 @@ public class MachineFill : MonoBehaviour
     //Lerp used to gradually fill and empty machine
     IEnumerator Lerp(float startValue, float endValue, float lerpDuration)
     {
+        Debug.Log($"lerping, start value is {startValue}, end value is {endValue}, lerp duration is {lerpDuration}");
         //Dome material
         Material[] domeMat = domeRenderer.materials;
         timeElapsed = 0;
@@ -97,11 +125,32 @@ public class MachineFill : MonoBehaviour
         }
         //set the final level
         domeMat[0].SetFloat("FillAmount", domeFillLevel);
+        if (isEmptying)
+        {
+            if (reward.oneTimeUse)
+            {
+                reward = smallStress;
+            }
+            homeRegion.enabled = true;
+            PlayerPrefs.SetString(SceneManager.GetActiveScene().name + this.gameObject.name, reward.name);
+            isEmptying = false;
+        }
+        else if (!isEmptying)
+        {
+            //runs if machine if full and not yet clicked
+            if (currentFillLevel >= maxFillLevel)
+            {
+                FullMachine();
+            }
+        }
     }
 
     //Empties the machine and handles animations and sounds, called from reward function completing
     public void EmptyFill()
     {
+        isEmptying = true;
+        animator.SetBool("machineFull", false);
+        cogs.SetActive(false);
         //disable machine from use
         homeRegion.enabled = false;
         //OTIS - Emptying sounds
@@ -109,11 +158,5 @@ public class MachineFill : MonoBehaviour
         domeFillLevel = 0;
         currentFillLevel = 0;
         StartCoroutine(Lerp(_domeFillLevel, domeFillLevel, emptyLerpDuration));
-        if (reward.oneTimeUse)
-        {
-            reward = smallStress;
-        }
-        homeRegion.enabled = true;
-        PlayerPrefs.SetString(SceneManager.GetActiveScene().name + this.gameObject.name, reward.name);
     }
 }

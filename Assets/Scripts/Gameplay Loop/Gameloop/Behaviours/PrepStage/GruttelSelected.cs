@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,11 @@ namespace TrojanMouse.GameplayLoop
             this.lineupCam = lineupCam;
             this.selectSound = selectSound;
             this.moveAxis = moveAxis;
+        }
+
+        public GruttelsSelected()
+        { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
+
         }
 
         public int gruttelSelectedIndex = 0;
