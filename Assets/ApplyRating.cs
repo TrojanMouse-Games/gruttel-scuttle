@@ -13,6 +13,10 @@ public class ApplyRating : MonoBehaviour
     public GameObject highScoreObj;
     public List<GameObject> stars = new List<GameObject>();
     public bool newHighScore = false;
+
+    public GameObject mainMenuButton;
+    public GameObject quitButton;
+    public GameObject continueButton;
     void Start()
     {
         FindStars();
@@ -42,7 +46,11 @@ public class ApplyRating : MonoBehaviour
         if (PlayerPrefs.GetInt("SEMICIRCLEBLOCKOUTHighScore", 0) > 0 &&
         PlayerPrefs.GetInt("Area3_SemiCircleHighScore", 0) > 0)
         {
-            ShowComicEnd();
+            AllowComicEndSelection(true);
+        }
+        else
+        {
+            AllowComicEndSelection(false);
         }
     }
 
@@ -68,8 +76,15 @@ public class ApplyRating : MonoBehaviour
         }
     }
 
-    void ShowComicEnd()
+    public void ShowComicEnd()
     {
         SceneManager.LoadScene("ComicEnd");
+    }
+
+    void AllowComicEndSelection(bool allowed)
+    {
+        mainMenuButton.SetActive(!allowed);
+        quitButton.SetActive(!allowed);
+        continueButton.SetActive(allowed);
     }
 }
