@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 8750403867914180297}
   - component: {fileID: 4730791892084713824}
   - component: {fileID: 8952718695741120096}
+  - component: {fileID: 5432819101283096127}
   m_Layer: 0
   m_Name: Wings_low
   m_TagString: Untagged
@@ -503,6 +504,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5432819101283096127
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649470579329406619}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 53.255, y: 17.097, z: 194.74101}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4606219467204041957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1731,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8371729399412576229}
+  - component: {fileID: 5142065565617351361}
   m_Layer: 0
   m_Name: PrefabAirplane
   m_TagString: Untagged
@@ -1743,3 +1761,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 138.114, z: -15.308}
+--- !u!208 &5142065565617351361
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179896402554000735}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 138.475, y: 80.13, z: 73.79}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
