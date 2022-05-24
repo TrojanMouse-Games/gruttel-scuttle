@@ -40,7 +40,7 @@ namespace TrojanMouse.Inventory
             return success;
         }
 
-        public void Drop(RegionType _type)
+        public void Drop(RegionType regionType)
         {
             //GameObject droppedItem = Instantiate(selectedObject, itemParent.position + (itemParent.forward * dropOffset), Quaternion.FromToRotation(Vector3.forward, itemParent.forward), Region_Handler.current.GetClosestRegion(_type, transform.position).transform); // SPAWN LITTER
             //droppedItem.GetComponent<Rigidbody>().isKinematic = false;
@@ -54,7 +54,10 @@ namespace TrojanMouse.Inventory
                     inventoryHandler.RemoveFromInventory(holder.litterObject);
                 }
 
-                inventoryHandler.Dequip(selectedObject);
+                selectedObject.GetComponent<Rigidbody>().isKinematic = false;
+                selectedObject.GetComponent<Collider>().enabled = true;
+
+                inventoryHandler.Dequip(selectedObject, regionType);
                 selectedObject = null;
             }
         }

@@ -7,6 +7,7 @@ using System.Linq;
 // MADE BY JOSHUA THOMPSON
 namespace TrojanMouse.Inventory
 {
+    using Litter.Region;
     public class Inventory : MonoBehaviour
     {
         [SerializeField] int maxSlots = 1;
@@ -98,13 +99,20 @@ namespace TrojanMouse.Inventory
             }
         }
 
-        public void Dequip(GameObject obj)
+        public void Dequip(GameObject obj, RegionType regionType)
         {
             if (animator != null)
             {
                 animator.SetBool("hasTrash", false);
             }
-            Destroy(obj);
+            if (regionType == RegionType.HOME)
+            {
+                Destroy(obj);
+            }
+            else
+            {
+                obj.transform.parent = null;
+            }
         }
     }
 }

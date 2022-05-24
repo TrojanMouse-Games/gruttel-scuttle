@@ -36,22 +36,22 @@ public class DistractionModule : MonoBehaviour
         if (!distracted)
         {
             distractionMarker.SetActive(false);
+            return;
         }
-        else
-        {
-            // Drop any held litter
-            Equipper eq = aIController.equipper;
-            Debug.Log("Dropped litter!");
-            eq.Drop(RegionType.WORLD);
 
-            // if the animator exists, stop the holding animation
-            if (animator != null)
-            {
-                animator.SetBool("isHolding", false);
-            }
+        // Drop any held litter
+        Equipper eq = aIController.equipper;
+        Debug.Log("Dropped litter!");
+        eq.Drop(RegionType.WORLD);
+
+        // if the animator exists, stop the holding animation
+        if (animator != null)
+        {
+            animator.SetBool("isHolding", false);
         }
     }
 
+    [ContextMenu("Distract Me")]
     void SetDistraction()
     {
         RuntimeManager.PlayOneShot(distractedSound);
