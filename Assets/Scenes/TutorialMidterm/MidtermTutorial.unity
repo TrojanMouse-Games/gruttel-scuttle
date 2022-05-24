@@ -1871,6 +1871,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -48.85
       objectReference: {fileID: 0}
+    - target: {fileID: 2565366860865577937, guid: 37c25709a9c0e0b42971c300c3b75c9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5054020637455510458, guid: 37c25709a9c0e0b42971c300c3b75c9e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3435,6 +3440,7 @@ GameObject:
   - component: {fileID: 416517391}
   - component: {fileID: 416517390}
   - component: {fileID: 416517393}
+  - component: {fileID: 416517394}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -3489,7 +3495,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -308.28036
     y: 37.027946
-    width: 80
+    width: 122.16495
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -3536,21 +3542,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 367.27914, y: 160.25331}
+  scrollPos: {x: -87.19509, y: 147.24289}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 539
-  zoom: 1
+  zoom: 0.97
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 416517301}
-  selectedCommands:
-  - {fileID: 416517298}
+  selectedBlocks: []
+  selectedCommands: []
   variables:
   - {fileID: 416517379}
   - {fileID: 416517415}
@@ -3712,7 +3716,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -160.90941
     y: 36.216652
-    width: 85
+    width: 127.31959
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -4394,7 +4398,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 526.2873
     y: 31.625782
-    width: 68
+    width: 109.79381
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -4624,7 +4628,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 391.19147
     y: 33.284924
-    width: 81
+    width: 123.19588
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -4849,7 +4853,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 655.7361
     y: -144.69034
-    width: 91
+    width: 133.50516
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -4880,7 +4884,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 656.7361
     y: 32.30966
-    width: 86
+    width: 128.35051
     height: 40
   tint: {r: 0.35579652, g: 0.26210397, b: 0.3584906, a: 1}
   useCustomTint: 1
@@ -4938,7 +4942,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 759.9947
     y: -89.00725
-    width: 60
+    width: 88.14433
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -4969,7 +4973,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 587.0566
     y: -84.71865
-    width: 63
+    width: 104.639175
     height: 40
   tint: {r: 0.11509016, g: 0.5660378, b: 0.029369887, a: 1}
   useCustomTint: 1
@@ -5277,7 +5281,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 795.8963
     y: 31.253906
-    width: 66
+    width: 107.73196
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -5314,7 +5318,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 376.24988
     y: -66.8154
-    width: 109
+    width: 152.06186
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7008,9 +7012,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 237.75328
-    y: 32.209652
-    width: 81
+    x: 258.7533
+    y: 35.209652
+    width: 123.19588
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7332,6 +7336,51 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &416517394
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 325
+  indentLevel: 1
+  description: Toggles Move With Mouse Click
+  targetObject: {fileID: 1171231412}
+  targetComponentAssemblyName: TrojanMouse.AI.Movement.MoveWithMouseClick, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: MoveWithMouseClick
+  targetMethod: ChangeScriptState
+  targetMethodText: 'ChangeScriptState (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!114 &416517396
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -7635,7 +7684,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 913.12335
     y: 32.738693
-    width: 60
+    width: 100.51546
     height: 40
   tint: {r: 1, g: 0.6443301, b: 0, a: 1}
   useCustomTint: 1
@@ -7656,7 +7705,7 @@ MonoBehaviour:
   - {fileID: 416517449}
   - {fileID: 416517478}
   - {fileID: 416517495}
-  - {fileID: 416517479}
+  - {fileID: 416517455}
   - {fileID: 416517450}
   - {fileID: 416517477}
   - {fileID: 416517494}
@@ -7680,7 +7729,7 @@ MonoBehaviour:
   - {fileID: 416517483}
   - {fileID: 416517457}
   - {fileID: 416517377}
-  - {fileID: 416517455}
+  - {fileID: 416517479}
   suppressAllAutoSelections: 0
 --- !u!114 &416517414
 MonoBehaviour:
@@ -7773,7 +7822,7 @@ MonoBehaviour:
           gameObjectVal: {fileID: 0}
         integerData:
           integerRef: {fileID: 0}
-          integerVal: 15
+          integerVal: 10
         materialData:
           materialRef: {fileID: 0}
           materialVal: {fileID: 0}
@@ -7996,9 +8045,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 991.282
-    y: 29.966724
-    width: 106
+    x: 1023.282
+    y: 28.966724
+    width: 148.96907
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -8028,9 +8077,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1000.4054
-    y: -67.84245
-    width: 93
+    x: 1032.4054
+    y: -68.84245
+    width: 135.56702
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -8288,8 +8337,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: -36.07187
-    y: 34.46218
-    width: 94
+    y: 35.46218
+    width: 136.59793
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -9083,7 +9132,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 106.90941
     y: 32.498566
-    width: 101
+    width: 143.81442
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -9093,6 +9142,7 @@ MonoBehaviour:
   eventHandler: {fileID: 416517439}
   commandList:
   - {fileID: 416517428}
+  - {fileID: 416517394}
   - {fileID: 416517438}
   - {fileID: 416517437}
   - {fileID: 416517436}
@@ -12319,7 +12369,7 @@ PrefabInstance:
     - target: {fileID: 7416374917222431388, guid: df8bf6e625fc743499951d82f0ca34fa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 79.62
+      value: 79.48
       objectReference: {fileID: 0}
     - target: {fileID: 7416374917222431388, guid: df8bf6e625fc743499951d82f0ca34fa,
         type: 3}
@@ -16984,7 +17034,7 @@ PrefabInstance:
     - target: {fileID: 2698438967659832394, guid: e37609ccc3ea69a4ab263573b62c1489,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 80.625
+      value: 79.08
       objectReference: {fileID: 0}
     - target: {fileID: 2698438967659832394, guid: e37609ccc3ea69a4ab263573b62c1489,
         type: 3}
