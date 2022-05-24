@@ -25,7 +25,9 @@ namespace TrojanMouse.GameplayLoop
         public Transform lineupCam;
         EventReference selectSound;
         Vector3 moveAxis;
-        public GruttelsSelected(int gruttelsToSelect, Camera cam, Transform lineupCam, Vector3 moveAxis, float maxRayDistance, LayerMask whatIsGruttel, ShowGruttelStats statScript, Transform powerupStorage, Transform villageFolder, Transform playFolder, EventReference selectSound)
+        UIText tipText;
+
+        public GruttelsSelected(int gruttelsToSelect, Camera cam, Transform lineupCam, Vector3 moveAxis, float maxRayDistance, LayerMask whatIsGruttel, ShowGruttelStats statScript, Transform powerupStorage, Transform villageFolder, Transform playFolder, EventReference selectSound, UIText tipText = null)
         { // CONSTRUCTOR TO PREDEFINE THIS CLASS VARIABLES
             instance = this;
 
@@ -40,6 +42,7 @@ namespace TrojanMouse.GameplayLoop
             this.lineupCam = lineupCam;
             this.selectSound = selectSound;
             this.moveAxis = moveAxis;
+            this.tipText = tipText;
         }
 
         public int gruttelSelectedIndex = 0;
@@ -48,7 +51,6 @@ namespace TrojanMouse.GameplayLoop
         Vector3 targetPos;
         public override NodeState Evaluate()
         {
-
             #region GRUTTEL CYCLING
             int newIndex = gruttelSelectedIndex + (
                 (Input.GetKeyDown(KeyCode.A)) ? -1 : // IF 'A' KEY IS PRESSED (-1 off index)
@@ -89,7 +91,7 @@ namespace TrojanMouse.GameplayLoop
                 // CHECK IF GRUTTEL IS CLICKED ON
                 RaycastHit hit;
                 if (Physics.Raycast(GameLoopBT.instance.GetMouse(cam), out hit, maxDistance, whatIsGruttel))
-                { // FIRES A RAYCAST FROM WHEN THE USER CLICKS                    
+                { // FIRES A RAYCAST FROM WHEN THE USER CLICKS
                     if (hit.transform.GetInstanceID() != gruttel.transform.GetInstanceID() || gruttel.data.type != GruttelType.Normal)
                     { // CHECK IF POWERUP IS ALREADY APPLIED AKA GRUTTEL IS LOCKED IN
                         return NodeState.FAILURE;
@@ -97,7 +99,7 @@ namespace TrojanMouse.GameplayLoop
 
                     if (!gruttelsSelected.Contains(hit.collider.transform) && gruttelsSelected.Count < gruttelsToSelect)
                     {
-                        gruttelsSelected.Add(hit.collider.transform);
+                        AddGruttel(hit.collider.transform);
                         hit.collider.transform.localScale = Vector3.one * 1.15f;
                         RuntimeManager.PlayOneShot(selectSound);
                     }
@@ -129,6 +131,21 @@ namespace TrojanMouse.GameplayLoop
             statScript.UpdateStats(gruttel);
             statScript.EnableUI(true);
             return NodeState.FAILURE;
+        }
+
+        public void AddGruttel(Transform gruttelToAdd)
+        {
+            gruttelsSelected.Add(gruttelToAdd);
+            int gruttelsRemaining = gruttelsToSelect - gruttelsSelected.Count;
+            if (gruttelsRemaining > 0)
+            {
+                UpdateTooltip(gruttelsRemaining);
+            }
+        }
+
+        void UpdateTooltip(int gruttelsRemaining)
+        {
+            new ChangeUIText(tipText, $"Drag Nana Betsys/click on a total of {gruttelsToSelect - gruttelsSelected.Count} Gruttels to proceed. \n(P.S. Use A/D to move left and right!)").Evaluate();
         }
     }
 }

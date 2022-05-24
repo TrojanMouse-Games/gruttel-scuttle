@@ -18,7 +18,8 @@ namespace TrojanMouse.Gruttel
 
 
         [System.Serializable]
-        public class gruttelSettings{
+        public class gruttelSettings
+        {
             public Mesh type;
             public Material texture;
         }
@@ -37,7 +38,8 @@ namespace TrojanMouse.Gruttel
         ///<summary>Drags the UI element to the position of the mouse when clicked on</summary>
         public void Drag(BaseEventData _data)
         {
-            if (cam){
+            if (cam)
+            {
                 cam.canDrag = false;
             }
             PointerEventData pointData = (PointerEventData)_data;
@@ -57,10 +59,11 @@ namespace TrojanMouse.Gruttel
         ///<summary>Checks to see if what this element is on is a Gruttel or not, if it is then it'll delete the object and powerup the Gruttel otherwise teleport the element back into place</summary>
         public void Drop(BaseEventData _data)
         {
-            if (cam){
+            if (cam)
+            {
                 cam.canDrag = true;
             }
-            
+
             if (!IsGruttel(powerupType))
             {
                 transform.SetParent(parent);
@@ -71,7 +74,8 @@ namespace TrojanMouse.Gruttel
 
 
         ///<summary>Checks if the mouse position is on a Gruttel using raycasts. It'll return true if it hits a Gruttel</summary>
-        bool IsGruttel(GruttelType powerupType){            
+        bool IsGruttel(GruttelType powerupType)
+        {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition, Camera.MonoOrStereoscopicEye.Mono);
             RaycastHit hit;
 
@@ -79,17 +83,20 @@ namespace TrojanMouse.Gruttel
             {
                 GruttelData gruttelData = hit.transform.GetComponent<GruttelReference>().data;
 
-                if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType){
+                if (gruttelData.type != GruttelType.Normal && lockGruttelToOneType)
+                {
                     return false;
                 }
 
-                if(hit.collider.transform.GetInstanceID() != GruttelsSelected.instance.villageFolder.GetChild(GruttelsSelected.instance.gruttelSelectedIndex).transform.GetInstanceID()){ // MAKES SURE POWERUP IS APPLIED TO SELECTED 
+                if (hit.collider.transform.GetInstanceID() != GruttelsSelected.instance.villageFolder.GetChild(GruttelsSelected.instance.gruttelSelectedIndex).transform.GetInstanceID())
+                { // MAKES SURE POWERUP IS APPLIED TO SELECTED 
                     return false;
                 }
 
                 Mesh curMesh = null;
                 Material curMaterial = null;
-                switch (powerupType){
+                switch (powerupType)
+                {
                     case GruttelType.Buff:
                         curMesh = gruttelTypes[0].type;
                         curMaterial = gruttelTypes[0].texture;
@@ -99,15 +106,18 @@ namespace TrojanMouse.Gruttel
                         curMaterial = gruttelTypes[1].texture;
                         break;
                 }
-                if(GruttelsSelected.instance.gruttelsSelected.Count >= GruttelsSelected.instance.gruttelsToSelect && !GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform)){
+                if (GruttelsSelected.instance.gruttelsSelected.Count >= GruttelsSelected.instance.gruttelsToSelect && !GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform))
+                {
                     return false;
                 }
 
                 gruttelData.UpdateGruttelType(powerupType);
-                if (!GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform)){
+                if (!GruttelsSelected.instance.gruttelsSelected.Contains(hit.collider.transform))
+                {
+                    GruttelsSelected.instance.AddGruttel(hit.collider.transform);
                     GruttelsSelected.instance.gruttelsSelected.Add(hit.collider.transform);
                 }
-                
+
                 hit.transform.gameObject.GetComponentInParent<AIController>().UpdateColor();
             }
             return (hit.transform) ? true : false;
