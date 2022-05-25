@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3428340782540745382}
   - component: {fileID: 3428340782540745383}
   - component: {fileID: -7087728403239051689}
+  - component: {fileID: 3588181600540040999}
   m_Layer: 5
   m_Name: Powerup
   m_TagString: Untagged
@@ -235,3 +236,18 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &3588181600540040999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3428340782540745377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.29411766}
+  m_EffectDistance: {x: -9.87, y: -12.01}
+  m_UseGraphicAlpha: 1
