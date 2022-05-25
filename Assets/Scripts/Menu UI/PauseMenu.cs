@@ -9,9 +9,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
     [SerializeField]
-    private GameObject optionsMenu;
+    private GameObject[] subMenus;
     public bool paused;
-    [SerializeField]CursorLockMode cursor;
+    [SerializeField] CursorLockMode cursor;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,10 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Make sure that the options menu isn't being shown
-            optionsMenu.SetActive(false);
+            foreach (GameObject go in subMenus)
+            {
+                go.SetActive(false);
+            }
             Pause();
         }
     }
