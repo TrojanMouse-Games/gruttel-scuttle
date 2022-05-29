@@ -5,6 +5,7 @@ using TrojanMouse.Inventory;
 using TrojanMouse.Litter.Region;
 using TrojanMouse.Gruttel;
 using Fungus;
+using System;
 #endregion
 
 namespace TrojanMouse.AI
@@ -71,6 +72,13 @@ namespace TrojanMouse.AI
             CheckDistraction();
             Timer();
             HFSM();
+
+            // error check
+            if (!data.agent.isOnNavMesh)
+            {
+                // if the error is thrown, move the AI to the closest point.
+                GetClosestNavPoint();
+            }
         }
         #endregion
 
@@ -97,8 +105,7 @@ namespace TrojanMouse.AI
                     case AIState.Nothing:
                         if (timer > 10)
                         {
-                            // Stop the AI
-                            data.agent.SetDestination(gameObject.transform.position);
+                            MoveToDestinationIfValid(gameObject.transform.position);
                         }
                         data.inventory = inventory;
                         currentState = moduleManager.litterModule.GetLitter(data);
@@ -196,10 +203,10 @@ namespace TrojanMouse.AI
 
             if (ignoreFSMTarget)
                 // Move to the position passed in
-                data.agent.SetDestination(position);
+                MoveToDestinationIfValid(position);
             else
                 // Move to the current target.
-                data.agent.SetDestination(currentTarget.transform.position);
+                MoveToDestinationIfValid(currentTarget.transform.position);
         }
         #endregion
 
@@ -296,6 +303,33 @@ namespace TrojanMouse.AI
         }
 
         /// <summary>
+        /// Gets the closest point on the navmesh and teleports the AI back to the mesh, only use when error is thrown.
+        /// </summary>
+        public void GetClosestNavPoint()
+        {
+            Debug.LogWarning("AI was placed somewhere that's not on the mesh, moving it back.");
+
+            NavMeshHit localHit;
+            if (NavMesh.SamplePosition(data.agent.transform.position, out localHit, 100, -1))
+            {
+                data.agent.transform.position = localHit.position;
+            }
+        }
+
+        private Vector3 MoveToDestinationIfValid(Vector3 destination)
+        {
+            if (data.agent.SetDestination(destination))
+            {
+                return destination;
+            }
+            else
+            {
+                GetClosestNavPoint();
+                return transform.position;
+            }
+        }
+
+        /// <summary>
         /// Small function to clean up the script and associated components to avoid errors.
         /// </summary>
         /// <param name="thingsToClean">This number specifies what needs to be cleaned. 
@@ -324,7 +358,7 @@ namespace TrojanMouse.AI
                 case 3:
                     Destroy(this);
                     break;
-            }   
+            }
         }
         #endregion
     }
